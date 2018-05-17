@@ -11,4 +11,44 @@
   
     <jaxws:endpoint id="livreService" implementor="fr.mb.biblio.soap.test.LivreTestServiceImpl" address="/LivreService"/>
 
+
+
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="locations">
+        <list>
+            <value>classpath:hibernate.properties</value>
+        </list>
+    </property>
+	</bean>
+
+		
+   <bean id="hibernateDataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${hibernate.connection.driver_class}" />
+		<property name="url" value="${hibernate.connection.url}" />
+		<property name="username" value="${hibernate.connection.username}" />
+		<property name="password" value="${hibernate.connection.password}" />
+	</bean> 
+      
+    <bean id="sessionFactory"  class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">  
+        <property name="dataSource" ref="hibernateDataSource"></property> 
+
+          
+     <property name="packagesToScan">
+         <array>
+              <value>fr.mb.biblio.models</value>
+              <value>fr.mb.biblio.soap</value>
+              <value>fr.mb.biblio.dao</value>
+         </array>
+     </property>
+          
+         
+          
+        <property name="hibernateProperties">  
+            <props>  
+               <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+            </props>  
+        </property>  
+    </bean> 
 </beans>
