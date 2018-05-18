@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import fr.mb.biblio.dao.contract.GenericDAO;
 import fr.mb.biblio.dao.contract.UtilisateurDao;
 import fr.mb.biblio.dao.impl.UtilisateurDaoImpl;
-import fr.mb.biblio.dao.impl.UtilisateurHome;
 import fr.mb.biblio.models.beans.Livre;
 import fr.mb.biblio.models.beans.Utilisateur;
 
