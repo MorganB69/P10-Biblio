@@ -7,6 +7,9 @@ import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fr.mb.biblio.dao.contract.GenericDAO;
+import fr.mb.biblio.dao.contract.UtilisateurDao;
+import fr.mb.biblio.dao.impl.UtilisateurDaoImpl;
 import fr.mb.biblio.dao.impl.UtilisateurHome;
 import fr.mb.biblio.models.beans.Livre;
 import fr.mb.biblio.models.beans.Utilisateur;
@@ -16,7 +19,7 @@ import fr.mb.biblio.models.beans.Utilisateur;
 public class LivreTestServiceImpl implements LivreTestService {
 	
 	@Inject
-	private UtilisateurHome utilisateurDao;
+	private UtilisateurDao utilisateurDao;
 	
 	
 	

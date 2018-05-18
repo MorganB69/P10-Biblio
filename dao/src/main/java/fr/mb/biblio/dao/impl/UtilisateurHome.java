@@ -16,13 +16,13 @@ import fr.mb.biblio.models.beans.Utilisateur;
  * @see fr.mb.biblio.dao.impl.Utilisateur
  * @author Hibernate Tools
  */
-@Named("utilisateurDao")
+
 @Stateless
 public class UtilisateurHome {
 
 	private static final Log log = LogFactory.getLog(UtilisateurHome.class);
 	
-	@Inject
+
 	@PersistenceContext
 	private EntityManager entityManager;
 
