@@ -55,7 +55,7 @@ public class Genre implements java.io.Serializable {
 		this.genre = genre;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "genres")
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "genres")
 	public Set<Livre> getLivres() {
 		return this.livres;
 	}

@@ -15,6 +15,6 @@ public interface LivreTestService {
 	public Livre getLivre(@WebParam(name="id")Integer id);
 	
 	@WebMethod
-	public void insert();
+	public void insert(@WebParam(name="utilisateur")Utilisateur user);
 
 }

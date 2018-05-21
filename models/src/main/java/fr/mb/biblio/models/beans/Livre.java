@@ -4,9 +4,13 @@ package fr.mb.biblio.models.beans;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -62,7 +66,7 @@ public class Livre implements java.io.Serializable {
 	}
 
 	@Id
-
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_livre", unique = true, nullable = false)
 	public int getIdLivre() {
 		return this.idLivre;
@@ -72,7 +76,7 @@ public class Livre implements java.io.Serializable {
 		this.idLivre = idLivre;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_ouvrage", nullable = false)
 	public Ouvrage getOuvrage() {
 		return this.ouvrage;
@@ -119,7 +123,7 @@ public class Livre implements java.io.Serializable {
 		this.resume = resume;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinTable(name = "livre_auteur", schema = "public", joinColumns = {
 			@JoinColumn(name = "id_livre", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "id_auteur", nullable = false, updatable = false) })
@@ -131,7 +135,7 @@ public class Livre implements java.io.Serializable {
 		this.auteurs = auteurs;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "livre_genre", schema = "public", joinColumns = {
 			@JoinColumn(name = "id_livre", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "id_genre", nullable = false, updatable = false) })
@@ -143,7 +147,7 @@ public class Livre implements java.io.Serializable {
 		this.genres = genres;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinTable(name = "livre_editeur", schema = "public", joinColumns = {
 			@JoinColumn(name = "id_livre", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "id_editeur", nullable = false, updatable = false) })
@@ -155,7 +159,7 @@ public class Livre implements java.io.Serializable {
 		this.editeurs = editeurs;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "livre")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "livre")
 	public Set<Pret> getPrets() {
 		return this.prets;
 	}

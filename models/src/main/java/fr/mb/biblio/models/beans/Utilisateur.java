@@ -110,7 +110,7 @@ public class Utilisateur implements java.io.Serializable {
 		this.mail = mail;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "utilisateur")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "utilisateur")
 	public Set<Pret> getPrets() {
 		return this.prets;
 	}

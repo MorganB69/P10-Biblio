@@ -36,4 +36,12 @@ public interface UtilisateurDao {
 	 * @return une liste des entités demandées
 	 */
 	public List<Utilisateur> findAll();
+	
+	/**
+	 * Récupère en bd l'utilisateur en fonction de l'identifiant et du mot de passe
+	 * @param identifiant
+	 * @param mdp
+	 * @return
+	 */
+	public Utilisateur identification(String identifiant,String mdp);
 }

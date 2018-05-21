@@ -6,6 +6,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -41,6 +43,7 @@ public class Auteur implements java.io.Serializable {
 	@Id
 
 	@Column(name = "id_auteur", unique = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getIdAuteur() {
 		return this.idAuteur;
 	}
@@ -67,7 +70,7 @@ public class Auteur implements java.io.Serializable {
 		this.nom = nom;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "auteurs")
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "auteurs")
 	public Set<Livre> getLivres() {
 		return this.livres;
 	}

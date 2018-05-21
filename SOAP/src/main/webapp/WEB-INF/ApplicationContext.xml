@@ -10,14 +10,18 @@
         http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<import resource="classpath:META-INF/cxf/cxf.xml"/>
-
+	
+	<!-- SCAN DES DIFFERENTS BEANS ANNOTES -->
   	<context:annotation-config/>
     <context:component-scan base-package="fr.mb.biblio.models, fr.mb.biblio.dao, fr.mb.biblio.soap"/>
   
-    <jaxws:endpoint id="livreService" implementor="fr.mb.biblio.soap.test.LivreTestServiceImpl" address="/LivreService"/>
+    
+    <!-- DECLARATION DES SERVICES -->
+    <jaxws:endpoint id="livreService" implementor="fr.mb.biblio.soap.test.LivreTestServiceImpl" address="/livreTestService"/>
+    <jaxws:endpoint id="userService" implementor="fr.mb.biblio.soap.userService.impl.userServiceImpl" address="/userService"/>
 
 
-
+	 <!-- PARAMETRAGE HIBERNATE -->
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
     <property name="locations">
         <list>

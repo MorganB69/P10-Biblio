@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -42,7 +44,7 @@ public class Pret implements java.io.Serializable {
 	}
 
 	@Id
-
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_pret", unique = true, nullable = false)
 	public int getIdPret() {
 		return this.idPret;
@@ -52,7 +54,7 @@ public class Pret implements java.io.Serializable {
 		this.idPret = idPret;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_livre", nullable = false)
 	public Livre getLivre() {
 		return this.livre;
@@ -62,7 +64,7 @@ public class Pret implements java.io.Serializable {
 		this.livre = livre;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_utilisateur", nullable = false)
 	public Utilisateur getUtilisateur() {
 		return this.utilisateur;

@@ -28,13 +28,8 @@ public class LivreTestServiceImpl implements LivreTestService {
 		return livre;
 	}
 	
-	public void insert() {
-		Utilisateur user=new Utilisateur();
-		user.setIdentifiant("Morgan");
-		user.setMail("brighi.morgan@mail.com");
-		user.setMdp("azerty");
-		user.setNom("Brighi");
-		user.setPrenom("Morgan");
+	public void insert(Utilisateur user) {
+
 		
 		this.utilisateurDao.persist(user);
 		
