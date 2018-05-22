@@ -9,10 +9,15 @@ import fr.mb.biblio.dao.contract.PretDao;
 import fr.mb.biblio.models.beans.Pret;
 
 
-@Named("pretDao")
+
 @Transactional
 public class PretDaoImpl extends AbstractDaoImpl<Pret> implements PretDao {
-	
+
+	public PretDaoImpl(Class<Pret> entityClass) {
+		super(entityClass);
+		// TODO Auto-generated constructor stub
+	}
+
 	
 	
 	

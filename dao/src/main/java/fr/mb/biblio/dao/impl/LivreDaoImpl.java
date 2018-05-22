@@ -8,9 +8,16 @@ import fr.mb.biblio.dao.contract.LivreDao;
 import fr.mb.biblio.models.beans.Livre;
 
 
-@Named("livreDao")
+
 @Transactional
 public class LivreDaoImpl extends AbstractDaoImpl<Livre> implements LivreDao {
+
+	public LivreDaoImpl(Class<Livre> entityClass) {
+		super(entityClass);
+		// TODO Auto-generated constructor stub
+	}
+
+
 	
 	
 	

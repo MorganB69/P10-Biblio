@@ -66,6 +66,9 @@ public class userServiceImpl implements userService {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see fr.mb.biblio.soap.userService.contract.userService#getUtilisateurById(java.lang.Integer)
+	 */
 	@Override
 	@Transactional
 	public Utilisateur getUtilisateurById(Integer id) throws NotFoundException {

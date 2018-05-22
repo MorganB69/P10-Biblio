@@ -9,9 +9,16 @@ import fr.mb.biblio.dao.contract.GenericDAO;
 import fr.mb.biblio.models.beans.Ouvrage;
 
 
-@Named("ouvrageDao")
+
 @Transactional
 public class OuvrageDaoImpl extends AbstractDaoImpl<Ouvrage> implements GenericDAO<Ouvrage> {
+
+	public OuvrageDaoImpl(Class<Ouvrage> entityClass) {
+		super(entityClass);
+		// TODO Auto-generated constructor stub
+	}
+
+
 	
 	
 	

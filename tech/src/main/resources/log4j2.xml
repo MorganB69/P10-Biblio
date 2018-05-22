@@ -57,10 +57,7 @@
         	<AppenderRef ref="FileHibernate"/>
         </Logger>
         -->
-        
-        <Logger name="org.springframework" level="debug">
-            <AppenderRef ref="FileSpring"/>
-        </Logger>
+
 
         <!-- == Logger pour l'application == -->
         <Logger name="fr.mb.biblio" level="info" additivity="false">
