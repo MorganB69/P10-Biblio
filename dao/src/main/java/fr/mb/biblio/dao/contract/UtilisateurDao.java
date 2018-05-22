@@ -38,6 +38,14 @@ public interface UtilisateurDao {
 	public List<Utilisateur> findAll();
 	
 	/**
+	 * Récupère une liste des entités selon un offset et un nb par page
+	 * @param offset
+	 * @param nbPages
+	 * @return
+	 */
+	public List<Utilisateur> findAllOffset(Integer offset, Integer nbPages);
+	
+	/**
 	 * Récupère en bd l'utilisateur en fonction de l'identifiant et du mot de passe
 	 * @param identifiant
 	 * @param mdp

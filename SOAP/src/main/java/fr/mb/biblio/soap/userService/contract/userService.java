@@ -14,7 +14,7 @@ import fr.mb.biblio.models.exception.NotFoundException;
  *
  */
 @WebService(name="userService")
-public interface userService {
+public interface UserService {
 	
 	/**
 	 * Méthode d'identification de l'utilisateur

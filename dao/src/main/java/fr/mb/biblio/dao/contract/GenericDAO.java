@@ -37,6 +37,14 @@ public interface GenericDAO <T> {
 	 */
 	public List<T> findAll();
 	
+	/**
+	 * Récupère une liste des entités selon un offset et un nb par page
+	 * @param offset
+	 * @param nbPages
+	 * @return
+	 */
+	public List<T> findAllOffset(Integer offset, Integer nbPages);
+	
 
 
 }

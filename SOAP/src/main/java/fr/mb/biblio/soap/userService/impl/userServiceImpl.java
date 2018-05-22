@@ -6,7 +6,7 @@ import javax.transaction.Transactional;
 import fr.mb.biblio.dao.contract.UtilisateurDao;
 import fr.mb.biblio.models.beans.Utilisateur;
 import fr.mb.biblio.models.exception.NotFoundException;
-import fr.mb.biblio.soap.userService.contract.userService;
+import fr.mb.biblio.soap.userService.contract.UserService;
 import fr.mb.biblio.models.exception.FunctionalException;
 
 /**
@@ -15,7 +15,7 @@ import fr.mb.biblio.models.exception.FunctionalException;
  * @author Morgan
  *
  */
-public class userServiceImpl implements userService {
+public class UserServiceImpl implements UserService {
 
 	/**
 	 * DAO à injecter

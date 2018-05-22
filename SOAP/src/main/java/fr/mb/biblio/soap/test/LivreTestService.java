@@ -8,7 +8,7 @@ import fr.mb.biblio.models.beans.Livre;
 import fr.mb.biblio.models.beans.Utilisateur;
 
 
-@WebService(name="livreService")
+@WebService(name="livreTestService")
 public interface LivreTestService {
 	
 	@WebMethod

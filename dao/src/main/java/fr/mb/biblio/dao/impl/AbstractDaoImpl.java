@@ -24,7 +24,7 @@ import fr.mb.biblio.dao.contract.GenericDAO;
  */
 public abstract class AbstractDaoImpl<T extends Serializable>  {
 	
-	private Class<T> entityClass;
+	protected Class<T> entityClass;
 	
 	/**
 	 * Template hibernate utilisé pour les requêtes basiques
@@ -85,6 +85,20 @@ public abstract class AbstractDaoImpl<T extends Serializable>  {
 		session.beginTransaction();
 		
 		Query query=session.createQuery("from "+entityClass.getName());
+		List<T> list = query.list();
+		session.close();
+		return list;
+	}
+	
+	@Transactional
+	public List<T> findAllOffset(Integer offset, Integer nbPages) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		Query query=session.createQuery("from "+entityClass.getName());
+		query.setFirstResult(offset);
+		query.setMaxResults(nbPages);
+		
 		List<T> list = query.list();
 		session.close();
 		return list;

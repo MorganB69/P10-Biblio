@@ -3,6 +3,7 @@ package fr.mb.biblio.dao.contract;
 import java.util.List;
 
 import fr.mb.biblio.models.beans.Livre;
+import fr.mb.biblio.models.recherche.RechercheLivre;
 
 public interface LivreDao {
 	/**
@@ -35,4 +36,14 @@ public interface LivreDao {
 	 * @return une liste des entités demandées
 	 */
 	public List<Livre> findAll();
+	
+	/**
+	 * Récupère une liste des entités selon un offset et un nb par page
+	 * @param offset
+	 * @param nbPages
+	 * @return
+	 */
+	public List<Livre> findAllOffset(Integer offset, Integer nbPages);
+	
+	public List<Livre> rechercheLivres(RechercheLivre recherche, Integer offset, Integer nbPages);
 }

@@ -35,4 +35,12 @@ public interface PretDao {
 	 * @return une liste des entités demandées
 	 */
 	public List<Pret> findAll();
+	
+	/**
+	 * Récupère une liste des entités selon un offset et un nb par page
+	 * @param offset
+	 * @param nbPages
+	 * @return
+	 */
+	public List<Pret> findAllOffset(Integer offset, Integer nbPages);
 }
