@@ -10,6 +10,7 @@ import fr.mb.biblio.models.beans.Livre;
 import fr.mb.biblio.models.exception.FunctionalException;
 import fr.mb.biblio.models.exception.NotFoundException;
 import fr.mb.biblio.models.recherche.RechercheLivre;
+import fr.mb.biblio.soap.test.ListeLivre;
 
 /**
  * Service permettant la gestion d'un livre
@@ -33,6 +34,7 @@ public interface LivreService {
 	 * @return
 	 * @throws NotFoundException
 	 */
+	@WebMethod
 	public Livre getLivreById(@WebParam(name="id")Integer id) throws NotFoundException;
 	
 	/**
@@ -41,6 +43,7 @@ public interface LivreService {
 	 * @param nb
 	 * @return
 	 */
+	@WebMethod
 	public List<Livre> getAllLivres(@WebParam(name="offset")Integer offset, 
 									@WebParam(name="nb")Integer nb);
 	
@@ -51,7 +54,11 @@ public interface LivreService {
 	 * @param nb
 	 * @return
 	 */
+	@WebMethod
 	public List<Livre> rechercheLivres(@WebParam(name="recherche")RechercheLivre recherche,
 									   @WebParam(name="offset")Integer offset, Integer nb);
 	
+	@WebMethod
+	public void insertionExemple() throws FunctionalException;
 }
+

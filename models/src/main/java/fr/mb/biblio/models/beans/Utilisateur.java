@@ -19,7 +19,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "utilisateur", schema = "public")
+@Table(name = "utilisateur", catalog = "projet")
 public class Utilisateur implements java.io.Serializable {
 
 	private int idUtilisateur;

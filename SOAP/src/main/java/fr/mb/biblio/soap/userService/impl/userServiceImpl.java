@@ -3,6 +3,8 @@ package fr.mb.biblio.soap.userService.impl;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import org.springframework.stereotype.Service;
+
 import fr.mb.biblio.dao.contract.UtilisateurDao;
 import fr.mb.biblio.models.beans.Utilisateur;
 import fr.mb.biblio.models.exception.NotFoundException;
@@ -15,7 +17,7 @@ import fr.mb.biblio.models.exception.FunctionalException;
  * @author Morgan
  *
  */
-public class UserServiceImpl implements UserService {
+ public class UserServiceImpl implements UserService {
 
 	/**
 	 * DAO à injecter

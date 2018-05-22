@@ -13,6 +13,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.transaction.annotation.Propagation;
 
 import fr.mb.biblio.dao.contract.GenericDAO;
 
@@ -22,6 +23,7 @@ import fr.mb.biblio.dao.contract.GenericDAO;
  * @author Morgan
  *
  */
+@Transactional
 public abstract class AbstractDaoImpl<T extends Serializable>  {
 	
 	protected Class<T> entityClass;
@@ -47,9 +49,9 @@ public abstract class AbstractDaoImpl<T extends Serializable>  {
 
 	@Transactional
 	public void persist(T entity) {
-		Session session = sessionFactory.openSession();
-		session.save(entity);
-		session.close();
+		//Session session = sessionFactory.openSession();
+		template.save(entity);
+		//session.close();
 		
 	}
 
