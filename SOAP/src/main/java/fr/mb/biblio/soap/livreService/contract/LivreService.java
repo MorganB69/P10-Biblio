@@ -60,5 +60,8 @@ public interface LivreService {
 	
 	@WebMethod
 	public void insertionExemple() throws FunctionalException;
+	
+	@WebMethod
+	public void creationAleatoireLivre(@WebParam(name="nb")Integer nb) throws FunctionalException;
 }
 

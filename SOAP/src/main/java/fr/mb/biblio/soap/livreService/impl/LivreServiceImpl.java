@@ -15,6 +15,7 @@ import fr.mb.biblio.models.exception.FunctionalException;
 import fr.mb.biblio.models.exception.NotFoundException;
 import fr.mb.biblio.models.recherche.RechercheLivre;
 import fr.mb.biblio.soap.livreService.contract.LivreService;
+import fr.mb.biblio.soap.test.CreationLivreAleatoire;
 import fr.mb.biblio.soap.test.ListeLivre;
 
 /**
@@ -56,6 +57,9 @@ public class LivreServiceImpl implements LivreService {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see fr.mb.biblio.soap.livreService.contract.LivreService#getLivreById(java.lang.Integer)
+	 */
 	@Override
 	@Transactional
 	public Livre getLivreById(Integer id) throws NotFoundException {
@@ -65,12 +69,18 @@ public class LivreServiceImpl implements LivreService {
 		return livreReturn;
 	}
 
+	/* (non-Javadoc)
+	 * @see fr.mb.biblio.soap.livreService.contract.LivreService#getAllLivres(java.lang.Integer, java.lang.Integer)
+	 */
 	@Override
 	public List<Livre> getAllLivres(Integer offset, Integer nb) {
 		listeReturn=livreDao.findAllOffset(offset, nb);
 		return listeReturn;
 	}
 
+	/* (non-Javadoc)
+	 * @see fr.mb.biblio.soap.livreService.contract.LivreService#rechercheLivres(fr.mb.biblio.models.recherche.RechercheLivre, java.lang.Integer, java.lang.Integer)
+	 */
 	@Override
 	public List<Livre> rechercheLivres(RechercheLivre recherche, Integer offset, Integer nb) {
 		listeReturn=livreDao.rechercheLivres(recherche, offset, nb);
@@ -92,5 +102,23 @@ public class LivreServiceImpl implements LivreService {
 			
 		}
 	}
+	
+	@Transactional
+	public void creationAleatoireLivre(Integer nb) throws FunctionalException {
+		List <Ouvrage> listOuvrage = ouvrageDao.findAll();
+		List<Genre>listGenre= genreDao.findAll();
+		
+		CreationLivreAleatoire listeExemple= new CreationLivreAleatoire(listOuvrage,listGenre,nb);
+		
+		List<Livre> liste=listeExemple.getListe();
+		for (Iterator iterator = liste.iterator(); iterator.hasNext();) {
+			Livre livre = (Livre) iterator.next();
+			if (livre==null) throw new FunctionalException("Le livre est null");
+			else livreDao.persist(livre);
+			
+		}
+	}
+	
+	
 
 }
