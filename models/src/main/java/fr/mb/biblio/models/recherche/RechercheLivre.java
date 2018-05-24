@@ -2,9 +2,9 @@ package fr.mb.biblio.models.recherche;
 
 public class RechercheLivre {
 	private String titre;
-	private String auteur;
-	private String genre;
-	private String editeur;
+	private Integer auteur;
+	private Integer genre;
+	private Integer editeur;
 	
 	
 	public RechercheLivre() {
@@ -17,22 +17,22 @@ public class RechercheLivre {
 	public void setTitre(String titre) {
 		this.titre = titre;
 	}
-	public String getAuteur() {
+	public Integer getAuteur() {
 		return auteur;
 	}
-	public void setAuteur(String auteur) {
+	public void setAuteur(Integer auteur) {
 		this.auteur = auteur;
 	}
-	public String getGenre() {
+	public Integer getGenre() {
 		return genre;
 	}
-	public void setGenre(String genre) {
+	public void setGenre(Integer genre) {
 		this.genre = genre;
 	}
-	public String getEditeur() {
+	public Integer getEditeur() {
 		return editeur;
 	}
-	public void setEditeur(String editeur) {
+	public void setEditeur(Integer editeur) {
 		this.editeur = editeur;
 	}
 	

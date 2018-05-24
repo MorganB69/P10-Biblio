@@ -56,11 +56,20 @@ public interface LivreService {
 	 */
 	@WebMethod
 	public List<Livre> rechercheLivres(@WebParam(name="recherche")RechercheLivre recherche,
-									   @WebParam(name="offset")Integer offset, Integer nb);
+									   @WebParam(name="offset")Integer offset,@WebParam(name="nb") Integer nb);
 	
+	/**
+	 * Insertion de livres rentrés manuellement
+	 * @throws FunctionalException
+	 */
 	@WebMethod
 	public void insertionExemple() throws FunctionalException;
 	
+	/**
+	 * Insertion de livres aléatoires
+	 * @param nb
+	 * @throws FunctionalException
+	 */
 	@WebMethod
 	public void creationAleatoireLivre(@WebParam(name="nb")Integer nb) throws FunctionalException;
 }

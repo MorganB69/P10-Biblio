@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.inject.Named;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,8 +16,11 @@ import fr.mb.biblio.models.recherche.RechercheLivre;
 
 
 
+
 @Transactional
 public class LivreDaoImpl extends AbstractDaoImpl<Livre> implements LivreDao {
+	
+	private static Logger logger = LogManager.getLogger(LivreDaoImpl.class);
 
 	public LivreDaoImpl(Class<Livre> entityClass) {
 		super(entityClass);
@@ -31,32 +36,32 @@ public class LivreDaoImpl extends AbstractDaoImpl<Livre> implements LivreDao {
 		String SQL = " SELECT DISTINCT livre FROM Livre as livre ";
 		
 		//-------------JOINTURES FACULTATIVES----------------
-		if (recherche.getAuteur()!=null) SQL+="JOIN livre.auteurs as auteur";
-		if (recherche.getGenre()!=null) SQL+="JOIN livre.genre as genre";
+		if (recherche.getAuteur()!=null&&recherche.getAuteur()!=0) SQL+=" JOIN livre.auteurs as auteur ";
+		if (recherche.getGenre()!=null&&recherche.getGenre()!=0) SQL+=" JOIN livre.genres as genre ";
 		
 		//-------------CRITERE DE RECHERCHE---------------
 		
 		//-------------CRITERES OBLIGATOIRES---------------
 				
-		SQL+=" WHERE (livre.titre LIKE (:titre)%)";
+		SQL+=" WHERE (livre.titre LIKE (:titre)) ";
 		
 		//-------------CRITERES FACULTATIFS---------------
-		if (recherche.getAuteur()!=null) SQL+="AND (auteur.nom LIKE(:auteur)%";
-		if (recherche.getGenre()!=null) SQL+="AND (genre.genre LIKE(:genre)%";
+		if (recherche.getAuteur()!=null&&recherche.getAuteur()!=0) SQL+=" AND (auteur.idAuteur=(:auteur)) ";
+		if (recherche.getGenre()!=null&&recherche.getGenre()!=0) SQL+=" AND (genre.idGenre=(:genre)) ";
 		
 		//TRI
-		SQL+="  ORDER BY livre.titre ASC ";
+		SQL+=" ORDER BY livre.titre ASC ";
 		
 		
 		
 		
 		//CREATION DE LA QUERY
 		Query query = session.createQuery(SQL);
-		query.setParameter("titre", recherche.getTitre());
-		if (recherche.getAuteur()!=null) query.setParameter("auteur", recherche.getAuteur());
-		if (recherche.getGenre()!=null) query.setParameter("genre", recherche.getGenre());
+		query.setParameter("titre", "%"+recherche.getTitre()+"%");
+		if (recherche.getAuteur()!=null&&recherche.getAuteur()!=0) query.setParameter("auteur", recherche.getAuteur());
+		if (recherche.getGenre()!=null&&recherche.getGenre()!=0) query.setParameter("genre", recherche.getGenre());
 		
-		
+		logger.info(query.getQueryString());
 		
 
 		query.setFirstResult(offset);

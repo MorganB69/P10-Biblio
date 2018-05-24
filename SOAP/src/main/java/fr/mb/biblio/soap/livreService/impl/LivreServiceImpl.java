@@ -5,11 +5,14 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.mb.biblio.dao.contract.GenericDAO;
 import fr.mb.biblio.dao.contract.LivreDao;
+import fr.mb.biblio.dao.impl.AbstractDaoImpl;
 import fr.mb.biblio.models.beans.Genre;
 import fr.mb.biblio.models.beans.Livre;
 import fr.mb.biblio.models.beans.Ouvrage;
@@ -27,6 +30,8 @@ import fr.mb.biblio.soap.test.ListeLivre;
  */
 @Transactional
 public class LivreServiceImpl implements LivreService {
+	
+	private static Logger logger = LogManager.getLogger(LivreServiceImpl.class);
 	
 	/**
 	 * Dao à injecter
@@ -75,6 +80,7 @@ public class LivreServiceImpl implements LivreService {
 	 * @see fr.mb.biblio.soap.livreService.contract.LivreService#getAllLivres(java.lang.Integer, java.lang.Integer)
 	 */
 	@Override
+	@Transactional
 	public List<Livre> getAllLivres(Integer offset, Integer nb) {
 		listeReturn=livreDao.findAllOffset(offset, nb);
 		return listeReturn;
@@ -84,8 +90,16 @@ public class LivreServiceImpl implements LivreService {
 	 * @see fr.mb.biblio.soap.livreService.contract.LivreService#rechercheLivres(fr.mb.biblio.models.recherche.RechercheLivre, java.lang.Integer, java.lang.Integer)
 	 */
 	@Override
+	@Transactional
 	public List<Livre> rechercheLivres(RechercheLivre recherche, Integer offset, Integer nb) {
+		logger.info(recherche.getAuteur());
+		logger.info(recherche.getGenre());
 		listeReturn=livreDao.rechercheLivres(recherche, offset, nb);
+		
+		for (Iterator iterator = listeReturn.iterator(); iterator.hasNext();) {
+			Livre livre = (Livre) iterator.next();
+			logger.info(livre.getTitre());
+		}
 		return listeReturn;
 	}
 	

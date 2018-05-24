@@ -22,7 +22,7 @@
         <!-- == Sortie sur un fichier de log == -->
         <Appender type="File" name="FileGeneral" fileName="${filenameGeneral}" append="false">
         	
-      		<Layout type="PatternLayout" pattern="%d{yyyy-MM-dd HH:mm:ss.SSS}%C %level %m %n"/>
+      		<Layout type="PatternLayout" pattern="%highlight{%-5level} [%t] %c : %m%n"/>
    		 </Appender>
    		 
    		 <Appender type="File" name="FileStruts" fileName="${filenameStruts}" append="false">
@@ -64,11 +64,12 @@
             <AppenderRef ref="STDOUT"/>
         </Logger>
         
+        <!--
         <Logger name="fr.mb.biblio" level="debug" additivity="false">
             <AppenderRef ref="FileGeneral"/>
         </Logger>
         
-
+		-->
 
         <!-- == Logger de base == -->
         <Root level="trace">
