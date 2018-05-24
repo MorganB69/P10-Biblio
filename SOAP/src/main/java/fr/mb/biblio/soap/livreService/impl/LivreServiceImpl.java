@@ -91,15 +91,16 @@ public class LivreServiceImpl implements LivreService {
 	 */
 	@Override
 	@Transactional
-	public List<Livre> rechercheLivres(RechercheLivre recherche, Integer offset, Integer nb) {
-		logger.info(recherche.getAuteur());
-		logger.info(recherche.getGenre());
+	public List<Livre> rechercheLivres(RechercheLivre recherche, Integer offset, Integer nb) throws FunctionalException {
+
+		if(recherche.getTitre().length()<=3) throw new FunctionalException("Insérer plus de 3 caractères");
+		else {
 		listeReturn=livreDao.rechercheLivres(recherche, offset, nb);
 		
 		for (Iterator iterator = listeReturn.iterator(); iterator.hasNext();) {
 			Livre livre = (Livre) iterator.next();
-			logger.info(livre.getTitre());
-		}
+
+		}}
 		return listeReturn;
 	}
 	
