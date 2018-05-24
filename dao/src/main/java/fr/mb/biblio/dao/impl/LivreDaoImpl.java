@@ -24,8 +24,8 @@ public class LivreDaoImpl extends AbstractDaoImpl<Livre> implements LivreDao {
 
 	@Override
 	public List<Livre> rechercheLivres(RechercheLivre recherche, Integer offset, Integer nbPages) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = sessionFactory.getCurrentSession();
+
 		
 		//-------------SELECTION DES SITES-------------
 		String SQL = " SELECT DISTINCT livre FROM Livre as livre ";
@@ -63,7 +63,6 @@ public class LivreDaoImpl extends AbstractDaoImpl<Livre> implements LivreDao {
 		query.setMaxResults(nbPages);
 		
 		List<Livre> list = query.list();
-		session.close();
 		return list;
 	}
 

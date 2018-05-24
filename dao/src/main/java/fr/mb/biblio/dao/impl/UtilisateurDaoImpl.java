@@ -25,17 +25,16 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl<Utilisateur> implements 
 	}
 
 	@Override
-	@Transactional
 	public Utilisateur identification(String identifiant, String mdp) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = sessionFactory.getCurrentSession();
+
 		
 		Query query=session.createQuery("FROM Utilisateur WHERE identifiant=(:ident) AND mdp=(:mdp)");
 		query.setParameter("ident", identifiant);
 		query.setParameter("mdp", mdp);
 		List<Utilisateur> userList = query.getResultList();
 
-		session.close();
+
 		if (userList.isEmpty()){
 			return null;
 		}

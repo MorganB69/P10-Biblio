@@ -55,7 +55,7 @@ public class Ouvrage implements java.io.Serializable {
 		this.typeouvrage = typeouvrage;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "ouvrage")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "ouvrage")
 	public Set<Livre> getLivres() {
 		return this.livres;
 	}

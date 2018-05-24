@@ -5,15 +5,16 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
+
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
 import org.hibernate.query.Query;
 import org.springframework.orm.hibernate5.HibernateTemplate;
-import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.mb.biblio.dao.contract.GenericDAO;
 
@@ -47,62 +48,59 @@ public abstract class AbstractDaoImpl<T extends Serializable>  {
 		this.entityClass = entityClass;
 	}
 
-	@Transactional
+
 	public void persist(T entity) {
-		//Session session = sessionFactory.openSession();
-		template.save(entity);
-		//session.close();
+		Session session = sessionFactory.getCurrentSession();
+		session.save(entity);
+
 		
 	}
 
-	@Transactional
+
 	public void update(T entity) {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		session.update(entity);
-		session.close();
+
 		
 	}
 
-	@Transactional
+
 	public T findById(int id) {
-		Session session = sessionFactory.openSession();
-		logger.info(entityClass.getName());
+		Session session = sessionFactory.getCurrentSession();
 		
 		T entity=(session.get(entityClass,id));
-		session.close();
+		
 		return entity;
 	}
 
-	@Transactional
+
 	public void delete(T entity) {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		session.delete(entity);
-		session.close();
-		
+
 	}
 
-	@Transactional
+
 	public List<T> findAll() {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = sessionFactory.getCurrentSession();
 		
 		Query query=session.createQuery("from "+entityClass.getName());
 		List<T> list = query.list();
-		session.close();
+
 		return list;
 	}
 	
-	@Transactional
+
 	public List<T> findAllOffset(Integer offset, Integer nbPages) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = sessionFactory.getCurrentSession();
+
 		
 		Query query=session.createQuery("from "+entityClass.getName());
 		query.setFirstResult(offset);
 		query.setMaxResults(nbPages);
 		
 		List<T> list = query.list();
-		session.close();
+
 		return list;
 	}
 

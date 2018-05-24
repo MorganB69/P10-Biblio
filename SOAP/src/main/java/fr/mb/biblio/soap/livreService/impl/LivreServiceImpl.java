@@ -4,7 +4,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
+
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.mb.biblio.dao.contract.GenericDAO;
 import fr.mb.biblio.dao.contract.LivreDao;
