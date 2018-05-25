@@ -20,13 +20,17 @@
     <jaxws:endpoint id="livreTestService" implementor="fr.mb.biblio.soap.test.LivreTestServiceImpl" address="/livreTestService"/>
     <jaxws:endpoint id="userService" implementor="fr.mb.biblio.soap.userService.impl.UserServiceImpl" address="/userService"/>
     <jaxws:endpoint id="livreService" implementor="fr.mb.biblio.soap.livreService.impl.LivreServiceImpl" address="/livreService"/>
+	<jaxws:endpoint id="pretService" implementor="fr.mb.biblio.soap.pretService.impl.PretServiceImpl" address="/pretService"/>
 
+	
 
+	
 	 <!-- PARAMETRAGE HIBERNATE -->
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
     <property name="locations">
         <list>
             <value>classpath:hibernate.properties</value>
+            <value>classpath:configPret.properties</value>
         </list>
     </property>
 	</bean>

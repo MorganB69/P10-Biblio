@@ -60,12 +60,17 @@ import fr.mb.biblio.models.exception.FunctionalException;
 	 */
 	@Override
 	@Transactional
-	public void insert(Utilisateur utilisateur) throws FunctionalException {
+	public void insert(Utilisateur utilisateur, String identifiant, String mdp) throws FunctionalException {
+		//Récupération de l'utilisateur en fonction de son identification
+		Utilisateur admin=utilisateurDao.identification(identifiant, mdp);
+		//Vérification si statut d'admin
+		if(admin.getAdmin()==false) throw new FunctionalException("Seul un administrateur peut enregistrer un nouveau prêt");
+		else {
 		if (utilisateur == null)
 			throw new FunctionalException("Utilisateur null");
 		else
 			utilisateurDao.persist(utilisateur);
-
+		}
 	}
 
 	/* (non-Javadoc)
@@ -73,14 +78,20 @@ import fr.mb.biblio.models.exception.FunctionalException;
 	 */
 	@Override
 	@Transactional
-	public Utilisateur getUtilisateurById(Integer id) throws NotFoundException {
-			user = utilisateurDao.findById(id);
+	public Utilisateur getUtilisateurById(Integer id, String identifiant, String mdp) throws NotFoundException, FunctionalException {
+		//Récupération de l'utilisateur en fonction de son identification
+				Utilisateur admin=utilisateurDao.identification(identifiant, mdp);
+				//Vérification si statut d'admin
+				if(admin.getAdmin()==false) throw new FunctionalException("Seul un administrateur peut enregistrer un nouveau prêt");
+				else {
+		user = utilisateurDao.findById(id);
 		
 		if (user == null) {
 			throw new NotFoundException("Utilisateur non trouvé");
 		}
 
 		return user;
+	}
 	}
 
 }

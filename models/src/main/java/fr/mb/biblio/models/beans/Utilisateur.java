@@ -28,21 +28,23 @@ public class Utilisateur implements java.io.Serializable {
 	private String nom;
 	private String mdp;
 	private String mail;
+	private Boolean admin;
 	private Set<Pret> prets = new HashSet<Pret>(0);
 
 	public Utilisateur() {
 	}
 
-	public Utilisateur(int idUtilisateur, String identifiant, String prenom, String nom, String mdp, String mail) {
+	public Utilisateur(int idUtilisateur, String identifiant, String prenom, String nom, String mdp, String mail, Boolean admin) {
 		this.idUtilisateur = idUtilisateur;
 		this.identifiant = identifiant;
 		this.prenom = prenom;
 		this.nom = nom;
 		this.mdp = mdp;
 		this.mail = mail;
+		this.admin=admin;
 	}
 
-	public Utilisateur(int idUtilisateur, String identifiant, String prenom, String nom, String mdp, String mail,
+	public Utilisateur(int idUtilisateur, String identifiant, String prenom, String nom, String mdp, String mail, Boolean admin,
 			Set<Pret> prets) {
 		this.idUtilisateur = idUtilisateur;
 		this.identifiant = identifiant;
@@ -50,6 +52,7 @@ public class Utilisateur implements java.io.Serializable {
 		this.nom = nom;
 		this.mdp = mdp;
 		this.mail = mail;
+		this.admin=admin;
 		this.prets = prets;
 	}
 
@@ -117,6 +120,14 @@ public class Utilisateur implements java.io.Serializable {
 
 	public void setPrets(Set<Pret> prets) {
 		this.prets = prets;
+	}
+	@Column(name = "admin")
+	public Boolean getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Boolean admin) {
+		this.admin = admin;
 	}
 
 }

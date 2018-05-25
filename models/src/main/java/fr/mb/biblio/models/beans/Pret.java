@@ -1,6 +1,7 @@
 package fr.mb.biblio.models.beans;
 // Generated 17 mai 2018 21:05:11 by Hibernate Tools 5.2.10.Final
 
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,15 +28,15 @@ public class Pret implements java.io.Serializable {
 	private int idPret;
 	private Livre livre;
 	private Utilisateur utilisateur;
-	private Date dateDebut;
-	private Date dateFin;
-	private Date dateEffective;
+	private LocalDate dateDebut;
+	private LocalDate dateFin;
+	private LocalDate dateEffective;
 	private boolean prolonge;
 
 	public Pret() {
 	}
 
-	public Pret(int idPret, Livre livre, Utilisateur utilisateur, Date dateDebut, Date dateFin, Date dateEffective,
+	public Pret(int idPret, Livre livre, Utilisateur utilisateur, LocalDate dateDebut, LocalDate dateFin, LocalDate dateEffective,
 			boolean prolonge) {
 		this.idPret = idPret;
 		this.livre = livre;
@@ -65,6 +66,7 @@ public class Pret implements java.io.Serializable {
 	}
 
 	public void setLivre(Livre livre) {
+		livre.getPrets().add(this);
 		this.livre = livre;
 	}
 
@@ -76,36 +78,37 @@ public class Pret implements java.io.Serializable {
 	}
 
 	public void setUtilisateur(Utilisateur utilisateur) {
+		utilisateur.getPrets().add(this);
 		this.utilisateur = utilisateur;
 	}
 
-	@Temporal(TemporalType.DATE)
+	
 	@Column(name = "date_debut", nullable = false, length = 13)
-	public Date getDateDebut() {
+	public LocalDate getDateDebut() {
 		return this.dateDebut;
 	}
 
-	public void setDateDebut(Date dateDebut) {
-		this.dateDebut = dateDebut;
+	public void setDateDebut(LocalDate dateDebut2) {
+		this.dateDebut = dateDebut2;
 	}
 
-	@Temporal(TemporalType.DATE)
+	
 	@Column(name = "date_fin", nullable = false, length = 13)
-	public Date getDateFin() {
+	public LocalDate getDateFin() {
 		return this.dateFin;
 	}
 
-	public void setDateFin(Date dateFin) {
+	public void setDateFin(LocalDate dateFin) {
 		this.dateFin = dateFin;
 	}
 
-	@Temporal(TemporalType.DATE)
+
 	@Column(name = "date_effective", nullable = false, length = 13)
-	public Date getDateEffective() {
+	public LocalDate getDateEffective() {
 		return this.dateEffective;
 	}
 
-	public void setDateEffective(Date dateEffective) {
+	public void setDateEffective(LocalDate dateEffective) {
 		this.dateEffective = dateEffective;
 	}
 
