@@ -52,4 +52,6 @@ public interface UtilisateurDao {
 	 * @return
 	 */
 	public Utilisateur identification(String identifiant,String mdp);
+	
+	public Utilisateur getUser(String identifiant);
 }

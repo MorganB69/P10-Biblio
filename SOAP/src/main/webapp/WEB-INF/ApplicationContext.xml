@@ -15,12 +15,25 @@
   	<context:annotation-config/>
     <context:component-scan base-package="fr.mb.biblio.models, fr.mb.biblio.dao, fr.mb.biblio.soap"/>
   
-    
+       <bean id="myPasswordCallback" class="fr.mb.biblio.soap.ServerPasswordCallback"/>
     <!-- DECLARATION DES SERVICES -->
     <jaxws:endpoint id="livreTestService" implementor="fr.mb.biblio.soap.test.LivreTestServiceImpl" address="/livreTestService"/>
     <jaxws:endpoint id="userService" implementor="fr.mb.biblio.soap.userService.impl.UserServiceImpl" address="/userService"/>
     <jaxws:endpoint id="livreService" implementor="fr.mb.biblio.soap.livreService.impl.LivreServiceImpl" address="/livreService"/>
-	<jaxws:endpoint id="pretService" implementor="fr.mb.biblio.soap.pretService.impl.PretServiceImpl" address="/pretService"/>
+	<jaxws:endpoint id="pretService" implementor="fr.mb.biblio.soap.pretService.impl.PretServiceImpl" address="/pretService">
+	  <jaxws:inInterceptors>
+    <bean class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
+      <constructor-arg>
+        <map>
+          <entry key="action" value="UsernameToken" />
+          <entry key="passwordType" value="PasswordText" />
+          <entry key="passwordCallbackRef" value-ref="myPasswordCallback" /> 
+        </map>
+      </constructor-arg> 
+    </bean>
+  </jaxws:inInterceptors>
+		
+	</jaxws:endpoint>
 
 	
 

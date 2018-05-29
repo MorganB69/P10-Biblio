@@ -46,6 +46,26 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl<Utilisateur> implements 
 		
 		
 	}
+
+	@Override
+	public Utilisateur getUser(String identifiant) {
+		Session session = sessionFactory.getCurrentSession();
+
+		
+		Query query=session.createQuery("FROM Utilisateur WHERE identifiant=(:ident)");
+		query.setParameter("ident", identifiant);
+		List<Utilisateur> userList = query.getResultList();
+
+
+		if (userList.isEmpty()){
+			return null;
+		}
+		else {
+			Utilisateur user=userList.get(0);
+			return user;
+			
+		}
+	}
 	
 	
 	

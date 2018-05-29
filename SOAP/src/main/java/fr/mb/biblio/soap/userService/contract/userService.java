@@ -36,7 +36,7 @@ public interface UserService {
 	 */
 	@WebMethod
 	public void insert(
-			@WebParam(name="utilisateur")Utilisateur utilisateur,@WebParam(name="identifiant") String identifiant,@WebParam(name="mdp") String mdp)
+			@WebParam(name="utilisateur")Utilisateur utilisateur)
 				throws FunctionalException;
 	
 	/**
@@ -47,7 +47,7 @@ public interface UserService {
 	 */
 	@WebMethod
 	public Utilisateur getUtilisateurById(
-			@WebParam(name="id")Integer id,@WebParam(name="identifiant") String identifiant,@WebParam(name="mdp") String mdp)
+			@WebParam(name="id")Integer id)
 				throws NotFoundException,FunctionalException;
 
 }
