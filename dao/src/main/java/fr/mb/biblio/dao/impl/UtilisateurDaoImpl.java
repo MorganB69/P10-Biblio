@@ -66,6 +66,27 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl<Utilisateur> implements 
 			
 		}
 	}
+
+	@Override
+	public Integer getUserIdByName(String nom, String prenom) {
+			Session session = sessionFactory.getCurrentSession();
+
+		
+		Query query=session.createQuery("FROM Utilisateur WHERE nom=(:nom) AND prenom=(:prenom)");
+		query.setParameter("prenom", prenom);
+		query.setParameter("nom", nom);
+		List<Utilisateur> userList = query.getResultList();
+
+
+		if (userList.isEmpty()){
+			return null;
+		}
+		else {
+			Utilisateur user=userList.get(0);
+			return user.getIdUtilisateur();
+			
+		}
+	}
 	
 	
 	

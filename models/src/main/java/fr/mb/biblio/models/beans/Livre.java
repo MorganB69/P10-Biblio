@@ -39,6 +39,7 @@ public class Livre implements java.io.Serializable {
 	private LocalDate parution;
 	private String image;
 	private String resume;
+	private Boolean disponible;
 	private Set<Auteur> auteurs = new HashSet<Auteur>(0);
 	private Set<Genre> genres = new HashSet<Genre>(0);
 	private Set<Editeur> editeurs = new HashSet<Editeur>(0);
@@ -47,16 +48,17 @@ public class Livre implements java.io.Serializable {
 	public Livre() {
 	}
 
-	public Livre(int idLivre, Ouvrage ouvrage, String titre, LocalDate parution, String image, String resume) {
+	public Livre(int idLivre, Ouvrage ouvrage, String titre, LocalDate parution, String image, String resume,Boolean disponible) {
 		this.idLivre = idLivre;
 		this.ouvrage = ouvrage;
 		this.titre = titre;
 		this.parution = parution;
 		this.image = image;
 		this.resume = resume;
+		this.disponible=disponible;
 	}
 
-	public Livre(int idLivre, Ouvrage ouvrage, String titre, LocalDate parution, String image, String resume,
+	public Livre(int idLivre, Ouvrage ouvrage, String titre, LocalDate parution, String image, String resume,Boolean disponible,
 			Set<Auteur> auteurs, Set<Genre> genres, Set<Editeur> editeurs, Set<Pret> prets) {
 		this.idLivre = idLivre;
 		this.ouvrage = ouvrage;
@@ -64,6 +66,7 @@ public class Livre implements java.io.Serializable {
 		this.parution = parution;
 		this.image = image;
 		this.resume = resume;
+		this.disponible=disponible;
 		this.auteurs = auteurs;
 		this.genres = genres;
 		this.editeurs = editeurs;
@@ -127,6 +130,14 @@ public class Livre implements java.io.Serializable {
 	public void setResume(String resume) {
 		this.resume = resume;
 	}
+	@Column(name = "disponible", nullable = false)
+	public Boolean getDisponible() {
+		return disponible;
+	}
+
+	public void setDisponible(Boolean disponible) {
+		this.disponible = disponible;
+	}
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinTable(name = "livre_auteur",catalog = "projet", joinColumns = {
@@ -137,10 +148,7 @@ public class Livre implements java.io.Serializable {
 	}
 
 	public void setAuteurs(Set<Auteur> auteurs) {
-		for (Iterator<Auteur> iterator = auteurs.iterator(); iterator.hasNext();) {
-			Auteur auteur = (Auteur) iterator.next();
-			auteur.getLivres().add(this);
-		}
+
 		this.auteurs = auteurs;
 	}
 
@@ -153,10 +161,7 @@ public class Livre implements java.io.Serializable {
 	}
 
 	public void setGenres(Set<Genre> genres) {
-		for (Iterator<Genre> iterator = genres.iterator(); iterator.hasNext();) {
-			Genre genre = (Genre) iterator.next();
-			genre.getLivres().add(this);
-		}
+
 		this.genres = genres;
 	}
 
@@ -169,10 +174,7 @@ public class Livre implements java.io.Serializable {
 	}
 
 	public void setEditeurs(Set<Editeur> editeurs) {
-		for (Iterator<Editeur> iterator = editeurs.iterator(); iterator.hasNext();) {
-			Editeur editeur = (Editeur) iterator.next();
-			editeur.getLivres().add(this);
-		}
+
 		this.editeurs = editeurs;
 	}
 

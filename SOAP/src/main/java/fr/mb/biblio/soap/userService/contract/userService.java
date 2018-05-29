@@ -24,9 +24,7 @@ public interface UserService {
 	 * @throws NotFoundException
 	 */
 	@WebMethod
-	public Utilisateur identification(
-			@WebParam(name="identifiant")String identifiant,
-			@WebParam(name="mdp")String mdp)
+	public Utilisateur identification(String identifiant,String mdp)
 				throws NotFoundException;
 	
 	/**
@@ -48,6 +46,12 @@ public interface UserService {
 	@WebMethod
 	public Utilisateur getUtilisateurById(
 			@WebParam(name="id")Integer id)
+				throws NotFoundException,FunctionalException;
+	
+	
+	@WebMethod
+	public Integer getUserIdByName(
+			@WebParam(name="nom")String nom ,@WebParam(name="prenom")String prenom)
 				throws NotFoundException,FunctionalException;
 
 }

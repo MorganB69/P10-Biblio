@@ -2,6 +2,7 @@ package fr.mb.biblio.soap.pretService.contract;
 
 import java.util.List;
 
+import javax.jws.HandlerChain;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -18,6 +19,7 @@ import fr.mb.biblio.models.exception.NotFoundException;
  *
  */
 @WebService(name="pretService")
+@HandlerChain(file="../../handlers.xml")
 public interface PretService {
 	
 	/**
@@ -27,7 +29,7 @@ public interface PretService {
 	 * @throws FunctionalException
 	 */
 	@WebMethod
-	public Pret nouveauPret(@WebParam(name="livre")Integer livreId,@WebParam(name="emprunteur") Integer emprunteurId) throws FunctionalException;
+	public Pret nouveauPret(@WebParam(name="livreId")Integer livreId,@WebParam(name="emprunteurId") Integer emprunteurId) throws FunctionalException;
 	
 	/**
 	 * Prolongation d'un pret
@@ -35,7 +37,7 @@ public interface PretService {
 	 * @throws FunctionalException
 	 */
 	@WebMethod
-	public Pret prolongerPret(@WebParam(name="pret")Pret pret, @WebParam(name="user")Utilisateur user) throws  FunctionalException;
+	public Pret prolongerPret(@WebParam(name="pretId")Integer pretId,@WebParam(name="emprunteurId") Integer emprunteurId) throws  FunctionalException;
 	
 	/**
 	 * Retour d'un pret
@@ -43,7 +45,7 @@ public interface PretService {
 	 * @throws FunctionalException
 	 */
 	@WebMethod
-	public String retourPret(@WebParam(name="pret")Pret pret) throws FunctionalException;
+	public String retourPret(@WebParam(name="pretId")Integer pretId) throws FunctionalException;
 	
 	/**
 	 * Obtenir un pret selon son id

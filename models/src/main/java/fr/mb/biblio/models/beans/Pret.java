@@ -66,7 +66,6 @@ public class Pret implements java.io.Serializable {
 	}
 
 	public void setLivre(Livre livre) {
-		livre.getPrets().add(this);
 		this.livre = livre;
 	}
 
@@ -78,7 +77,6 @@ public class Pret implements java.io.Serializable {
 	}
 
 	public void setUtilisateur(Utilisateur utilisateur) {
-		utilisateur.getPrets().add(this);
 		this.utilisateur = utilisateur;
 	}
 
@@ -103,7 +101,7 @@ public class Pret implements java.io.Serializable {
 	}
 
 
-	@Column(name = "date_effective", nullable = false, length = 13)
+	@Column(name = "date_effective", nullable = true, length = 13)
 	public LocalDate getDateEffective() {
 		return this.dateEffective;
 	}

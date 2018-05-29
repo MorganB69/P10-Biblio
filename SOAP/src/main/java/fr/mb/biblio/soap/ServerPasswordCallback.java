@@ -24,6 +24,7 @@ public class ServerPasswordCallback implements CallbackHandler{
 		
 			String identifiant = pc.getIdentifier();
 			Utilisateur user = utilisateurDao.getUser(identifiant);
+			
 		
 
             pc.setPassword(user.getMdp());

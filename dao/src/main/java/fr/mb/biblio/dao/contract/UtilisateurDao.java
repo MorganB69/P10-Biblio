@@ -54,4 +54,6 @@ public interface UtilisateurDao {
 	public Utilisateur identification(String identifiant,String mdp);
 	
 	public Utilisateur getUser(String identifiant);
+	
+	public Integer getUserIdByName(String Nom, String Prenom);
 }

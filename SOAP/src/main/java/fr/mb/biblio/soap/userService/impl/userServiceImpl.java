@@ -39,15 +39,15 @@ import fr.mb.biblio.models.exception.FunctionalException;
 	 */
 	@Override
 	@Transactional
-	public Utilisateur identification(String identifiant, String mdp) throws NotFoundException {
-
-		user = utilisateurDao.identification(identifiant, mdp);
+	public Utilisateur identification(String identifiant,String mdp) throws NotFoundException {
 		
-		if (user == null) {
-			throw new NotFoundException("Identifiant ou Mot de passe incorrect");
-		}
+		user=utilisateurDao.identification(identifiant, mdp);
+		if (user==null) throw new NotFoundException("L'utilisateur n'existe pas");
+		else return user;
+		
 
-		return user;
+
+		
 
 	}
 
@@ -84,6 +84,19 @@ import fr.mb.biblio.models.exception.FunctionalException;
 
 		return user;
 	}
+	}
+
+	@Override
+	public Integer getUserIdByName(String nom, String prenom) throws NotFoundException, FunctionalException {
+		{
+			Integer user = utilisateurDao.getUserIdByName(nom, prenom);
+			
+			if (user == null) {
+				throw new NotFoundException("Utilisateur non trouvé");
+			}
+
+			return user;
+		}
 	}
 
 }
