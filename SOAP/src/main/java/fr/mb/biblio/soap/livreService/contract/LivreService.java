@@ -42,10 +42,11 @@ public interface LivreService {
 	 * @param offset
 	 * @param nb
 	 * @return
+	 * @throws FunctionalException 
 	 */
 	@WebMethod
 	public List<Livre> getAllLivres(@WebParam(name="offset")Integer offset, 
-									@WebParam(name="nb")Integer nb);
+									@WebParam(name="nb")Integer nb) throws FunctionalException;
 	
 	/**
 	 * Obtention des livres selon des critères de recherche, un offset et un nb de pages

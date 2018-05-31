@@ -14,7 +14,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import fr.mb.biblio.dao.contract.LivreDao;
 import fr.mb.biblio.dao.contract.PretDao;
 import fr.mb.biblio.dao.contract.UtilisateurDao;
@@ -27,14 +26,14 @@ import fr.mb.biblio.soap.pretService.contract.PretService;
 
 /**
  * Implemetation du service de gestion des prets
+ * 
  * @author Morgan
  *
  */
 public class PretServiceImpl implements PretService {
-	
-	
+
 	private static final Logger logger = LogManager.getLogger(PretServiceImpl.class);
-	
+
 	/**
 	 * Dao pour les prets
 	 */
@@ -44,46 +43,57 @@ public class PretServiceImpl implements PretService {
 	UtilisateurDao utilisateurDao;
 	@Inject
 	LivreDao livreDao;
-	
+
 	/**
 	 * Pret à retourner
 	 */
 	Pret pretReturn;
-	
+
 	/**
 	 * Liste de pret a retourner
 	 */
-	List <Pret>listeReturn;
-	
+	List<Pret> listeReturn;
+
 	/**
 	 * Durée de pret definit dans un fichier properties car configurable
 	 */
-	@Value( "${dureePret}" )
+	@Value("${dureePret}")
 	Integer DUREEPRET;
-	
+
 	@Resource
 	WebServiceContext ctx;
-	
-	
-	public Boolean isAdmin() {
-		
-		
-		//get detail from request headers
+
+	/**
+	 * Vérification du statut d'administrateur du user qui est loggé
+	 * 
+	 * @return
+	 */
+	public Boolean isAdmin() throws NotFoundException {
+
+		// get detail from request headers
 		String usernameFromHeader = (String) ctx.getMessageContext().get("USERNAME");
-	    logger.info(usernameFromHeader);
-		Utilisateur user=utilisateurDao.getUser(usernameFromHeader);
-		
+		logger.info(usernameFromHeader);
+		Utilisateur user = utilisateurDao.getUser(usernameFromHeader);
+		if (user == null)
+			throw new NotFoundException("Utilisateur non trouvé");
+
 		return user.getAdmin();
 	}
-	
-	/* (non-Javadoc)
-	 * @see fr.mb.biblio.soap.pretService.contract.PretService#nouveauPret(java.lang.Integer, java.lang.Integer)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fr.mb.biblio.soap.pretService.contract.PretService#nouveauPret(java.lang.
+	 * Integer, java.lang.Integer)
 	 */
 	@Override
 	@Transactional
-	public Pret nouveauPret(Integer livreId, Integer emprunteurId) throws FunctionalException {
+	public Pret nouveauPret(Integer livreId, Integer emprunteurId) throws FunctionalException, NotFoundException {
 		
-			
+		if(livreId<=0||livreId==null||emprunteurId<=0||emprunteurId==null) throw new FunctionalException("Données incorrectes");
+		
+		else {
 		Pret pret=new Pret();
 		
 		if (isAdmin()==true) {
@@ -91,73 +101,94 @@ public class PretServiceImpl implements PretService {
 			Utilisateur emprunteur=utilisateurDao.findById(emprunteurId);
 			//Récupération du livre à emprunter
 			Livre livre=livreDao.findById(livreId);
-			//Date de début du pret
-			LocalDate dateDebut=LocalDate.now();
-			//Date de fin théorique
-			LocalDate dateFin=dateDebut.plusDays(DUREEPRET);
 			
-			//Enregistrement des parametres
-			pret.setDateDebut(dateDebut);
-			pret.setDateFin(dateFin);
-			pret.setUtilisateur(emprunteur);
-			pret.setLivre(livre);
-			pret.getLivre().setDisponible(false);
-			pret.setProlonge(false);
-			
-			pretDao.persist(pret);}
+			if(emprunteur==null||livre==null) throw new NotFoundException("Non trouvé en base de donénes");
+			else {
+				//Vérification disponibilité du livre
+				if (livre.getDisponible()==false) throw new FunctionalException ("Le livre n'est pas disponible");
+				
+				else {
+					//Date de début du pret
+					LocalDate dateDebut=LocalDate.now();
+					//Date de fin théorique
+					LocalDate dateFin=dateDebut.plusDays(DUREEPRET);
+					
+					//Enregistrement des parametres
+					pret.setDateDebut(dateDebut);
+					pret.setDateFin(dateFin);
+					pret.setUtilisateur(emprunteur);
+					pret.setLivre(livre);
+					pret.getLivre().setDisponible(false);
+					pret.setProlonge(false);
+					
+					pretDao.persist(pret);}}}
 		else throw new FunctionalException("Seul un administrateur peut enregistrer un nouveau prêt");
 			
-			return pret;
+			return pret;}
 		}
-		
 
 	@Override
 	@Transactional
-	public Pret prolongerPret(Integer pretId, Integer emprunteurId) throws FunctionalException {
-		//Récupération du prêt
-		Pret pret=pretDao.findById(pretId);
-		//Vérification que le l'utilisateur correspond à celui du prêt et vérification que le prêt n'est pas prolongé
-		if(emprunteurId==pret.getUtilisateur().getIdUtilisateur()&&pret.isProlonge()==false) {
-			
-			
-			//Récupération de la date de fin
-			LocalDate dateFin=pret.getDateFin();
-			
-			//Vérification que le prêt est en retard
+	public Pret prolongerPret(Integer pretId, Integer emprunteurId) throws FunctionalException, NotFoundException {
+		
+		if(pretId<=0||pretId==null||emprunteurId<=0||emprunteurId==null) throw new FunctionalException("Données incorrectes");
+		
+		// Récupération du prêt
+		Pret pret = pretDao.findById(pretId);
+		if(pret==null)throw new NotFoundException("le prêt renseigné n'est pas trouvable");
+		else {
+		// Vérification que le l'utilisateur correspond à celui du prêt et vérification
+		// que le prêt n'est pas prolongé
+		if (emprunteurId == pret.getUtilisateur().getIdUtilisateur() && pret.isProlonge() == false) {
+
+			// Récupération de la date de fin
+			LocalDate dateFin = pret.getDateFin();
+
+			// Vérification que le prêt est en retard
 			if (LocalDate.now().isAfter(dateFin)) {
-				//Prolongation de la date de fin
+				// Prolongation de la date de fin
 				dateFin.plusDays(DUREEPRET);
-				//Modification des paramètres
+				// Modification des paramètres
 				pret.setDateFin(dateFin);
 				pret.setProlonge(true);
-				
-				pretDao.update(pret);}
-			
-			else throw new FunctionalException ("Le prêt n'est pas encore en retard");
-			
-		}
-		else throw new FunctionalException("Le prêt a déjà été prolongé ou l'utilisateur n'est pas bon");
-		
+
+				pretDao.update(pret);
+			}
+
+			else
+				throw new FunctionalException("Le prêt n'est pas encore en retard");
+
+		} else
+			throw new FunctionalException("Le prêt a déjà été prolongé ou l'utilisateur n'est pas bon");
+
 		return pret;
+		}
 	}
 
-
-
 	@Override
-	public String retourPret(Integer pretId) throws FunctionalException {
-		//Récupération du prêt
-				Pret pret=pretDao.findById(pretId);
-				LocalDate dateEffective=LocalDate.now();
-				pret.setDateEffective(dateEffective);
-				pret.getLivre().setDisponible(true);
-		return null;
+	public String retourPret(Integer pretId) throws FunctionalException, NotFoundException {
+		
+		if(pretId<=0||pretId==null) throw new FunctionalException("Données incorrectes");
+		
+		// Récupération du prêt
+		Pret pret = pretDao.findById(pretId);
+		if(pret==null)throw new NotFoundException("Le prêt n'existe pas");
+		LocalDate dateEffective = LocalDate.now();
+		pret.setDateEffective(dateEffective);
+		pret.getLivre().setDisponible(true);
+		String reponse="Le prêt est terminé";
+		return reponse;
 	}
 
 	@Override
 	@Transactional
-	public Pret getPretById(Integer id) throws NotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+	public Pret getPretById(Integer pretId) throws FunctionalException, NotFoundException {
+		if(pretId<=0||pretId==null) throw new FunctionalException("Données incorrectes");
+		
+		// Récupération du prêt
+		Pret pret = pretDao.findById(pretId);
+		if(pret==null)throw new NotFoundException("Le prêt n'existe pas");
+		return pret;
 	}
 
 	@Override
@@ -180,8 +211,5 @@ public class PretServiceImpl implements PretService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
-
 
 }

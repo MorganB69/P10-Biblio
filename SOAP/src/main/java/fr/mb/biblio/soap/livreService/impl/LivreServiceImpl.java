@@ -60,7 +60,9 @@ public class LivreServiceImpl implements LivreService {
 	@Transactional
 	public void insert(Livre livre) throws FunctionalException {
 		if (livre==null) throw new FunctionalException("Le livre est null");
+	
 		else livreDao.persist(livre);
+
 
 	}
 
@@ -70,6 +72,8 @@ public class LivreServiceImpl implements LivreService {
 	@Override
 	@Transactional
 	public Livre getLivreById(Integer id) throws NotFoundException {
+		
+		
 		livreReturn=livreDao.findById(id);
 		if (livreReturn==null) throw new NotFoundException("Le livre n'a pas été trouvé");
 		
@@ -81,8 +85,11 @@ public class LivreServiceImpl implements LivreService {
 	 */
 	@Override
 	@Transactional
-	public List<Livre> getAllLivres(Integer offset, Integer nb) {
-		listeReturn=livreDao.findAllOffset(offset, nb);
+	public List<Livre> getAllLivres(Integer offset, Integer nb) throws FunctionalException {
+		if(offset==null||offset<0||nb==null||nb<=0) throw new FunctionalException("Données invalides");
+		else listeReturn=livreDao.findAllOffset(offset, nb);
+			if(listeReturn==null) throw new FunctionalException("Liste vide");
+			
 		return listeReturn;
 	}
 
@@ -93,14 +100,16 @@ public class LivreServiceImpl implements LivreService {
 	@Transactional
 	public List<Livre> rechercheLivres(RechercheLivre recherche, Integer offset, Integer nb) throws FunctionalException {
 
-		if(recherche.getTitre().length()<=3) throw new FunctionalException("Insérer plus de 3 caractères");
-		else {
-		listeReturn=livreDao.rechercheLivres(recherche, offset, nb);
-		
-		for (Iterator iterator = listeReturn.iterator(); iterator.hasNext();) {
-			Livre livre = (Livre) iterator.next();
+		if(recherche.getTitre().length()<=3||recherche.getTitre()==null) throw new FunctionalException("Insérer plus de 3 caractères");
+		else if(offset==null||offset<0||nb==null||nb<=0) throw new FunctionalException("Données invalides");
+			else {
+			listeReturn=livreDao.rechercheLivres(recherche, offset, nb);
+				if(listeReturn==null) throw new FunctionalException("Liste vide");
+				else {
+					for (Iterator iterator = listeReturn.iterator(); iterator.hasNext();) {
+						Livre livre = (Livre) iterator.next();
 
-		}}
+		}}}
 		return listeReturn;
 	}
 	

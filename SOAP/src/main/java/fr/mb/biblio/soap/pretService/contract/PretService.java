@@ -27,34 +27,38 @@ public interface PretService {
 	 * @param livre
 	 * @param user
 	 * @throws FunctionalException
+	 * @throws NotFoundException 
 	 */
 	@WebMethod
-	public Pret nouveauPret(@WebParam(name="livreId")Integer livreId,@WebParam(name="emprunteurId") Integer emprunteurId) throws FunctionalException;
+	public Pret nouveauPret(@WebParam(name="livreId")Integer livreId,@WebParam(name="emprunteurId") Integer emprunteurId) throws FunctionalException, NotFoundException;
 	
 	/**
 	 * Prolongation d'un pret
 	 * @param pret
 	 * @throws FunctionalException
+	 * @throws NotFoundException 
 	 */
 	@WebMethod
-	public Pret prolongerPret(@WebParam(name="pretId")Integer pretId,@WebParam(name="emprunteurId") Integer emprunteurId) throws  FunctionalException;
+	public Pret prolongerPret(@WebParam(name="pretId")Integer pretId,@WebParam(name="emprunteurId") Integer emprunteurId) throws  FunctionalException, NotFoundException;
 	
 	/**
 	 * Retour d'un pret
 	 * @param pret
 	 * @throws FunctionalException
+	 * @throws NotFoundException 
 	 */
 	@WebMethod
-	public String retourPret(@WebParam(name="pretId")Integer pretId) throws FunctionalException;
+	public String retourPret(@WebParam(name="pretId")Integer pretId) throws FunctionalException, NotFoundException;
 	
 	/**
 	 * Obtenir un pret selon son id
 	 * @param id
 	 * @return
 	 * @throws NotFoundException
+	 * @throws FunctionalException 
 	 */
 	@WebMethod
-	public Pret getPretById(@WebParam(name="id")Integer id)throws NotFoundException;	
+	public Pret getPretById(@WebParam(name="id")Integer id)throws NotFoundException, FunctionalException;	
 	
 	/**
 	 * Obtenir la liste des prets en cours

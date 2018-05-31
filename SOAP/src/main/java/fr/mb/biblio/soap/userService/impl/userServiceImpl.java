@@ -75,8 +75,9 @@ import fr.mb.biblio.models.exception.FunctionalException;
 	@Override
 	@Transactional
 	public Utilisateur getUtilisateurById(Integer id) throws NotFoundException, FunctionalException {
- {
-		user = utilisateurDao.findById(id);
+ {		if(id<=0||id==null) throw new FunctionalException("L'id doit être renseigné");
+ 		
+ 		else user = utilisateurDao.findById(id);
 		
 		if (user == null) {
 			throw new NotFoundException("Utilisateur non trouvé");

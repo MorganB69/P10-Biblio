@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
@@ -80,7 +81,7 @@ public class Pret implements java.io.Serializable {
 		this.utilisateur = utilisateur;
 	}
 
-	
+	@XmlSchemaType(name="date", type=LocalDate.class)
 	@Column(name = "date_debut", nullable = false, length = 13)
 	public LocalDate getDateDebut() {
 		return this.dateDebut;
@@ -90,7 +91,7 @@ public class Pret implements java.io.Serializable {
 		this.dateDebut = dateDebut2;
 	}
 
-	
+	@XmlSchemaType(name="date", type=LocalDate.class)
 	@Column(name = "date_fin", nullable = false, length = 13)
 	public LocalDate getDateFin() {
 		return this.dateFin;
@@ -100,7 +101,7 @@ public class Pret implements java.io.Serializable {
 		this.dateFin = dateFin;
 	}
 
-
+	@XmlSchemaType(name="date", type=LocalDate.class)
 	@Column(name = "date_effective", nullable = true, length = 13)
 	public LocalDate getDateEffective() {
 		return this.dateEffective;

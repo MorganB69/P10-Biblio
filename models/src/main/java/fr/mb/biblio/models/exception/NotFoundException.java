@@ -1,7 +1,7 @@
 package fr.mb.biblio.models.exception;
 
 /**
- * Classe d'exception levée quand l'objet m�tier demand� n'a pas été trouvé
+ * Classe d'exception levée quand l'objet metier demande n'a pas été trouvé
  *
  *
  */
