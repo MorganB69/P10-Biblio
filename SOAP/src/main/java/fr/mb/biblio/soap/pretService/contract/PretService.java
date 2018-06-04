@@ -109,9 +109,10 @@ public interface PretService {
 	 * Methode de relance par mail
 	 * @return
 	 * @throws FunctionalException
+	 * @throws Exception 
 	 */
 	@WebMethod
-	public void relanceMailRetards() throws  FunctionalException;
+	public void relanceMailRetards() throws  FunctionalException, Exception;
 	
 	
 	

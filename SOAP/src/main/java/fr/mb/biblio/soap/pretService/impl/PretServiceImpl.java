@@ -1,11 +1,17 @@
 package fr.mb.biblio.soap.pretService.impl;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.handler.MessageContext;
@@ -13,19 +19,26 @@ import javax.xml.ws.handler.MessageContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
 import fr.mb.biblio.dao.contract.LivreDao;
 import fr.mb.biblio.dao.contract.PretDao;
 import fr.mb.biblio.dao.contract.UtilisateurDao;
+import fr.mb.biblio.models.Mail;
 import fr.mb.biblio.models.beans.Livre;
 import fr.mb.biblio.models.beans.Pret;
 import fr.mb.biblio.models.beans.Utilisateur;
 import fr.mb.biblio.models.exception.FunctionalException;
 import fr.mb.biblio.models.exception.NotFoundException;
 import fr.mb.biblio.soap.pretService.contract.PretService;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 
 /**
  * Implemetation du service de gestion des prets
@@ -49,6 +62,9 @@ public class PretServiceImpl implements PretService {
 	
 	@Inject
     public JavaMailSender emailSender;
+	
+	 @Inject
+	private Configuration freemarkerConfig;
 	
 	
 
@@ -235,7 +251,7 @@ public class PretServiceImpl implements PretService {
 	@Transactional
 	public List<Pret> getPretsRetards() throws FunctionalException {
 		LocalDate dateJour=LocalDate.now();
-		listeReturn=pretDao.findPretRetard(0, 12, dateJour);
+		listeReturn=pretDao.findPretRetard(0, 100, dateJour);
 		if (listeReturn==null) throw new FunctionalException("Pas de prêt en cours en retard trouvé");
 		return listeReturn;
 	}
@@ -280,18 +296,55 @@ if(livreId<=0||livreId==null||emprunteurId<=0||emprunteurId==null) throw new Fun
 			
 			return pret;}
 	}
+	
+	
 
 	@Override
-	public void relanceMailRetards() throws FunctionalException {
-		SimpleMailMessage message = new SimpleMailMessage();
-		String to="brighi.morgan@wanadoo.fr";
-		String subject="test";
-		String text="Test de relance de mail";
-        message.setTo(to); 
-        message.setSubject(subject); 
-        message.setText(text);
-        emailSender.send(message);
+	public void relanceMailRetards() throws Exception {
 		
-	}
+		List<Pret>listeRetard=getPretsRetards();
+		
+		for (Iterator iterator = listeRetard.iterator(); iterator.hasNext();) {
+			Pret pret = (Pret) iterator.next();
+			Mail mail = new Mail();
+	        mail.setFrom("mb.testocrbiblio@gmail.com");
+	        mail.setTo(pret.getUtilisateur().getMail());
+	        mail.setSubject("Relance Prêt Biblio");
+	 
+	        Map < String, Object > model = new HashMap < String, Object > ();
+	        model.put("prenom", pret.getUtilisateur().getPrenom());
+	        model.put("nom", pret.getUtilisateur().getNom());
+	        model.put("titre", pret.getLivre().getTitre());
+	        model.put("date", pret.getDateFin());
+	        mail.setModel(model);
+	 
+
+	        sendSimpleMessage(mail);
+		}
+		
+		
+        
+    }
+		
+	
+	
+	public void sendSimpleMessage(Mail mail) throws MessagingException, IOException, TemplateException {
+        MimeMessage message = emailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message,
+                MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
+                StandardCharsets.UTF_8.name());
+
+        
+
+        Template t = freemarkerConfig.getTemplate("email-template.ftl");
+        String html = FreeMarkerTemplateUtils.processTemplateIntoString(t, mail.getModel());
+
+        helper.setTo(mail.getTo());
+        helper.setText(html, true);
+        helper.setSubject(mail.getSubject());
+        helper.setFrom(mail.getFrom());
+
+        emailSender.send(message);
+    }
 
 }

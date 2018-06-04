@@ -40,6 +40,12 @@
 				<artifactId>spring-context-support</artifactId>
 			</dependency>
 			
+			<dependency>
+			    <groupId>org.freemarker</groupId>
+			    <artifactId>freemarker</artifactId>
+			    <version>2.3.28</version>
+			</dependency>
+			
 			
 			
 <!-- https://mvnrepository.com/artifact/org.apache.wss4j/wss4j-ws-security-common -->

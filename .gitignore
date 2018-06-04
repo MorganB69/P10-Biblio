@@ -2,3 +2,5 @@
 *.classpath
 *.project
 .settings/
+SOAP/src/main/resources/email.properties
+models/src/main/resources/hibernate.properties

@@ -134,4 +134,9 @@
 		        </props>
 		     </property>
  </bean>
+ 
+ <bean id="freeMarkerConfigurationFactory" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
+    <property name="templateLoaderPath" value="classpath:/templates/"/>
+    <property name="preferFileSystemAccess" value="false"/>
+</bean>
 </beans>
