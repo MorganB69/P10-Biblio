@@ -1,5 +1,6 @@
 package fr.mb.biblio.dao.contract;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import fr.mb.biblio.models.beans.Pret;
@@ -43,4 +44,33 @@ public interface PretDao {
 	 * @return
 	 */
 	public List<Pret> findAllOffset(Integer offset, Integer nbPages);
+	
+	
+	/**
+	 * Récupère une liste de tous les prets en cours
+	 * @param offset
+	 * @param nbPages
+	 * @return
+	 */
+	public List<Pret> findPretEnCours(Integer offset, Integer nbPages);
+	
+	
+	/**
+	 * Récupère une liste de tous les prets en cours prolonges
+	 * @param offset
+	 * @param nbPages
+	 * @return
+	 */
+	public List<Pret> findPretEnCoursProlonge(Integer offset, Integer nbPages);
+	
+	/**
+	 * Récupère une liste de tous les prets en cours en retard
+	 * @param offset
+	 * @param nbPages
+	 * @return
+	 */
+	public List<Pret> findPretRetard(Integer offset, Integer nbPages, LocalDate dateJour);
+	
+	
+	
 }

@@ -23,6 +23,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import fr.mb.biblio.models.LocalDateXmlAdapter;
 
 
 
@@ -103,7 +107,8 @@ public class Livre implements java.io.Serializable {
 		this.titre = titre;
 	}
 
-	
+	@XmlJavaTypeAdapter(LocalDateXmlAdapter.class)
+	@XmlSchemaType(name = "date")
 	@Column(name = "parution", nullable = false, length = 13)
 	public LocalDate getParution() {
 		return this.parution;

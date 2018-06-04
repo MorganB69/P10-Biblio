@@ -1,12 +1,16 @@
 package fr.mb.biblio.soap.pretService.contract;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.jws.HandlerChain;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import javax.xml.datatype.XMLGregorianCalendar;
 
+import fr.mb.biblio.models.LocalDateXmlAdapter;
 import fr.mb.biblio.models.beans.Livre;
 import fr.mb.biblio.models.beans.Pret;
 import fr.mb.biblio.models.beans.Utilisateur;
@@ -60,6 +64,21 @@ public interface PretService {
 	@WebMethod
 	public Pret getPretById(@WebParam(name="id")Integer id)throws NotFoundException, FunctionalException;	
 	
+	
+	/**
+	 * Creation de pret en fixant manuellement la date de debut
+	 * @param livreId
+	 * @param emprunteurId
+	 * @param dateDebut
+	 * @return
+	 * @throws FunctionalException
+	 * @throws NotFoundException
+	 */
+	@WebMethod
+	public Pret creationPretDate(@WebParam(name="livreId")Integer livreId,@WebParam(name="emprunteurId") Integer emprunteurId,@WebParam(name="dateDebut")@XmlJavaTypeAdapter(LocalDateXmlAdapter.class) LocalDate dateDebut)throws FunctionalException, NotFoundException;
+	
+	
+	
 	/**
 	 * Obtenir la liste des prets en cours
 	 * @return
@@ -74,7 +93,7 @@ public interface PretService {
 	 * @throws FunctionalException
 	 */
 	@WebMethod
-	public List<Pret> getPretsProlonges() throws  FunctionalException;;
+	public List<Pret> getPretsProlonges() throws  FunctionalException;
 	
 	/**
 	 * Obtenir les prets en retard
@@ -82,7 +101,19 @@ public interface PretService {
 	 * @throws FunctionalException
 	 */
 	@WebMethod
-	public List<Pret> getPretsRetards() throws  FunctionalException;;
+	public List<Pret> getPretsRetards() throws  FunctionalException;
+	
+	
+	
+	/**
+	 * Methode de relance par mail
+	 * @return
+	 * @throws FunctionalException
+	 */
+	@WebMethod
+	public void relanceMailRetards() throws  FunctionalException;
+	
+	
 	
 	
 }

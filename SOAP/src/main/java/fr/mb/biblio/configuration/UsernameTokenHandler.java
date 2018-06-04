@@ -1,4 +1,4 @@
-package fr.mb.biblio.soap;
+package fr.mb.biblio.configuration;
 
 import java.util.Iterator;
 import java.util.Set;

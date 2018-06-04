@@ -1,4 +1,4 @@
-package fr.mb.biblio.soap;
+package fr.mb.biblio.configuration;
 
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.context.annotation.Bean;
