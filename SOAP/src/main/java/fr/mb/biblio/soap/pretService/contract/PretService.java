@@ -10,6 +10,8 @@ import javax.jws.WebService;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.springframework.scheduling.annotation.Scheduled;
+
 import fr.mb.biblio.models.LocalDateXmlAdapter;
 import fr.mb.biblio.models.beans.Livre;
 import fr.mb.biblio.models.beans.Pret;

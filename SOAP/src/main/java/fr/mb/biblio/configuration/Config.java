@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import fr.mb.biblio.dao.contract.GenericDAO;
 import fr.mb.biblio.dao.contract.LivreDao;
@@ -26,6 +27,7 @@ import fr.mb.biblio.models.beans.Utilisateur;
 
 @Configuration
 @ComponentScan("fr.mb.biblio.soap")// scan for services
+@EnableScheduling
 public class Config {
 
     @Bean(name="utilisateurDao")

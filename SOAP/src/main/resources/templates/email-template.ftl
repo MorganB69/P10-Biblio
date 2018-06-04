@@ -12,7 +12,7 @@
 
 
                 <p>Bonjour ${prenom} ${nom},</p>
-                <p>Veuillez prendre connaisance des retards suivants concernant un ou plusieurs de vos emprunts</p>
+                <p>Veuillez prendre connaisance du retard suivant concernant un de vos emprunts</p>
                 <p>
                 	Nom du livre : ${titre} <br />
                 	Date fin prévue : ${date} <br />

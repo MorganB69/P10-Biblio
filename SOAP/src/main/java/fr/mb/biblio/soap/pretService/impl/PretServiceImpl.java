@@ -23,6 +23,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
@@ -231,6 +232,9 @@ public class PretServiceImpl implements PretService {
 		return pret;
 	}
 
+	/* (non-Javadoc)
+	 * @see fr.mb.biblio.soap.pretService.contract.PretService#getPretsEnCours()
+	 */
 	@Override
 	@Transactional
 	public List<Pret> getPretsEnCours() throws FunctionalException {
@@ -239,6 +243,9 @@ public class PretServiceImpl implements PretService {
 		return listeReturn;
 	}
 
+	/* (non-Javadoc)
+	 * @see fr.mb.biblio.soap.pretService.contract.PretService#getPretsProlonges()
+	 */
 	@Override
 	@Transactional
 	public List<Pret> getPretsProlonges() throws FunctionalException {
@@ -247,6 +254,9 @@ public class PretServiceImpl implements PretService {
 		return listeReturn;
 	}
 
+	/* (non-Javadoc)
+	 * @see fr.mb.biblio.soap.pretService.contract.PretService#getPretsRetards()
+	 */
 	@Override
 	@Transactional
 	public List<Pret> getPretsRetards() throws FunctionalException {
@@ -256,11 +266,16 @@ public class PretServiceImpl implements PretService {
 		return listeReturn;
 	}
 
+	/* (non-Javadoc)
+	 * @see fr.mb.biblio.soap.pretService.contract.PretService#creationPretDate(java.lang.Integer, java.lang.Integer, java.time.LocalDate)
+	 */
 	@Override
 	@Transactional
 	public Pret creationPretDate(Integer livreId, Integer emprunteurId, LocalDate dateDebut)
 			throws FunctionalException, NotFoundException {
-if(livreId<=0||livreId==null||emprunteurId<=0||emprunteurId==null) throw new FunctionalException("Données incorrectes");
+
+		
+		if(livreId<=0||livreId==null||emprunteurId<=0||emprunteurId==null) throw new FunctionalException("Données incorrectes");
 		
 		else {
 		Pret pret=new Pret();
@@ -299,11 +314,18 @@ if(livreId<=0||livreId==null||emprunteurId<=0||emprunteurId==null) throw new Fun
 	
 	
 
+	/* (non-Javadoc)
+	 * @see fr.mb.biblio.soap.pretService.contract.PretService#relanceMailRetards()
+	 */
 	@Override
+	@Transactional
+	@Scheduled(cron = "${instructionSchedularTime}")
 	public void relanceMailRetards() throws Exception {
 		
+		//Récupération des prets en retard
 		List<Pret>listeRetard=getPretsRetards();
 		
+		//Pour chaque pret en retard, envoi d'un mail de relance a l'empreunteur
 		for (Iterator iterator = listeRetard.iterator(); iterator.hasNext();) {
 			Pret pret = (Pret) iterator.next();
 			Mail mail = new Mail();
@@ -328,6 +350,13 @@ if(livreId<=0||livreId==null||emprunteurId<=0||emprunteurId==null) throw new Fun
 		
 	
 	
+	/**
+	 * Méthode de configuration d'envoi d'un mail
+	 * @param mail
+	 * @throws MessagingException
+	 * @throws IOException
+	 * @throws TemplateException
+	 */
 	public void sendSimpleMessage(Mail mail) throws MessagingException, IOException, TemplateException {
         MimeMessage message = emailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message,
