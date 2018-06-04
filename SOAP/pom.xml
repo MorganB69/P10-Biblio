@@ -35,6 +35,13 @@
 				<artifactId>spring-context</artifactId>
 			</dependency>
 			
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+			</dependency>
+			
+			
+			
 <!-- https://mvnrepository.com/artifact/org.apache.wss4j/wss4j-ws-security-common -->
 <dependency>
     <groupId>org.apache.wss4j</groupId>

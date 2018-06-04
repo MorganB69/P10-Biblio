@@ -13,6 +13,8 @@ import javax.xml.ws.handler.MessageContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.mb.biblio.dao.contract.LivreDao;
@@ -44,6 +46,11 @@ public class PretServiceImpl implements PretService {
 	UtilisateurDao utilisateurDao;
 	@Inject
 	LivreDao livreDao;
+	
+	@Inject
+    public JavaMailSender emailSender;
+	
+	
 
 	/**
 	 * Pret à retourner
@@ -276,7 +283,14 @@ if(livreId<=0||livreId==null||emprunteurId<=0||emprunteurId==null) throw new Fun
 
 	@Override
 	public void relanceMailRetards() throws FunctionalException {
-		// TODO Auto-generated method stub
+		SimpleMailMessage message = new SimpleMailMessage();
+		String to="brighi.morgan@wanadoo.fr";
+		String subject="test";
+		String text="Test de relance de mail";
+        message.setTo(to); 
+        message.setSubject(subject); 
+        message.setText(text);
+        emailSender.send(message);
 		
 	}
 
