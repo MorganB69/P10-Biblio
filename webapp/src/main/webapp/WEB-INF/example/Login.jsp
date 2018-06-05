@@ -6,9 +6,11 @@
 </head>
 
 <body>
+<s:actionerror/>
+<s:actionmessage/>
 <s:form action="Login">
-    <s:textfield key="username"/>
-    <s:password key="password" />
+    <s:textfield label="Identifiant" name="login"/>
+    <s:password label="Mot de passe" name="password" />
     <s:submit/>
 </s:form>
 </body>

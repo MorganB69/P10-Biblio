@@ -4,3 +4,4 @@
 .settings/
 SOAP/src/main/resources/email.properties
 models/src/main/resources/hibernate.properties
+batch/src/main/resources/connect.properties

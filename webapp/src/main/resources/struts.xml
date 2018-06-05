@@ -18,6 +18,11 @@
                 <param name="namespace">/example</param>
             </result>
         </action>
+        
+        <action name="Login" method="doLogin" class="fr.mb.biblio.webapp.actions.LoginAction">
+            <result name="input">/WEB-INF/example/Login.jsp</result>
+            <result name="success">/WEB-INF/example/Login.jsp</result>
+        </action>
 
     </package>
 

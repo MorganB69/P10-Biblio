@@ -15,10 +15,7 @@
             <result>/WEB-INF/example/HelloWorld.jsp</result>
         </action>
 
-        <action name="Login_*" method="{1}" class="fr.mb.biblio.webapp.example.Login">
-            <result name="input">/WEB-INF/example/Login.jsp</result>
-            <result type="redirectAction">Menu</result>
-        </action>
+
 
         <action name="*" class="fr.mb.biblio.webapp.example.ExampleSupport">
             <result>/WEB-INF/example/{1}.jsp</result>

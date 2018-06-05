@@ -34,6 +34,10 @@
     
     <!-- DECLARATION DES SERVICES -->
     
+    	<!-- IDENTIFICATION -->
+    <jaxws:endpoint id="identificationService" implementor="fr.mb.biblio.soap.identification.identificationServiceImpl" address="/identificationService"/>
+   	
+    
     	<!-- TEST -->
     <jaxws:endpoint id="livreTestService" implementor="fr.mb.biblio.soap.test.LivreTestServiceImpl" address="/livreTestService"/>
    		
