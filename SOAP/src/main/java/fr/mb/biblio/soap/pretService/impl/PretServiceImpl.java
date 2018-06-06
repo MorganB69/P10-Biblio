@@ -328,10 +328,8 @@ public class PretServiceImpl implements PretService {
 		//Pour chaque pret en retard, envoi d'un mail de relance a l'empreunteur
 		for (Iterator iterator = listeRetard.iterator(); iterator.hasNext();) {
 			Pret pret = (Pret) iterator.next();
-			Mail mail = new Mail();
-	        mail.setFrom("mb.testocrbiblio@gmail.com");
-	        mail.setTo(pret.getUtilisateur().getMail());
-	        mail.setSubject("Relance Prêt Biblio");
+			Mail mail = new Mail("mb.testocrbiblio@gmail.com",pret.getUtilisateur().getMail(),"Relance Prêt Biblio");
+
 	 
 	        Map < String, Object > model = new HashMap < String, Object > ();
 	        model.put("prenom", pret.getUtilisateur().getPrenom());

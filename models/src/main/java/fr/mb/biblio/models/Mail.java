@@ -18,6 +18,13 @@ public class Mail {
         this.subject = subject;
         this.content = content;
     }
+    
+    public Mail(String from, String to, String subject) {
+        this.from = from;
+        this.to = to;
+        this.subject = subject;
+        
+    }
 
     public String getFrom() {
         return from;
