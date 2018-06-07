@@ -86,6 +86,9 @@ footer{
 .btn-lg a:hover{
 	text-decoration: none;
 }
+.form-control{
+	border-radius:100px;
+}
 
 #sectionAccueil{
 	

@@ -34,24 +34,51 @@
 	
 		</div>
 		
-			<div class="row justify-content-center m-2 pt-5" style="text-align:center"> 
+			<div class="row justify-content-center m-2 pt-3" style="text-align:center"> 
 			Bienvenue sur le site de la médiathèque Biblio OCR
 			</div>
-			<div class="row justify-content-center m-2 pb-5" style="text-align:center">
+			<div class="row justify-content-center m-2" style="text-align:center">
 			Vous pouvez consulter les ouvrages disponibles ou vous connecter à votre espace personnel
 			</div>
 			
-			<div class="row justify-content-center m-2" style="text-align:center"> 
+			<div class="row justify-content-center m-2 pt-3" style="text-align:center"> 
+			<s:form action="Recherche" cssClass="well form-vertical   m-3 p-5" theme="bootstrap" enctype="multipart/form-data">
+        		
+        		<h3> Recherche d'un ouvrage</h3>
+        		
+        		<s:textfield class="form-control" name="titre" />
+       			
+       			
+       			<div class="row justify-content-center">
+        		<s:submit class="btn btn-primary m-2 col-6" value="Rechercher"/>
+        		</div>
+       		
+       		</s:form>
+			</div>
 			
-			<s:if test="#session.user">
-          
-            <s:a action="acces_perso" class="btn btn-primary my-2 my-sm-0 justify-content-right m-3">Espace personnel</s:a>
-
+			
+			
+		
+			
+				<s:if test="#session.user">
+          			<div class="row justify-content-center m-2" style="text-align:center"> 
+						<h3 class="text-center"> Acceder votre espace personnel</h3>
+					</div>
+					
+					<div class="row justify-content-center m-2" style="text-align:center"> 
+						<s:a action="acces_perso" class="btn btn-primary my-2 my-sm-0 justify-content-center m-3">Espace personnel</s:a>
+					</div>
               		
     		</s:if>
     			<s:else>
-			 <s:a action="Login" class="btn btn-primary my-4 my-sm-0 justify-content-right m-3"><i class="fa fa-lock m-1"></i> Connexion</s:a>
-    			</s:else>
+    			
+    		<div class="row justify-content-center m-2 pt-5" style="text-align:center"> 
+			<h3 class="text-center"> Connectez-vous pour acceder à votre espace personnel</h3>
+			</div>
+			<div class="row justify-content-center m-2" style="text-align:center"> 
+			 <s:a action="Login" class="btn btn-primary my-4 my-sm-0 justify-content-center m-3"><i class="fa fa-lock m-1"></i> Connexion</s:a>
+    		</div>
+    		</s:else>
     		</div>
 			
 			
@@ -71,7 +98,7 @@
 
     		</div>
     		
-			</div>
+			
 
 
 
