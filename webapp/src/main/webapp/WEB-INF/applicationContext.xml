@@ -11,12 +11,16 @@
 	
 	<!-- DECLARATIONS DES SERVICES CLIENTS -->
 	<jaxws:client id="userClient"
-                  serviceClass="fr.mb.biblio.webapp.services.user.UserServiceImplService"
+                  serviceClass="fr.mb.biblio.webapp.services.user.UserService"
                   address="http://localhost:8080/SOAP/userService" />
                   
 	<jaxws:client id="identificationClient"
                   serviceClass="fr.mb.biblio.webapp.services.identification.IdentificationService"
                   address="http://localhost:8080/SOAP/identificationService" />
+                  
+    <jaxws:client id="livreClient"
+                  serviceClass="fr.mb.biblio.webapp.services.livre.LivreService"
+                  address="http://localhost:8080/SOAP/livreService" />
 	
 	<!-- SCAN DES DIFFERENTS BEANS ANNOTES -->
   	<context:annotation-config/>

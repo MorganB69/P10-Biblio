@@ -16,8 +16,12 @@
         </action>
         
         <action name="Login" method="doLogin" class="fr.mb.biblio.webapp.actions.LoginAction">
-            <result name="input">/WEB-INF/example/Login.jsp</result>
-            <result name="success">/WEB-INF/example/Login.jsp</result>
+            <result name="input">/WEB-INF/jsp/login.jsp</result>
+            <result name="success">/WEB-INF/jsp/index.jsp</result>
+        </action>
+        
+        <action name="Logout" method="doLogout" class="fr.mb.biblio.webapp.actions.LoginAction">
+ 			<result name="success">/WEB-INF/jsp/index.jsp</result>
         </action>
 
     </package>

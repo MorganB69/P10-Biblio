@@ -52,21 +52,25 @@
 				
 			</ul>
 		</div>
-			
-			<s:if test="#session.user">
+		
+					<s:if test="#session.user">
             Bienvenue 
             
             <s:property value="#session.user.identifiant" />
-            <s:a action="acces_perso" class="btn btn-outline-primary my-2 my-sm-0 justify-content-right m-3">Espace personnel</s:a>
+            
 
-            <s:a action="logout" class="btn btn-outline-primary my-2 my-sm-0 justify-content-right m-3">Deconnexion</s:a>
+            <s:a action="Logout" class="btn btn-primary my-2 my-sm-0 justify-content-right m-3">Deconnexion</s:a>
     		
     		</s:if>
     			<s:else>
-       				 <s:a action="login" class="btn btn-primary my-2 my-sm-0 justify-content-right m-3">Connexion</s:a>
+       				 <s:a action="Login" class="btn btn-primary my-2 my-sm-0 justify-content-right m-3"><i class="fa fa-lock m-1"></i> Connexion</s:a>
     			</s:else>
+			
+
 	
 	</nav>
+	
+	
 	
 	</div>
 

@@ -20,6 +20,7 @@ body {
 	padding-top: 100px;
 
 
+
 }
 
 #menuIcon{
@@ -39,12 +40,22 @@ font-size:150%;
 
 background-color:#0062cc;
 opacity:0.8;
+margin-bottom:15px;
+}
+
+.navbar-collapse.collapsing {
+
+background-color:#0062cc;
+opacity:0.8;
+margin-bottom:15px;
 }
  
 .navbar-nav li a{
   color:White;
 
 }
+
+
 
 .navbar-nav li a:hover{
    color: Black;
@@ -59,7 +70,56 @@ footer{
 
 }
 
+.btn{
+	border-radius:100px;
+	
 
+}
+
+.btn-lg{
+	border-radius:100px;
+
+	
+
+}
+
+.btn-lg a:hover{
+	text-decoration: none;
+}
+
+#sectionAccueil{
+	
+	display: table-cell;
+    vertical-align: middle;
+
+}
+#containerAccueil{
+	height:90%;
+	 display: table;
+
+
+}
+
+#detailImg{
+	margin : 1%;
+	max-height:500px;
+	overflow: hidden;
+	opacity:0.8;
+}
+
+.card{
+	color:Black;
+
+}
+.card-body{
+	background-color:#F0FFFF;
+}
+
+#img-card{
+	max-height:175px;
+	max-width:170px;
+	overflow:hidden;
+}
 
 @media (min-width: 992px) {
   body {
@@ -75,5 +135,27 @@ footer{
  max-width:200px;	
 
 	
+}
+
+.carousel-item {
+  height: 65vh;
+  min-height: 300px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin-bottom : 30px;
+  
+}
+
+.portfolio-item {
+	margin-top: 15px;
+  	margin-bottom: 15px;
+ 	max-height:500px;
+ 	max-width:450px;
+  	overflow: hidden;
+	text-overflow: ellipsis;
+}
 }
  
