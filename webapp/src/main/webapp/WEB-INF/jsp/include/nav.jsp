@@ -37,7 +37,7 @@
 
 				
 				<li class="nav-item ml-3 mr-3">
-					<s:a class="nav-link" action="index">RECHERCHE D'OUVRAGE</s:a>
+					<s:a class="nav-link" action="recherche">RECHERCHE D'OUVRAGE</s:a>
 				</li>
 
 				

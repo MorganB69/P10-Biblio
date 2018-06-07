@@ -5,11 +5,17 @@
 <struts>
     <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
     <constant name="struts.ui.theme" value="bootstrap" />
+    
 
 
     <package name="default" namespace="/" extends="struts-default">
 
         <default-action-ref name="index"/>
+        
+        <global-results>
+			<result name="error">/WEB-INF/jsp/error.jsp</result>
+		</global-results>
+        
 
         <action name="index" class="fr.mb.biblio.webapp.actions.IndexAction">
             <result name="success">/WEB-INF/jsp/index.jsp</result>
@@ -22,6 +28,11 @@
         
         <action name="Logout" method="doLogout" class="fr.mb.biblio.webapp.actions.LoginAction">
  			<result name="success">/WEB-INF/jsp/index.jsp</result>
+        </action>
+        
+        <action name="recherche" method="recherche" class="fr.mb.biblio.webapp.actions.LivreAction">
+ 			<result name="input">/WEB-INF/jsp/rechercheLivre.jsp </result>
+ 			<result name="success">/WEB-INF/jsp/rechercheLivre.jsp</result>
         </action>
 
     </package>

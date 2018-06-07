@@ -14,7 +14,7 @@
 			
 			
 			
-			<s:iterator value="listLivre">
+<s:iterator value="listLivre">
 <div class="col-lg-8 mb-8 m-3">
 				<div class="card h-100 -dark">
 					<h4 class="card-header"><s:a action="detail_livre">

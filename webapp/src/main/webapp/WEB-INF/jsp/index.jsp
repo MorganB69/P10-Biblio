@@ -42,7 +42,7 @@
 			</div>
 			
 			<div class="row justify-content-center m-2 pt-3" style="text-align:center"> 
-			<s:form action="Recherche" cssClass="well form-vertical   m-3 p-5" theme="bootstrap" enctype="multipart/form-data">
+			<s:form action="recherche" cssClass="well form-vertical   m-3 p-5" theme="bootstrap" enctype="multipart/form-data">
         		
         		<h3> Recherche d'un ouvrage</h3>
         		
@@ -88,10 +88,7 @@
     		
     		
 			
-			<div class="row justify-content-center">
-					 <s:actionmessage/>
-					<s:actionerror/>
-			</div>		
+	
     		
     		
     		

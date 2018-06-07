@@ -43,7 +43,7 @@ public class LivreDaoImpl extends AbstractDaoImpl<Livre> implements LivreDao {
 		
 		//-------------CRITERES OBLIGATOIRES---------------
 				
-		SQL+=" WHERE (livre.titre LIKE (:titre)) ";
+		SQL+=" WHERE (UPPER(livre.titre) LIKE UPPER((:titre))) ";
 		
 		//-------------CRITERES FACULTATIFS---------------
 		if (recherche.getAuteur()!=null&&recherche.getAuteur()!=0) SQL+=" AND (auteur.idAuteur=(:auteur)) ";
