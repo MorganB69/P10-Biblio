@@ -71,8 +71,22 @@ public class LivreDaoImpl extends AbstractDaoImpl<Livre> implements LivreDao {
 		return list;
 	}
 
+	@Override
+	public List<Livre> findAllOffset(Integer offset, Integer nbPages) {
+		Session session = sessionFactory.getCurrentSession();
+		//-------------SELECTION DES SITES-------------
+				String SQL = " SELECT DISTINCT livre FROM Livre as livre ";
+				//TRI
+				SQL+=" ORDER BY livre.idLivre ASC ";
+		
+		Query query = session.createQuery(SQL);
+		query.setFirstResult(offset);
+		query.setMaxResults(nbPages);
+		
+		List<Livre> list = query.list();
 
-	
+		return list;
+	}
 	
 	
 	
