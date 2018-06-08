@@ -1,5 +1,6 @@
 package fr.mb.biblio.soap.livreService.contract;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.jws.WebMethod;
@@ -74,5 +75,7 @@ public interface LivreService {
 	 */
 	@WebMethod
 	public void creationAleatoireLivre(@WebParam(name="nb")Integer nb) throws FunctionalException;
-}
+
+	
+	}
 

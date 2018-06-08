@@ -34,6 +34,11 @@
  			<result name="input">/WEB-INF/jsp/rechercheLivre.jsp </result>
  			<result name="success">/WEB-INF/jsp/rechercheLivre.jsp</result>
         </action>
+        
+        <action name="detail_livre" method="detail" class="fr.mb.biblio.webapp.actions.LivreAction">
+
+ 			<result name="success">/WEB-INF/jsp/detailLivre.jsp</result>
+        </action>
 
     </package>
 

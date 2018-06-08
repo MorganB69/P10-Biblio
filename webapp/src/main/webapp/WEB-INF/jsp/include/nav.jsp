@@ -18,7 +18,7 @@
 	<div class="container">
 	<!-- Navigation -->
 	<nav
-		class="navbar fixed-top navbar-expand-lg mb-3  " >
+		class="navbar  fixed-top  navbar-expand-lg mb-1  " >
 
 		
 		<button class="navbar-toggler" type="button"

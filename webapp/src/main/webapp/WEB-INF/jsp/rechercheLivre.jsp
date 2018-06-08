@@ -20,63 +20,189 @@
 </header>
 </div>
 
-<div class="container justify-content-center" id="containerAccueil">
+<div class="container justify-content-center">
 
-	<div class="row justify-content-center m-2 pt-3" style="text-align:center"> 
+	<div class="row justify-content-center m-2" style="text-align:center"> 
 			<s:form action="recherche" cssClass="well form-vertical   m-3 p-5" theme="bootstrap" enctype="multipart/form-data">
         		
         		<h3> Recherche d'un ouvrage</h3>
         		
         		<s:textfield class="form-control" name="titre" />
+        		
+        		<s:if test="%{listLivre.isEmpty()==false}">
+	
+		
+		
+		<div class="row justify-content-center">
+		<div class="col-6">
+		<s:select 
+		id="formAuteur"
+		label="Auteur"
+		headerKey="10000"
+        headerValue="TOUS"
+        name="auteurIdOut"
+        list="listAuteur"
+        listKey="idAuteur"
+        listValue="nom"
+        value="%{listAuteur.{id}}"
+               
+ 		/>
+ 		</div>
+ 		<div class="col-6">
+ 				<s:select 
+		id="formGenre"
+		label="Genre"
+		headerKey="10000"
+        headerValue="TOUS"
+        name="genreIdOut"
+        list="listGenre"
+        listKey="idGenre"
+        listValue="genre"
+        value="%{listGenre.{id}}"
+               
+ 		/>
+ 		
+ 		</div>
+			
+		</div>
+
+	
+		
+	</s:if>
        			
        			
        			<div class="row justify-content-center">
-        		<s:submit class="btn btn-primary m-2 col-6" value="Rechercher"/>
+        		<s:submit class="btn btn-primary mt-2 col-6" value="Rechercher"/>
         		</div>
        		
        		</s:form>
 	</div>
 	
+	
+	
 		<div class="row justify-content-center">
 					 <s:actionmessage/>
 					<s:actionerror/>
-			</div>	
-	
-	
-	<s:iterator value="listLivre">
-<div class="col-lg-8 mb-8 m-3">
-				<div class="card h-100 -dark">
-					<h4 class="card-header"><s:a action="detail_livre">
-						<s:param name="idLivre" value="idLivre"></s:param>
-						<s:property value="titre" /></s:a></h4>
-					<div class="card-body">
-								<div class="row">
-								<img class="img-fluid col-6" id="img-card" src="images/livre/<s:property value="image"/>" alt="">
-								
-								<ul class="col-5 m-1">
-						 			<li>Auteurs :<s:iterator value="auteurs">
-						 				<b> <s:property value="prenom"/>  <s:property value="nom"/></b>
-						 				</s:iterator>
-						 			</li>
-						 			
-						 			<li><b>Statut :</b> <s:property value="disponible"/></li>
+		</div>	
+		
+		<div class="row justify-content-center">
+		
+		
+		<s:if test="%{listrecent.isEmpty()==false}">
+		<div class="row justify-content-center">
+		<h3>Sorties récentes </h3>
+		</div>
+		<div class="row justify-content-center">
+			<s:iterator value="listrecent">
+			<div class="col-lg-8 mb-8 m-3">
+							<div class="card h-100 -dark">
+								<h4 class="card-header"><s:a action="detail_livre">
+									<s:param name="idLivre" value="idLivre"></s:param>
+									<s:property value="titre" /></s:a></h4>
+								<div class="card-body">
+											<div class="row">
+											<img class="img-fluid col-6" id="img-card" src="images/livre/<s:property value="image"/>" alt="">
+											
+											<ul class="col m-1" id="listeLivre">
+												<s:if test="disponible==true">
+												<li><b>Disponibilité :</b> <i class="fa fa-check-circle m-1" id="iconStatut"></i> <span id="statut">Le livre est disponible</span></li>
+												</s:if>
+												<s:else>
+												<li><b>Disponibilité :</b> <i class="fa fa-times-circle m-1" id="iconStatutIndispo"></i> <span id="statutIndispo">Le livre est emprunté</span></li>
+												
+												</s:else>
+												
+									 			<li><b>Auteurs :</b><s:iterator value="auteurs">
+									 				 <span id="attribut"><s:property value="prenom"/>  <s:property value="nom"/></span>
+									 				</s:iterator>
+									 			</li>
+									 			
+									 			<li><b>Editeurs :</b><s:iterator value="editeurs">
+									 				 <span id="attribut"><s:property value="nom"/></span>  
+									 				</s:iterator>
+									 			</li>
+									 			
+									 			<li><b> Genre :  </b><s:iterator value="genres">
+									 				 <span id="attribut"> <s:property value="genre"/></span> 
+									 				</s:iterator>
+									 			</li>
+									 			
+									 			<li><b> Parution : </b><span id="attribut"><s:property value="parution"/></span> </li>
 
-						 		
-								</ul>
-								
+											</ul>
+											
+											</div>
+											
+			
 								</div>
-								
-
-					</div>
-					<div class="card-footer">
-						<s:a action="detail_livre" class="btn btn-primary">
-						<s:param name="id" value="id"></s:param>
-						En savoir plus</s:a>						
-					</div>
-				</div>				
+								<div class="card-footer">
+									<s:a action="detail_livre" class="btn btn-primary">
+									<s:param name="idLivre" value="idLivre"></s:param>
+									En savoir plus</s:a>						
+								</div>
+							</div>				
+						</div>
+						</s:iterator>
+		</div>
+		</s:if>
+	
+	<s:else>
+	<s:iterator value="listLivre">
+			<div class="col-lg-8 mb-8 m-3">
+							<div class="card h-100 -dark">
+								<h4 class="card-header"><s:a action="detail_livre">
+									<s:param name="idLivre" value="idLivre"></s:param>
+									<s:property value="titre" /></s:a></h4>
+								<div class="card-body">
+											<div class="row">
+											<img class="img-fluid col-6" id="img-card" src="images/livre/<s:property value="image"/>" alt="">
+											
+											<ul class="col m-1" id="listeLivre">
+												<s:if test="disponible==true">
+												<li><b>Disponibilité :</b> <i class="fa fa-check-circle m-1" id="iconStatut"></i> <span id="statut">Le livre est disponible</span></li>
+												</s:if>
+												<s:else>
+												<li><b>Disponibilité :</b> <i class="fa fa-times-circle m-1" id="iconStatutIndispo"></i> <span id="statutIndispo">Le livre est emprunté</span></li>
+												
+												</s:else>
+												
+									 			<li><b>Auteurs :</b><s:iterator value="auteurs">
+									 				 <span id="attribut"><s:property value="prenom"/>  <s:property value="nom"/></span>
+									 				</s:iterator>
+									 			</li>
+									 			
+									 			<li><b>Editeurs :</b><s:iterator value="editeurs">
+									 				 <span id="attribut"><s:property value="nom"/></span>  
+									 				</s:iterator>
+									 			</li>
+									 			
+									 			<li><b> Genre :  </b><s:iterator value="genres">
+									 				 <span id="attribut"> <s:property value="genre"/></span> 
+									 				</s:iterator>
+									 			</li>
+									 			
+									 			<li><b> Parution : </b><span id="attribut"><s:property value="parution"/></span> </li>
+											
+									 			
+									 			
+			
+									 		
+											</ul>
+											
+											</div>
+											
+			
+								</div>
+								<div class="card-footer">
+									<s:a action="detail_livre" class="btn btn-primary">
+									<s:param name="idLivre" value="idLivre"></s:param>
+									En savoir plus</s:a>						
+								</div>
+							</div>				
+						</div>
+						</s:iterator>
+						</s:else>
 			</div>
-			</s:iterator>
-
 
 </div>
 

@@ -32,22 +32,17 @@ font-size:150%;
 }
 
 .navbar{
-  border-color:transparent;
-
+ background: url(../images/fondnav.png) repeat;
 }
 
 .navbar-collapse.collapse.show {
 
-background-color:#0062cc;
-opacity:0.8;
-margin-bottom:15px;
+
 }
 
 .navbar-collapse.collapsing {
 
-background-color:#0062cc;
-opacity:0.8;
-margin-bottom:15px;
+
 }
  
 .navbar-nav li a{
@@ -103,6 +98,7 @@ footer{
 
 }
 
+
 #detailImg{
 	margin : 1%;
 	max-height:500px;
@@ -112,16 +108,48 @@ footer{
 
 .card{
 	color:Black;
+	
 
+}
+
+
+card.header a:hover{
+	text-decoration:none;
+	text-align:center;
 }
 .card-body{
 	background-color:#F0FFFF;
+	font-size:larger;
 }
 
 #img-card{
 	max-height:175px;
 	max-width:170px;
 	overflow:hidden;
+}
+
+#attribut{
+	color:Blue;
+}
+
+#statut{
+	color:Green;
+}
+
+#statutIndispo{
+	color:Red;
+}
+
+#iconStatut{
+	color:Green;
+}
+
+#iconStatutIndispo{
+	color:Red;
+}
+
+#listeLivre{
+	list-style:none;
 }
 
 @media (min-width: 992px) {
