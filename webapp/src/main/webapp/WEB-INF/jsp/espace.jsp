@@ -12,7 +12,7 @@
 	<header> 
 	<%@ include file="include/nav.jsp"%>  
 
-	<s:debug />
+
 	</header>
 	
 	    <!-- Page Content -->
@@ -78,8 +78,9 @@
 						 			<li><b>Date de début : </b> <span id="attribut"><s:property value="dateDebut"/></span></li>
 						 			<li><b>Date de fin prévue : </b><span id="attribut"><s:property value="dateFin"/></span></li>
 						 			<li><b>Prolongé :</b><span id="attribut"><s:if test="prolonge==true"> Oui</s:if><s:else> Non</s:else></span></li>
-						 			
-						 		
+						 			<s:if test="%{dateFin.isBefore(dateJour)}">
+						 				<i class="fa fa-times-circle m-1" id="iconStatutIndispo"></i> <span id="statutIndispo">Attention, vous êtes en retard sur ce prêt</span>
+						 			</s:if>
 								</ul>
 								</div>
 								
@@ -88,6 +89,7 @@
 									<s:param name="idPret" value="idPret"></s:param>
 									</s:a>
 									</s:if>
+									<s:else>Ce prêt a déjà été prolongé une fois. Il n'est plus possible de le prolonger à nouveau</s:else>
 									
 								
 								

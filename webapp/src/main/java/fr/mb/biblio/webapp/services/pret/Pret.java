@@ -1,11 +1,13 @@
 
 package fr.mb.biblio.webapp.services.pret;
 
+import java.time.LocalDate;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
@@ -45,12 +47,18 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class Pret {
 
+    @XmlElement(type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar dateDebut;
+    protected LocalDate dateDebut;
+    @XmlElement(type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar dateEffective;
+    protected LocalDate dateEffective;
+    @XmlElement(type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar dateFin;
+    protected LocalDate dateFin;
     protected int idPret;
     protected Livre livre;
     protected boolean prolonge;
@@ -61,10 +69,10 @@ public class Pret {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getDateDebut() {
+    public LocalDate getDateDebut() {
         return dateDebut;
     }
 
@@ -73,10 +81,10 @@ public class Pret {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setDateDebut(XMLGregorianCalendar value) {
+    public void setDateDebut(LocalDate value) {
         this.dateDebut = value;
     }
 
@@ -85,10 +93,10 @@ public class Pret {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getDateEffective() {
+    public LocalDate getDateEffective() {
         return dateEffective;
     }
 
@@ -97,10 +105,10 @@ public class Pret {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setDateEffective(XMLGregorianCalendar value) {
+    public void setDateEffective(LocalDate value) {
         this.dateEffective = value;
     }
 
@@ -109,10 +117,10 @@ public class Pret {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getDateFin() {
+    public LocalDate getDateFin() {
         return dateFin;
     }
 
@@ -121,10 +129,10 @@ public class Pret {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setDateFin(XMLGregorianCalendar value) {
+    public void setDateFin(LocalDate value) {
         this.dateFin = value;
     }
 

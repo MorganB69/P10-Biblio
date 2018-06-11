@@ -62,8 +62,8 @@ public interface PretService {
      * @param emprunteurId
      * @return
      *     returns fr.mb.biblio.webapp.services.pret.Pret
-     * @throws NotFoundException_Exception
      * @throws FunctionalException_Exception
+     * @throws NotFoundException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -75,7 +75,7 @@ public interface PretService {
         @WebParam(name = "emprunteurId", targetNamespace = "")
         Integer emprunteurId,
         @WebParam(name = "dateDebut", targetNamespace = "")
-        Object dateDebut)
+        String dateDebut)
         throws FunctionalException_Exception, NotFoundException_Exception
     ;
 
@@ -85,8 +85,8 @@ public interface PretService {
      * @param emprunteurId
      * @return
      *     returns fr.mb.biblio.webapp.services.pret.Pret
-     * @throws NotFoundException_Exception
      * @throws FunctionalException_Exception
+     * @throws NotFoundException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -117,8 +117,8 @@ public interface PretService {
      * @param pretId
      * @return
      *     returns java.lang.String
-     * @throws NotFoundException_Exception
      * @throws FunctionalException_Exception
+     * @throws NotFoundException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -150,8 +150,8 @@ public interface PretService {
      * @param emprunteurId
      * @return
      *     returns fr.mb.biblio.webapp.services.pret.Pret
-     * @throws NotFoundException_Exception
      * @throws FunctionalException_Exception
+     * @throws NotFoundException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -170,8 +170,8 @@ public interface PretService {
      * @param id
      * @return
      *     returns fr.mb.biblio.webapp.services.pret.Pret
-     * @throws NotFoundException_Exception
      * @throws FunctionalException_Exception
+     * @throws NotFoundException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")

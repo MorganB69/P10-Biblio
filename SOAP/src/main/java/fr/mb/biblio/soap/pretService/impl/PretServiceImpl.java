@@ -172,19 +172,14 @@ public class PretServiceImpl implements PretService {
 			// Récupération de la date de fin
 			LocalDate dateFin = pret.getDateFin();
 
-			// Vérification que le prêt est en retard
-			if (LocalDate.now().isAfter(dateFin)) {
-				// Prolongation de la date de fin
+
 				dateFin=dateFin.plusDays(DUREEPRET);
 				// Modification des paramètres
 				pret.setDateFin(dateFin);
 				pret.setProlonge(true);
 
 				pretDao.update(pret);
-			}
 
-			else
-				throw new FunctionalException("Le prêt n'est pas encore en retard");
 
 		} else
 			throw new FunctionalException("Le prêt a déjà été prolongé ou l'utilisateur n'est pas bon");

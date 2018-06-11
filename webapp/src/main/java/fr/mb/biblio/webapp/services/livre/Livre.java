@@ -1,6 +1,7 @@
 
 package fr.mb.biblio.webapp.services.livre;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -8,7 +9,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
@@ -64,8 +65,10 @@ public class Livre {
     protected int idLivre;
     protected String image;
     protected Ouvrage ouvrage;
+    @XmlElement(type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar parution;
+    protected LocalDate parution;
     protected String resume;
     protected String titre;
 
@@ -249,10 +252,10 @@ public class Livre {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getParution() {
+    public LocalDate getParution() {
         return parution;
     }
 
@@ -261,10 +264,10 @@ public class Livre {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setParution(XMLGregorianCalendar value) {
+    public void setParution(LocalDate value) {
         this.parution = value;
     }
 
