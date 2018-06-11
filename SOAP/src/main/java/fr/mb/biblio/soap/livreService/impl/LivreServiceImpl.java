@@ -1,5 +1,7 @@
 package fr.mb.biblio.soap.livreService.impl;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.util.List;
 
@@ -16,6 +18,7 @@ import fr.mb.biblio.dao.impl.AbstractDaoImpl;
 import fr.mb.biblio.models.beans.Genre;
 import fr.mb.biblio.models.beans.Livre;
 import fr.mb.biblio.models.beans.Ouvrage;
+import fr.mb.biblio.models.beans.Pret;
 import fr.mb.biblio.models.exception.FunctionalException;
 import fr.mb.biblio.models.exception.NotFoundException;
 import fr.mb.biblio.models.recherche.RechercheLivre;
@@ -143,6 +146,30 @@ public class LivreServiceImpl implements LivreService {
 			else livreDao.persist(livre);
 			
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see fr.mb.biblio.soap.livreService.contract.LivreService#dateRetourLivre(java.lang.Integer)
+	 */
+	@Override
+	@Transactional
+	public String dateRetourLivre(Integer idLivre) throws FunctionalException, NotFoundException {
+		LocalDate dateRetour = null;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		String dateFormat="";
+		livreReturn=livreDao.findById(idLivre);
+		if (livreReturn==null) throw new NotFoundException("Le livre n'a pas été trouvé");
+		
+		for (Iterator iterator = livreReturn.getPrets().iterator(); iterator.hasNext();) {
+			Pret pret = (Pret) iterator.next();
+			if(pret.getDateEffective()==null) dateRetour=pret.getDateFin();
+			
+		}
+		if (dateRetour==null) throw new FunctionalException ("Pas de date de retour trouvée");
+		else dateFormat=dateRetour.format(formatter);
+		
+		
+		return dateFormat;
 	}
 	
 	

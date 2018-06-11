@@ -22,7 +22,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="dateEffective" type="{http://www.w3.org/2001/XMLSchema}date" minOccurs="0"/>
  *         &lt;element name="dateFin" type="{http://www.w3.org/2001/XMLSchema}date" minOccurs="0"/>
  *         &lt;element name="idPret" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="livre" type="{http://contract.pretService.soap.biblio.mb.fr/}livre" minOccurs="0"/>
  *         &lt;element name="prolonge" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="utilisateur" type="{http://contract.pretService.soap.biblio.mb.fr/}utilisateur" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,7 +39,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "dateEffective",
     "dateFin",
     "idPret",
-    "prolonge"
+    "livre",
+    "prolonge",
+    "utilisateur"
 })
 public class Pret {
 
@@ -48,7 +52,9 @@ public class Pret {
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar dateFin;
     protected int idPret;
+    protected Livre livre;
     protected boolean prolonge;
+    protected Utilisateur utilisateur;
 
     /**
      * Obtient la valeur de la propriété dateDebut.
@@ -139,6 +145,30 @@ public class Pret {
     }
 
     /**
+     * Obtient la valeur de la propriété livre.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Livre }
+     *     
+     */
+    public Livre getLivre() {
+        return livre;
+    }
+
+    /**
+     * Définit la valeur de la propriété livre.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Livre }
+     *     
+     */
+    public void setLivre(Livre value) {
+        this.livre = value;
+    }
+
+    /**
      * Obtient la valeur de la propriété prolonge.
      * 
      */
@@ -152,6 +182,30 @@ public class Pret {
      */
     public void setProlonge(boolean value) {
         this.prolonge = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété utilisateur.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Utilisateur }
+     *     
+     */
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    /**
+     * Définit la valeur de la propriété utilisateur.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Utilisateur }
+     *     
+     */
+    public void setUtilisateur(Utilisateur value) {
+        this.utilisateur = value;
     }
 
 }

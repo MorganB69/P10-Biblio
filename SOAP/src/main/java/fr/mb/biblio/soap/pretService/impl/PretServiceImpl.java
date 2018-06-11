@@ -374,4 +374,13 @@ public class PretServiceImpl implements PretService {
         emailSender.send(message);
     }
 
+	@Override
+	@Transactional
+	public List<Pret> getPretsEnCoursByUser(Integer utilisateurId) throws FunctionalException {
+		listeReturn=pretDao.findPretEnCoursByUser(utilisateurId);
+		if (listeReturn==null) throw new FunctionalException("Pas de prêt en cours trouvé");
+		return listeReturn;
+	}
+	
+
 }

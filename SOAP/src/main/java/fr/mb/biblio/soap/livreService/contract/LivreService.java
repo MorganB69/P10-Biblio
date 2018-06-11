@@ -6,7 +6,9 @@ import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import fr.mb.biblio.models.LocalDateXmlAdapter;
 import fr.mb.biblio.models.beans.Livre;
 import fr.mb.biblio.models.exception.FunctionalException;
 import fr.mb.biblio.models.exception.NotFoundException;
@@ -75,6 +77,14 @@ public interface LivreService {
 	 */
 	@WebMethod
 	public void creationAleatoireLivre(@WebParam(name="nb")Integer nb) throws FunctionalException;
+	
+	/**
+	 * Trouver la date de retour d'un livre via son id
+	 * @param nb
+	 * @throws FunctionalException
+	 */
+	@WebMethod
+	public String dateRetourLivre(@WebParam(name="idLivre")Integer idLivre) throws FunctionalException, NotFoundException;
 
 	
 	}

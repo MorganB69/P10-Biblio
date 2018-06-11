@@ -34,9 +34,10 @@ public class ObjectFactory {
     private final static QName _GetAllLivres_QNAME = new QName("http://contract.livreService.soap.biblio.mb.fr/", "getAllLivres");
     private final static QName _FunctionalException_QNAME = new QName("http://contract.livreService.soap.biblio.mb.fr/", "FunctionalException");
     private final static QName _CreationAleatoireLivre_QNAME = new QName("http://contract.livreService.soap.biblio.mb.fr/", "creationAleatoireLivre");
+    private final static QName _DateRetourLivreResponse_QNAME = new QName("http://contract.livreService.soap.biblio.mb.fr/", "dateRetourLivreResponse");
     private final static QName _CreationAleatoireLivreResponse_QNAME = new QName("http://contract.livreService.soap.biblio.mb.fr/", "creationAleatoireLivreResponse");
-    private final static QName _Pret_QNAME = new QName("http://contract.livreService.soap.biblio.mb.fr/", "pret");
     private final static QName _GetLivreByIdResponse_QNAME = new QName("http://contract.livreService.soap.biblio.mb.fr/", "getLivreByIdResponse");
+    private final static QName _DateRetourLivre_QNAME = new QName("http://contract.livreService.soap.biblio.mb.fr/", "dateRetourLivre");
     private final static QName _Insert_QNAME = new QName("http://contract.livreService.soap.biblio.mb.fr/", "insert");
     private final static QName _RechercheLivresResponse_QNAME = new QName("http://contract.livreService.soap.biblio.mb.fr/", "rechercheLivresResponse");
     private final static QName _NotFoundException_QNAME = new QName("http://contract.livreService.soap.biblio.mb.fr/", "NotFoundException");
@@ -68,11 +69,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Pret }
+     * Create an instance of {@link DateRetourLivre }
      * 
      */
-    public Pret createPret() {
-        return new Pret();
+    public DateRetourLivre createDateRetourLivre() {
+        return new DateRetourLivre();
     }
 
     /**
@@ -204,6 +205,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DateRetourLivreResponse }
+     * 
+     */
+    public DateRetourLivreResponse createDateRetourLivreResponse() {
+        return new DateRetourLivreResponse();
+    }
+
+    /**
      * Create an instance of {@link RechercheLivre }
      * 
      */
@@ -310,6 +319,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DateRetourLivreResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://contract.livreService.soap.biblio.mb.fr/", name = "dateRetourLivreResponse")
+    public JAXBElement<DateRetourLivreResponse> createDateRetourLivreResponse(DateRetourLivreResponse value) {
+        return new JAXBElement<DateRetourLivreResponse>(_DateRetourLivreResponse_QNAME, DateRetourLivreResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link CreationAleatoireLivreResponse }{@code >}}
      * 
      */
@@ -319,21 +337,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Pret }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://contract.livreService.soap.biblio.mb.fr/", name = "pret")
-    public JAXBElement<Pret> createPret(Pret value) {
-        return new JAXBElement<Pret>(_Pret_QNAME, Pret.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetLivreByIdResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://contract.livreService.soap.biblio.mb.fr/", name = "getLivreByIdResponse")
     public JAXBElement<GetLivreByIdResponse> createGetLivreByIdResponse(GetLivreByIdResponse value) {
         return new JAXBElement<GetLivreByIdResponse>(_GetLivreByIdResponse_QNAME, GetLivreByIdResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DateRetourLivre }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://contract.livreService.soap.biblio.mb.fr/", name = "dateRetourLivre")
+    public JAXBElement<DateRetourLivre> createDateRetourLivre(DateRetourLivre value) {
+        return new JAXBElement<DateRetourLivre>(_DateRetourLivre_QNAME, DateRetourLivre.class, null, value);
     }
 
     /**

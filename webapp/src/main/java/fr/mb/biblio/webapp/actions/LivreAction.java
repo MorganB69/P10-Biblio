@@ -1,5 +1,7 @@
 package fr.mb.biblio.webapp.actions;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -7,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -103,6 +106,8 @@ public class LivreAction extends ActionSupport implements SessionAware {
 	 */
 	private RechercheLivre recherche=new RechercheLivre();
 	
+	private LocalDate dateRetour;
+	
 	private static final Logger logger = LogManager.getLogger(LivreAction.class);
 	
 	
@@ -169,8 +174,18 @@ public class LivreAction extends ActionSupport implements SessionAware {
 			this.addActionError(getText("error.project.missing.id"));
 		} else {
 			try {
-
+				String date="";
 				livre = (Livre) livreClient.getLivreById(idLivre);
+				try {
+					date=livreClient.dateRetourLivre(idLivre);
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+					dateRetour=LocalDate.parse(date, formatter);
+				} catch (FunctionalException_Exception e) {
+					// TODO Auto-generated catch block
+					e.getMessage();
+				}
+
+				
 				
 			} catch (NotFoundException_Exception Notfound) {
 				this.addActionError(getText("error.project.notfound", Collections.singletonList(idLivre)));
@@ -339,6 +354,16 @@ public class LivreAction extends ActionSupport implements SessionAware {
 
 	public void setListrecent(List<Livre> listrecent) {
 		this.listrecent = listrecent;
+	}
+
+
+	public LocalDate getDateRetour() {
+		return dateRetour;
+	}
+
+
+	public void setDateRetour(LocalDate dateRetour) {
+		this.dateRetour = dateRetour;
 	}
 
 }

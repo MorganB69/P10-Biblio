@@ -31,7 +31,6 @@ public class ObjectFactory {
     private final static QName _Insert_QNAME = new QName("http://contract.userService.soap.biblio.mb.fr/", "insert");
     private final static QName _NotFoundException_QNAME = new QName("http://contract.userService.soap.biblio.mb.fr/", "NotFoundException");
     private final static QName _GetUserIdByNameResponse_QNAME = new QName("http://contract.userService.soap.biblio.mb.fr/", "getUserIdByNameResponse");
-    private final static QName _Pret_QNAME = new QName("http://contract.userService.soap.biblio.mb.fr/", "pret");
     private final static QName _GetUtilisateurById_QNAME = new QName("http://contract.userService.soap.biblio.mb.fr/", "getUtilisateurById");
     private final static QName _Identification_QNAME = new QName("http://contract.userService.soap.biblio.mb.fr/", "identification");
     private final static QName _GetUtilisateurByIdResponse_QNAME = new QName("http://contract.userService.soap.biblio.mb.fr/", "getUtilisateurByIdResponse");
@@ -65,14 +64,6 @@ public class ObjectFactory {
      */
     public Identification createIdentification() {
         return new Identification();
-    }
-
-    /**
-     * Create an instance of {@link Pret }
-     * 
-     */
-    public Pret createPret() {
-        return new Pret();
     }
 
     /**
@@ -200,15 +191,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://contract.userService.soap.biblio.mb.fr/", name = "getUserIdByNameResponse")
     public JAXBElement<GetUserIdByNameResponse> createGetUserIdByNameResponse(GetUserIdByNameResponse value) {
         return new JAXBElement<GetUserIdByNameResponse>(_GetUserIdByNameResponse_QNAME, GetUserIdByNameResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Pret }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://contract.userService.soap.biblio.mb.fr/", name = "pret")
-    public JAXBElement<Pret> createPret(Pret value) {
-        return new JAXBElement<Pret>(_Pret_QNAME, Pret.class, null, value);
     }
 
     /**

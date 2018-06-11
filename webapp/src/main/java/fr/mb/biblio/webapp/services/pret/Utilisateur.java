@@ -1,5 +1,5 @@
 
-package fr.mb.biblio.webapp.services.user;
+package fr.mb.biblio.webapp.services.pret;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

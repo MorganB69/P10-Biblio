@@ -56,6 +56,15 @@ public interface PretDao {
 	
 	
 	/**
+	 * Récupère une liste de tous les prets en cours
+	 * @param offset
+	 * @param nbPages
+	 * @return
+	 */
+	public List<Pret> findPretEnCoursByUser(Integer usserId);
+	
+	
+	/**
 	 * Récupère une liste de tous les prets en cours prolonges
 	 * @param offset
 	 * @param nbPages

@@ -79,7 +79,15 @@ public interface PretService {
 	@WebMethod
 	public Pret creationPretDate(@WebParam(name="livreId")Integer livreId,@WebParam(name="emprunteurId") Integer emprunteurId,@WebParam(name="dateDebut")@XmlJavaTypeAdapter(LocalDateXmlAdapter.class) LocalDate dateDebut)throws FunctionalException, NotFoundException;
 	
-	
+
+	/**
+	 * Obtenir la liste des prets en cours
+	 * @return
+	 * @throws FunctionalException
+	 */
+	@WebMethod
+	public List<Pret> getPretsEnCoursByUser(@WebParam(name="utilisateurId")Integer utilisateurId) throws  FunctionalException;
+
 	
 	/**
 	 * Obtenir la liste des prets en cours

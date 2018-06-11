@@ -27,13 +27,14 @@
       <div class="row">
       		<div class="col-xs-12 col-md-2 col-lg-2" id="left-column">
       		            <div class="row">
+      		             <div class="row"> </div>
        	 <figure class="figure m-3 " >
           <img class="figure-img img-fluid rounded " id="detailImgLivre" src="images/livre/<s:property value="livre.image"/>"alt="Livre image">
         </figure>
        </div>
       		</div>
       
-             <div class="col-xs-12 col-md-6 col-lg-7" id="center-column">
+             <div class="col-xs-12 col-md-5 col-lg-6" id="center-column">
 
 
         
@@ -55,7 +56,13 @@
   		</s:if>
   		
   		
-  		    <h5 class="collapsible-title mt-3" data-toggle="collapse" data-target="#associated-detail" aria-expanded="true" aria-controls="associated-detail">
+  		
+         
+     
+        
+      </div>
+      <div class="col-xs-12 col-md-5 col-lg-4" id="right-column">
+        		    <h5 class="collapsible-title mt-3" data-toggle="collapse" data-target="#associated-detail" aria-expanded="true" aria-controls="associated-detail">
       	   		<i class="fa fa-leanpub"></i> Détails <i class="fa fa-arrow-down pull-right"></i>
       	    </h5>
       	    
@@ -88,12 +95,6 @@
     
   </div>
   
-  		
-         
-     
-        
-      </div>
-      <div class="col-xs-12 col-md-4 col-lg-3" id="right-column">
       
  
       
@@ -111,7 +112,12 @@
 												<li><b>Disponibilité :</b> <i class="fa fa-check-circle m-1" id="iconStatut"></i> <span id="statut">Le livre est disponible</span></li>
 												</s:if>
 												<s:else>
-												<li><b>Disponibilité :</b> <i class="fa fa-times-circle m-1" id="iconStatutIndispo"></i> <span id="statutIndispo">Le livre est emprunté</span></li>
+												<li>
+												<b>Disponibilité :</b> <i class="fa fa-times-circle m-1" id="iconStatutIndispo"></i> <span id="statutIndispo">Le livre est emprunté</span>
+												</li>
+												<li>
+												<b>Date de retour prévue :</b>  <span id="attribut"> <s:property value="dateRetour"/></span>
+												</li>
 												
 												</s:else>
 												

@@ -26,6 +26,23 @@ public interface PretService {
 
     /**
      * 
+     * @param utilisateurId
+     * @return
+     *     returns java.util.List<fr.mb.biblio.webapp.services.pret.Pret>
+     * @throws FunctionalException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getPretsEnCoursByUser", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.GetPretsEnCoursByUser")
+    @ResponseWrapper(localName = "getPretsEnCoursByUserResponse", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.GetPretsEnCoursByUserResponse")
+    public List<Pret> getPretsEnCoursByUser(
+        @WebParam(name = "utilisateurId", targetNamespace = "")
+        Integer utilisateurId)
+        throws FunctionalException_Exception
+    ;
+
+    /**
+     * 
      * @return
      *     returns java.util.List<fr.mb.biblio.webapp.services.pret.Pret>
      * @throws FunctionalException_Exception

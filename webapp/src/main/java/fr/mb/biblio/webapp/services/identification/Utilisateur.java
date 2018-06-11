@@ -1,11 +1,8 @@
 
 package fr.mb.biblio.webapp.services.identification;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -25,7 +22,6 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="mail" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="nom" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="prenom" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="prets" type="{http://identification.soap.biblio.mb.fr/}pret" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -41,8 +37,7 @@ import javax.xml.bind.annotation.XmlType;
     "identifiant",
     "mail",
     "nom",
-    "prenom",
-    "prets"
+    "prenom"
 })
 public class Utilisateur {
 
@@ -52,8 +47,6 @@ public class Utilisateur {
     protected String mail;
     protected String nom;
     protected String prenom;
-    @XmlElement(nillable = true)
-    protected List<Pret> prets;
 
     /**
      * Obtient la valeur de la propriété admin.
@@ -189,35 +182,6 @@ public class Utilisateur {
      */
     public void setPrenom(String value) {
         this.prenom = value;
-    }
-
-    /**
-     * Gets the value of the prets property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the prets property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getPrets().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Pret }
-     * 
-     * 
-     */
-    public List<Pret> getPrets() {
-        if (prets == null) {
-            prets = new ArrayList<Pret>();
-        }
-        return this.prets;
     }
 
 }

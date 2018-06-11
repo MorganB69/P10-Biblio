@@ -1,5 +1,5 @@
 
-package fr.mb.biblio.webapp.services.livre;
+package fr.mb.biblio.webapp.services.pret;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,13 +21,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="auteurs" type="{http://contract.livreService.soap.biblio.mb.fr/}auteur" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="auteurs" type="{http://contract.pretService.soap.biblio.mb.fr/}auteur" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="disponible" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
- *         &lt;element name="editeurs" type="{http://contract.livreService.soap.biblio.mb.fr/}editeur" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="genres" type="{http://contract.livreService.soap.biblio.mb.fr/}genre" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="editeurs" type="{http://contract.pretService.soap.biblio.mb.fr/}editeur" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="genres" type="{http://contract.pretService.soap.biblio.mb.fr/}genre" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="idLivre" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="image" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="ouvrage" type="{http://contract.livreService.soap.biblio.mb.fr/}ouvrage" minOccurs="0"/>
+ *         &lt;element name="ouvrage" type="{http://contract.pretService.soap.biblio.mb.fr/}ouvrage" minOccurs="0"/>
  *         &lt;element name="parution" type="{http://www.w3.org/2001/XMLSchema}date" minOccurs="0"/>
  *         &lt;element name="resume" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="titre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>

@@ -114,7 +114,8 @@ public class Utilisateur implements java.io.Serializable {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-
+	
+	@XmlTransient
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "utilisateur")
 	public Set<Pret> getPrets() {
 		return this.prets;

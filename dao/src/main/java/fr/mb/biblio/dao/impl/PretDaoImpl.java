@@ -110,6 +110,32 @@ Session session = sessionFactory.getCurrentSession();
 	
 	}
 
+	@Override
+	public List<Pret> findPretEnCoursByUser(Integer userId) {
+		Session session = sessionFactory.getCurrentSession();
+		
+		String SQL=" SELECT DISTINCT pret FROM Pret as pret ";
+		
+		//-------------CRITERES OBLIGATOIRES---------------
+		
+		SQL+=" WHERE (pret.dateEffective = null) AND ((:userId)=pret.utilisateur.idUtilisateur) ";
+		
+		//TRI
+		SQL+=" ORDER BY pret.idPret ASC ";
+
+		//CREATION DE LA QUERY
+		Query query = session.createQuery(SQL);
+		query.setParameter("userId", userId);
+		
+		logger.info(query.getQueryString());
+		
+
+
+		
+		List<Pret> list = query.list();
+		return list;
+	}
+
 	
 	
 	

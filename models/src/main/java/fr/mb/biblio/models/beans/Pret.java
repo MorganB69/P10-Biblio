@@ -62,7 +62,7 @@ public class Pret implements java.io.Serializable {
 		this.idPret = idPret;
 	}
 	
-	@XmlTransient
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_livre", nullable = false)
 	public Livre getLivre() {
@@ -73,7 +73,7 @@ public class Pret implements java.io.Serializable {
 		this.livre = livre;
 	}
 	
-	@XmlTransient
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_utilisateur", nullable = false)
 	public Utilisateur getUtilisateur() {

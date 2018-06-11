@@ -60,6 +60,24 @@ public interface LivreService {
 
     /**
      * 
+     * @param idLivre
+     * @return
+     *     returns java.lang.String
+     * @throws NotFoundException_Exception
+     * @throws FunctionalException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "dateRetourLivre", targetNamespace = "http://contract.livreService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.livre.DateRetourLivre")
+    @ResponseWrapper(localName = "dateRetourLivreResponse", targetNamespace = "http://contract.livreService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.livre.DateRetourLivreResponse")
+    public String dateRetourLivre(
+        @WebParam(name = "idLivre", targetNamespace = "")
+        Integer idLivre)
+        throws FunctionalException_Exception, NotFoundException_Exception
+    ;
+
+    /**
+     * 
      * @param id
      * @return
      *     returns fr.mb.biblio.webapp.services.livre.Livre

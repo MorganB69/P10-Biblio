@@ -21,6 +21,10 @@
     <jaxws:client id="livreClient"
                   serviceClass="fr.mb.biblio.webapp.services.livre.LivreService"
                   address="http://localhost:8080/SOAP/livreService" />
+                  
+    <jaxws:client id="pretClient"
+                  serviceClass="fr.mb.biblio.webapp.services.pret.PretService"
+                  address="http://localhost:8080/SOAP/pretService" />
 	
 	<!-- SCAN DES DIFFERENTS BEANS ANNOTES -->
   	<context:annotation-config/>

@@ -39,6 +39,11 @@
 
  			<result name="success">/WEB-INF/jsp/detailLivre.jsp</result>
         </action>
+        
+        <action name="getPrets" method="getPrets" class="fr.mb.biblio.webapp.actions.PretAction">
+
+ 			<result name="success">/WEB-INF/jsp/espace.jsp</result>
+        </action>
 
     </package>
 
