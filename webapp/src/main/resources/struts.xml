@@ -9,11 +9,19 @@
 
 
     <package name="default" namespace="/" extends="struts-default">
+    	<interceptors>
+			<interceptor name="loginInterceptor"
+				class="fr.mb.biblio.webapp.config.LoginInterceptor"></interceptor>
+
+		</interceptors>
 
         <default-action-ref name="index"/>
         
         <global-results>
 			<result name="error">/WEB-INF/jsp/error.jsp</result>
+			<result name="loginUser" type="redirectAction">
+				<param name="actionName"> Login </param>
+			</result>
 		</global-results>
         
 
@@ -41,7 +49,8 @@
         </action>
         
         <action name="getPrets" method="getPrets" class="fr.mb.biblio.webapp.actions.PretAction">
-
+			<interceptor-ref name="loginInterceptor"></interceptor-ref>	
+			<interceptor-ref name="defaultStack"></interceptor-ref>
  			<result name="success">/WEB-INF/jsp/espace.jsp</result>
         </action>
 

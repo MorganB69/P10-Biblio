@@ -24,7 +24,14 @@
                   
     <jaxws:client id="pretClient"
                   serviceClass="fr.mb.biblio.webapp.services.pret.PretService"
-                  address="http://localhost:8080/SOAP/pretService" />
+                  address="http://localhost:8080/SOAP/pretService"> 
+                  
+                  <jaxws:outInterceptors>
+                  <ref bean="wss4jOut"/>
+
+                  </jaxws:outInterceptors>
+    
+    </jaxws:client>
 	
 	<!-- SCAN DES DIFFERENTS BEANS ANNOTES -->
   	<context:annotation-config/>
@@ -47,7 +54,7 @@
             <entry key="user" value="ws-client" />
             <entry key="passwordType" value="PasswordText" />
             <entry key="passwordCallbackClass"
-                value="your.package.ClientPasswordCallback" />
+                value="fr.mb.biblio.webapp.config.ClientPasswordCallback" />
         </map>
     </constructor-arg>
 </bean>

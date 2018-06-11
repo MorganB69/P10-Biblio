@@ -17,7 +17,7 @@
 
 <s:include value="include/nav.jsp"></s:include> 
 
-
+<s:debug />
 
 
 </header>

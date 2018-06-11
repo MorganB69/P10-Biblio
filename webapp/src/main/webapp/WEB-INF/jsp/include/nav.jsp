@@ -43,7 +43,7 @@
 				
 				
 				<li class="nav-item ml-3 mr-3">
-					<s:a class="nav-link" action="index">ESPACE PERSONNEL</s:a>
+					<s:a class="nav-link" action="getPrets">ESPACE PERSONNEL</s:a>
 				</li>
 
 				

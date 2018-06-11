@@ -11,10 +11,11 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
+import fr.mb.biblio.webapp.services.identification.Utilisateur;
 import fr.mb.biblio.webapp.services.pret.FunctionalException_Exception;
 import fr.mb.biblio.webapp.services.pret.Pret;
 import fr.mb.biblio.webapp.services.pret.PretService;
-import fr.mb.biblio.webapp.services.pret.Utilisateur;
+
 
 /**
  * Action pour la gestion des prêts
