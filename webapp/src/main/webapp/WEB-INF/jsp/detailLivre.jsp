@@ -26,8 +26,8 @@
       		</h1>
       <div class="row">
       		<div class="col-xs-12 col-md-2 col-lg-2" id="left-column">
-      		            <div class="row">
-      		             <div class="row"> </div>
+      		            <div class="row  pt-5">
+      		             
        	 <figure class="figure m-3 " >
           <img class="figure-img img-fluid rounded " id="detailImgLivre" src="images/livre/<s:property value="livre.image"/>"alt="Livre image">
         </figure>
