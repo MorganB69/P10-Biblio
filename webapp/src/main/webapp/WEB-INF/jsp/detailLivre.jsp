@@ -72,12 +72,12 @@
       		<div class="card card-body bg-light text-dark rounded">
       	
 	        <ul>
-	        <li><b>Auteurs :</b><s:iterator value="livre.auteurs">
+	        <li><b>Auteur(s) :</b><s:iterator value="livre.auteurs">
 									 				 <span id="attribut"><s:property value="prenom"/>  <s:property value="nom"/></span>
 									 				</s:iterator>
 									 			</li>
 									 			
-									 			<li><b>Editeurs :</b><s:iterator value="livre.editeurs">
+									 			<li><b>Editeur(s) :</b><s:iterator value="livre.editeurs">
 									 				 <span id="attribut"><s:property value="nom"/></span>  
 									 				</s:iterator>
 									 			</li>

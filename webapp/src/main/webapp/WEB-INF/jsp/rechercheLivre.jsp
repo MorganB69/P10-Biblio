@@ -38,7 +38,7 @@
 		<div class="col-6">
 		<s:select 
 		id="formAuteur"
-		label="Auteur"
+		label="Auteur(s)"
 		headerKey="10000"
         headerValue="TOUS"
         name="auteurIdOut"
@@ -52,7 +52,7 @@
  		<div class="col-6">
  				<s:select 
 		id="formGenre"
-		label="Genre"
+		label="Genre(s)"
 		headerKey="10000"
         headerValue="TOUS"
         name="genreIdOut"
@@ -113,12 +113,12 @@
 												
 												</s:else>
 												
-									 			<li><b>Auteurs :</b><s:iterator value="auteurs">
+									 			<li><b>Auteur(s) :</b><s:iterator value="auteurs">
 									 				 <span id="attribut"><s:property value="prenom"/>  <s:property value="nom"/></span>
 									 				</s:iterator>
 									 			</li>
 									 			
-									 			<li><b>Editeurs :</b><s:iterator value="editeurs">
+									 			<li><b>Editeur(s) :</b><s:iterator value="editeurs">
 									 				 <span id="attribut"><s:property value="nom"/></span>  
 									 				</s:iterator>
 									 			</li>
@@ -167,12 +167,12 @@
 												
 												</s:else>
 												
-									 			<li><b>Auteurs :</b><s:iterator value="auteurs">
+									 			<li><b>Auteur(s) :</b><s:iterator value="auteurs">
 									 				 <span id="attribut"><s:property value="prenom"/>  <s:property value="nom"/></span>
 									 				</s:iterator>
 									 			</li>
 									 			
-									 			<li><b>Editeurs :</b><s:iterator value="editeurs">
+									 			<li><b>Editeur(s) :</b><s:iterator value="editeurs">
 									 				 <span id="attribut"><s:property value="nom"/></span>  
 									 				</s:iterator>
 									 			</li>
