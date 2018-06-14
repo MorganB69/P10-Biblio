@@ -76,7 +76,7 @@
 			<h3 class="text-center"> Connectez-vous pour acceder à votre espace personnel</h3>
 			</div>
 			<div class="row justify-content-center m-2" style="text-align:center"> 
-			 <s:a action="Login" class="btn btn-primary my-4 my-sm-0 justify-content-center m-3"><i class="fa fa-lock m-1"></i> Connexion</s:a>
+			 <s:a action="login" class="btn btn-primary my-4 my-sm-0 justify-content-center m-3"><i class="fa fa-lock m-1"></i> Connexion</s:a>
     		</div>
     		</s:else>
     		</div>

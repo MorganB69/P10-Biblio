@@ -8,13 +8,32 @@
 </head>
 
 <body>
+<div class="row">
+<header>
+
+
+<div class="layer">
+</div>
+
+<s:include value="include/nav.jsp"></s:include> 
+
+<s:debug />
+
+
+</header>
+</div>
+
+<div class="row justify-content-center">
     <h2><s:text name="error.title" /></h2>
-
+</div>
+<div class="row justify-content-center">
     <s:actionerror />
-
+</div>
+<div class="row justify-content-center">
     <s:bean name="java.util.Date" var="now" />
     <s:text name="error.metadata">
         <s:param value="now" />
     </s:text>
+</div>
 </body>
 </html>

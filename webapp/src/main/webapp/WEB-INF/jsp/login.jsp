@@ -49,7 +49,7 @@
 		
 			
 	
-			<s:form action="Login" cssClass="well form-vertical   m-3 p-5" theme="bootstrap" enctype="multipart/form-data">
+			<s:form action="login" cssClass="well form-vertical   m-3 p-5" theme="bootstrap" enctype="multipart/form-data">
         		
         		<h3> Formulaire de connexion</h3>
         		
@@ -58,7 +58,7 @@
        
         		<s:password class="form-control" name="password" label="Mot de passe" requiredLabel="true" />
       
-       
+       			<s:actionerror/>
 		
 				<div class="row justify-content-center">
         		<s:submit class="btn btn-primary m-2 col-6" value="Validation"/>

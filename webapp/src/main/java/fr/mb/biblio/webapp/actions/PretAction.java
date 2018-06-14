@@ -80,6 +80,8 @@ public class PretAction extends ActionSupport implements SessionAware {
 		 * @return
 		 */
 		public String getPrets() {
+			
+			try {
 			this.user=(Utilisateur) session.get("user");
 			
 			dateJour=LocalDate.now();
@@ -93,11 +95,15 @@ public class PretAction extends ActionSupport implements SessionAware {
 				e.getMessage();
 			}
 			
-			
-			return Action.SUCCESS;
+			}
+			catch(Exception e) {
+				addActionError("Le service est momentanément indisponible");
+			}
+			return (this.hasErrors()) ? ActionSupport.ERROR : ActionSupport.SUCCESS;
 		}
 		
 		public String prolongerPret() {
+			try {
 			this.user=(Utilisateur) session.get("user");
 			try {
 				pretClient.prolongerPret(idPret, user.getIdUtilisateur());
@@ -106,8 +112,11 @@ public class PretAction extends ActionSupport implements SessionAware {
 			} catch (NotFoundException_Exception e) {
 				e.getMessage();
 			}
-			
-			return Action.SUCCESS;
+			}
+			catch(Exception e) {
+				addActionError("Le service est momentanément indisponible");
+			}
+			return (this.hasErrors()) ? ActionSupport.ERROR : ActionSupport.SUCCESS;
 		}
 		
 		

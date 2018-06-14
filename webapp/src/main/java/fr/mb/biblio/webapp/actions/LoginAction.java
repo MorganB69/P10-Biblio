@@ -58,6 +58,8 @@ public class LoginAction extends ActionSupport implements SessionAware{
 	 */
 	public String doLogin() {
 		String result = ActionSupport.INPUT;
+		try {
+		
         if (!StringUtils.isAllEmpty(login, password)) {
             try {
                 this.user=identificationClient.identification(login, password);  
@@ -73,8 +75,12 @@ public class LoginAction extends ActionSupport implements SessionAware{
                 
             }
         }
-        
-        return result;
+
+		}
+		catch(Exception e) {
+			addActionError("Service momentanément indisponible");
+		}
+		return result;
 		
 	}
 	
@@ -85,6 +91,7 @@ public class LoginAction extends ActionSupport implements SessionAware{
 	public String doLogout() {
 		this.session.remove("user");
 		this.session.remove("mdpUser");
+		this.session.remove("lastAction");
 		return ActionSupport.SUCCESS;
 	}
 	

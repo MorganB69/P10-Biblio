@@ -63,7 +63,7 @@
     		
     		</s:if>
     			<s:else>
-       				 <s:a action="Login" class="btn btn-primary my-2 my-sm-0 justify-content-right m-3"><i class="fa fa-lock m-1"></i> Connexion</s:a>
+       				 <s:a action="login" class="btn btn-primary my-2 my-sm-0 justify-content-right m-3"><i class="fa fa-lock m-1"></i> Connexion</s:a>
     			</s:else>
 			
 

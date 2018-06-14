@@ -118,58 +118,64 @@ public class LivreAction extends ActionSupport implements SessionAware {
 	 * @return
 	 */
 	public String recherche() {
-		
-		if(titre==null||titre=="") {
-			try {
-				listrecent=livreClient.getAllLivres(start, 3);
-			} catch (FunctionalException_Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-		if(titre!=null&&titre!=""){
 		try {
-			
-			recherche.setTitre(titre);
-			
-			if(auteurIdOut!=null&&auteurIdOut!=10000) {
-				recherche.setAuteur(auteurIdOut);
-			}
-			if(genreIdOut!=null&&genreIdOut!=10000) {
-				recherche.setGenre(genreIdOut);
-			}
-			
-			
-			listLivre=livreClient.rechercheLivres(recherche, start,pageSize);
-			if(listLivre==null||listLivre.isEmpty())addActionError("Aucun résultat trouvé");
-			else {
-				for (Iterator iterator = listLivre.iterator(); iterator.hasNext();) {
-					Livre livre = (Livre) iterator.next();
-					for (Iterator iterator2 = livre.getAuteurs().iterator(); iterator2.hasNext();) {
-						Auteur auteur = (Auteur) iterator2.next();
-						listAuteur.add(auteur);						
-					}
-					for (Iterator iterator2 = livre.getGenres().iterator(); iterator2.hasNext();) {
-						Genre genre = (Genre) iterator2.next();
-						listGenre.add(genre);						
-					}
-				
-					
+			if(titre==null||titre=="") {
+				try {
+					listrecent=livreClient.getAllLivres(start, 3);
+				} catch (FunctionalException_Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
+		
+			if(titre!=null&&titre!=""){
+				try {
+					
+					recherche.setTitre(titre);
+					
+					if(auteurIdOut!=null&&auteurIdOut!=10000) {
+						recherche.setAuteur(auteurIdOut);
+					}
+					if(genreIdOut!=null&&genreIdOut!=10000) {
+						recherche.setGenre(genreIdOut);
+					}
 			
-		} catch (FunctionalException_Exception e) {
-				addActionError(e.getMessage());
-		}
+			
+					listLivre=livreClient.rechercheLivres(recherche, start,pageSize);
+					if(listLivre==null||listLivre.isEmpty())addActionError("Aucun résultat trouvé");
+					else {
+						for (Iterator iterator = listLivre.iterator(); iterator.hasNext();) {
+							Livre livre = (Livre) iterator.next();
+							for (Iterator iterator2 = livre.getAuteurs().iterator(); iterator2.hasNext();) {
+								Auteur auteur = (Auteur) iterator2.next();
+								listAuteur.add(auteur);						
+							}
+							for (Iterator iterator2 = livre.getGenres().iterator(); iterator2.hasNext();) {
+								Genre genre = (Genre) iterator2.next();
+								listGenre.add(genre);						
+							}
+						
+							
+						}
+					}
+					
+				} catch (FunctionalException_Exception e) {
+						addActionError(e.getMessage());
+				}
+				
+				}}
 		
-		}
 		
-		return (ActionSupport.SUCCESS);
-	}
+		catch(Exception e) {
+			addActionError("Le service est momentanément indisponible");
+		}
+		return (this.hasErrors()) ? ActionSupport.ERROR : ActionSupport.SUCCESS;}
+	
 	
 	
 	public String detail() {
+		try {
+		
 		if (idLivre == null) {
 			this.addActionError(getText("error.project.missing.id"));
 		} else {
@@ -197,7 +203,10 @@ public class LivreAction extends ActionSupport implements SessionAware {
 				
 			}
 		}
-
+		}
+		catch(Exception e){
+			addActionError("Le service est momentanément indisponible");
+		}
 		return (this.hasErrors()) ? ActionSupport.ERROR : ActionSupport.SUCCESS;
 	}
 	
