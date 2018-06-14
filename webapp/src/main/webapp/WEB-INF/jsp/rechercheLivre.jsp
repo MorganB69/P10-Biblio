@@ -28,7 +28,7 @@
         		
         		<h3> Recherche d'un ouvrage</h3>
         		
-        		<s:textfield class="form-control" name="titre" />
+        		<s:textfield class="form-control" name="titre" id="titre" />
         		
         		<s:if test="%{listLivre.isEmpty()==false}">
 	
@@ -73,7 +73,7 @@
        			
        			
        			<div class="row justify-content-center">
-        		<s:submit class="btn btn-primary mt-2 col-6" value="Rechercher"/>
+        		<s:submit class="btn btn-primary mt-2 col-6" value="Rechercher" id="rechButton" disabled='true'/>
         		</div>
        		
        		</s:form>
@@ -85,7 +85,7 @@
 					 <s:actionmessage/>
 					<s:actionerror/>
 					
-					<h4> Nombre d'ouvrage(s) trouvé(s) : <s:property value="nbResult" /></h4>
+					
 		</div>	
 		
 		<div class="row justify-content-center">
@@ -150,6 +150,9 @@
 		</s:if>
 	
 	<s:else>
+	<div class="row justify-content-center">
+	<h4> Nombre d'ouvrage(s) trouvé(s) : <s:property value="nbResult" /></h4>
+	</div>
 	<s:iterator value="listLivre">
 			<div class="col-lg-8 mb-8 m-3">
 							<div class="card h-100 -dark">
@@ -238,4 +241,5 @@
 </footer>
 
 </body>
+<script src="js/controlForm.js"></script>
 </html>

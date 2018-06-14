@@ -96,7 +96,7 @@ public class LivreAction extends ActionSupport implements SessionAware {
 	 */
 	private Integer genreIdOut=10000;
 	
-	private Integer lastPage=1;
+	private Integer lastPage=0;
 	
 	private Long nbResult=(long) 0;
 	
@@ -122,7 +122,9 @@ public class LivreAction extends ActionSupport implements SessionAware {
 	 * @return
 	 */
 	public String recherche() {
+		String result = ActionSupport.INPUT;
 		try {
+			
 			if(titre==null||titre=="") {
 				try {
 					listrecent=livreClient.getAllLivres(start, 3);
@@ -169,12 +171,13 @@ public class LivreAction extends ActionSupport implements SessionAware {
 								listGenre.add(genre);						
 							}
 						
-							
+							result = ActionSupport.SUCCESS;
 						}
 					}
 					
 				} catch (FunctionalException_Exception e) {
 						addActionError(e.getMessage());
+						
 				}
 				
 				}}
@@ -182,12 +185,15 @@ public class LivreAction extends ActionSupport implements SessionAware {
 		
 		catch(Exception e) {
 			addActionError("Le service est momentanément indisponible");
+			result=ActionSupport.ERROR;
 		}
-		return (this.hasErrors()) ? ActionSupport.ERROR : ActionSupport.SUCCESS;}
+		
+		return result;}
 	
 	
 	
 	public String detail() {
+		
 		try {
 		
 		if (idLivre == null) {

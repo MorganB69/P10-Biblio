@@ -46,11 +46,11 @@
         		
         		<h3> Recherche d'un ouvrage</h3>
         		
-        		<s:textfield class="form-control" name="titre" />
+        		<s:textfield class="form-control" name="titre" id="titre" />
        			
        			
        			<div class="row justify-content-center">
-        		<s:submit class="btn btn-primary m-2 col-6" value="Rechercher"/>
+        		<s:submit class="btn btn-primary m-2 col-6" value="Rechercher" id="rechButton"/>
         		</div>
        		
        		</s:form>
@@ -105,4 +105,5 @@
 <s:include value="include/footer.jsp"></s:include> 
 </footer>
 </body>
+<script src="js/controlForm.js"></script>
 </html>

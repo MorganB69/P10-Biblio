@@ -53,15 +53,15 @@
         		
         		<h3> Formulaire de connexion</h3>
         		
-        		<s:textfield class="form-control" name="login" label="Identifiant" requiredLabel="true" />
+        		<s:textfield class="form-control" name="login" id="loginInput" label="Identifiant" requiredLabel="true" />
        	
        
-        		<s:password class="form-control" name="password" label="Mot de passe" requiredLabel="true" />
+        		<s:password class="form-control" name="password" id="mdpInput" label="Mot de passe" requiredLabel="true" />
       
        			<s:actionerror/>
 		
 				<div class="row justify-content-center">
-        		<s:submit class="btn btn-primary m-2 col-6" value="Validation"/>
+        		<s:submit class="btn btn-primary m-2 col-6" value="Validation" id="logButton" disabled="true"/>
         		</div>
     		</s:form>
     		
@@ -86,4 +86,5 @@
 <s:include value="include/footer.jsp"></s:include> 
 </footer>
 </body>
+<script src="js/controlLogin.js"></script>
 </html>
