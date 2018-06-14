@@ -2,7 +2,6 @@
 package fr.mb.biblio.webapp.services.livre;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -16,7 +15,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 /**
  * <p>Classe Java pour livre complex type.
  * 
- * <p>Le fragment de schï¿½ma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="livre">
@@ -103,7 +102,7 @@ public class Livre {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ disponible.
+     * Obtient la valeur de la propriété disponible.
      * 
      * @return
      *     possible object is
@@ -115,7 +114,7 @@ public class Livre {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ disponible.
+     * Définit la valeur de la propriété disponible.
      * 
      * @param value
      *     allowed object is
@@ -185,7 +184,7 @@ public class Livre {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ idLivre.
+     * Obtient la valeur de la propriété idLivre.
      * 
      */
     public int getIdLivre() {
@@ -193,7 +192,7 @@ public class Livre {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ idLivre.
+     * Définit la valeur de la propriété idLivre.
      * 
      */
     public void setIdLivre(int value) {
@@ -201,7 +200,7 @@ public class Livre {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ image.
+     * Obtient la valeur de la propriété image.
      * 
      * @return
      *     possible object is
@@ -213,7 +212,7 @@ public class Livre {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ image.
+     * Définit la valeur de la propriété image.
      * 
      * @param value
      *     allowed object is
@@ -225,7 +224,7 @@ public class Livre {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ ouvrage.
+     * Obtient la valeur de la propriété ouvrage.
      * 
      * @return
      *     possible object is
@@ -237,7 +236,7 @@ public class Livre {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ ouvrage.
+     * Définit la valeur de la propriété ouvrage.
      * 
      * @param value
      *     allowed object is
@@ -249,7 +248,7 @@ public class Livre {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ parution.
+     * Obtient la valeur de la propriété parution.
      * 
      * @return
      *     possible object is
@@ -257,12 +256,11 @@ public class Livre {
      *     
      */
     public LocalDate getParution() {
-
         return parution;
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ parution.
+     * Définit la valeur de la propriété parution.
      * 
      * @param value
      *     allowed object is
@@ -274,7 +272,7 @@ public class Livre {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ resume.
+     * Obtient la valeur de la propriété resume.
      * 
      * @return
      *     possible object is
@@ -286,7 +284,7 @@ public class Livre {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ resume.
+     * Définit la valeur de la propriété resume.
      * 
      * @param value
      *     allowed object is
@@ -298,7 +296,7 @@ public class Livre {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ titre.
+     * Obtient la valeur de la propriété titre.
      * 
      * @return
      *     possible object is
@@ -310,7 +308,7 @@ public class Livre {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ titre.
+     * Définit la valeur de la propriété titre.
      * 
      * @param value
      *     allowed object is

@@ -84,6 +84,8 @@
 		<div class="row justify-content-center">
 					 <s:actionmessage/>
 					<s:actionerror/>
+					
+					<h4> Nombre d'ouvrage(s) trouvé(s) : <s:property value="nbResult" /></h4>
 		</div>	
 		
 		<div class="row justify-content-center">
@@ -204,6 +206,28 @@
 						</s:iterator>
 						</s:else>
 			</div>
+
+<div class="row justify-content-md-center">
+<nav aria-label="...">
+	
+  <ul class="pagination">
+  
+  <s:iterator status="incr" begin="1" end="%{lastPage}">  
+    <li class="page-item">
+       <s:a class="page-link" action="recherche">
+						<s:param name="start" value="%{#incr.count}"></s:param>
+						<s:property value="%{#incr.count}"/>
+		</s:a>
+    </li>
+    
+   </s:iterator >
+   
+  </ul>
+</nav>
+
+</div>
+
+<s:debug/>
 
 </div>
 

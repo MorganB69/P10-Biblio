@@ -171,6 +171,12 @@ public class LivreServiceImpl implements LivreService {
 		
 		return dateFormat;
 	}
+
+	@Override
+	public Long countLivres(RechercheLivre recherche) {
+		Long nb=livreDao.countLivres(recherche);
+		return nb;
+	}
 	
 	
 

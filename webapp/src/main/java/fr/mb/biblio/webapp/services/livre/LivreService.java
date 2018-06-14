@@ -60,6 +60,20 @@ public interface LivreService {
 
     /**
      * 
+     * @param recherche
+     * @return
+     *     returns java.lang.Long
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "countLivres", targetNamespace = "http://contract.livreService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.livre.CountLivres")
+    @ResponseWrapper(localName = "countLivresResponse", targetNamespace = "http://contract.livreService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.livre.CountLivresResponse")
+    public Long countLivres(
+        @WebParam(name = "recherche", targetNamespace = "")
+        RechercheLivre recherche);
+
+    /**
+     * 
      * @param idLivre
      * @return
      *     returns java.lang.String

@@ -52,6 +52,15 @@ public interface LivreService {
 									@WebParam(name="nb")Integer nb) throws FunctionalException;
 	
 	/**
+	 * Obtention du nombre de résultat de la recherche
+	 * @param recherche
+	 * @return
+	 * @throws FunctionalException 
+	 */
+	@WebMethod
+	public Long countLivres(@WebParam(name="recherche")RechercheLivre recherche);
+	
+	/**
 	 * Obtention des livres selon des critères de recherche, un offset et un nb de pages
 	 * @param recherche
 	 * @param offset
@@ -62,6 +71,7 @@ public interface LivreService {
 	@WebMethod
 	public List<Livre> rechercheLivres(@WebParam(name="recherche")RechercheLivre recherche,
 									   @WebParam(name="offset")Integer offset,@WebParam(name="nb") Integer nb) throws FunctionalException;
+
 	
 	/**
 	 * Insertion de livres rentrés manuellement

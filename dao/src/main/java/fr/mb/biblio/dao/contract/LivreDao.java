@@ -46,4 +46,6 @@ public interface LivreDao {
 	public List<Livre> findAllOffset(Integer offset, Integer nbPages);
 	
 	public List<Livre> rechercheLivres(RechercheLivre recherche, Integer offset, Integer nbPages);
+
+	public Long countLivres(RechercheLivre recherche);
 }

@@ -96,6 +96,10 @@ public class LivreAction extends ActionSupport implements SessionAware {
 	 */
 	private Integer genreIdOut=10000;
 	
+	private Integer lastPage=1;
+	
+	private Long nbResult=(long) 0;
+	
 	/**
 	 * Objet livre pour obtenir le détail d'un livre
 	 */
@@ -142,8 +146,18 @@ public class LivreAction extends ActionSupport implements SessionAware {
 			
 			
 					listLivre=livreClient.rechercheLivres(recherche, start,pageSize);
+					
 					if(listLivre==null||listLivre.isEmpty())addActionError("Aucun résultat trouvé");
 					else {
+						nbResult=livreClient.countLivres(recherche);
+						double page = (double) pageSize;
+
+						double lastPageNumber = (Math.ceil(nbResult / pageSize));
+						
+						lastPage=(int)lastPageNumber;
+						
+						
+						
 						for (Iterator iterator = listLivre.iterator(); iterator.hasNext();) {
 							Livre livre = (Livre) iterator.next();
 							for (Iterator iterator2 = livre.getAuteurs().iterator(); iterator2.hasNext();) {
@@ -378,6 +392,30 @@ public class LivreAction extends ActionSupport implements SessionAware {
 
 	public void setDateRetour(LocalDate dateRetour) {
 		this.dateRetour = dateRetour;
+	}
+
+
+
+	public Integer getLastPage() {
+		return lastPage;
+	}
+
+
+
+	public void setLastPage(Integer lastPage) {
+		this.lastPage = lastPage;
+	}
+
+
+
+	public Long getNbResult() {
+		return nbResult;
+	}
+
+
+
+	public void setNbResult(Long nbResult) {
+		this.nbResult = nbResult;
 	}
 
 }

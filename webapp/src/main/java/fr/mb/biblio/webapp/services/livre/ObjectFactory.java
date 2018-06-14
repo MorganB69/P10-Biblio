@@ -36,6 +36,7 @@ public class ObjectFactory {
     private final static QName _CreationAleatoireLivre_QNAME = new QName("http://contract.livreService.soap.biblio.mb.fr/", "creationAleatoireLivre");
     private final static QName _DateRetourLivreResponse_QNAME = new QName("http://contract.livreService.soap.biblio.mb.fr/", "dateRetourLivreResponse");
     private final static QName _CreationAleatoireLivreResponse_QNAME = new QName("http://contract.livreService.soap.biblio.mb.fr/", "creationAleatoireLivreResponse");
+    private final static QName _CountLivres_QNAME = new QName("http://contract.livreService.soap.biblio.mb.fr/", "countLivres");
     private final static QName _GetLivreByIdResponse_QNAME = new QName("http://contract.livreService.soap.biblio.mb.fr/", "getLivreByIdResponse");
     private final static QName _DateRetourLivre_QNAME = new QName("http://contract.livreService.soap.biblio.mb.fr/", "dateRetourLivre");
     private final static QName _Insert_QNAME = new QName("http://contract.livreService.soap.biblio.mb.fr/", "insert");
@@ -43,6 +44,7 @@ public class ObjectFactory {
     private final static QName _NotFoundException_QNAME = new QName("http://contract.livreService.soap.biblio.mb.fr/", "NotFoundException");
     private final static QName _Auteur_QNAME = new QName("http://contract.livreService.soap.biblio.mb.fr/", "auteur");
     private final static QName _Editeur_QNAME = new QName("http://contract.livreService.soap.biblio.mb.fr/", "editeur");
+    private final static QName _CountLivresResponse_QNAME = new QName("http://contract.livreService.soap.biblio.mb.fr/", "countLivresResponse");
     private final static QName _InsertResponse_QNAME = new QName("http://contract.livreService.soap.biblio.mb.fr/", "insertResponse");
 
     /**
@@ -66,6 +68,14 @@ public class ObjectFactory {
      */
     public GetLivreByIdResponse createGetLivreByIdResponse() {
         return new GetLivreByIdResponse();
+    }
+
+    /**
+     * Create an instance of {@link CountLivres }
+     * 
+     */
+    public CountLivres createCountLivres() {
+        return new CountLivres();
     }
 
     /**
@@ -98,6 +108,14 @@ public class ObjectFactory {
      */
     public NotFoundException createNotFoundException() {
         return new NotFoundException();
+    }
+
+    /**
+     * Create an instance of {@link CountLivresResponse }
+     * 
+     */
+    public CountLivresResponse createCountLivresResponse() {
+        return new CountLivresResponse();
     }
 
     /**
@@ -337,6 +355,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CountLivres }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://contract.livreService.soap.biblio.mb.fr/", name = "countLivres")
+    public JAXBElement<CountLivres> createCountLivres(CountLivres value) {
+        return new JAXBElement<CountLivres>(_CountLivres_QNAME, CountLivres.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetLivreByIdResponse }{@code >}}
      * 
      */
@@ -397,6 +424,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://contract.livreService.soap.biblio.mb.fr/", name = "editeur")
     public JAXBElement<Editeur> createEditeur(Editeur value) {
         return new JAXBElement<Editeur>(_Editeur_QNAME, Editeur.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CountLivresResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://contract.livreService.soap.biblio.mb.fr/", name = "countLivresResponse")
+    public JAXBElement<CountLivresResponse> createCountLivresResponse(CountLivresResponse value) {
+        return new JAXBElement<CountLivresResponse>(_CountLivresResponse_QNAME, CountLivresResponse.class, null, value);
     }
 
     /**
