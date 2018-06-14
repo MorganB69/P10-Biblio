@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="http://sargue.net/jsptags/time" prefix="javatime" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -90,7 +91,7 @@
 		
 		<s:if test="%{listrecent.isEmpty()==false}">
 		<div class="row justify-content-center">
-		<h3>Sorties récentes </h3>
+		<h3>Dernières parutions </h3>
 		</div>
 		<div class="row justify-content-center">
 			<s:iterator value="listrecent">
@@ -127,7 +128,7 @@
 									 				</s:iterator>
 									 			</li>
 									 			
-									 			<li><b> Parution : </b><span id="attribut"><s:property value="parution"/></span> </li>
+									 			<li><b> Parution : </b><span id="attribut"><javatime:parseLocalDate value="${parution}" pattern="yyyy-MM-dd" var="date" /><javatime:format value="${date}" pattern="dd-MM-yyyy" /></span> </li>
 
 											</ul>
 											

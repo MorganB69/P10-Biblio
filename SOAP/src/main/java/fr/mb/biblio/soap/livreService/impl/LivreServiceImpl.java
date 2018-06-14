@@ -155,7 +155,7 @@ public class LivreServiceImpl implements LivreService {
 	@Transactional
 	public String dateRetourLivre(Integer idLivre) throws FunctionalException, NotFoundException {
 		LocalDate dateRetour = null;
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String dateFormat="";
 		livreReturn=livreDao.findById(idLivre);
 		if (livreReturn==null) throw new NotFoundException("Le livre n'a pas été trouvé");

@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="livreId" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         &lt;element name="emprunteurId" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
- *         &lt;element name="dateDebut" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" minOccurs="0"/>
+ *         &lt;element name="dateDebut" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,7 +37,7 @@ public class CreationPretDate {
 
     protected Integer livreId;
     protected Integer emprunteurId;
-    protected Object dateDebut;
+    protected String dateDebut;
 
     /**
      * Obtient la valeur de la propriété livreId.
@@ -92,10 +92,10 @@ public class CreationPretDate {
      * 
      * @return
      *     possible object is
-     *     {@link Object }
+     *     {@link String }
      *     
      */
-    public Object getDateDebut() {
+    public String getDateDebut() {
         return dateDebut;
     }
 
@@ -104,10 +104,10 @@ public class CreationPretDate {
      * 
      * @param value
      *     allowed object is
-     *     {@link Object }
+     *     {@link String }
      *     
      */
-    public void setDateDebut(Object value) {
+    public void setDateDebut(String value) {
         this.dateDebut = value;
     }
 

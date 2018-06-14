@@ -26,6 +26,23 @@ public interface PretService {
 
     /**
      * 
+     * @param utilisateurId
+     * @return
+     *     returns java.util.List<fr.mb.biblio.batch.service.Pret>
+     * @throws FunctionalException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getPretsEnCoursByUser", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.batch.service.GetPretsEnCoursByUser")
+    @ResponseWrapper(localName = "getPretsEnCoursByUserResponse", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.batch.service.GetPretsEnCoursByUserResponse")
+    public List<Pret> getPretsEnCoursByUser(
+        @WebParam(name = "utilisateurId", targetNamespace = "")
+        Integer utilisateurId)
+        throws FunctionalException_Exception
+    ;
+
+    /**
+     * 
      * @return
      *     returns java.util.List<fr.mb.biblio.batch.service.Pret>
      * @throws FunctionalException_Exception
@@ -45,8 +62,8 @@ public interface PretService {
      * @param emprunteurId
      * @return
      *     returns fr.mb.biblio.batch.service.Pret
-     * @throws NotFoundException_Exception
      * @throws FunctionalException_Exception
+     * @throws NotFoundException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -58,7 +75,7 @@ public interface PretService {
         @WebParam(name = "emprunteurId", targetNamespace = "")
         Integer emprunteurId,
         @WebParam(name = "dateDebut", targetNamespace = "")
-        Object dateDebut)
+        String dateDebut)
         throws FunctionalException_Exception, NotFoundException_Exception
     ;
 
@@ -68,8 +85,8 @@ public interface PretService {
      * @param emprunteurId
      * @return
      *     returns fr.mb.biblio.batch.service.Pret
-     * @throws NotFoundException_Exception
      * @throws FunctionalException_Exception
+     * @throws NotFoundException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -85,8 +102,8 @@ public interface PretService {
 
     /**
      * 
-     * @throws Exception_Exception
      * @throws FunctionalException_Exception
+     * @throws Exception_Exception
      */
     @WebMethod
     @RequestWrapper(localName = "relanceMailRetards", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.batch.service.RelanceMailRetards")
@@ -100,8 +117,8 @@ public interface PretService {
      * @param pretId
      * @return
      *     returns java.lang.String
-     * @throws NotFoundException_Exception
      * @throws FunctionalException_Exception
+     * @throws NotFoundException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -133,8 +150,8 @@ public interface PretService {
      * @param emprunteurId
      * @return
      *     returns fr.mb.biblio.batch.service.Pret
-     * @throws NotFoundException_Exception
      * @throws FunctionalException_Exception
+     * @throws NotFoundException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -153,8 +170,8 @@ public interface PretService {
      * @param id
      * @return
      *     returns fr.mb.biblio.batch.service.Pret
-     * @throws NotFoundException_Exception
      * @throws FunctionalException_Exception
+     * @throws NotFoundException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")

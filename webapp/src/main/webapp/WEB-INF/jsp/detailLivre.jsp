@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib uri="http://sargue.net/jsptags/time" prefix="javatime" %>
 
 <html>
 <head>
@@ -12,7 +13,7 @@
 	<header> 
 	<%@ include file="include/nav.jsp"%>  
 
-
+<s:debug />
 	</header>
 	
 	    <!-- Page Content -->
@@ -86,7 +87,7 @@
 									 				</s:iterator>
 									 			</li>
 									 			
-									 			<li><b> Parution : </b><span id="attribut"><s:property value="livre.parution"/></span> </li>
+									 			<li><b> Parution : </b><span id="attribut"><javatime:parseLocalDate value="${livre.parution}" pattern="yyyy-MM-dd" var="date" /><javatime:format value="${date}" pattern="dd-MM-yyyy" /></span> </li>
 											
 	        
 	        </ul>
@@ -116,7 +117,7 @@
 												<b>Disponibilité :</b> <i class="fa fa-times-circle m-1" id="iconStatutIndispo"></i> <span id="statutIndispo">Le livre est emprunté</span>
 												</li>
 												<li>
-												<b>Date de retour prévue :</b>  <span id="attribut"> <s:property value="dateRetour"/></span>
+												<b>Date de retour prévue :</b>  <span id="attribut"> <javatime:parseLocalDate value="${dateRetour}" pattern="yyyy-MM-dd" var="date" /><javatime:format value="${date}" pattern="dd-MM-yyyy" /></span>
 												</li>
 												
 												</s:else>

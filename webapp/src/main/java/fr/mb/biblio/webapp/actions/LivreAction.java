@@ -178,8 +178,13 @@ public class LivreAction extends ActionSupport implements SessionAware {
 				livre = (Livre) livreClient.getLivreById(idLivre);
 				try {
 					date=livreClient.dateRetourLivre(idLivre);
-					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+					logger.info(livre.getParution().getClass());
+					logger.info(livre.getParution());
+					logger.info(date.getClass());
+					logger.info(date);
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 					dateRetour=LocalDate.parse(date, formatter);
+					logger.info(dateRetour);
 				} catch (FunctionalException_Exception e) {
 					// TODO Auto-generated catch block
 					e.getMessage();

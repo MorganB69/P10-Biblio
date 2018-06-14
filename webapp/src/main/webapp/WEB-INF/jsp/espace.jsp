@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib uri="http://sargue.net/jsptags/time" prefix="javatime" %>
 
 <html>
 <head>
@@ -75,8 +76,8 @@
 								</div>
 								<div class="row">
 								<ul class="m-1" id="listeLivre">
-						 			<li><b>Date de début : </b> <span id="attribut"><s:property value="dateDebut"/></span></li>
-						 			<li><b>Date de fin prévue : </b><span id="attribut"><s:property value="dateFin"/></span></li>
+						 			<li><b>Date de début : </b> <span id="attribut"><javatime:parseLocalDate value="${dateDebut}" pattern="yyyy-MM-dd" var="date" /><javatime:format value="${date}" pattern="dd-MM-yyyy" /></span></li>
+						 			<li><b>Date de fin prévue : </b><span id="attribut"><javatime:parseLocalDate value="${dateFin}" pattern="yyyy-MM-dd" var="date" /><javatime:format value="${date}" pattern="dd-MM-yyyy" /></span></li>
 						 			<li><b>Prolongé :</b><span id="attribut"><s:if test="prolonge==true"> Oui</s:if><s:else> Non</s:else></span></li>
 						 			<s:if test="%{dateFin.isBefore(dateJour)}">
 						 				<i class="fa fa-times-circle m-1" id="iconStatutIndispo"></i> <span id="statutIndispo">Attention, vous êtes en retard sur ce prêt</span>

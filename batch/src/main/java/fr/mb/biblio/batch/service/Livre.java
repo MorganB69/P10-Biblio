@@ -1,8 +1,6 @@
 
-package fr.mb.biblio.webapp.services.livre;
+package fr.mb.biblio.batch.service;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -10,26 +8,26 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
  * <p>Classe Java pour livre complex type.
  * 
- * <p>Le fragment de schï¿½ma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="livre">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="auteurs" type="{http://contract.livreService.soap.biblio.mb.fr/}auteur" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="auteurs" type="{http://contract.pretService.soap.biblio.mb.fr/}auteur" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="disponible" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
- *         &lt;element name="editeurs" type="{http://contract.livreService.soap.biblio.mb.fr/}editeur" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="genres" type="{http://contract.livreService.soap.biblio.mb.fr/}genre" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="editeurs" type="{http://contract.pretService.soap.biblio.mb.fr/}editeur" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="genres" type="{http://contract.pretService.soap.biblio.mb.fr/}genre" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="idLivre" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="image" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="ouvrage" type="{http://contract.livreService.soap.biblio.mb.fr/}ouvrage" minOccurs="0"/>
+ *         &lt;element name="ouvrage" type="{http://contract.pretService.soap.biblio.mb.fr/}ouvrage" minOccurs="0"/>
  *         &lt;element name="parution" type="{http://www.w3.org/2001/XMLSchema}date" minOccurs="0"/>
  *         &lt;element name="resume" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="titre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -66,10 +64,8 @@ public class Livre {
     protected int idLivre;
     protected String image;
     protected Ouvrage ouvrage;
-    @XmlElement(type = String.class)
-    @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "date")
-    protected LocalDate parution;
+    protected XMLGregorianCalendar parution;
     protected String resume;
     protected String titre;
 
@@ -103,7 +99,7 @@ public class Livre {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ disponible.
+     * Obtient la valeur de la propriété disponible.
      * 
      * @return
      *     possible object is
@@ -115,7 +111,7 @@ public class Livre {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ disponible.
+     * Définit la valeur de la propriété disponible.
      * 
      * @param value
      *     allowed object is
@@ -185,7 +181,7 @@ public class Livre {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ idLivre.
+     * Obtient la valeur de la propriété idLivre.
      * 
      */
     public int getIdLivre() {
@@ -193,7 +189,7 @@ public class Livre {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ idLivre.
+     * Définit la valeur de la propriété idLivre.
      * 
      */
     public void setIdLivre(int value) {
@@ -201,7 +197,7 @@ public class Livre {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ image.
+     * Obtient la valeur de la propriété image.
      * 
      * @return
      *     possible object is
@@ -213,7 +209,7 @@ public class Livre {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ image.
+     * Définit la valeur de la propriété image.
      * 
      * @param value
      *     allowed object is
@@ -225,7 +221,7 @@ public class Livre {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ ouvrage.
+     * Obtient la valeur de la propriété ouvrage.
      * 
      * @return
      *     possible object is
@@ -237,7 +233,7 @@ public class Livre {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ ouvrage.
+     * Définit la valeur de la propriété ouvrage.
      * 
      * @param value
      *     allowed object is
@@ -249,32 +245,31 @@ public class Livre {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ parution.
+     * Obtient la valeur de la propriété parution.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public LocalDate getParution() {
-
+    public XMLGregorianCalendar getParution() {
         return parution;
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ parution.
+     * Définit la valeur de la propriété parution.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setParution(LocalDate value) {
+    public void setParution(XMLGregorianCalendar value) {
         this.parution = value;
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ resume.
+     * Obtient la valeur de la propriété resume.
      * 
      * @return
      *     possible object is
@@ -286,7 +281,7 @@ public class Livre {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ resume.
+     * Définit la valeur de la propriété resume.
      * 
      * @param value
      *     allowed object is
@@ -298,7 +293,7 @@ public class Livre {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ titre.
+     * Obtient la valeur de la propriété titre.
      * 
      * @return
      *     possible object is
@@ -310,7 +305,7 @@ public class Livre {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ titre.
+     * Définit la valeur de la propriété titre.
      * 
      * @param value
      *     allowed object is
