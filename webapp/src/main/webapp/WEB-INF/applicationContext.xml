@@ -12,19 +12,19 @@
 	<!-- DECLARATIONS DES SERVICES CLIENTS -->
 	<jaxws:client id="userClient"
                   serviceClass="fr.mb.biblio.webapp.services.user.UserService"
-                  address="http://localhost:8080/SOAP/userService" />
+                  address="${service.user}" />
                   
 	<jaxws:client id="identificationClient"
                   serviceClass="fr.mb.biblio.webapp.services.identification.IdentificationService"
-                  address="http://localhost:8080/SOAP/identificationService" />
+                  address="${service.identification}" />
                   
     <jaxws:client id="livreClient"
                   serviceClass="fr.mb.biblio.webapp.services.livre.LivreService"
-                  address="http://localhost:8080/SOAP/livreService" />
+                  address="${service.livre}" />
                   
     <jaxws:client id="pretClient"
                   serviceClass="fr.mb.biblio.webapp.services.pret.PretService"
-                  address="http://localhost:8080/SOAP/pretService"> 
+                  address="${service.pret}"> 
                   
                   <jaxws:outInterceptors>
                   <ref bean="wss4jOut"/>
@@ -42,7 +42,7 @@
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
     <property name="locations">
         <list>
-
+	 <value>classpath:service.properties</value>
         </list>
     </property>
 	</bean>

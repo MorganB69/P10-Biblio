@@ -62,7 +62,7 @@
 			    <version>3.2.4</version>
 			</dependency>
 			
-			
+
         	
         	
         	<!-- SERVLET -->
@@ -112,6 +112,25 @@
 			          	<target>1.8</target>
 			        </configuration>
 		      </plugin>
+		      
+		      
+		      <plugin>
+  <groupId>com.spotify</groupId>
+  <artifactId>docker-maven-plugin</artifactId>
+  <version>0.4.10</version>
+  <configuration>
+    <imageName>soapImg</imageName>
+    <baseImage>tomcat:9-jre8</baseImage>
+    <entryPoint>["catalina.sh", "run"]</entryPoint>
+    <resources>
+      <resource>
+        <targetPath>/usr/local/tomcat/webapps/</targetPath>
+        <directory>${project.build.directory}</directory>
+        <include>${project.build.finalName}.war</include>
+      </resource>
+    </resources>
+  </configuration>
+</plugin>
 
     </plugins>
   </build>
