@@ -13,7 +13,7 @@
 	<header> 
 	<%@ include file="include/nav.jsp"%>  
 
-<s:debug />
+
 	</header>
 	
 	    <!-- Page Content -->

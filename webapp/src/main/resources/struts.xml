@@ -24,7 +24,11 @@
 			</result>
 		</global-results>
         
-
+		<action name="mentions" class="fr.mb.biblio.webapp.actions.IndexAction" method="mentions">
+			<result>/WEB-INF/jsp/mentions.jsp</result>
+		</action>
+		
+		
         <action name="index" class="fr.mb.biblio.webapp.actions.IndexAction">
             <result name="success">/WEB-INF/jsp/index.jsp</result>
         </action>

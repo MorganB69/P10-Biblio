@@ -87,6 +87,7 @@ public class CreationLivreAleatoire {
 			
 			//Image (nom par défaut)
 			livre.setImage(image);
+			livre.setDisponible(true);
 			
 			//Auteur
 			auteur.setNom(nomAuteur);

@@ -35,6 +35,14 @@ public class IndexAction extends ActionSupport implements SessionAware {
 
 	        return SUCCESS;
 	    }
+	 
+	    /**
+	     * Affichage des mentions légales
+	     * @return
+	     */
+	    public String mentions() {
+	    	return ActionSupport.SUCCESS;
+	    }
 
 
 	public Map<String, Object> getSession() {
