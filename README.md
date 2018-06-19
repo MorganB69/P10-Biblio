@@ -74,6 +74,8 @@ Configuration de l'envoi des emails : email.properties indiquant l'host, le port
 relance via emails : relanceMail.properties indiquant le paramétrage de relance par mail via une expression "Cron"
 
 Fichiers Properties à configurer au niveau du BATCH : Connect.properties spécifiant un utilisateur et mdp permettant la connexion sécurisée via UsernameToken
+
+Au niveau de la WebApp : Configurer le fichier properties service.properties pour indiquer l'adresse du web-service déployé.
   
 
 
@@ -89,3 +91,10 @@ ex pour Tomcat, mettre le fichier war dans le dossier webapps de Tomcat.
 
 Batch
 L'application est un Jar executable
+
+DOCKER :
+Pour déployer en local : 
+Créer un conteneur Tomcat dans lequel sera lancé le web-service (bien modifier les fichiers properties notamment la datasource qui sera dans un autre conteneur)
+Créer un autre conteneur Tomcat dans lequel sera lancé la web-app en modifiant le serveur.xml pour changer les ports du serveurs Tomcat afin qu'ils soient différents de celui du web-service(mettre l'adresse ip du docker avec le port du container du webservice)
+Créer un conteneur Postgres (ouvrant le port 5432) et importer le dump.sql. 
+Lancer les différents conteneurs
