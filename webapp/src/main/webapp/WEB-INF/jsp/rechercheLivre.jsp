@@ -130,7 +130,7 @@
 									 				</s:iterator>
 									 			</li>
 									 			
-									 			<li><b> Parution : </b><span id="attribut"><javatime:parseLocalDate value="${parution}" pattern="dd-MM-yyyy" var="date" /><javatime:format value="${date}" pattern="dd-MM-yyyy" /></span> </li>
+									 			<li><b> Parution : </b><span id="attribut"><javatime:parseLocalDate value="${parution}" pattern="yyyy-MM-dd" var="date" /><javatime:format value="${date}" pattern="dd-MM-yyyy" /></span> </li>
 
 											</ul>
 											
@@ -187,7 +187,7 @@
 									 				</s:iterator>
 									 			</li>
 									 			
-									 			<li><b> Parution : </b><span id="attribut"><javatime:parseLocalDate value="${parution}" pattern="dd-MM-yyyy" var="date" /><javatime:format value="${date}" pattern="dd-MM-yyyy" /></span> </li>
+									 			<li><b> Parution : </b><span id="attribut"><javatime:parseLocalDate value="${parution}" pattern="yyyy-MM-dd" var="date" /><javatime:format value="${date}" pattern="dd-MM-yyyy" /></span> </li>
 											
 									 			
 									 			
