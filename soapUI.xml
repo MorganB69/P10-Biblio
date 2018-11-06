@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testSuite id="2af90b04-1d7a-4bc8-8201-67a81fb91a8c" name="TestSuite 1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="f4eeef44-6ef6-4fbf-9dfb-76764e17f5c3" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="CreationPretTest" searchProperties="true"><con:settings/><con:testStep type="properties" name="Properties" id="bb75410a-cb34-4304-a619-8605ecf1c438"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>identifiant</con:name><con:value>Morgan</con:value></con:property><con:property><con:name>password</con:name><con:value>azerty</con:value></con:property><con:property><con:name>idUser</con:name><con:value>2</con:value></con:property><con:property><con:name>idLivre</con:name><con:value>11</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="request" id="80a63864-b1ee-47dd-9452-b353455866e8" name="getUserIdByName - Request 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>UserServiceImplServiceSoapBinding</con:interface><con:operation>getUserIdByName</con:operation><con:request name="getUserIdByName - Request 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="80e13976-68bd-4909-86c1-de9546e24607"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8080/SOAP/userService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.userService.soap.biblio.mb.fr/">
+   <soapenv:Header>
+      <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+         <wsse:UsernameToken wsu:Id="UsernameToken-F9FCCA11A8DE5FEFCC152759700875511">
+            <wsse:Username>${Properties#identifiant}</wsse:Username>
+            <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">${Properties#password}</wsse:Password>
+
+         </wsse:UsernameToken>
+      </wsse:Security></soapenv:Header>
+   <soapenv:Body>
+      <con:getUserIdByName>
+         <!--Optional:-->
+         <nom>L</nom>
+         <!--Optional:-->
+         <prenom>Pauline</prenom>
+      </con:getUserIdByName>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="7d07b978-a3b4-4a5e-9fd3-a6b56393ee8c" name="SOAP Response"/><con:assertion type="SOAP Fault Assertion" id="90010f3a-52d8-4a7d-9a57-f7fa2f8b44db" name="Not SOAP Fault"/><con:credentials><con:username>Morgan</con:username><con:password>azerty</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.userService.soap.biblio.mb.fr/userService/getUserIdByName"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer" id="d0e9aa7b-665c-4091-967b-72743a417052"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>id user</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>getUserIdByName - Request 1</con:sourceStep><con:sourcePath>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='http://contract.userService.soap.biblio.mb.fr/';
+/soap:Envelope/soap:Body/ns2:getUserIdByNameResponse/return/text()
+</con:sourcePath><con:targetType>idUser</con:targetType><con:targetStep>Properties</con:targetStep><con:targetPath/><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="request" id="d8a8dac1-8af7-4ea1-9100-ea8bcc520412" name="rechercheLivres"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LivreServiceImplServiceSoapBinding</con:interface><con:operation>rechercheLivres</con:operation><con:request name="rechercheLivres" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="afd320d4-8f77-4b10-8c2c-8aa5dcb2d651"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8080/SOAP/livreService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.livreService.soap.biblio.mb.fr/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:rechercheLivres>
+         <!--Optional:-->
+         <recherche>
+
+            <!--Optional:-->
+            <auteur/>
+            <!--Optional:-->
+            <editeur/>
+            <!--Optional:-->
+            <genre/>
+            <!--Optional:-->
+            <titre>anglais</titre>
+         </recherche>
+         <!--Optional:-->
+         <offset>0</offset>
+         <!--Optional:-->
+         <nb>10</nb>
+      </con:rechercheLivres>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="0e431ad0-892f-4de0-bdc3-a37a96ec5f1f" name="SOAP Response"/><con:assertion type="SOAP Fault Assertion" id="851d6063-6085-40fb-ba46-f40c27717e88" name="Not SOAP Fault"/><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>false</con:preemptive><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.livreService.soap.biblio.mb.fr/livreService/rechercheLivres"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer 2" id="2de3926a-11c8-4fae-87e7-af1edbbfae68"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>id Livre</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>rechercheLivres</con:sourceStep><con:sourcePath>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='http://contract.livreService.soap.biblio.mb.fr/';
+/soap:Envelope/soap:Body/ns2:rechercheLivresResponse/return[1]/idLivre/text()</con:sourcePath><con:targetType>idLivre</con:targetType><con:targetStep>Properties</con:targetStep><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="request" id="182f9766-9676-4df6-a7d7-48ad7fb2673e" name="nouveauPret - Request 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PretServiceImplServiceSoapBinding</con:interface><con:operation>nouveauPret</con:operation><con:request name="nouveauPret - Request 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="22486996-5f34-4f71-9af7-45700ae221da"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8080/SOAP/pretService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.pretService.soap.biblio.mb.fr/">
+   <soapenv:Header>
+      <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+         <wsse:UsernameToken wsu:Id="UsernameToken-F9FCCA11A8DE5FEFCC15275816748889">
+            <wsse:Username>${Properties#identifiant}</wsse:Username>
+            <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">${Properties#password}</wsse:Password>
+         </wsse:UsernameToken>
+      </wsse:Security></soapenv:Header>
+   <soapenv:Body>
+      <con:nouveauPret>
+         <!--Optional:-->
+         <livreId>${Properties#idLivre}</livreId>
+         <!--Optional:-->
+         <emprunteurId>${Properties#idUser}</emprunteurId>
+      </con:nouveauPret>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="f279bca2-5aaa-4a7a-bad3-53e2d989c411" name="SOAP Response"/><con:assertion type="SOAP Fault Assertion" id="9017dd23-1665-43b0-9155-af692d662310" name="Not SOAP Fault"/><con:credentials><con:username>Morgan</con:username><con:password>azerty</con:password><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.pretService.soap.biblio.mb.fr/pretService/nouveauPret"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite>
