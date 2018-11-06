@@ -137,6 +137,7 @@
     </resources>
   </configuration>
 </plugin>
+			<plugin>
 			<groupId>com.smartbear.soapui</groupId>
 			<artifactId>soapui-maven-plugin</artifactId>
 			<version>5.2.1</version>
