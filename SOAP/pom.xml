@@ -122,50 +122,70 @@
 			          	<target>1.8</target>
 			        </configuration>
 		      </plugin>
-		      
-		      
-		      <plugin>
-  <groupId>com.spotify</groupId>
-  <artifactId>docker-maven-plugin</artifactId>
-  <version>0.4.10</version>
-  <configuration>
-    <imageName>soapImg</imageName>
-    <baseImage>tomcat:9-jre8</baseImage>
-    <entryPoint>["catalina.sh", "run"]</entryPoint>
-    <resources>
-      <resource>
-        <targetPath>/usr/local/tomcat/webapps/</targetPath>
-        <directory>${project.build.directory}</directory>
-        <include>${project.build.finalName}.war</include>
-      </resource>
-    </resources>
-  </configuration>
-</plugin>
-			<plugin>
-				<dependencies>
-					<dependency>
-						<groupId>com.jgoodies</groupId>
-						<artifactId>forms</artifactId>
-						<version>1.0.7</version>
-					</dependency>
-				</dependencies>
-			<groupId>com.smartbear.soapui</groupId>
-			<artifactId>soapui-maven-plugin</artifactId>
-			<version>4.6.1</version>
-			<configuration>
-				<projectFile>soapUI.xml</projectFile>
-			</configuration>
-			<executions>
-				<execution>
-					<id>soapui-test</id>
-					<phase>integration-test</phase>
-					<goals>
-						<goal>test</goal>
-					</goals>
-				</execution>
-			</executions>
-			</plugin>
 
-    </plugins>
-  </build>
-</project>
+			<!--
+                          <plugin>
+              <groupId>com.spotify</groupId>
+              <artifactId>docker-maven-plugin</artifactId>
+              <version>0.4.10</version>
+              <configuration>
+                <imageName>soapImg</imageName>
+                <baseImage>tomcat:9-jre8</baseImage>
+                <entryPoint>["catalina.sh", "run"]</entryPoint>
+                <resources>
+                  <resource>
+                    <targetPath>/usr/local/tomcat/webapps/</targetPath>
+                    <directory>${project.build.directory}</directory>
+                    <include>${project.build.finalName}.war</include>
+                  </resource>
+                </resources>
+              </configuration>
+            </plugin>
+			-->
+                        <plugin>
+                            <groupId>com.spotify</groupId>
+                            <artifactId>dockerfile-maven-plugin</artifactId>
+                            <version>1.4.8</version>
+                            <executions>
+                                <execution>
+                                    <id>default</id>
+                                    <goals>
+                                        <goal>build</goal>
+                                        <goal>push</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                            <configuration>
+                                <buildArgs>
+                                    <WAR_FILE>${project.build.finalName}.war</WAR_FILE>
+                                </buildArgs>
+                            </configuration>
+                        </plugin>
+                        <plugin>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>com.jgoodies</groupId>
+                                    <artifactId>forms</artifactId>
+                                    <version>1.0.7</version>
+                                </dependency>
+                            </dependencies>
+                        <groupId>com.smartbear.soapui</groupId>
+                        <artifactId>soapui-maven-plugin</artifactId>
+                        <version>4.6.1</version>
+                        <configuration>
+                            <projectFile>soapUI.xml</projectFile>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>soapui-test</id>
+                                <phase>integration-test</phase>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        </plugin>
+
+                </plugins>
+              </build>
+            </project>
