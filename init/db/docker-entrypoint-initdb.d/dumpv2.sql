@@ -5,7 +5,7 @@
 -- Dumped from database version 10.1
 -- Dumped by pg_dump version 10.1
 
--- Started on 2018-06-15 21:01:16
+-- Started on 2018-11-06 19:00:34
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -25,7 +25,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2905 (class 0 OID 0)
+-- TOC entry 2921 (class 0 OID 0)
 -- Dependencies: 1
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
@@ -69,7 +69,7 @@ CREATE SEQUENCE auteur_id_auteur_seq
 ALTER TABLE auteur_id_auteur_seq OWNER TO postgres;
 
 --
--- TOC entry 2906 (class 0 OID 0)
+-- TOC entry 2922 (class 0 OID 0)
 -- Dependencies: 202
 -- Name: auteur_id_auteur_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -106,7 +106,7 @@ CREATE SEQUENCE editeur_id_editeur_seq
 ALTER TABLE editeur_id_editeur_seq OWNER TO postgres;
 
 --
--- TOC entry 2907 (class 0 OID 0)
+-- TOC entry 2923 (class 0 OID 0)
 -- Dependencies: 196
 -- Name: editeur_id_editeur_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -143,7 +143,7 @@ CREATE SEQUENCE genre_id_genre_seq
 ALTER TABLE genre_id_genre_seq OWNER TO postgres;
 
 --
--- TOC entry 2908 (class 0 OID 0)
+-- TOC entry 2924 (class 0 OID 0)
 -- Dependencies: 200
 -- Name: genre_id_genre_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -163,7 +163,8 @@ CREATE TABLE livre (
     image character varying NOT NULL,
     resume character varying NOT NULL,
     id_ouvrage integer NOT NULL,
-    disponible boolean DEFAULT true NOT NULL
+    disponible boolean DEFAULT true NOT NULL,
+    exemplaire integer DEFAULT 1 NOT NULL
 );
 
 
@@ -224,7 +225,7 @@ CREATE SEQUENCE livre_livre_id_seq
 ALTER TABLE livre_livre_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2909 (class 0 OID 0)
+-- TOC entry 2925 (class 0 OID 0)
 -- Dependencies: 206
 -- Name: livre_livre_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -261,7 +262,7 @@ CREATE SEQUENCE ouvrage_id_ouvrage_seq_1
 ALTER TABLE ouvrage_id_ouvrage_seq_1 OWNER TO postgres;
 
 --
--- TOC entry 2910 (class 0 OID 0)
+-- TOC entry 2926 (class 0 OID 0)
 -- Dependencies: 198
 -- Name: ouvrage_id_ouvrage_seq_1; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -303,13 +304,44 @@ CREATE SEQUENCE pret_id_pret_seq
 ALTER TABLE pret_id_pret_seq OWNER TO postgres;
 
 --
--- TOC entry 2911 (class 0 OID 0)
+-- TOC entry 2927 (class 0 OID 0)
 -- Dependencies: 211
 -- Name: pret_id_pret_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE pret_id_pret_seq OWNED BY pret.id_pret;
 
+
+--
+-- TOC entry 214 (class 1259 OID 35128)
+-- Name: reservation_id_resa_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE reservation_id_resa_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE reservation_id_resa_seq OWNER TO postgres;
+
+--
+-- TOC entry 213 (class 1259 OID 35102)
+-- Name: reservation; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE reservation (
+    id_resa integer DEFAULT nextval('reservation_id_resa_seq'::regclass) NOT NULL,
+    date_debut date,
+    date_fin date,
+    livre integer NOT NULL,
+    demandeur integer NOT NULL
+);
+
+
+ALTER TABLE reservation OWNER TO postgres;
 
 --
 -- TOC entry 205 (class 1259 OID 34739)
@@ -345,7 +377,7 @@ CREATE SEQUENCE utilisateur_id_utilisateur_seq_1
 ALTER TABLE utilisateur_id_utilisateur_seq_1 OWNER TO postgres;
 
 --
--- TOC entry 2912 (class 0 OID 0)
+-- TOC entry 2928 (class 0 OID 0)
 -- Dependencies: 204
 -- Name: utilisateur_id_utilisateur_seq_1; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -354,7 +386,7 @@ ALTER SEQUENCE utilisateur_id_utilisateur_seq_1 OWNED BY utilisateur.id_utilisat
 
 
 --
--- TOC entry 2727 (class 2604 OID 34731)
+-- TOC entry 2733 (class 2604 OID 34731)
 -- Name: auteur id_auteur; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -362,7 +394,7 @@ ALTER TABLE ONLY auteur ALTER COLUMN id_auteur SET DEFAULT nextval('auteur_id_au
 
 
 --
--- TOC entry 2724 (class 2604 OID 34698)
+-- TOC entry 2730 (class 2604 OID 34698)
 -- Name: editeur id_editeur; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -370,7 +402,7 @@ ALTER TABLE ONLY editeur ALTER COLUMN id_editeur SET DEFAULT nextval('editeur_id
 
 
 --
--- TOC entry 2726 (class 2604 OID 34720)
+-- TOC entry 2732 (class 2604 OID 34720)
 -- Name: genre id_genre; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -378,7 +410,7 @@ ALTER TABLE ONLY genre ALTER COLUMN id_genre SET DEFAULT nextval('genre_id_genre
 
 
 --
--- TOC entry 2730 (class 2604 OID 34753)
+-- TOC entry 2736 (class 2604 OID 34753)
 -- Name: livre id_livre; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -386,7 +418,7 @@ ALTER TABLE ONLY livre ALTER COLUMN id_livre SET DEFAULT nextval('livre_livre_id
 
 
 --
--- TOC entry 2725 (class 2604 OID 34709)
+-- TOC entry 2731 (class 2604 OID 34709)
 -- Name: ouvrage id_ouvrage; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -394,7 +426,7 @@ ALTER TABLE ONLY ouvrage ALTER COLUMN id_ouvrage SET DEFAULT nextval('ouvrage_id
 
 
 --
--- TOC entry 2732 (class 2604 OID 34779)
+-- TOC entry 2739 (class 2604 OID 34779)
 -- Name: pret id_pret; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -402,7 +434,7 @@ ALTER TABLE ONLY pret ALTER COLUMN id_pret SET DEFAULT nextval('pret_id_pret_seq
 
 
 --
--- TOC entry 2728 (class 2604 OID 34742)
+-- TOC entry 2734 (class 2604 OID 34742)
 -- Name: utilisateur id_utilisateur; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -410,7 +442,7 @@ ALTER TABLE ONLY utilisateur ALTER COLUMN id_utilisateur SET DEFAULT nextval('ut
 
 
 --
--- TOC entry 2890 (class 0 OID 34728)
+-- TOC entry 2904 (class 0 OID 34728)
 -- Dependencies: 203
 -- Data for Name: auteur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -434,7 +466,7 @@ COPY auteur (id_auteur, prenom, nom) FROM stdin;
 
 
 --
--- TOC entry 2884 (class 0 OID 34695)
+-- TOC entry 2898 (class 0 OID 34695)
 -- Dependencies: 197
 -- Data for Name: editeur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -458,7 +490,7 @@ COPY editeur (id_editeur, nom) FROM stdin;
 
 
 --
--- TOC entry 2888 (class 0 OID 34717)
+-- TOC entry 2902 (class 0 OID 34717)
 -- Dependencies: 201
 -- Data for Name: genre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -478,31 +510,31 @@ COPY genre (id_genre, genre) FROM stdin;
 
 
 --
--- TOC entry 2894 (class 0 OID 34750)
+-- TOC entry 2908 (class 0 OID 34750)
 -- Dependencies: 207
 -- Data for Name: livre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY livre (id_livre, titre, parution, image, resume, id_ouvrage, disponible) FROM stdin;
-1	La jeune Fille et la nuit	2018-04-24	La jeune Fille et la nuit.jpg	Côte d’Azur - Hiver 1992 Une nuit glaciale, alors que le campus de son lycée est paralysé par une tempête de neige, Vinca Rockwell, 19 ans, l’une des plus brillantes élèves de classes prépas, s’enfuit avec son professeur de philo avec qui elle entretenait une relation secrète. Pour la jeune fille, « l’amour est tout ou il n’est rien ».Personne ne la reverra jamais.	1	t
-3	Sang famille	2018-05-16	Sang famille.jpg	 Tel un soleil brutal, la lumière du phare des Enchaînés inonde la pièce. Une seconde à peine. Puis l'obscurité reprend le dessus, simplement percée du halo des lampes torches.Je vais mourir ici.C'est une certitude.Une seule question me hante, la dernière : jusqu'où sont-ils prêts à aller pour me faire avouer ? A fouiller ma mémoire, comme s'ils pouvaient en arracher les souvenirs qu'ils convoitent ?Tout est allé si vite, à peine quatre jours.Je n'étais alors qu'un adolescent parmi d'autres.Un orphelin.C'est du moins ce qu'on avait toujours voulu me faire croire... 	1	t
-6	Le chien italien	2012-03-15	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	3	t
-7	La dame pauvre	1970-12-08	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	2	t
-8	L'inconnu riche	2007-07-26	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	1	t
-9	L'aventurier anglais	1983-03-31	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	2	t
-10	La femme désesperée	1999-05-15	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	2	t
-2	Une fille comme elle	2018-05-18	Une fille comme elle.jpg	Marc Levy est un multi-instrumentiste de l’imaginaire… La plus jolie des comédies romantiques. Tout est sourire dans ce roman. Entrez au 12 de la Cinquième Avenue. Vous verrez, c’est du plaisir à tous les étages. » Pierre Vavasseur, Le Parisien « Une trépidante comédie newyorkaise. » RTL, Bernard Lehut« Des personnages hauts en couleur. Une pétillante comédie de mœurs. » Valérie Trierweiler, Paris Match« Une formidable comédie… où tout peut arriver.	1	f
-4	Buck Danny - Tome 8 : Black cobra	2018-05-16	Buck Danny - Tome 8 : Black cobra.jpg	 L'histoire d'un pilote d'avion	2	f
-11	La déesse anglaise	1975-10-09	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	1	t
-14	L'inconnu français	1995-04-03	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	3	t
-12	L'espion désespéré	2008-05-27	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	2	f
-13	L'espion mystérieux	1984-04-07	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	1	f
-5	L'aventurier italien	2000-09-10	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	2	f
+COPY livre (id_livre, titre, parution, image, resume, id_ouvrage, disponible, exemplaire) FROM stdin;
+2	Une fille comme elle	2018-05-18	Une fille comme elle.jpg	Marc Levy est un multi-instrumentiste de l’imaginaire… La plus jolie des comédies romantiques. Tout est sourire dans ce roman. Entrez au 12 de la Cinquième Avenue. Vous verrez, c’est du plaisir à tous les étages. » Pierre Vavasseur, Le Parisien « Une trépidante comédie newyorkaise. » RTL, Bernard Lehut« Des personnages hauts en couleur. Une pétillante comédie de mœurs. » Valérie Trierweiler, Paris Match« Une formidable comédie… où tout peut arriver.	1	f	1
+4	Buck Danny - Tome 8 : Black cobra	2018-05-16	Buck Danny - Tome 8 : Black cobra.jpg	 L'histoire d'un pilote d'avion	2	f	1
+12	L'espion désespéré	2008-05-27	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	2	f	2
+11	La déesse anglaise	1975-10-09	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	1	t	1
+14	L'inconnu français	1995-04-03	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	3	t	1
+13	L'espion mystérieux	1984-04-07	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	1	f	1
+1	La jeune Fille et la nuit	2018-04-24	La jeune Fille et la nuit.jpg	Côte d’Azur - Hiver 1992 Une nuit glaciale, alors que le campus de son lycée est paralysé par une tempête de neige, Vinca Rockwell, 19 ans, l’une des plus brillantes élèves de classes prépas, s’enfuit avec son professeur de philo avec qui elle entretenait une relation secrète. Pour la jeune fille, « l’amour est tout ou il n’est rien ».Personne ne la reverra jamais.	1	t	1
+3	Sang famille	2018-05-16	Sang famille.jpg	 Tel un soleil brutal, la lumière du phare des Enchaînés inonde la pièce. Une seconde à peine. Puis l'obscurité reprend le dessus, simplement percée du halo des lampes torches.Je vais mourir ici.C'est une certitude.Une seule question me hante, la dernière : jusqu'où sont-ils prêts à aller pour me faire avouer ? A fouiller ma mémoire, comme s'ils pouvaient en arracher les souvenirs qu'ils convoitent ?Tout est allé si vite, à peine quatre jours.Je n'étais alors qu'un adolescent parmi d'autres.Un orphelin.C'est du moins ce qu'on avait toujours voulu me faire croire... 	1	t	2
+6	Le chien italien	2012-03-15	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	3	t	1
+5	L'aventurier italien	2000-09-10	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	2	f	3
+8	L'inconnu riche	2007-07-26	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	1	t	1
+7	La dame pauvre	1970-12-08	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	2	t	1
+10	La femme désesperée	1999-05-15	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	2	t	2
+9	L'aventurier anglais	1983-03-31	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	2	t	3
 \.
 
 
 --
--- TOC entry 2897 (class 0 OID 34769)
+-- TOC entry 2911 (class 0 OID 34769)
 -- Dependencies: 210
 -- Data for Name: livre_auteur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -526,7 +558,7 @@ COPY livre_auteur (id_livre, id_auteur) FROM stdin;
 
 
 --
--- TOC entry 2895 (class 0 OID 34759)
+-- TOC entry 2909 (class 0 OID 34759)
 -- Dependencies: 208
 -- Data for Name: livre_editeur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -550,7 +582,7 @@ COPY livre_editeur (id_livre, id_editeur) FROM stdin;
 
 
 --
--- TOC entry 2896 (class 0 OID 34764)
+-- TOC entry 2910 (class 0 OID 34764)
 -- Dependencies: 209
 -- Data for Name: livre_genre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -574,7 +606,7 @@ COPY livre_genre (id_livre, id_genre) FROM stdin;
 
 
 --
--- TOC entry 2886 (class 0 OID 34706)
+-- TOC entry 2900 (class 0 OID 34706)
 -- Dependencies: 199
 -- Data for Name: ouvrage; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -589,7 +621,7 @@ COPY ouvrage (id_ouvrage, typeouvrage) FROM stdin;
 
 
 --
--- TOC entry 2899 (class 0 OID 34776)
+-- TOC entry 2913 (class 0 OID 34776)
 -- Dependencies: 212
 -- Data for Name: pret; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -606,7 +638,17 @@ COPY pret (id_pret, date_debut, date_fin, date_effective, prolonge, id_utilisate
 
 
 --
--- TOC entry 2892 (class 0 OID 34739)
+-- TOC entry 2914 (class 0 OID 35102)
+-- Dependencies: 213
+-- Data for Name: reservation; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY reservation (id_resa, date_debut, date_fin, livre, demandeur) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2906 (class 0 OID 34739)
 -- Dependencies: 205
 -- Data for Name: utilisateur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -619,7 +661,7 @@ COPY utilisateur (id_utilisateur, identifiant, prenom, nom, mdp, mail, admin) FR
 
 
 --
--- TOC entry 2913 (class 0 OID 0)
+-- TOC entry 2929 (class 0 OID 0)
 -- Dependencies: 202
 -- Name: auteur_id_auteur_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -628,7 +670,7 @@ SELECT pg_catalog.setval('auteur_id_auteur_seq', 14, true);
 
 
 --
--- TOC entry 2914 (class 0 OID 0)
+-- TOC entry 2930 (class 0 OID 0)
 -- Dependencies: 196
 -- Name: editeur_id_editeur_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -637,7 +679,7 @@ SELECT pg_catalog.setval('editeur_id_editeur_seq', 14, true);
 
 
 --
--- TOC entry 2915 (class 0 OID 0)
+-- TOC entry 2931 (class 0 OID 0)
 -- Dependencies: 200
 -- Name: genre_id_genre_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -646,7 +688,7 @@ SELECT pg_catalog.setval('genre_id_genre_seq', 9, true);
 
 
 --
--- TOC entry 2916 (class 0 OID 0)
+-- TOC entry 2932 (class 0 OID 0)
 -- Dependencies: 206
 -- Name: livre_livre_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -655,7 +697,7 @@ SELECT pg_catalog.setval('livre_livre_id_seq', 14, true);
 
 
 --
--- TOC entry 2917 (class 0 OID 0)
+-- TOC entry 2933 (class 0 OID 0)
 -- Dependencies: 198
 -- Name: ouvrage_id_ouvrage_seq_1; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -664,7 +706,7 @@ SELECT pg_catalog.setval('ouvrage_id_ouvrage_seq_1', 5, true);
 
 
 --
--- TOC entry 2918 (class 0 OID 0)
+-- TOC entry 2934 (class 0 OID 0)
 -- Dependencies: 211
 -- Name: pret_id_pret_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -673,7 +715,16 @@ SELECT pg_catalog.setval('pret_id_pret_seq', 8, true);
 
 
 --
--- TOC entry 2919 (class 0 OID 0)
+-- TOC entry 2935 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: reservation_id_resa_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('reservation_id_resa_seq', 1, false);
+
+
+--
+-- TOC entry 2936 (class 0 OID 0)
 -- Dependencies: 204
 -- Name: utilisateur_id_utilisateur_seq_1; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -682,7 +733,7 @@ SELECT pg_catalog.setval('utilisateur_id_utilisateur_seq_1', 3, true);
 
 
 --
--- TOC entry 2740 (class 2606 OID 34736)
+-- TOC entry 2748 (class 2606 OID 34736)
 -- Name: auteur auteur_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -691,7 +742,7 @@ ALTER TABLE ONLY auteur
 
 
 --
--- TOC entry 2734 (class 2606 OID 34703)
+-- TOC entry 2742 (class 2606 OID 34703)
 -- Name: editeur editeur_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -700,7 +751,7 @@ ALTER TABLE ONLY editeur
 
 
 --
--- TOC entry 2738 (class 2606 OID 34725)
+-- TOC entry 2746 (class 2606 OID 34725)
 -- Name: genre genre_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -709,7 +760,7 @@ ALTER TABLE ONLY genre
 
 
 --
--- TOC entry 2750 (class 2606 OID 34773)
+-- TOC entry 2758 (class 2606 OID 34773)
 -- Name: livre_auteur livre_auteur_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -718,7 +769,7 @@ ALTER TABLE ONLY livre_auteur
 
 
 --
--- TOC entry 2746 (class 2606 OID 34763)
+-- TOC entry 2754 (class 2606 OID 34763)
 -- Name: livre_editeur livre_editeur_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -727,7 +778,7 @@ ALTER TABLE ONLY livre_editeur
 
 
 --
--- TOC entry 2748 (class 2606 OID 34768)
+-- TOC entry 2756 (class 2606 OID 34768)
 -- Name: livre_genre livre_genre_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -736,7 +787,7 @@ ALTER TABLE ONLY livre_genre
 
 
 --
--- TOC entry 2744 (class 2606 OID 34758)
+-- TOC entry 2752 (class 2606 OID 34758)
 -- Name: livre livre_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -745,7 +796,7 @@ ALTER TABLE ONLY livre
 
 
 --
--- TOC entry 2736 (class 2606 OID 34714)
+-- TOC entry 2744 (class 2606 OID 34714)
 -- Name: ouvrage ouvrage_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -754,7 +805,7 @@ ALTER TABLE ONLY ouvrage
 
 
 --
--- TOC entry 2752 (class 2606 OID 34781)
+-- TOC entry 2760 (class 2606 OID 34781)
 -- Name: pret pret_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -763,7 +814,16 @@ ALTER TABLE ONLY pret
 
 
 --
--- TOC entry 2742 (class 2606 OID 34747)
+-- TOC entry 2764 (class 2606 OID 35106)
+-- Name: reservation reservation_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY reservation
+    ADD CONSTRAINT reservation_pkey PRIMARY KEY (id_resa);
+
+
+--
+-- TOC entry 2750 (class 2606 OID 34747)
 -- Name: utilisateur utilisateur_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -772,7 +832,23 @@ ALTER TABLE ONLY utilisateur
 
 
 --
--- TOC entry 2758 (class 2606 OID 34797)
+-- TOC entry 2761 (class 1259 OID 35112)
+-- Name: fki_livre_resa; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX fki_livre_resa ON reservation USING btree (livre);
+
+
+--
+-- TOC entry 2762 (class 1259 OID 35118)
+-- Name: fki_utilisateur_resa; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX fki_utilisateur_resa ON reservation USING btree (demandeur);
+
+
+--
+-- TOC entry 2770 (class 2606 OID 34797)
 -- Name: livre_auteur auteur_livre_auteur_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -781,7 +857,7 @@ ALTER TABLE ONLY livre_auteur
 
 
 --
--- TOC entry 2754 (class 2606 OID 34782)
+-- TOC entry 2766 (class 2606 OID 34782)
 -- Name: livre_editeur editeur_livre_editeur_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -790,7 +866,7 @@ ALTER TABLE ONLY livre_editeur
 
 
 --
--- TOC entry 2756 (class 2606 OID 34792)
+-- TOC entry 2768 (class 2606 OID 34792)
 -- Name: livre_genre genre_livre_genre_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -799,7 +875,7 @@ ALTER TABLE ONLY livre_genre
 
 
 --
--- TOC entry 2759 (class 2606 OID 34812)
+-- TOC entry 2771 (class 2606 OID 34812)
 -- Name: livre_auteur livre_livre_auteur_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -808,7 +884,7 @@ ALTER TABLE ONLY livre_auteur
 
 
 --
--- TOC entry 2755 (class 2606 OID 34822)
+-- TOC entry 2767 (class 2606 OID 34822)
 -- Name: livre_editeur livre_livre_editeur_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -817,7 +893,7 @@ ALTER TABLE ONLY livre_editeur
 
 
 --
--- TOC entry 2757 (class 2606 OID 34817)
+-- TOC entry 2769 (class 2606 OID 34817)
 -- Name: livre_genre livre_livre_genre_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -826,7 +902,7 @@ ALTER TABLE ONLY livre_genre
 
 
 --
--- TOC entry 2761 (class 2606 OID 34807)
+-- TOC entry 2773 (class 2606 OID 34807)
 -- Name: pret livre_pret_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -835,7 +911,16 @@ ALTER TABLE ONLY pret
 
 
 --
--- TOC entry 2753 (class 2606 OID 34787)
+-- TOC entry 2774 (class 2606 OID 35107)
+-- Name: reservation livre_resa; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY reservation
+    ADD CONSTRAINT livre_resa FOREIGN KEY (livre) REFERENCES livre(id_livre);
+
+
+--
+-- TOC entry 2765 (class 2606 OID 34787)
 -- Name: livre ouvrage_livre_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -844,7 +929,7 @@ ALTER TABLE ONLY livre
 
 
 --
--- TOC entry 2760 (class 2606 OID 34802)
+-- TOC entry 2772 (class 2606 OID 34802)
 -- Name: pret utilisateur_pret_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -852,7 +937,16 @@ ALTER TABLE ONLY pret
     ADD CONSTRAINT utilisateur_pret_fk FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id_utilisateur);
 
 
--- Completed on 2018-06-15 21:01:17
+--
+-- TOC entry 2775 (class 2606 OID 35113)
+-- Name: reservation utilisateur_resa; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY reservation
+    ADD CONSTRAINT utilisateur_resa FOREIGN KEY (demandeur) REFERENCES utilisateur(id_utilisateur);
+
+
+-- Completed on 2018-11-06 19:00:35
 
 --
 -- PostgreSQL database dump complete
