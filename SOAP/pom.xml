@@ -155,7 +155,7 @@
                                 </execution>
                             </executions>
                             <configuration>
-								<repository>my-repo/soap-test</repository>
+								<repository>soap-test</repository>
 								<tag>${project.version}</tag>
                                 <buildArgs>
                                     <WAR_FILE>${project.build.finalName}.war</WAR_FILE>
