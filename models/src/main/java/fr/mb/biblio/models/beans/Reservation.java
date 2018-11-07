@@ -41,7 +41,7 @@ public class Reservation implements Serializable {
     }
     @XmlJavaTypeAdapter(LocalDateXmlAdapter.class)
     @XmlSchemaType(name = "date")
-    @Column(name = "debutResa", nullable = false, length = 13)
+    @Column(name = "date_debut", nullable = false, length = 13)
     public LocalDate getDebutResa() {
         return debutResa;
     }
@@ -52,7 +52,7 @@ public class Reservation implements Serializable {
 
     @XmlJavaTypeAdapter(LocalDateXmlAdapter.class)
     @XmlSchemaType(name = "date")
-    @Column(name = "finResa", nullable = false, length = 13)
+    @Column(name = "date_fin", nullable = false, length = 13)
     public LocalDate getFinResa() {
         return finResa;
     }
