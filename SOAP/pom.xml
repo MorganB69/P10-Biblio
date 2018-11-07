@@ -181,9 +181,8 @@
                         <executions>
                             <execution>
                                 <id>soapui-test</id>
-                                <goals>
-                                    <goal>test</goal>
-                                </goals>
+								<phase>test</phase>
+
                             </execution>
                         </executions>
                         </plugin>
