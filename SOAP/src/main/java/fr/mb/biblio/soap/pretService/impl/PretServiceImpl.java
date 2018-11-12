@@ -9,15 +9,12 @@ import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.ws.WebServiceContext;
-import javax.xml.ws.handler.MessageContext;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -339,10 +336,12 @@ public class PretServiceImpl implements PretService {
     }
 
 	@Override
+	@Transactional
 	public void setDisponibilite(Integer livreId) throws FunctionalException, NotFoundException {
 		if (livreId==0)throw new FunctionalException("les données sont incorrectes");
 		else {
 			Livre livre = livreDao.findById(livreId);
+			int exemplaire = livre.getExemplaire();
 			int nbPretsEnCours=0;
 			Set<Pret> listePret=livre.getPrets();
 
@@ -354,7 +353,7 @@ public class PretServiceImpl implements PretService {
 				if (next.getDateEffective()==null) nbPretsEnCours++;
 
 			}
-			if (1==nbPretsEnCours)livre.setDisponible(false);
+			if (exemplaire<=nbPretsEnCours)livre.setDisponible(false);
 			else livre.setDisponible(true);
 
 			livreDao.update(livre);
@@ -363,6 +362,7 @@ public class PretServiceImpl implements PretService {
 
 		}
 	}
+
 
 	/**
 	 * @param pretId
