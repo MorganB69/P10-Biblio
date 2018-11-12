@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="90645dcc-6dfc-4701-9b6c-f766f32346bb" activeEnvironment="Default" name="P10 Biblio docker 1.010" resourceRoot="" soapui-version="5.4.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.TestRunnerAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+<con:soapui-project id="90645dcc-6dfc-4701-9b6c-f766f32346bb" activeEnvironment="Default" name="P10 Biblio docker 1.012" resourceRoot="" soapui-version="5.4.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.TestRunnerAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
   <con:entry key="Report Format(s)" value=""/>
   <con:entry key="Host:Port" value=""/>
   <con:entry key="Export JUnit Results" value="false"/>
@@ -847,6 +847,7 @@
           <xs:element maxOccurs="unbounded" minOccurs="0" name="auteurs" nillable="true" type="tns:auteur"/>
           <xs:element minOccurs="0" name="disponible" type="xs:boolean"/>
           <xs:element maxOccurs="unbounded" minOccurs="0" name="editeurs" nillable="true" type="tns:editeur"/>
+          <xs:element name="exemplaire" type="xs:int"/>
           <xs:element maxOccurs="unbounded" minOccurs="0" name="genres" nillable="true" type="tns:genre"/>
           <xs:element name="idLivre" type="xs:int"/>
           <xs:element minOccurs="0" name="image" type="xs:string"/>
@@ -1230,7 +1231,7 @@
          <emprunteurId>?</emprunteurId>\r
       </con:prolongerPret>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.pretService.soap.biblio.mb.fr/pretService/prolongerPret"/></con:call></con:operation><con:operation id="be4e24fe-2332-4bc3-b03b-8e94969710bf" isOneWay="false" action="" name="relanceMailRetards" bindingOperationName="relanceMailRetards" type="Request-Response" outputName="relanceMailRetardsResponse" inputName="relanceMailRetards" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ccd3a452-31c2-4712-ac73-d1842d6cd69e" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/pretService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.pretService.soap.biblio.mb.fr/">\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.pretService.soap.biblio.mb.fr/pretService/prolongerPret"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="be4e24fe-2332-4bc3-b03b-8e94969710bf" isOneWay="false" action="" name="relanceMailRetards" bindingOperationName="relanceMailRetards" type="Request-Response" outputName="relanceMailRetardsResponse" inputName="relanceMailRetards" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ccd3a452-31c2-4712-ac73-d1842d6cd69e" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/pretService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.pretService.soap.biblio.mb.fr/">\r
          <soapenv:Header>
       <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
          <wsse:UsernameToken wsu:Id="UsernameToken-F9FCCA11A8DE5FEFCC152760416311912">
@@ -1618,6 +1619,82 @@ declare namespace ns2='http://contract.pretService.soap.biblio.mb.fr/';
       </con:deletePret>\r
    </soapenv:Body>\r
 </soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="754d6060-337d-43fb-83a6-3ac07247ed20"/><con:assertion type="Schema Compliance" id="96565099-1b6c-4d1c-ac4c-bd57df448609"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="e5278af3-0eb2-4594-9cb6-a7f24cf837a4"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="fixeDispo" id="b8ac431f-f772-4635-a50a-5983f8736941"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PretServiceImplServiceSoapBinding</con:interface><con:operation>setDisponibilite</con:operation><con:request name="fixeDispo" id="be1f1de8-d788-4e32-bd29-7a1fb2e2c09a"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/pretService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.pretService.soap.biblio.mb.fr/">\r
+<soapenv:Header>
+      <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+         <wsse:UsernameToken wsu:Id="UsernameToken-F9FCCA11A8DE5FEFCC15275816748889">
+            <wsse:Username>${Properties#identifiant}</wsse:Username>
+            <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">${Properties#password}</wsse:Password>
+         </wsse:UsernameToken>
+      </wsse:Security></soapenv:Header>
+   <soapenv:Body>\r
+      <con:setDisponibilite>\r
+      <livreId>${Properties#idLivre}</livreId>
+      </con:setDisponibilite>
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="c9c87083-bf66-418c-af3a-565aea1b3f3d"/><con:assertion type="Schema Compliance" id="e751a667-bffb-4593-832d-9ec86f3fb906"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="9d104451-5973-4d90-8661-22a3c0107534"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="8ae1c9cc-6e10-4c3a-8e7d-891fcfcb1ee2" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="ProlongerPret" searchProperties="true"><con:settings/><con:testStep type="properties" name="Properties" id="a4ade40f-9d33-4508-aeac-b84f1916cf13"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>identifiant</con:name><con:value>Morgan</con:value></con:property><con:property><con:name>password</con:name><con:value>azerty</con:value></con:property><con:property><con:name>pretId</con:name><con:value>8</con:value></con:property><con:property><con:name>emprunteurId</con:name><con:value>2</con:value></con:property><con:property><con:name>idLivre</con:name><con:value>11</con:value></con:property><con:property><con:name>pretId2</con:name><con:value>13</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="request" name="ProlongerPretDepassé" id="481bfcfd-4c17-4eae-820f-7fa167dc5cd2"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PretServiceImplServiceSoapBinding</con:interface><con:operation>prolongerPret</con:operation><con:request name="ProlongerPretDepassé" id="c994d0e8-72e3-414e-9dce-5a29038d097c"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/pretService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.pretService.soap.biblio.mb.fr/">\r
+   <soapenv:Header>
+      <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+         <wsse:UsernameToken wsu:Id="UsernameToken-F9FCCA11A8DE5FEFCC152759700875511">
+            <wsse:Username>${Properties#identifiant}</wsse:Username>
+            <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">${Properties#password}</wsse:Password>
+
+         </wsse:UsernameToken>
+      </wsse:Security></soapenv:Header>
+   <soapenv:Body>\r
+      <con:prolongerPret>
+      <pretId>${Properties#pretId}</pretId>
+      <emprunteurId>${Properties#emprunteurId}</emprunteurId>
+
+      </con:prolongerPret>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Not SOAP Fault Assertion" id="3191fc9f-ba25-48c0-944d-67e30a163670" name="SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="NouveauPret" id="cab807ae-ac4e-4fb7-88ff-e48142b2ad3b"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PretServiceImplServiceSoapBinding</con:interface><con:operation>nouveauPret</con:operation><con:request name="NouveauPret" id="a6c285ab-7ead-477a-a3e8-1a7edeb08a94"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/pretService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.pretService.soap.biblio.mb.fr/">
+   <soapenv:Header>
+      <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+         <wsse:UsernameToken wsu:Id="UsernameToken-F9FCCA11A8DE5FEFCC15275816748889">
+            <wsse:Username>${Properties#identifiant}</wsse:Username>
+            <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">${Properties#password}</wsse:Password>
+         </wsse:UsernameToken>
+      </wsse:Security></soapenv:Header>
+   <soapenv:Body>
+      <con:nouveauPret>
+         <!--Optional:-->
+         <livreId>${Properties#idLivre}</livreId>
+         <!--Optional:-->
+         <emprunteurId>${Properties#emprunteurId}</emprunteurId>
+      </con:nouveauPret>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="5c4251f1-589f-4b02-b4ea-c4fcef8bdf51"/><con:assertion type="SOAP Fault Assertion" id="d57e2bed-bb24-476f-875d-d2f6f2692fb8"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer" id="8b821c40-cb1d-4937-a58f-0eb1d71fb645"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>pretId</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>NouveauPret</con:sourceStep><con:sourcePath>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='http://contract.pretService.soap.biblio.mb.fr/';
+/soap:Envelope/soap:Body/ns2:nouveauPretResponse/return[1]/idPret/text()</con:sourcePath><con:targetType>pretId2</con:targetType><con:targetStep>Properties</con:targetStep><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="request" name="ProlongerPretPossible" id="4a4a20d1-bf73-4327-93b3-fccd1defb0f8"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PretServiceImplServiceSoapBinding</con:interface><con:operation>prolongerPret</con:operation><con:request name="ProlongerPretPossible" id="4d92b2b7-aaeb-4987-91ca-8675c3baa402"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/pretService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.pretService.soap.biblio.mb.fr/">
+   <soapenv:Header>
+      <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+         <wsse:UsernameToken wsu:Id="UsernameToken-F9FCCA11A8DE5FEFCC152759700875511">
+            <wsse:Username>${Properties#identifiant}</wsse:Username>
+            <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">${Properties#password}</wsse:Password>
+
+         </wsse:UsernameToken>
+      </wsse:Security></soapenv:Header>
+   <soapenv:Body>
+      <con:prolongerPret>
+      <pretId>${Properties#pretId2}</pretId>
+      <emprunteurId>${Properties#emprunteurId}</emprunteurId>
+
+      </con:prolongerPret>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="b5cf7b6f-d140-4dd9-8e90-315d11df709e"/><con:assertion type="SOAP Fault Assertion" id="8273bf59-ce7c-47fe-bf5d-52c85b7de314"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="deletePret" id="337d4294-5d20-4bd4-9527-cbef286435d0"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PretServiceImplServiceSoapBinding</con:interface><con:operation>deletePret</con:operation><con:request name="deletePret" id="42223360-d337-4704-9e99-9312bffe151c"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/pretService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.pretService.soap.biblio.mb.fr/">\r
+   <soapenv:Header>
+      <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+         <wsse:UsernameToken wsu:Id="UsernameToken-F9FCCA11A8DE5FEFCC15275816748889">
+            <wsse:Username>${Properties#identifiant}</wsse:Username>
+            <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">${Properties#password}</wsse:Password>
+         </wsse:UsernameToken>
+      </wsse:Security></soapenv:Header>
+   <soapenv:Body>\r
+      <con:deletePret>
+      <pretId>${Properties#pretId2}</pretId>
+      </con:deletePret>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="754d6060-337d-43fb-83a6-3ac07247ed20"/><con:assertion type="Schema Compliance" id="96565099-1b6c-4d1c-ac4c-bd57df448609"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="e5278af3-0eb2-4594-9cb6-a7f24cf837a4"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="fixeDispo" id="62046408-7bbb-4fb7-b892-f3f4605f4433"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PretServiceImplServiceSoapBinding</con:interface><con:operation>setDisponibilite</con:operation><con:request name="fixeDispo" id="be1f1de8-d788-4e32-bd29-7a1fb2e2c09a"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/pretService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.pretService.soap.biblio.mb.fr/">\r
 <soapenv:Header>
       <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
          <wsse:UsernameToken wsu:Id="UsernameToken-F9FCCA11A8DE5FEFCC15275816748889">
