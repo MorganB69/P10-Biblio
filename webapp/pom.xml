@@ -145,6 +145,25 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>1.4.8</version>
+                <executions>
+                    <execution>
+                        <id>default</id>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <repository>webapp-test</repository>
+                    <buildArgs>
+                        <WAR_FILE>${project.build.finalName}.war</WAR_FILE>
+                    </buildArgs>
+                </configuration>
+            </plugin>
 
         </plugins>
     </build>
