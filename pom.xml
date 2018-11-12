@@ -252,4 +252,14 @@
     <module>dao</module>
     <module>tech</module>
   </modules>
+
+	<build>
+		<extensions>
+			<extension>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-extension</artifactId>
+				<version>1.4.8</version>
+			</extension>
+		</extensions>
+	</build>
 </project>
