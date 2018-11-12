@@ -52,7 +52,7 @@
         <Logger name="org.apache.struts2" level="debug">
             <AppenderRef ref="FileStruts"/>
         </Logger>
-        
+
         <Logger name="org.hibernate" level="debug" >
         	<AppenderRef ref="FileHibernate"/>
         </Logger>

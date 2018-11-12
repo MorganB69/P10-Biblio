@@ -123,8 +123,14 @@ public interface PretService {
 	 */
 	@WebMethod
 	public void relanceMailRetards() throws  FunctionalException, Exception;
-	
-	
+
+    /**
+     * Methode pour supprimer un pret
+     * @param pretId
+     * @throws NotFoundException
+     */
+	@WebMethod
+    public void deletePret(@WebParam(name="pretId")Integer pretId) throws NotFoundException, FunctionalException;
 	
 	
 }

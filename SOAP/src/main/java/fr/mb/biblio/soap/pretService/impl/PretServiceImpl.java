@@ -340,9 +340,24 @@ public class PretServiceImpl implements PretService {
 		
         
     }
-		
-	
-	
+
+	/**
+	 * @param pretId
+	 * @throws NotFoundException
+	 * @throws FunctionalException
+	 */
+	@Override
+	public void deletePret(Integer pretId) throws NotFoundException, FunctionalException  {
+		if(pretId<=0||pretId==null) throw new FunctionalException("Données incorrectes");
+
+		// Récupération du prêt
+		Pret pret = pretDao.findById(pretId);
+		if(pret==null)throw new NotFoundException("Le prêt n'existe pas");
+		else
+			pretDao.delete(pret);
+	}
+
+
 	/**
 	 * Méthode de configuration d'envoi d'un mail
 	 * @param mail
@@ -376,6 +391,7 @@ public class PretServiceImpl implements PretService {
 		if (listeReturn==null) throw new FunctionalException("Pas de prêt en cours trouvé");
 		return listeReturn;
 	}
+
 	
 
 }
