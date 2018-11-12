@@ -125,6 +125,15 @@ public interface PretService {
 	public void relanceMailRetards() throws  FunctionalException, Exception;
 
     /**
+     * Methode fixant si le livre est disponible ou non
+     * @param livreId
+     * @throws FunctionalException
+     * @throws NotFoundException
+     */
+    @WebMethod
+    public void setDisponibilite(@WebParam(name="livreId")Integer livreId) throws FunctionalException,NotFoundException;
+
+    /**
      * Methode pour supprimer un pret
      * @param pretId
      * @throws NotFoundException

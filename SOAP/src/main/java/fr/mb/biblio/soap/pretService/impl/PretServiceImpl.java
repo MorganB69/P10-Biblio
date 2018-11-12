@@ -3,10 +3,7 @@ package fr.mb.biblio.soap.pretService.impl;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
@@ -340,6 +337,32 @@ public class PretServiceImpl implements PretService {
 		
         
     }
+
+	@Override
+	public void setDisponibilite(Integer livreId) throws FunctionalException, NotFoundException {
+		if (livreId==0)throw new FunctionalException("les données sont incorrectes");
+		else {
+			Livre livre = livreDao.findById(livreId);
+			int nbPretsEnCours=0;
+			Set<Pret> listePret=livre.getPrets();
+
+			if(livre==null) throw new NotFoundException("Livre non trouvé en base de données");
+
+
+			for (Iterator<Pret> iterator = listePret.iterator(); iterator.hasNext(); ) {
+				Pret next =  iterator.next();
+				if (next.getDateEffective()==null) nbPretsEnCours++;
+
+			}
+			if (1==nbPretsEnCours)livre.setDisponible(false);
+			else livre.setDisponible(true);
+
+			livreDao.update(livre);
+
+
+
+		}
+	}
 
 	/**
 	 * @param pretId
