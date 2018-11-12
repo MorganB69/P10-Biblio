@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="90645dcc-6dfc-4701-9b6c-f766f32346bb" activeEnvironment="Default" name="P7 BUILD OCR Biblio" resourceRoot="" soapui-version="5.4.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.TestRunnerAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+<con:soapui-project id="90645dcc-6dfc-4701-9b6c-f766f32346bb" activeEnvironment="Default" name="P10 Biblio docker 1.010" resourceRoot="" soapui-version="5.4.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.TestRunnerAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
   <con:entry key="Report Format(s)" value=""/>
   <con:entry key="Host:Port" value=""/>
   <con:entry key="Export JUnit Results" value="false"/>
@@ -472,7 +472,7 @@
       <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
     </wsdl:operation>
   </wsdl:portType>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://192.168.99.100:8080/SOAP/livreService</con:endpoint><con:endpoint>http://192.168.99.100:8081/SOAP/livreService</con:endpoint></con:endpoints><con:operation id="7a9770f7-83bc-45c2-b234-5960af2ca574" isOneWay="false" action="" name="countLivres" bindingOperationName="countLivres" type="Request-Response" outputName="countLivresResponse" inputName="countLivres" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="827dafb4-8091-408e-ae2e-3b092897fae4" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/livreService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.livreService.soap.biblio.mb.fr/">\r
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://192.168.99.100:8081/SOAP/livreService</con:endpoint></con:endpoints><con:operation id="7a9770f7-83bc-45c2-b234-5960af2ca574" isOneWay="false" action="" name="countLivres" bindingOperationName="countLivres" type="Request-Response" outputName="countLivresResponse" inputName="countLivres" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="827dafb4-8091-408e-ae2e-3b092897fae4" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/livreService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.livreService.soap.biblio.mb.fr/">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <con:countLivres>\r
@@ -599,36 +599,12 @@
   <wsdl:import location="http://192.168.99.100:8081/SOAP/pretService?wsdl=pretService.wsdl" namespace="http://contract.pretService.soap.biblio.mb.fr/"></wsdl:import>
   <wsdl:binding name="PretServiceImplServiceSoapBinding" type="ns1:pretService">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="getPretsEnCoursByUser">
+    <wsdl:operation name="deletePret">
       <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="getPretsEnCoursByUser">
+      <wsdl:input name="deletePret">
         <soap:body use="literal"/>
       </wsdl:input>
-      <wsdl:output name="getPretsEnCoursByUserResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="FunctionalException">
-        <soap:fault name="FunctionalException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="getPretsProlonges">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="getPretsProlonges">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="getPretsProlongesResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="FunctionalException">
-        <soap:fault name="FunctionalException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="creationPretDate">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="creationPretDate">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="creationPretDateResponse">
+      <wsdl:output name="deletePretResponse">
         <soap:body use="literal"/>
       </wsdl:output>
       <wsdl:fault name="NotFoundException">
@@ -636,36 +612,6 @@
       </wsdl:fault>
       <wsdl:fault name="FunctionalException">
         <soap:fault name="FunctionalException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="prolongerPret">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="prolongerPret">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="prolongerPretResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="NotFoundException">
-        <soap:fault name="NotFoundException" use="literal"/>
-      </wsdl:fault>
-      <wsdl:fault name="FunctionalException">
-        <soap:fault name="FunctionalException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="relanceMailRetards">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="relanceMailRetards">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="relanceMailRetardsResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="FunctionalException">
-        <soap:fault name="FunctionalException" use="literal"/>
-      </wsdl:fault>
-      <wsdl:fault name="Exception">
-        <soap:fault name="Exception" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="retourPret">
@@ -691,21 +637,6 @@
       <wsdl:output name="getPretsEnCoursResponse">
         <soap:body use="literal"/>
       </wsdl:output>
-      <wsdl:fault name="FunctionalException">
-        <soap:fault name="FunctionalException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="nouveauPret">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="nouveauPret">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="nouveauPretResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="NotFoundException">
-        <soap:fault name="NotFoundException" use="literal"/>
-      </wsdl:fault>
       <wsdl:fault name="FunctionalException">
         <soap:fault name="FunctionalException" use="literal"/>
       </wsdl:fault>
@@ -737,6 +668,105 @@
         <soap:fault name="FunctionalException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="getPretsEnCoursByUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getPretsEnCoursByUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPretsEnCoursByUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FunctionalException">
+        <soap:fault name="FunctionalException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPretsProlonges">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getPretsProlonges">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPretsProlongesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FunctionalException">
+        <soap:fault name="FunctionalException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="relanceMailRetards">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="relanceMailRetards">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="relanceMailRetardsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FunctionalException">
+        <soap:fault name="FunctionalException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="prolongerPret">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="prolongerPret">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="prolongerPretResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="NotFoundException">
+        <soap:fault name="NotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="FunctionalException">
+        <soap:fault name="FunctionalException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="creationPretDate">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="creationPretDate">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="creationPretDateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="NotFoundException">
+        <soap:fault name="NotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="FunctionalException">
+        <soap:fault name="FunctionalException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="nouveauPret">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="nouveauPret">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="nouveauPretResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="NotFoundException">
+        <soap:fault name="NotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="FunctionalException">
+        <soap:fault name="FunctionalException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setDisponibilite">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="setDisponibilite">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setDisponibiliteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="NotFoundException">
+        <soap:fault name="NotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="FunctionalException">
+        <soap:fault name="FunctionalException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="PretServiceImplService">
     <wsdl:port binding="tns:PretServiceImplServiceSoapBinding" name="PretServiceImplPort">
@@ -749,6 +779,8 @@
       <xs:element name="auteur" type="tns:auteur"/>
       <xs:element name="creationPretDate" type="tns:creationPretDate"/>
       <xs:element name="creationPretDateResponse" type="tns:creationPretDateResponse"/>
+      <xs:element name="deletePret" type="tns:deletePret"/>
+      <xs:element name="deletePretResponse" type="tns:deletePretResponse"/>
       <xs:element name="editeur" type="tns:editeur"/>
       <xs:element name="genre" type="tns:genre"/>
       <xs:element name="getPretById" type="tns:getPretById"/>
@@ -771,12 +803,30 @@
       <xs:element name="relanceMailRetardsResponse" type="tns:relanceMailRetardsResponse"/>
       <xs:element name="retourPret" type="tns:retourPret"/>
       <xs:element name="retourPretResponse" type="tns:retourPretResponse"/>
-      <xs:complexType name="getPretsEnCoursByUser">
+      <xs:element name="setDisponibilite" type="tns:setDisponibilite"/>
+      <xs:element name="setDisponibiliteResponse" type="tns:setDisponibiliteResponse"/>
+      <xs:complexType name="deletePret">
         <xs:sequence>
-          <xs:element minOccurs="0" name="utilisateurId" type="xs:int"/>
+          <xs:element minOccurs="0" name="pretId" type="xs:int"/>
         </xs:sequence>
       </xs:complexType>
-      <xs:complexType name="getPretsEnCoursByUserResponse">
+      <xs:complexType name="deletePretResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="retourPret">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="pretId" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="retourPretResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getPretsEnCours">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="getPretsEnCoursResponse">
         <xs:sequence>
           <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:pret"/>
         </xs:sequence>
@@ -797,7 +847,6 @@
           <xs:element maxOccurs="unbounded" minOccurs="0" name="auteurs" nillable="true" type="tns:auteur"/>
           <xs:element minOccurs="0" name="disponible" type="xs:boolean"/>
           <xs:element maxOccurs="unbounded" minOccurs="0" name="editeurs" nillable="true" type="tns:editeur"/>
-          <xs:element name="exemplaire" type="xs:int"/>
           <xs:element maxOccurs="unbounded" minOccurs="0" name="genres" nillable="true" type="tns:genre"/>
           <xs:element name="idLivre" type="xs:int"/>
           <xs:element minOccurs="0" name="image" type="xs:string"/>
@@ -842,72 +891,6 @@
           <xs:element minOccurs="0" name="prenom" type="xs:string"/>
         </xs:sequence>
       </xs:complexType>
-      <xs:complexType name="getPretsProlonges">
-        <xs:sequence/>
-      </xs:complexType>
-      <xs:complexType name="getPretsProlongesResponse">
-        <xs:sequence>
-          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:pret"/>
-        </xs:sequence>
-      </xs:complexType>
-      <xs:complexType name="creationPretDate">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="livreId" type="xs:int"/>
-          <xs:element minOccurs="0" name="emprunteurId" type="xs:int"/>
-          <xs:element minOccurs="0" name="dateDebut" type="xs:string"/>
-        </xs:sequence>
-      </xs:complexType>
-      <xs:complexType name="creationPretDateResponse">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="return" type="tns:pret"/>
-        </xs:sequence>
-      </xs:complexType>
-      <xs:complexType name="prolongerPret">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="pretId" type="xs:int"/>
-          <xs:element minOccurs="0" name="emprunteurId" type="xs:int"/>
-        </xs:sequence>
-      </xs:complexType>
-      <xs:complexType name="prolongerPretResponse">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="return" type="tns:pret"/>
-        </xs:sequence>
-      </xs:complexType>
-      <xs:complexType name="relanceMailRetards">
-        <xs:sequence/>
-      </xs:complexType>
-      <xs:complexType name="relanceMailRetardsResponse">
-        <xs:sequence/>
-      </xs:complexType>
-      <xs:complexType name="retourPret">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="pretId" type="xs:int"/>
-        </xs:sequence>
-      </xs:complexType>
-      <xs:complexType name="retourPretResponse">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="return" type="xs:string"/>
-        </xs:sequence>
-      </xs:complexType>
-      <xs:complexType name="getPretsEnCours">
-        <xs:sequence/>
-      </xs:complexType>
-      <xs:complexType name="getPretsEnCoursResponse">
-        <xs:sequence>
-          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:pret"/>
-        </xs:sequence>
-      </xs:complexType>
-      <xs:complexType name="nouveauPret">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="livreId" type="xs:int"/>
-          <xs:element minOccurs="0" name="emprunteurId" type="xs:int"/>
-        </xs:sequence>
-      </xs:complexType>
-      <xs:complexType name="nouveauPretResponse">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="return" type="tns:pret"/>
-        </xs:sequence>
-      </xs:complexType>
       <xs:complexType name="getPretById">
         <xs:sequence>
           <xs:element minOccurs="0" name="id" type="xs:int"/>
@@ -926,14 +909,80 @@
           <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:pret"/>
         </xs:sequence>
       </xs:complexType>
-      <xs:element name="FunctionalException" type="tns:FunctionalException"/>
-      <xs:complexType name="FunctionalException">
+      <xs:complexType name="getPretsEnCoursByUser">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="utilisateurId" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getPretsEnCoursByUserResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:pret"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getPretsProlonges">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="getPretsProlongesResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:pret"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="relanceMailRetards">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="relanceMailRetardsResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="prolongerPret">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="pretId" type="xs:int"/>
+          <xs:element minOccurs="0" name="emprunteurId" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="prolongerPretResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:pret"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="creationPretDate">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="livreId" type="xs:int"/>
+          <xs:element minOccurs="0" name="emprunteurId" type="xs:int"/>
+          <xs:element minOccurs="0" name="dateDebut" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="creationPretDateResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:pret"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="nouveauPret">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="livreId" type="xs:int"/>
+          <xs:element minOccurs="0" name="emprunteurId" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="nouveauPretResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:pret"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="setDisponibilite">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="livreId" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="setDisponibiliteResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:element name="NotFoundException" type="tns:NotFoundException"/>
+      <xs:complexType name="NotFoundException">
         <xs:sequence>
           <xs:element minOccurs="0" name="message" type="xs:string"/>
         </xs:sequence>
       </xs:complexType>
-      <xs:element name="NotFoundException" type="tns:NotFoundException"/>
-      <xs:complexType name="NotFoundException">
+      <xs:element name="FunctionalException" type="tns:FunctionalException"/>
+      <xs:complexType name="FunctionalException">
         <xs:sequence>
           <xs:element minOccurs="0" name="message" type="xs:string"/>
         </xs:sequence>
@@ -949,23 +998,23 @@
   <wsdl:message name="getPretsEnCoursByUserResponse">
     <wsdl:part element="ns1:getPretsEnCoursByUserResponse" name="parameters"></wsdl:part>
   </wsdl:message>
+  <wsdl:message name="deletePret">
+    <wsdl:part element="ns1:deletePret" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setDisponibiliteResponse">
+    <wsdl:part element="ns1:setDisponibiliteResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
   <wsdl:message name="nouveauPretResponse">
     <wsdl:part element="ns1:nouveauPretResponse" name="parameters"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="getPretsProlongesResponse">
     <wsdl:part element="ns1:getPretsProlongesResponse" name="parameters"></wsdl:part>
   </wsdl:message>
-  <wsdl:message name="retourPret">
-    <wsdl:part element="ns1:retourPret" name="parameters"></wsdl:part>
-  </wsdl:message>
   <wsdl:message name="getPretsEnCours">
     <wsdl:part element="ns1:getPretsEnCours" name="parameters"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="getPretById">
     <wsdl:part element="ns1:getPretById" name="parameters"></wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="FunctionalException">
-    <wsdl:part element="ns1:FunctionalException" name="FunctionalException"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="getPretByIdResponse">
     <wsdl:part element="ns1:getPretByIdResponse" name="parameters"></wsdl:part>
@@ -976,23 +1025,8 @@
   <wsdl:message name="getPretsEnCoursByUser">
     <wsdl:part element="ns1:getPretsEnCoursByUser" name="parameters"></wsdl:part>
   </wsdl:message>
-  <wsdl:message name="creationPretDateResponse">
-    <wsdl:part element="ns1:creationPretDateResponse" name="parameters"></wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getPretsEnCoursResponse">
-    <wsdl:part element="ns1:getPretsEnCoursResponse" name="parameters"></wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getPretsRetardsResponse">
-    <wsdl:part element="ns1:getPretsRetardsResponse" name="parameters"></wsdl:part>
-  </wsdl:message>
   <wsdl:message name="getPretsProlonges">
     <wsdl:part element="ns1:getPretsProlonges" name="parameters"></wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="Exception">
-    <wsdl:part element="ns1:Exception" name="Exception"></wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="creationPretDate">
-    <wsdl:part element="ns1:creationPretDate" name="parameters"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="prolongerPret">
     <wsdl:part element="ns1:prolongerPret" name="parameters"></wsdl:part>
@@ -1000,8 +1034,41 @@
   <wsdl:message name="prolongerPretResponse">
     <wsdl:part element="ns1:prolongerPretResponse" name="parameters"></wsdl:part>
   </wsdl:message>
+  <wsdl:message name="NotFoundException">
+    <wsdl:part element="ns1:NotFoundException" name="NotFoundException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="relanceMailRetardsResponse">
+    <wsdl:part element="ns1:relanceMailRetardsResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setDisponibilite">
+    <wsdl:part element="ns1:setDisponibilite" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="retourPret">
+    <wsdl:part element="ns1:retourPret" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="FunctionalException">
+    <wsdl:part element="ns1:FunctionalException" name="FunctionalException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPretsEnCoursResponse">
+    <wsdl:part element="ns1:getPretsEnCoursResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="creationPretDateResponse">
+    <wsdl:part element="ns1:creationPretDateResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPretsRetardsResponse">
+    <wsdl:part element="ns1:getPretsRetardsResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="Exception">
+    <wsdl:part element="ns1:Exception" name="Exception"></wsdl:part>
+  </wsdl:message>
   <wsdl:message name="relanceMailRetards">
     <wsdl:part element="ns1:relanceMailRetards" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="creationPretDate">
+    <wsdl:part element="ns1:creationPretDate" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deletePretResponse">
+    <wsdl:part element="ns1:deletePretResponse" name="parameters"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="retourPretResponse">
     <wsdl:part element="ns1:retourPretResponse" name="parameters"></wsdl:part>
@@ -1009,40 +1076,12 @@
   <wsdl:message name="nouveauPret">
     <wsdl:part element="ns1:nouveauPret" name="parameters"></wsdl:part>
   </wsdl:message>
-  <wsdl:message name="NotFoundException">
-    <wsdl:part element="ns1:NotFoundException" name="NotFoundException"></wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="relanceMailRetardsResponse">
-    <wsdl:part element="ns1:relanceMailRetardsResponse" name="parameters"></wsdl:part>
-  </wsdl:message>
   <wsdl:portType name="pretService">
-    <wsdl:operation name="getPretsEnCoursByUser">
-      <wsdl:input message="ns1:getPretsEnCoursByUser" name="getPretsEnCoursByUser"></wsdl:input>
-      <wsdl:output message="ns1:getPretsEnCoursByUserResponse" name="getPretsEnCoursByUserResponse"></wsdl:output>
-      <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="getPretsProlonges">
-      <wsdl:input message="ns1:getPretsProlonges" name="getPretsProlonges"></wsdl:input>
-      <wsdl:output message="ns1:getPretsProlongesResponse" name="getPretsProlongesResponse"></wsdl:output>
-      <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="creationPretDate">
-      <wsdl:input message="ns1:creationPretDate" name="creationPretDate"></wsdl:input>
-      <wsdl:output message="ns1:creationPretDateResponse" name="creationPretDateResponse"></wsdl:output>
+    <wsdl:operation name="deletePret">
+      <wsdl:input message="ns1:deletePret" name="deletePret"></wsdl:input>
+      <wsdl:output message="ns1:deletePretResponse" name="deletePretResponse"></wsdl:output>
       <wsdl:fault message="ns1:NotFoundException" name="NotFoundException"></wsdl:fault>
       <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="prolongerPret">
-      <wsdl:input message="ns1:prolongerPret" name="prolongerPret"></wsdl:input>
-      <wsdl:output message="ns1:prolongerPretResponse" name="prolongerPretResponse"></wsdl:output>
-      <wsdl:fault message="ns1:NotFoundException" name="NotFoundException"></wsdl:fault>
-      <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="relanceMailRetards">
-      <wsdl:input message="ns1:relanceMailRetards" name="relanceMailRetards"></wsdl:input>
-      <wsdl:output message="ns1:relanceMailRetardsResponse" name="relanceMailRetardsResponse"></wsdl:output>
-      <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
-      <wsdl:fault message="ns1:Exception" name="Exception"></wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="retourPret">
       <wsdl:input message="ns1:retourPret" name="retourPret"></wsdl:input>
@@ -1053,12 +1092,6 @@
     <wsdl:operation name="getPretsEnCours">
       <wsdl:input message="ns1:getPretsEnCours" name="getPretsEnCours"></wsdl:input>
       <wsdl:output message="ns1:getPretsEnCoursResponse" name="getPretsEnCoursResponse"></wsdl:output>
-      <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="nouveauPret">
-      <wsdl:input message="ns1:nouveauPret" name="nouveauPret"></wsdl:input>
-      <wsdl:output message="ns1:nouveauPretResponse" name="nouveauPretResponse"></wsdl:output>
-      <wsdl:fault message="ns1:NotFoundException" name="NotFoundException"></wsdl:fault>
       <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="getPretById">
@@ -1072,8 +1105,48 @@
       <wsdl:output message="ns1:getPretsRetardsResponse" name="getPretsRetardsResponse"></wsdl:output>
       <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="getPretsEnCoursByUser">
+      <wsdl:input message="ns1:getPretsEnCoursByUser" name="getPretsEnCoursByUser"></wsdl:input>
+      <wsdl:output message="ns1:getPretsEnCoursByUserResponse" name="getPretsEnCoursByUserResponse"></wsdl:output>
+      <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPretsProlonges">
+      <wsdl:input message="ns1:getPretsProlonges" name="getPretsProlonges"></wsdl:input>
+      <wsdl:output message="ns1:getPretsProlongesResponse" name="getPretsProlongesResponse"></wsdl:output>
+      <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="relanceMailRetards">
+      <wsdl:input message="ns1:relanceMailRetards" name="relanceMailRetards"></wsdl:input>
+      <wsdl:output message="ns1:relanceMailRetardsResponse" name="relanceMailRetardsResponse"></wsdl:output>
+      <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
+      <wsdl:fault message="ns1:Exception" name="Exception"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="prolongerPret">
+      <wsdl:input message="ns1:prolongerPret" name="prolongerPret"></wsdl:input>
+      <wsdl:output message="ns1:prolongerPretResponse" name="prolongerPretResponse"></wsdl:output>
+      <wsdl:fault message="ns1:NotFoundException" name="NotFoundException"></wsdl:fault>
+      <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="creationPretDate">
+      <wsdl:input message="ns1:creationPretDate" name="creationPretDate"></wsdl:input>
+      <wsdl:output message="ns1:creationPretDateResponse" name="creationPretDateResponse"></wsdl:output>
+      <wsdl:fault message="ns1:NotFoundException" name="NotFoundException"></wsdl:fault>
+      <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="nouveauPret">
+      <wsdl:input message="ns1:nouveauPret" name="nouveauPret"></wsdl:input>
+      <wsdl:output message="ns1:nouveauPretResponse" name="nouveauPretResponse"></wsdl:output>
+      <wsdl:fault message="ns1:NotFoundException" name="NotFoundException"></wsdl:fault>
+      <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setDisponibilite">
+      <wsdl:input message="ns1:setDisponibilite" name="setDisponibilite"></wsdl:input>
+      <wsdl:output message="ns1:setDisponibiliteResponse" name="setDisponibiliteResponse"></wsdl:output>
+      <wsdl:fault message="ns1:NotFoundException" name="NotFoundException"></wsdl:fault>
+      <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
+    </wsdl:operation>
   </wsdl:portType>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://192.168.99.100:8080/SOAP/pretService</con:endpoint><con:endpoint>http://192.168.99.100:8081/SOAP/pretService</con:endpoint></con:endpoints><con:operation id="dd2d25ee-295a-40f4-bb4c-7ed2596e5e7b" isOneWay="false" action="" name="creationPretDate" bindingOperationName="creationPretDate" type="Request-Response" outputName="creationPretDateResponse" inputName="creationPretDate" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="068b7aa0-c0ba-413d-a4c6-0c9eea537930" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/pretService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.pretService.soap.biblio.mb.fr/">\r
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://192.168.99.100:8081/SOAP/pretService</con:endpoint></con:endpoints><con:operation id="dd2d25ee-295a-40f4-bb4c-7ed2596e5e7b" isOneWay="false" action="" name="creationPretDate" bindingOperationName="creationPretDate" type="Request-Response" outputName="creationPretDateResponse" inputName="creationPretDate" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="068b7aa0-c0ba-413d-a4c6-0c9eea537930" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/pretService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.pretService.soap.biblio.mb.fr/">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <con:creationPretDate>\r
@@ -1177,7 +1250,23 @@
          <pretId>?</pretId>\r
       </con:retourPret>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.pretService.soap.biblio.mb.fr/pretService/retourPret"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="4121deb1-4288-4f6f-96f4-517fa66bea80" wsaVersion="NONE" name="UserServiceImplServiceSoapBinding" type="wsdl" bindingName="{http://impl.userService.soap.biblio.mb.fr/}UserServiceImplServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://192.168.99.100:8081/SOAP/userService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://192.168.99.100:8081/SOAP/userService?wsdl"><con:part><con:url>http://192.168.99.100:8081/SOAP/userService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="UserServiceImplService" targetNamespace="http://impl.userService.soap.biblio.mb.fr/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://impl.userService.soap.biblio.mb.fr/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://contract.userService.soap.biblio.mb.fr/">
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.pretService.soap.biblio.mb.fr/pretService/retourPret"/></con:call></con:operation><con:operation id="330f439a-08fa-4743-960a-070985db46c9" isOneWay="false" action="" name="deletePret" bindingOperationName="deletePret" type="Request-Response" outputName="deletePretResponse" inputName="deletePret" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="fccb2a3c-250a-4c5b-9c76-c30deed3e6b1" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/pretService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.pretService.soap.biblio.mb.fr/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:deletePret>\r
+         <!--Optional:-->\r
+         <pretId>?</pretId>\r
+      </con:deletePret>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.pretService.soap.biblio.mb.fr/pretService/deletePret"/></con:call></con:operation><con:operation id="d607d835-df00-4c0b-879f-bf86970e07b4" isOneWay="false" action="" name="setDisponibilite" bindingOperationName="setDisponibilite" type="Request-Response" outputName="setDisponibiliteResponse" inputName="setDisponibilite" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="c6439b67-ac30-48d4-b110-9e2ce2b2f39f" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/pretService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.pretService.soap.biblio.mb.fr/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:setDisponibilite>\r
+         <!--Optional:-->\r
+         <livreId>?</livreId>\r
+      </con:setDisponibilite>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.pretService.soap.biblio.mb.fr/pretService/setDisponibilite"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="4121deb1-4288-4f6f-96f4-517fa66bea80" wsaVersion="NONE" name="UserServiceImplServiceSoapBinding" type="wsdl" bindingName="{http://impl.userService.soap.biblio.mb.fr/}UserServiceImplServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://192.168.99.100:8081/SOAP/userService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://192.168.99.100:8081/SOAP/userService?wsdl"><con:part><con:url>http://192.168.99.100:8081/SOAP/userService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="UserServiceImplService" targetNamespace="http://impl.userService.soap.biblio.mb.fr/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://impl.userService.soap.biblio.mb.fr/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://contract.userService.soap.biblio.mb.fr/">
   <wsdl:import location="http://192.168.99.100:8081/SOAP/userService?wsdl=userService.wsdl" namespace="http://contract.userService.soap.biblio.mb.fr/"></wsdl:import>
   <wsdl:binding name="UserServiceImplServiceSoapBinding" type="ns1:userService">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
@@ -1370,7 +1459,7 @@
       <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
     </wsdl:operation>
   </wsdl:portType>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://192.168.99.100:8080/SOAP/userService</con:endpoint><con:endpoint>http://192.168.99.100:8081/SOAP/userService</con:endpoint></con:endpoints><con:operation id="2eafe3ec-edd3-4195-af40-b380ae4bea05" isOneWay="false" action="" name="getUserIdByName" bindingOperationName="getUserIdByName" type="Request-Response" outputName="getUserIdByNameResponse" inputName="getUserIdByName" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="dea9fdee-976b-4789-a103-a720863d5879" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/userService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.userService.soap.biblio.mb.fr/">\r
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://192.168.99.100:8081/SOAP/userService</con:endpoint></con:endpoints><con:operation id="2eafe3ec-edd3-4195-af40-b380ae4bea05" isOneWay="false" action="" name="getUserIdByName" bindingOperationName="getUserIdByName" type="Request-Response" outputName="getUserIdByNameResponse" inputName="getUserIdByName" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="dea9fdee-976b-4789-a103-a720863d5879" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/userService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.userService.soap.biblio.mb.fr/">\r
       <soapenv:Header>
       <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
          <wsse:UsernameToken wsu:Id="UsernameToken-F9FCCA11A8DE5FEFCC152760416311912">
@@ -1438,7 +1527,7 @@
          </utilisateur>
       </con:insert>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.userService.soap.biblio.mb.fr/userService/insert"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="2af90b04-1d7a-4bc8-8201-67a81fb91a8c" name="TestSuite 1"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="f4eeef44-6ef6-4fbf-9dfb-76764e17f5c3" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="CreationPretTest" searchProperties="true"><con:settings/><con:testStep type="properties" name="Properties" id="bb75410a-cb34-4304-a619-8605ecf1c438"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>identifiant</con:name><con:value>Morgan</con:value></con:property><con:property><con:name>password</con:name><con:value>azerty</con:value></con:property><con:property><con:name>idUser</con:name><con:value>2</con:value></con:property><con:property><con:name>idLivre</con:name><con:value>11</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="request" id="80a63864-b1ee-47dd-9452-b353455866e8" name="getUserIdByName - Request 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>UserServiceImplServiceSoapBinding</con:interface><con:operation>getUserIdByName</con:operation><con:request name="getUserIdByName - Request 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="80e13976-68bd-4909-86c1-de9546e24607"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/userService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.userService.soap.biblio.mb.fr/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.userService.soap.biblio.mb.fr/userService/insert"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="2af90b04-1d7a-4bc8-8201-67a81fb91a8c" name="TestSuite 1"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="f4eeef44-6ef6-4fbf-9dfb-76764e17f5c3" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="CreationPretTest" searchProperties="true"><con:settings/><con:testStep type="properties" name="Properties" id="bb75410a-cb34-4304-a619-8605ecf1c438"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>identifiant</con:name><con:value>Morgan</con:value></con:property><con:property><con:name>password</con:name><con:value>azerty</con:value></con:property><con:property><con:name>idUser</con:name><con:value>2</con:value></con:property><con:property><con:name>idLivre</con:name><con:value>11</con:value></con:property><con:property><con:name>pretId</con:name><con:value>10</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="request" id="80a63864-b1ee-47dd-9452-b353455866e8" name="getUserIdByName - Request 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>UserServiceImplServiceSoapBinding</con:interface><con:operation>getUserIdByName</con:operation><con:request name="getUserIdByName - Request 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="80e13976-68bd-4909-86c1-de9546e24607"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/userService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.userService.soap.biblio.mb.fr/">
    <soapenv:Header>
       <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
          <wsse:UsernameToken wsu:Id="UsernameToken-F9FCCA11A8DE5FEFCC152759700875511">
@@ -1458,7 +1547,7 @@
 </soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="7d07b978-a3b4-4a5e-9fd3-a6b56393ee8c" name="SOAP Response"/><con:assertion type="SOAP Fault Assertion" id="90010f3a-52d8-4a7d-9a57-f7fa2f8b44db" name="Not SOAP Fault"/><con:credentials><con:username>Morgan</con:username><con:password>azerty</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.userService.soap.biblio.mb.fr/userService/getUserIdByName"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer" id="d0e9aa7b-665c-4091-967b-72743a417052"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>id user</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>getUserIdByName - Request 1</con:sourceStep><con:sourcePath>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
 declare namespace ns2='http://contract.userService.soap.biblio.mb.fr/';
 /soap:Envelope/soap:Body/ns2:getUserIdByNameResponse/return/text()
-</con:sourcePath><con:targetType>idUser</con:targetType><con:targetStep>Properties</con:targetStep><con:targetPath/><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="request" id="d8a8dac1-8af7-4ea1-9100-ea8bcc520412" name="rechercheLivres"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LivreServiceImplServiceSoapBinding</con:interface><con:operation>rechercheLivres</con:operation><con:request name="rechercheLivres" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="afd320d4-8f77-4b10-8c2c-8aa5dcb2d651"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8080/SOAP/livreService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.livreService.soap.biblio.mb.fr/">
+</con:sourcePath><con:targetType>idUser</con:targetType><con:targetStep>Properties</con:targetStep><con:targetPath/><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="request" id="d8a8dac1-8af7-4ea1-9100-ea8bcc520412" name="rechercheLivres"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LivreServiceImplServiceSoapBinding</con:interface><con:operation>rechercheLivres</con:operation><con:request name="rechercheLivres" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="afd320d4-8f77-4b10-8c2c-8aa5dcb2d651"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/livreService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.livreService.soap.biblio.mb.fr/">
    <soapenv:Header/>
    <soapenv:Body>
       <con:rechercheLivres>
@@ -1482,7 +1571,7 @@ declare namespace ns2='http://contract.userService.soap.biblio.mb.fr/';
    </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="0e431ad0-892f-4de0-bdc3-a37a96ec5f1f" name="SOAP Response"/><con:assertion type="SOAP Fault Assertion" id="851d6063-6085-40fb-ba46-f40c27717e88" name="Not SOAP Fault"/><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>false</con:preemptive><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.livreService.soap.biblio.mb.fr/livreService/rechercheLivres"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer 2" id="2de3926a-11c8-4fae-87e7-af1edbbfae68"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>id Livre</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>rechercheLivres</con:sourceStep><con:sourcePath>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
 declare namespace ns2='http://contract.livreService.soap.biblio.mb.fr/';
-/soap:Envelope/soap:Body/ns2:rechercheLivresResponse/return[1]/idLivre/text()</con:sourcePath><con:targetType>idLivre</con:targetType><con:targetStep>Properties</con:targetStep><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="request" id="182f9766-9676-4df6-a7d7-48ad7fb2673e" name="nouveauPret - Request 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PretServiceImplServiceSoapBinding</con:interface><con:operation>nouveauPret</con:operation><con:request name="nouveauPret - Request 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="22486996-5f34-4f71-9af7-45700ae221da"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8080/SOAP/pretService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.pretService.soap.biblio.mb.fr/">
+/soap:Envelope/soap:Body/ns2:rechercheLivresResponse/return[1]/idLivre/text()</con:sourcePath><con:targetType>idLivre</con:targetType><con:targetStep>Properties</con:targetStep><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="request" id="182f9766-9676-4df6-a7d7-48ad7fb2673e" name="nouveauPret - Request 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PretServiceImplServiceSoapBinding</con:interface><con:operation>nouveauPret</con:operation><con:request name="nouveauPret - Request 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="22486996-5f34-4f71-9af7-45700ae221da"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/pretService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.pretService.soap.biblio.mb.fr/">
    <soapenv:Header>
       <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
          <wsse:UsernameToken wsu:Id="UsernameToken-F9FCCA11A8DE5FEFCC15275816748889">
@@ -1498,4 +1587,47 @@ declare namespace ns2='http://contract.livreService.soap.biblio.mb.fr/';
          <emprunteurId>${Properties#idUser}</emprunteurId>
       </con:nouveauPret>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="f279bca2-5aaa-4a7a-bad3-53e2d989c411" name="SOAP Response"/><con:assertion type="SOAP Fault Assertion" id="9017dd23-1665-43b0-9155-af692d662310" name="Not SOAP Fault"/><con:credentials><con:username>Morgan</con:username><con:password>azerty</con:password><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.pretService.soap.biblio.mb.fr/pretService/nouveauPret"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="f279bca2-5aaa-4a7a-bad3-53e2d989c411" name="SOAP Response"/><con:assertion type="SOAP Fault Assertion" id="9017dd23-1665-43b0-9155-af692d662310" name="Not SOAP Fault"/><con:credentials><con:username>Morgan</con:username><con:password>azerty</con:password><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.pretService.soap.biblio.mb.fr/pretService/nouveauPret"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer 3" id="c8becb9e-f8e3-428a-8240-1bd29cb2a98e"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>pretId</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>nouveauPret - Request 1</con:sourceStep><con:sourcePath>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='http://contract.pretService.soap.biblio.mb.fr/';
+/soap:Envelope/soap:Body/ns2:nouveauPretResponse/return[1]/idPret/text()</con:sourcePath><con:targetType>pretId</con:targetType><con:targetStep>Properties</con:targetStep><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="request" name="FindPret" id="e66c12bb-ad9d-4aff-8199-6df2059f8958"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PretServiceImplServiceSoapBinding</con:interface><con:operation>getPretById</con:operation><con:request name="FindPret" id="d9e9b66b-b9a1-4d3d-a541-508298c5a8f7"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/pretService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.pretService.soap.biblio.mb.fr/">\r
+   <soapenv:Header>
+      <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+         <wsse:UsernameToken wsu:Id="UsernameToken-F9FCCA11A8DE5FEFCC15275816748889">
+            <wsse:Username>${Properties#identifiant}</wsse:Username>
+            <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">${Properties#password}</wsse:Password>
+         </wsse:UsernameToken>
+      </wsse:Security></soapenv:Header>
+   <soapenv:Body>\r
+   <con:getPretById>
+   <id>${Properties#pretId}</id>
+   </con:getPretById>
+
+      
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="d51deb58-4655-435d-a696-6b7de5a98a90"/><con:assertion type="SOAP Fault Assertion" id="06a053ed-9df6-4359-8500-f229b32ad24a"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="deletePret" id="1db64659-1798-43e9-aff1-97c6cb5a618d"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PretServiceImplServiceSoapBinding</con:interface><con:operation>deletePret</con:operation><con:request name="deletePret" id="42223360-d337-4704-9e99-9312bffe151c"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/pretService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.pretService.soap.biblio.mb.fr/">\r
+   <soapenv:Header>
+      <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+         <wsse:UsernameToken wsu:Id="UsernameToken-F9FCCA11A8DE5FEFCC15275816748889">
+            <wsse:Username>${Properties#identifiant}</wsse:Username>
+            <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">${Properties#password}</wsse:Password>
+         </wsse:UsernameToken>
+      </wsse:Security></soapenv:Header>
+   <soapenv:Body>\r
+      <con:deletePret>
+      <pretId>${Properties#pretId}</pretId>
+      </con:deletePret>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="754d6060-337d-43fb-83a6-3ac07247ed20"/><con:assertion type="Schema Compliance" id="96565099-1b6c-4d1c-ac4c-bd57df448609"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="e5278af3-0eb2-4594-9cb6-a7f24cf837a4"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="fixeDispo" id="b8ac431f-f772-4635-a50a-5983f8736941"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PretServiceImplServiceSoapBinding</con:interface><con:operation>setDisponibilite</con:operation><con:request name="fixeDispo" id="be1f1de8-d788-4e32-bd29-7a1fb2e2c09a"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/pretService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.pretService.soap.biblio.mb.fr/">\r
+<soapenv:Header>
+      <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+         <wsse:UsernameToken wsu:Id="UsernameToken-F9FCCA11A8DE5FEFCC15275816748889">
+            <wsse:Username>${Properties#identifiant}</wsse:Username>
+            <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">${Properties#password}</wsse:Password>
+         </wsse:UsernameToken>
+      </wsse:Security></soapenv:Header>
+   <soapenv:Body>\r
+      <con:setDisponibilite>\r
+      <livreId>${Properties#idLivre}</livreId>
+      </con:setDisponibilite>
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="c9c87083-bf66-418c-af3a-565aea1b3f3d"/><con:assertion type="Schema Compliance" id="e751a667-bffb-4593-832d-9ec86f3fb906"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="9d104451-5973-4d90-8661-22a3c0107534"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
