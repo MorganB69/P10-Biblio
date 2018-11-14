@@ -58,6 +58,7 @@
 			<interceptor-ref name="loginInterceptor"></interceptor-ref>	
 			<interceptor-ref name="defaultStack"></interceptor-ref>
  			<result name="success">/WEB-INF/jsp/espace.jsp</result>
+
         </action>
         
         <action name="prolongerPret" method="prolongerPret" class="fr.mb.biblio.webapp.actions.PretAction">
