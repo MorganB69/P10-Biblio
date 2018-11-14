@@ -77,8 +77,8 @@ public interface LivreService {
      * @param idLivre
      * @return
      *     returns java.lang.String
-     * @throws FunctionalException_Exception
      * @throws NotFoundException_Exception
+     * @throws FunctionalException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")

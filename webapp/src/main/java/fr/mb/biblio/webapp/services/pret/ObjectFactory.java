@@ -25,6 +25,8 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _GetPretsEnCoursByUserResponse_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "getPretsEnCoursByUserResponse");
+    private final static QName _DeletePret_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "deletePret");
+    private final static QName _SetDisponibiliteResponse_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "setDisponibiliteResponse");
     private final static QName _NouveauPretResponse_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "nouveauPretResponse");
     private final static QName _GetPretsProlongesResponse_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "getPretsProlongesResponse");
     private final static QName _Genre_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "genre");
@@ -40,6 +42,7 @@ public class ObjectFactory {
     private final static QName _ProlongerPretResponse_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "prolongerPretResponse");
     private final static QName _NotFoundException_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "NotFoundException");
     private final static QName _RelanceMailRetardsResponse_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "relanceMailRetardsResponse");
+    private final static QName _SetDisponibilite_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "setDisponibilite");
     private final static QName _Ouvrage_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "ouvrage");
     private final static QName _RetourPret_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "retourPret");
     private final static QName _FunctionalException_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "FunctionalException");
@@ -50,6 +53,7 @@ public class ObjectFactory {
     private final static QName _Auteur_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "auteur");
     private final static QName _CreationPretDate_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "creationPretDate");
     private final static QName _RelanceMailRetards_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "relanceMailRetards");
+    private final static QName _DeletePretResponse_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "deletePretResponse");
     private final static QName _NouveauPret_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "nouveauPret");
     private final static QName _RetourPretResponse_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "retourPretResponse");
 
@@ -90,6 +94,14 @@ public class ObjectFactory {
      */
     public RelanceMailRetardsResponse createRelanceMailRetardsResponse() {
         return new RelanceMailRetardsResponse();
+    }
+
+    /**
+     * Create an instance of {@link SetDisponibilite }
+     * 
+     */
+    public SetDisponibilite createSetDisponibilite() {
+        return new SetDisponibilite();
     }
 
     /**
@@ -138,6 +150,22 @@ public class ObjectFactory {
      */
     public GetPretsEnCoursByUserResponse createGetPretsEnCoursByUserResponse() {
         return new GetPretsEnCoursByUserResponse();
+    }
+
+    /**
+     * Create an instance of {@link DeletePret }
+     * 
+     */
+    public DeletePret createDeletePret() {
+        return new DeletePret();
+    }
+
+    /**
+     * Create an instance of {@link SetDisponibiliteResponse }
+     * 
+     */
+    public SetDisponibiliteResponse createSetDisponibiliteResponse() {
+        return new SetDisponibiliteResponse();
     }
 
     /**
@@ -210,6 +238,14 @@ public class ObjectFactory {
      */
     public GetPretsEnCoursResponse createGetPretsEnCoursResponse() {
         return new GetPretsEnCoursResponse();
+    }
+
+    /**
+     * Create an instance of {@link DeletePretResponse }
+     * 
+     */
+    public DeletePretResponse createDeletePretResponse() {
+        return new DeletePretResponse();
     }
 
     /**
@@ -307,6 +343,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://contract.pretService.soap.biblio.mb.fr/", name = "getPretsEnCoursByUserResponse")
     public JAXBElement<GetPretsEnCoursByUserResponse> createGetPretsEnCoursByUserResponse(GetPretsEnCoursByUserResponse value) {
         return new JAXBElement<GetPretsEnCoursByUserResponse>(_GetPretsEnCoursByUserResponse_QNAME, GetPretsEnCoursByUserResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeletePret }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://contract.pretService.soap.biblio.mb.fr/", name = "deletePret")
+    public JAXBElement<DeletePret> createDeletePret(DeletePret value) {
+        return new JAXBElement<DeletePret>(_DeletePret_QNAME, DeletePret.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SetDisponibiliteResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://contract.pretService.soap.biblio.mb.fr/", name = "setDisponibiliteResponse")
+    public JAXBElement<SetDisponibiliteResponse> createSetDisponibiliteResponse(SetDisponibiliteResponse value) {
+        return new JAXBElement<SetDisponibiliteResponse>(_SetDisponibiliteResponse_QNAME, SetDisponibiliteResponse.class, null, value);
     }
 
     /**
@@ -445,6 +499,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SetDisponibilite }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://contract.pretService.soap.biblio.mb.fr/", name = "setDisponibilite")
+    public JAXBElement<SetDisponibilite> createSetDisponibilite(SetDisponibilite value) {
+        return new JAXBElement<SetDisponibilite>(_SetDisponibilite_QNAME, SetDisponibilite.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Ouvrage }{@code >}}
      * 
      */
@@ -532,6 +595,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://contract.pretService.soap.biblio.mb.fr/", name = "relanceMailRetards")
     public JAXBElement<RelanceMailRetards> createRelanceMailRetards(RelanceMailRetards value) {
         return new JAXBElement<RelanceMailRetards>(_RelanceMailRetards_QNAME, RelanceMailRetards.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeletePretResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://contract.pretService.soap.biblio.mb.fr/", name = "deletePretResponse")
+    public JAXBElement<DeletePretResponse> createDeletePretResponse(DeletePretResponse value) {
+        return new JAXBElement<DeletePretResponse>(_DeletePretResponse_QNAME, DeletePretResponse.class, null, value);
     }
 
     /**

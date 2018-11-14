@@ -26,90 +26,17 @@ public interface PretService {
 
     /**
      * 
-     * @param utilisateurId
-     * @return
-     *     returns java.util.List<fr.mb.biblio.webapp.services.pret.Pret>
-     * @throws FunctionalException_Exception
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getPretsEnCoursByUser", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.GetPretsEnCoursByUser")
-    @ResponseWrapper(localName = "getPretsEnCoursByUserResponse", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.GetPretsEnCoursByUserResponse")
-    public List<Pret> getPretsEnCoursByUser(
-        @WebParam(name = "utilisateurId", targetNamespace = "")
-        Integer utilisateurId)
-        throws FunctionalException_Exception
-    ;
-
-    /**
-     * 
-     * @return
-     *     returns java.util.List<fr.mb.biblio.webapp.services.pret.Pret>
-     * @throws FunctionalException_Exception
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getPretsProlonges", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.GetPretsProlonges")
-    @ResponseWrapper(localName = "getPretsProlongesResponse", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.GetPretsProlongesResponse")
-    public List<Pret> getPretsProlonges()
-        throws FunctionalException_Exception
-    ;
-
-    /**
-     * 
-     * @param livreId
-     * @param dateDebut
-     * @param emprunteurId
-     * @return
-     *     returns fr.mb.biblio.webapp.services.pret.Pret
-     * @throws FunctionalException_Exception
-     * @throws NotFoundException_Exception
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "creationPretDate", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.CreationPretDate")
-    @ResponseWrapper(localName = "creationPretDateResponse", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.CreationPretDateResponse")
-    public Pret creationPretDate(
-        @WebParam(name = "livreId", targetNamespace = "")
-        Integer livreId,
-        @WebParam(name = "emprunteurId", targetNamespace = "")
-        Integer emprunteurId,
-        @WebParam(name = "dateDebut", targetNamespace = "")
-        String dateDebut)
-        throws FunctionalException_Exception, NotFoundException_Exception
-    ;
-
-    /**
-     * 
      * @param pretId
-     * @param emprunteurId
-     * @return
-     *     returns fr.mb.biblio.webapp.services.pret.Pret
      * @throws FunctionalException_Exception
      * @throws NotFoundException_Exception
      */
     @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "prolongerPret", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.ProlongerPret")
-    @ResponseWrapper(localName = "prolongerPretResponse", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.ProlongerPretResponse")
-    public Pret prolongerPret(
+    @RequestWrapper(localName = "deletePret", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.DeletePret")
+    @ResponseWrapper(localName = "deletePretResponse", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.DeletePretResponse")
+    public void deletePret(
         @WebParam(name = "pretId", targetNamespace = "")
-        Integer pretId,
-        @WebParam(name = "emprunteurId", targetNamespace = "")
-        Integer emprunteurId)
+        Integer pretId)
         throws FunctionalException_Exception, NotFoundException_Exception
-    ;
-
-    /**
-     * 
-     * @throws Exception_Exception
-     * @throws FunctionalException_Exception
-     */
-    @WebMethod
-    @RequestWrapper(localName = "relanceMailRetards", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.RelanceMailRetards")
-    @ResponseWrapper(localName = "relanceMailRetardsResponse", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.RelanceMailRetardsResponse")
-    public void relanceMailRetards()
-        throws Exception_Exception, FunctionalException_Exception
     ;
 
     /**
@@ -146,27 +73,6 @@ public interface PretService {
 
     /**
      * 
-     * @param livreId
-     * @param emprunteurId
-     * @return
-     *     returns fr.mb.biblio.webapp.services.pret.Pret
-     * @throws FunctionalException_Exception
-     * @throws NotFoundException_Exception
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "nouveauPret", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.NouveauPret")
-    @ResponseWrapper(localName = "nouveauPretResponse", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.NouveauPretResponse")
-    public Pret nouveauPret(
-        @WebParam(name = "livreId", targetNamespace = "")
-        Integer livreId,
-        @WebParam(name = "emprunteurId", targetNamespace = "")
-        Integer emprunteurId)
-        throws FunctionalException_Exception, NotFoundException_Exception
-    ;
-
-    /**
-     * 
      * @param id
      * @return
      *     returns fr.mb.biblio.webapp.services.pret.Pret
@@ -195,6 +101,130 @@ public interface PretService {
     @ResponseWrapper(localName = "getPretsRetardsResponse", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.GetPretsRetardsResponse")
     public List<Pret> getPretsRetards()
         throws FunctionalException_Exception
+    ;
+
+    /**
+     * 
+     * @param utilisateurId
+     * @return
+     *     returns java.util.List<fr.mb.biblio.webapp.services.pret.Pret>
+     * @throws FunctionalException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getPretsEnCoursByUser", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.GetPretsEnCoursByUser")
+    @ResponseWrapper(localName = "getPretsEnCoursByUserResponse", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.GetPretsEnCoursByUserResponse")
+    public List<Pret> getPretsEnCoursByUser(
+        @WebParam(name = "utilisateurId", targetNamespace = "")
+        Integer utilisateurId)
+        throws FunctionalException_Exception
+    ;
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<fr.mb.biblio.webapp.services.pret.Pret>
+     * @throws FunctionalException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getPretsProlonges", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.GetPretsProlonges")
+    @ResponseWrapper(localName = "getPretsProlongesResponse", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.GetPretsProlongesResponse")
+    public List<Pret> getPretsProlonges()
+        throws FunctionalException_Exception
+    ;
+
+    /**
+     * 
+     * @throws FunctionalException_Exception
+     * @throws Exception_Exception
+     */
+    @WebMethod
+    @RequestWrapper(localName = "relanceMailRetards", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.RelanceMailRetards")
+    @ResponseWrapper(localName = "relanceMailRetardsResponse", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.RelanceMailRetardsResponse")
+    public void relanceMailRetards()
+        throws Exception_Exception, FunctionalException_Exception
+    ;
+
+    /**
+     * 
+     * @param pretId
+     * @param emprunteurId
+     * @return
+     *     returns fr.mb.biblio.webapp.services.pret.Pret
+     * @throws FunctionalException_Exception
+     * @throws NotFoundException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "prolongerPret", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.ProlongerPret")
+    @ResponseWrapper(localName = "prolongerPretResponse", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.ProlongerPretResponse")
+    public Pret prolongerPret(
+        @WebParam(name = "pretId", targetNamespace = "")
+        Integer pretId,
+        @WebParam(name = "emprunteurId", targetNamespace = "")
+        Integer emprunteurId)
+        throws FunctionalException_Exception, NotFoundException_Exception
+    ;
+
+    /**
+     * 
+     * @param livreId
+     * @param dateDebut
+     * @param emprunteurId
+     * @return
+     *     returns fr.mb.biblio.webapp.services.pret.Pret
+     * @throws FunctionalException_Exception
+     * @throws NotFoundException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "creationPretDate", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.CreationPretDate")
+    @ResponseWrapper(localName = "creationPretDateResponse", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.CreationPretDateResponse")
+    public Pret creationPretDate(
+        @WebParam(name = "livreId", targetNamespace = "")
+        Integer livreId,
+        @WebParam(name = "emprunteurId", targetNamespace = "")
+        Integer emprunteurId,
+        @WebParam(name = "dateDebut", targetNamespace = "")
+        String dateDebut)
+        throws FunctionalException_Exception, NotFoundException_Exception
+    ;
+
+    /**
+     * 
+     * @param livreId
+     * @param emprunteurId
+     * @return
+     *     returns fr.mb.biblio.webapp.services.pret.Pret
+     * @throws FunctionalException_Exception
+     * @throws NotFoundException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "nouveauPret", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.NouveauPret")
+    @ResponseWrapper(localName = "nouveauPretResponse", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.NouveauPretResponse")
+    public Pret nouveauPret(
+        @WebParam(name = "livreId", targetNamespace = "")
+        Integer livreId,
+        @WebParam(name = "emprunteurId", targetNamespace = "")
+        Integer emprunteurId)
+        throws FunctionalException_Exception, NotFoundException_Exception
+    ;
+
+    /**
+     * 
+     * @param livreId
+     * @throws FunctionalException_Exception
+     * @throws NotFoundException_Exception
+     */
+    @WebMethod
+    @RequestWrapper(localName = "setDisponibilite", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.SetDisponibilite")
+    @ResponseWrapper(localName = "setDisponibiliteResponse", targetNamespace = "http://contract.pretService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webapp.services.pret.SetDisponibiliteResponse")
+    public void setDisponibilite(
+        @WebParam(name = "livreId", targetNamespace = "")
+        Integer livreId)
+        throws FunctionalException_Exception, NotFoundException_Exception
     ;
 
 }

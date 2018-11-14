@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *         &lt;element name="auteurs" type="{http://contract.pretService.soap.biblio.mb.fr/}auteur" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="disponible" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="editeurs" type="{http://contract.pretService.soap.biblio.mb.fr/}editeur" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="exemplaire" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="genres" type="{http://contract.pretService.soap.biblio.mb.fr/}genre" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="idLivre" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="image" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -45,6 +46,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
     "auteurs",
     "disponible",
     "editeurs",
+    "exemplaire",
     "genres",
     "idLivre",
     "image",
@@ -60,6 +62,7 @@ public class Livre {
     protected Boolean disponible;
     @XmlElement(nillable = true)
     protected List<Editeur> editeurs;
+    protected int exemplaire;
     @XmlElement(nillable = true)
     protected List<Genre> genres;
     protected int idLivre;
@@ -152,6 +155,22 @@ public class Livre {
             editeurs = new ArrayList<Editeur>();
         }
         return this.editeurs;
+    }
+
+    /**
+     * Obtient la valeur de la propriété exemplaire.
+     * 
+     */
+    public int getExemplaire() {
+        return exemplaire;
+    }
+
+    /**
+     * Définit la valeur de la propriété exemplaire.
+     * 
+     */
+    public void setExemplaire(int value) {
+        this.exemplaire = value;
     }
 
     /**

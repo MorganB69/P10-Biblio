@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "PretServiceImplService", targetNamespace = "http://impl.pretService.soap.biblio.mb.fr/", wsdlLocation = "http://localhost:8080/SOAP/pretService?wsdl")
+@WebServiceClient(name = "PretServiceImplService", targetNamespace = "http://impl.pretService.soap.biblio.mb.fr/", wsdlLocation = "http://192.168.99.100:8081/SOAP/pretService?wsdl")
 public class PretServiceImplService
     extends Service
 {
@@ -30,7 +30,7 @@ public class PretServiceImplService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://localhost:8080/SOAP/pretService?wsdl");
+            url = new URL("http://192.168.99.100:8081/SOAP/pretService?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
