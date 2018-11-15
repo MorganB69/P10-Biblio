@@ -1,16 +1,15 @@
-package fr.mb.biblio.configuration;
+package fr.mb.biblio.dao.testDao;
 
 import fr.mb.biblio.dao.contract.*;
 import fr.mb.biblio.dao.impl.*;
 import fr.mb.biblio.models.beans.*;
-import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @Configuration
-@ComponentScan("fr.mb.biblio.soap")// scan for services
+@ComponentScan("fr.mb.biblio.dao")// scan for services
 @EnableScheduling
 public class Config {
 

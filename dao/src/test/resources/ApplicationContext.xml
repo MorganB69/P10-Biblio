@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:jaxws="http://cxf.apache.org/jaxws"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+	
+	
+	<!-- SCAN DES DIFFERENTS BEANS ANNOTES -->
+  	<context:annotation-config/>
+    <context:component-scan base-package="fr.mb.biblio.models, fr.mb.biblio.dao"/>
+
+
+
+  	<!-- FICHIERS PROPERTIES A RECUPERER -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="locations">
+        <list>
+            <value>classpath:hibernate.properties</value>
+        </list>
+    </property>
+	</bean>
+
+
+	<!-- PARAMETRAGE HIBERNATE -->
+	<beans profile="dev">
+	<bean id="hibernateDataSource"
+		  class="org.springframework.jdbc.datasource.DriverManagerDataSource">	<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://localhost:5433/db_bibliotest_1.012" />
+		<property name="username" value="postgres" />
+		<property name="password" value="admin" />
+
+
+	</bean>
+	</beans>
+		<!-- DATASOURCE -->
+	<beans profile="test">
+   <bean id="hibernateDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${hibernate.connection.driver_class}" />
+		<property name="url" value="${hibernate.connection.url}" />
+		<property name="username" value="${hibernate.connection.username}" />
+		<property name="password" value="${hibernate.connection.password}" />
+   </bean>
+	</beans>
+	<beans>
+     	 <!-- SESSIONFACTORY -->
+    <bean id="sessionFactory"  class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="hibernateDataSource"></property>
+
+         	<!-- PACKAGE DES MODELS A SCANNER -->
+     	<property name="packagesToScan">
+         	<array>
+              <value>fr.mb.biblio.models</value>
+         	</array>
+    	 </property>
+
+
+
+        <property name="hibernateProperties">
+            <props>
+               <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    	<!-- TEMPLATE HIBERNATE -->
+    <bean id="template" class="org.springframework.orm.hibernate5.HibernateTemplate">
+    	<property name="sessionFactory" ref="sessionFactory"></property>
+    	<property name="checkWriteOperations" value="false"></property>
+    </bean>
+    
+    	<!-- TRANSACTION MANAGER -->
+    <tx:annotation-driven/>
+	    <bean id="transactionManager"
+	         class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+	     <property name="sessionFactory" ref="sessionFactory" />
+	   	</bean>
+
+
+	</beans>
+</beans>

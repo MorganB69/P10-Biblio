@@ -82,41 +82,41 @@
 
 
 	<!-- PARAMETRAGE HIBERNATE -->
-	
-		<!-- DATASOURCE -->	
+
+		<!-- DATASOURCE -->
    <bean id="hibernateDataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${hibernate.connection.driver_class}" />
 		<property name="url" value="${hibernate.connection.url}" />
 		<property name="username" value="${hibernate.connection.username}" />
 		<property name="password" value="${hibernate.connection.password}" />
-	</bean> 
-      
-     	 <!-- SESSIONFACTORY -->	
-    <bean id="sessionFactory"  class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">  
-        <property name="dataSource" ref="hibernateDataSource"></property> 
+	</bean>
 
-         	<!-- PACKAGE DES MODELS A SCANNER --> 
+     	 <!-- SESSIONFACTORY -->
+    <bean id="sessionFactory"  class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="hibernateDataSource"></property>
+
+         	<!-- PACKAGE DES MODELS A SCANNER -->
      	<property name="packagesToScan">
          	<array>
               <value>fr.mb.biblio.models</value>
          	</array>
     	 </property>
-          
-         
-          
-        <property name="hibernateProperties">  
-            <props>  
+
+
+
+        <property name="hibernateProperties">
+            <props>
                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
-            </props>  
-        </property>  
+            </props>
+        </property>
     </bean>
-     
+
     	<!-- TEMPLATE HIBERNATE -->
-    <bean id="template" class="org.springframework.orm.hibernate5.HibernateTemplate">  
+    <bean id="template" class="org.springframework.orm.hibernate5.HibernateTemplate">
     	<property name="sessionFactory" ref="sessionFactory"></property>
-    	<property name="checkWriteOperations" value="false"></property> 
+    	<property name="checkWriteOperations" value="false"></property>
     </bean>
     
     	<!-- TRANSACTION MANAGER -->
