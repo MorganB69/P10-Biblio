@@ -15,6 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.inject.Inject;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations= {"/ApplicationContext.xml"})
 @ActiveProfiles(profiles = "test")
@@ -27,6 +30,12 @@ class ITResaDaoImpl {
     @Transactional
     void getResaByUserIdTest() {
         List<Reservation> resa = resaDao.getResaByUserId(2);
+    }
+
+    @Test
+    @Transactional
+    void initTest(){
+        assertNotNull(resaDao,"OK");
     }
 }
 
