@@ -60,25 +60,57 @@
 			  	<groupId>fr.mb.biblio</groupId>
 			  	<artifactId>tech</artifactId>
  			</dependency>
+
 	  <dependency>
-		  <groupId>org.junit.jupiter</groupId>
-		  <artifactId>junit-jupiter-api</artifactId>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-test</artifactId>
 	  </dependency>
-      <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-test</artifactId>
-      </dependency>
+
 
   </dependencies>
-
+	<profiles>
+		<!-- Profile utilisé pour lancer les tests d'intégration de la couche Consumer -->
+		<profile>
+			<id>test-consumer</id>
+			<build>
+				<plugins>
+					<!-- Ajout du répertoire src/test-consumer/java en tant que source de test du module -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>build-helper-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>add-test-source</id>
+								<phase>generate-test-sources</phase>
+								<goals>
+									<goal>add-test-source</goal>
+								</goals>
+								<configuration>
+									<sources>
+										<source>src/test-dao/java</source>
+									</sources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+				<testResources>
+					<testResource>
+						<directory>src/test/resources</directory>
+					</testResource>
+					<testResource>
+						<directory>src/test-dao/resources</directory>
+					</testResource>
+				</testResources>
+			</build>
+		</profile>
+	</profiles>
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-failsafe-plugin</artifactId>
-			</plugin>
-
-
+		<plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-failsafe-plugin</artifactId>
+		</plugin>
 		</plugins>
 	</build>
 </project>

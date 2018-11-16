@@ -181,19 +181,27 @@
 			</dependency>
 
 			<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
-			<dependency>
+	<!--
+	<dependency>
 				<groupId>org.junit.jupiter</groupId>
 				<artifactId>junit-jupiter-api</artifactId>
 				<version>5.3.1</version>
 				<scope>test</scope>
 			</dependency>
-
+-->
 			<dependency>
 				<groupId>org.junit.jupiter</groupId>
 				<artifactId>junit-jupiter-engine</artifactId>
 				<version>5.3.1</version>
-				<scope>test</scope>
 			</dependency>
+
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-api</artifactId>
+				<version>5.3.1</version>
+			</dependency>
+
+
 
 	<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
 	<dependency>
@@ -286,18 +294,72 @@
 			</extension>
 		</extensions>
 
+		<pluginManagement>
 
 		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.1</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+				</configuration>
+			</plugin>
+
+			<!-- ===== "Filtrage/Parsing" des resources ===== -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.2</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+
+			<!-- ===== Gestion des dépendences ===== -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>3.0</version>
+			</plugin>
+
+			<!-- ===== Création des JAR ===== -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.0.2</version>
+			</plugin>
+
+			<!-- ===== Création des WAR (webapp) ===== -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.0.0</version>
+			</plugin>
+
+			<!-- ===== Assemblage d'éléments (ex: génération du ZIP de déploiement des batches) ===== -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>3.0.0</version>
+			</plugin>
+
+			<!-- ===== Déploiement des artifacts ===== -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.8.2</version>
+			</plugin>
 			<!-- ===== Test / Reporting ===== -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.0.0-M1</version>
-				<configuration>
 
-				</configuration>
+
 			</plugin>
-
 
 			<!-- TEST D INTEGRATION -->
 			<plugin>
@@ -306,6 +368,7 @@
 				<version>3.0.0-M1</version>
 				<executions>
 					<execution>
+						<id>integration-test</id>
 						<goals>
 							<goal>integration-test</goal>
 							<goal>verify</goal>
@@ -313,7 +376,17 @@
 					</execution>
 				</executions>
 			</plugin>
+
+
+
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.10</version>
+			</plugin>
 		</plugins>
+		</pluginManagement>
 	</build>
 
 	<reporting>
@@ -321,7 +394,7 @@
 		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-surefire-report-plugin</artifactId>
-			<version>2.20</version>
+			<version>3.0.0-M1</version>
 			<configuration>
 				<linkXRef>false</linkXRef>
 			</configuration>
@@ -350,21 +423,22 @@
 				</reportSet>
 			</reportSets>
 		</plugin>
-
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-surefire-report-plugin</artifactId>
-			<version>2.22.0</version>
-			<reportSets>
-				<reportSet>
-					<id>integration-tests</id>
-					<reports>
-						<report>failsafe-report-only</report>
-					</reports>
-				</reportSet>
-			</reportSets>
-		</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>3.0.0-M1</version>
+				<reportSets>
+					<reportSet>
+						<id>integration-tests</id>
+						<reports>
+							<report>failsafe-report-only</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
 		</plugins>
+
+
 	</reporting>
 
 </project>
