@@ -18,7 +18,7 @@ import java.util.List;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations= {"/ApplicationContext.xml"})
 @ActiveProfiles(profiles = "dev")
-class ResaDaoImplTest {
+class ITResaDaoImpl {
 
     @Autowired
     ResaDao resaDao;
