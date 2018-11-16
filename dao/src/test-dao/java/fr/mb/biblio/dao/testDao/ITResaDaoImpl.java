@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
     @ExtendWith(SpringExtension.class)
     @ContextConfiguration(locations= {"/ApplicationContext.xml"})
-    @ActiveProfiles(profiles = "dev")
+    @ActiveProfiles(profiles = "test")
     @Transactional
     public class ITResaDaoImpl {
 
