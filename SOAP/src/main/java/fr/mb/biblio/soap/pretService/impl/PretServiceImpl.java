@@ -138,7 +138,7 @@ public class PretServiceImpl implements PretService {
 					pret.setUtilisateur(emprunteur);
 					pret.setLivre(livre);
 					pret.getLivre().setDisponible(false);
-					setDisponibilite(pret.getIdPret());
+					setDisponibilite(livre.getIdLivre());
 					
 					pretDao.persist(pret);}}}
 		else throw new FunctionalException("Seul un administrateur peut enregistrer un nouveau prêt");
@@ -201,7 +201,7 @@ public class PretServiceImpl implements PretService {
 		LocalDate dateEffective = LocalDate.now();
 		pret.setDateEffective(dateEffective);
 		//Changement du statut du livre en disponible
-		setDisponibilite(pret.getIdPret());
+        setDisponibilite(pret.getLivre().getIdLivre());
 		pretDao.update(pret);
 		String reponse="Le prêt est terminé";
 		return reponse;

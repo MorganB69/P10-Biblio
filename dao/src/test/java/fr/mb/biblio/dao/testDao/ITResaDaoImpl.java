@@ -25,7 +25,7 @@ class ITResaDaoImpl {
 
     @Test
     @Transactional
-    void getResaByUserId() {
+    void getResaByUserIdTest() {
         List<Reservation> resa = resaDao.getResaByUserId(2);
     }
 }
