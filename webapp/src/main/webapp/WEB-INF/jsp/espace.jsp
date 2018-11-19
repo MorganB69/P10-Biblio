@@ -82,13 +82,19 @@
 						 			<s:if test="%{dateFin.isBefore(dateJour)}">
 						 				<i class="fa fa-times-circle m-1" id="iconStatutIndispo"></i> <span id="statutIndispo">Attention, vous êtes en retard sur ce prêt</span>
 						 			</s:if>
+
 								</ul>
 								</div>
 								
 									<s:if test="prolonge==false">
-									<s:a class="btn btn-success m-3" action="prolongerPret" >Prolonger le prêt
-									<s:param name="idPret" value="idPret"></s:param>
-									</s:a>
+										<s:if test="%{dateFin.isBefore(dateJour)}">
+											Vous ne pouvez plus prolonger car vous êtes en retard
+										</s:if>
+										<s:else>
+											<s:a class="btn btn-success m-3" action="prolongerPret" >Prolonger le prêt
+											<s:param name="idPret" value="idPret"></s:param>
+											</s:a>
+										</s:else>
 									</s:if>
 									<s:else>Ce prêt a déjà été prolongé une fois. Il n'est plus possible de le prolonger à nouveau</s:else>
 									

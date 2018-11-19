@@ -162,26 +162,32 @@ public class PretServiceImpl implements PretService {
 		Pret pret = pretDao.findById(pretId);
 		if(pret==null)throw new NotFoundException("le prêt renseigné n'est pas trouvable");
 		else {
-		// Vérification que le l'utilisateur correspond à celui du prêt et vérification
-		// que le prêt n'est pas prolongé
-		if (emprunteurId == pret.getUtilisateur().getIdUtilisateur() && pret.isProlonge() == false) {
+			//Verification que la date de pret n'est pas depassee
+			//Date du jour
+			LocalDate dateJour = LocalDate.now();
+			if (dateJour.isBefore(pret.getDateFin())) {
+				// Vérification que le l'utilisateur correspond à celui du prêt et vérification
+				// que le prêt n'est pas prolongé
+				if (emprunteurId == pret.getUtilisateur().getIdUtilisateur() && pret.isProlonge() == false) {
 
-			// Récupération de la date de fin
-			LocalDate dateFin = pret.getDateFin();
-
-
-				dateFin=dateFin.plusDays(DUREEPRET);
-				// Modification des paramètres
-				pret.setDateFin(dateFin);
-				pret.setProlonge(true);
-
-				pretDao.update(pret);
+					// Récupération de la date de fin
+					LocalDate dateFin = pret.getDateFin();
 
 
-		} else
-			throw new FunctionalException("Le prêt a déjà été prolongé ou l'utilisateur n'est pas bon");
+					dateFin = dateFin.plusDays(DUREEPRET);
+					// Modification des paramètres
+					pret.setDateFin(dateFin);
+					pret.setProlonge(true);
 
-		return pret;
+					pretDao.update(pret);
+
+
+				} else
+					throw new FunctionalException("Le prêt a déjà été prolongé ou l'utilisateur n'est pas bon");
+
+				return pret;
+			}else
+				throw new FunctionalException("La date de fin du prêt est dépassée, vous ne pouvez plus le prolonger");
 		}
 	}
 

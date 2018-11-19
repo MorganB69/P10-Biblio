@@ -66,7 +66,7 @@
 					</div>
 					
 					<div class="row justify-content-center m-2" style="text-align:center"> 
-						<s:a action="acces_perso" class="btn btn-primary my-2 my-sm-0 justify-content-center m-3">Espace personnel</s:a>
+						<s:a action="getPrets" class="btn btn-primary my-2 my-sm-0 justify-content-center m-3">Espace personnel</s:a>
 					</div>
               		
     		</s:if>
