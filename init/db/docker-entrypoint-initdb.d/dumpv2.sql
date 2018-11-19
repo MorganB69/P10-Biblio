@@ -5,7 +5,7 @@
 -- Dumped from database version 11.1
 -- Dumped by pg_dump version 11.1
 
--- Started on 2018-11-16 08:25:05
+-- Started on 2018-11-19 12:28:53
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -626,6 +626,10 @@ COPY public.pret (id_pret, date_debut, date_fin, date_effective, prolonge, id_ut
 --
 
 COPY public.reservation (id_resa, date_debut, date_fin, id_livre, id_utilisateur) FROM stdin;
+1	\N	\N	7	1
+2	\N	\N	13	3
+3	\N	\N	2	1
+4	\N	\N	2	3
 \.
 
 
@@ -702,7 +706,7 @@ SELECT pg_catalog.setval('public.pret_id_pret_seq', 10, true);
 -- Name: reservation_id_resa_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.reservation_id_resa_seq', 1, false);
+SELECT pg_catalog.setval('public.reservation_id_resa_seq', 4, true);
 
 
 --
@@ -928,7 +932,7 @@ ALTER TABLE ONLY public.reservation
     ADD CONSTRAINT utilisateur_resa FOREIGN KEY (id_utilisateur) REFERENCES public.utilisateur(id_utilisateur);
 
 
--- Completed on 2018-11-16 08:25:06
+-- Completed on 2018-11-19 12:28:54
 
 --
 -- PostgreSQL database dump complete
