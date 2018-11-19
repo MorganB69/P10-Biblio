@@ -121,7 +121,7 @@ public class PretServiceImpl implements PretService {
 			//Récupération du livre à emprunter
 			Livre livre=livreDao.findById(livreId);
 			
-			if(emprunteur==null||livre==null) throw new NotFoundException("Non trouvé en base de donénes");
+			if(emprunteur==null||livre==null) throw new NotFoundException("Non trouvé en base de données");
 			else {
 				//Vérification disponibilité du livre
 				if (livre.getDisponible()==false) throw new FunctionalException ("Le livre n'est pas disponible");
