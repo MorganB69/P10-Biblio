@@ -206,6 +206,7 @@ public class Livre implements java.io.Serializable {
         this.exemplaire = exemplaire;
     }
 
+    @XmlTransient
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "livre")
     public Set<Reservation> getListeResa() {
         return listeResa;
