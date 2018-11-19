@@ -74,9 +74,13 @@
   		</jaxws:inInterceptors>		
 	</jaxws:endpoint>
 
-	
+	<!-- LIVRE -->
+	<jaxws:endpoint id="reservationService" implementor="fr.mb.biblio.soap.resaService.impl.ResaServiceImpl" address="/resaService"/>
 
-	
+
+
+
+
 
 
 
