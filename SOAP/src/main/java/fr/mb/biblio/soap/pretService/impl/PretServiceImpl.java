@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
@@ -60,18 +61,12 @@ public class PretServiceImpl implements PretService {
 	
 	 @Inject
 	private Configuration freemarkerConfig;
-	
-	
 
-	/**
-	 * Pret à retourner
-	 */
-	Pret pretReturn;
 
 	/**
 	 * Liste de pret a retourner
 	 */
-	List<Pret> listeReturn;
+	private List<Pret> listeReturn;
 
 	/**
 	 * Durée de pret definit dans un fichier properties car configurable
@@ -87,7 +82,7 @@ public class PretServiceImpl implements PretService {
 	 * 
 	 * @return
 	 */
-	public Boolean isAdmin() throws NotFoundException {
+	private Boolean isAdmin() throws NotFoundException {
 
 		// get detail from request headers
 		String usernameFromHeader = (String) ctx.getMessageContext().get("USERNAME");
@@ -110,12 +105,12 @@ public class PretServiceImpl implements PretService {
 	@Transactional
 	public Pret nouveauPret(Integer livreId, Integer emprunteurId) throws FunctionalException, NotFoundException {
 		
-		if(livreId<=0||livreId==null||emprunteurId<=0||emprunteurId==null) throw new FunctionalException("Données incorrectes");
+		if(livreId <= 0 || emprunteurId <= 0) throw new FunctionalException("Données incorrectes");
 		
 		else {
 		Pret pret=new Pret();
 		
-		if (isAdmin()==true) {
+		if (isAdmin()) {
 			//Récupération de l'utilisateur
 			Utilisateur emprunteur=utilisateurDao.findById(emprunteurId);
 			//Récupération du livre à emprunter
@@ -124,7 +119,7 @@ public class PretServiceImpl implements PretService {
 			if(emprunteur==null||livre==null) throw new NotFoundException("Non trouvé en base de données");
 			else {
 				//Vérification disponibilité du livre
-				if (livre.getDisponible()==false) throw new FunctionalException ("Le livre n'est pas disponible");
+				if (!livre.getDisponible()) throw new FunctionalException ("Le livre n'est pas disponible");
 				
 				else {
 					//Date de début du pret
@@ -153,7 +148,7 @@ public class PretServiceImpl implements PretService {
 	@Transactional
 	public Pret prolongerPret(Integer pretId, Integer emprunteurId) throws FunctionalException, NotFoundException {
 		
-		if(pretId<=0||pretId==null||emprunteurId<=0||emprunteurId==null) throw new FunctionalException("Données incorrectes");
+		if(pretId <= 0 || emprunteurId <= 0) throw new FunctionalException("Données incorrectes");
 		
 		// Récupération du prêt
 		Pret pret = pretDao.findById(pretId);
@@ -165,7 +160,7 @@ public class PretServiceImpl implements PretService {
 			if (dateJour.isBefore(pret.getDateFin())) {
 				// Vérification que le l'utilisateur correspond à celui du prêt et vérification
 				// que le prêt n'est pas prolongé
-				if (emprunteurId == pret.getUtilisateur().getIdUtilisateur() && pret.isProlonge() == false) {
+				if (emprunteurId == pret.getUtilisateur().getIdUtilisateur() && !pret.isProlonge()) {
 
 					// Récupération de la date de fin
 					LocalDate dateFin = pret.getDateFin();
@@ -195,7 +190,7 @@ public class PretServiceImpl implements PretService {
 	@Transactional
 	public String retourPret(Integer pretId) throws FunctionalException, NotFoundException {
 		
-		if(pretId<=0||pretId==null) throw new FunctionalException("Données incorrectes");
+		if(pretId <= 0) throw new FunctionalException("Données incorrectes");
 		
 		// Récupération du prêt
 		Pret pret = pretDao.findById(pretId);
@@ -219,7 +214,7 @@ public class PretServiceImpl implements PretService {
 	@Override
 	@Transactional
 	public Pret getPretById(Integer pretId) throws FunctionalException, NotFoundException {
-		if(pretId<=0||pretId==null) throw new FunctionalException("Données incorrectes");
+		if(pretId <= 0) throw new FunctionalException("Données incorrectes");
 		
 		// Récupération du prêt
 		Pret pret = pretDao.findById(pretId);
@@ -270,12 +265,12 @@ public class PretServiceImpl implements PretService {
 			throws FunctionalException, NotFoundException {
 
 		
-		if(livreId<=0||livreId==null||emprunteurId<=0||emprunteurId==null) throw new FunctionalException("Données incorrectes");
+		if(livreId <= 0 || emprunteurId <= 0) throw new FunctionalException("Données incorrectes");
 		
 		else {
 		Pret pret=new Pret();
 		
-		if (isAdmin()==true) {
+		if (isAdmin()) {
 			//Récupération de l'utilisateur
 			Utilisateur emprunteur=utilisateurDao.findById(emprunteurId);
 			//Récupération du livre à emprunter
@@ -284,7 +279,7 @@ public class PretServiceImpl implements PretService {
 			if(emprunteur==null||livre==null) throw new NotFoundException("Non trouvé en base de donénes");
 			else {
 				//Vérification disponibilité du livre
-				if (livre.getDisponible()==false) throw new FunctionalException ("Le livre n'est pas disponible");
+				if (!livre.getDisponible()) throw new FunctionalException ("Le livre n'est pas disponible");
 				
 				else {
 
@@ -314,29 +309,51 @@ public class PretServiceImpl implements PretService {
 	 */
 	@Override
 	@Transactional
-	@Scheduled(cron = "${instructionSchedularTime}")
+	//@Scheduled(cron = "${instructionSchedularTime}")
 	public void relanceMailRetards() throws Exception {
 		
 		//Récupération des prets en retard
 		List<Pret>listeRetard=getPretsRetards();
-		
-		//Pour chaque pret en retard, envoi d'un mail de relance a l'empreunteur
-		for (Iterator iterator = listeRetard.iterator(); iterator.hasNext();) {
-			Pret pret = (Pret) iterator.next();
-			Mail mail = new Mail("mb.testocrbiblio@gmail.com",pret.getUtilisateur().getMail(),"Relance Prêt Biblio");
+		Set<Utilisateur>userRetard=new HashSet<>();
+		List<Pret>listeRetardByUser;
 
-	 
-	        Map < String, Object > model = new HashMap < String, Object > ();
-	        model.put("prenom", pret.getUtilisateur().getPrenom());
-	        model.put("nom", pret.getUtilisateur().getNom());
-	        model.put("titre", pret.getLivre().getTitre());
-	        model.put("date", pret.getDateFin());
-	        mail.setModel(model);
-	 
-
-	        sendSimpleMessage(mail);
+		for (Pret pret :listeRetard) {
+			userRetard.add(pret.getUtilisateur());
 		}
-		
+		for(Utilisateur user : userRetard){
+			listeRetardByUser=listeRetard.stream().filter(pret -> pret.getUtilisateur().getIdUtilisateur()==(user.getIdUtilisateur())).collect(Collectors.toList());
+			Mail mail = new Mail("mb.testocrbiblio@gmail.com", user.getMail(), "Relance Prêt Biblio");
+
+
+			Map<String, Object> model = new HashMap<String, Object>();
+			model.put("prenom", user.getPrenom());
+			model.put("nom", user.getNom());
+			model.put("listeRetards", listeRetardByUser);
+			mail.setModel(model);
+
+
+			sendSimpleMessage(mail,"email-template.ftl");
+			listeRetardByUser.clear();
+
+
+		}
+		/*
+		//Pour chaque pret en retard, envoi d'un mail de relance a l'empreunteur
+		for (Pret pret : listeRetard) {
+			Mail mail = new Mail("mb.testocrbiblio@gmail.com", pret.getUtilisateur().getMail(), "Relance Prêt Biblio");
+
+
+			Map<String, Object> model = new HashMap<String, Object>();
+			model.put("prenom", pret.getUtilisateur().getPrenom());
+			model.put("nom", pret.getUtilisateur().getNom());
+			model.put("titre", pret.getLivre().getTitre());
+			model.put("date", pret.getDateFin());
+			mail.setModel(model);
+
+
+			sendSimpleMessage(mail,"email-template.ftl");
+		}
+		*/
 		
         
     }
@@ -347,22 +364,22 @@ public class PretServiceImpl implements PretService {
 		if (livreId==0)throw new FunctionalException("les données sont incorrectes");
 		else {
 			Livre livre = livreDao.findById(livreId);
-			int exemplaire = livre.getExemplaire();
-			int nbPretsEnCours=0;
-			Set<Pret> listePret=livre.getPrets();
-
 			if(livre==null) throw new NotFoundException("Livre non trouvé en base de données");
+			else {
+				int exemplaire = livre.getExemplaire();
+				int nbPretsEnCours = 0;
+				Set<Pret> listePret = livre.getPrets();
 
 
-			for (Iterator<Pret> iterator = listePret.iterator(); iterator.hasNext(); ) {
-				Pret next =  iterator.next();
-				if (next.getDateEffective()==null) nbPretsEnCours++;
+				for (Pret next : listePret) {
+					if (next.getDateEffective() == null) nbPretsEnCours++;
 
+				}
+				if (exemplaire <= nbPretsEnCours) livre.setDisponible(false);
+				else livre.setDisponible(true);
+
+				livreDao.update(livre);
 			}
-			if (exemplaire<=nbPretsEnCours)livre.setDisponible(false);
-			else livre.setDisponible(true);
-
-			livreDao.update(livre);
 
 
 
@@ -377,7 +394,7 @@ public class PretServiceImpl implements PretService {
 	 */
 	@Override
 	public void deletePret(Integer pretId) throws NotFoundException, FunctionalException  {
-		if(pretId<=0||pretId==null) throw new FunctionalException("Données incorrectes");
+		if(pretId <= 0) throw new FunctionalException("Données incorrectes");
 
 		// Récupération du prêt
 		Pret pret = pretDao.findById(pretId);
@@ -394,15 +411,15 @@ public class PretServiceImpl implements PretService {
 	 * @throws IOException
 	 * @throws TemplateException
 	 */
-	public void sendSimpleMessage(Mail mail) throws MessagingException, IOException, TemplateException {
+	private void sendSimpleMessage(Mail mail,String template) throws MessagingException, IOException, TemplateException {
         MimeMessage message = emailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message,
                 MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
                 StandardCharsets.UTF_8.name());
 
         
-
-        Template t = freemarkerConfig.getTemplate("email-template.ftl");
+		freemarkerConfig.setDefaultEncoding("utf-8");
+        Template t = freemarkerConfig.getTemplate(template);
         String html = FreeMarkerTemplateUtils.processTemplateIntoString(t, mail.getModel());
 
         helper.setTo(mail.getTo());

@@ -12,14 +12,13 @@
 
 
                 <p>Bonjour ${prenom} ${nom},</p>
-                <p>Veuillez prendre connaisance du retard suivant concernant un de vos emprunts</p>
+                <p>Veuillez prendre connaisance du retard suivant concernant l'un ou plusieurs de vos emprunts</p>
+                <#list listeRetards as pret >
                 <p>
-                	Nom du livre : ${titre} <br />
-                	Date fin prévue : ${date} <br />
-                
-                
-                
+                	Nom du livre : ${pret.getLivre().getTitre()} <br />
+                	Date fin prévue : ${pret.getDateFin()}
                 </p>
+                </#list >
                 <p>Nous vous remercions par avance de faire le nécessaire</p>
                 <p>Cordialement <br />
                 Biblio OCR
