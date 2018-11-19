@@ -108,9 +108,9 @@ public class PretAction extends ActionSupport implements SessionAware {
 			try {
 				pretClient.prolongerPret(idPret, user.getIdUtilisateur());
 			} catch (FunctionalException_Exception e) {
-				e.getMessage();
+				addActionError("Le prêt ne plus être prolongé");
 			} catch (NotFoundException_Exception e) {
-				e.getMessage();
+				addActionError(e.getMessage());
 			}
 			}
 			catch(Exception e) {
