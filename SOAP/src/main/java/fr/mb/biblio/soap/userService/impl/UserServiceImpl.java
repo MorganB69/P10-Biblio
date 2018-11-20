@@ -88,9 +88,11 @@ import fr.mb.biblio.models.exception.FunctionalException;
 	}
 
 	@Override
+	@Transactional
 	public Integer getUserIdByName(String nom, String prenom) throws NotFoundException, FunctionalException {
 		{
 			Integer user = utilisateurDao.getUserIdByName(nom, prenom);
+
 			
 			if (user == null) {
 				throw new NotFoundException("Utilisateur non trouvé");
