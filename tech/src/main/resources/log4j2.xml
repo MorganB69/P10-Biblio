@@ -63,6 +63,8 @@
         <Logger name="fr.mb.biblio" level="info" additivity="false">
             <AppenderRef ref="STDOUT"/>
         </Logger>
+
+
         
         <!--
         <Logger name="fr.mb.biblio" level="debug" additivity="false">
