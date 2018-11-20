@@ -161,34 +161,7 @@
                                 </buildArgs>
                             </configuration>
                         </plugin>
-                        <plugin>
-                            <dependencies>
-                                <dependency>
-                                    <groupId>com.jgoodies</groupId>
-                                    <artifactId>forms</artifactId>
-                                    <version>1.0.7</version>
-                                </dependency>
-                            </dependencies>
-                        <groupId>com.smartbear.soapui</groupId>
-                        <artifactId>soapui-maven-plugin</artifactId>
-                        <version>5.4.0</version>
-                        <configuration>
-                            <projectFile>soapUI.xml</projectFile>
-							<junitReport>true</junitReport>
-							<exportAll>true</exportAll>
-							<outputFolder>target/surefire-reports</outputFolder>
-						</configuration>
-                        <executions>
-                            <execution>
-                                <id>soapui-test</id>
-								<phase>test</phase>
-								<goals>
-									<goal>test</goal>
-								</goals>
 
-                            </execution>
-                        </executions>
-                        </plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

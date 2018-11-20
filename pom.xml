@@ -283,6 +283,7 @@
     <module>batch</module>
     <module>dao</module>
     <module>tech</module>
+      <module>testSOAP</module>
   </modules>
 
 	<build>
