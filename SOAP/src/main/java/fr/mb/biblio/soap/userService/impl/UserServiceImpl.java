@@ -17,6 +17,7 @@ import fr.mb.biblio.models.exception.FunctionalException;
  * @author Morgan
  *
  */
+@Service
  public class UserServiceImpl implements UserService {
 
 	/**

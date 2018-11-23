@@ -3,6 +3,7 @@ package fr.mb.biblio.test.unit;
 import fr.mb.biblio.dao.contract.ResaDao;
 import fr.mb.biblio.models.beans.Livre;
 import fr.mb.biblio.models.beans.Reservation;
+import fr.mb.biblio.models.beans.Utilisateur;
 import fr.mb.biblio.models.exception.FunctionalException;
 import fr.mb.biblio.soap.resaService.impl.ResaServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -13,9 +14,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.*;
 
+
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -53,6 +55,27 @@ public class ResaServiceImplTest {
         }
         //Verification qu'une exception est lancée
         assertThrows(FunctionalException.class,() -> resaService.checkNbExemplaire(livreTest));
+
+    }
+
+    @Test
+    public void checkUserResaTest() throws FunctionalException {
+
+        List<Reservation>liste = new ArrayList<>();
+        Utilisateur user= new Utilisateur();
+        user.setIdUtilisateur(2);
+        Livre livre = new Livre();
+        livre.setIdLivre(1);
+        Reservation resa = new Reservation();
+        resa.setDemandeur(user);
+        resa.setLivre(livre);
+
+
+        liste.add(resa);
+
+
+        when(resaDao.getResaByUserId(2)).thenReturn(liste);
+        assertThrows(FunctionalException.class,() ->resaService.checkUserResa(user,livre));
 
     }
 

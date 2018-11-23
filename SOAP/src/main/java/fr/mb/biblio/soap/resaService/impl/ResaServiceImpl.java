@@ -11,6 +11,7 @@ import fr.mb.biblio.models.exception.NotFoundException;
 import fr.mb.biblio.soap.resaService.contract.ResaService;
 import net.sf.ehcache.search.expression.Not;
 import org.apache.commons.collections4.FunctorException;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
@@ -18,7 +19,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
+@Service
 public class ResaServiceImpl implements ResaService {
 
     @Inject

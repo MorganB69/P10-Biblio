@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +32,7 @@ import fr.mb.biblio.soap.test.ListeLivre;
  * @author Morgan
  *
  */
+@Service
 @Transactional
 public class LivreServiceImpl implements LivreService {
 	

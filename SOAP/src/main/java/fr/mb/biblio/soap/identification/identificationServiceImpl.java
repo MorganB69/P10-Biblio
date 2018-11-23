@@ -6,8 +6,9 @@ import javax.transaction.Transactional;
 import fr.mb.biblio.dao.contract.UtilisateurDao;
 import fr.mb.biblio.models.beans.Utilisateur;
 import fr.mb.biblio.models.exception.NotFoundException;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class identificationServiceImpl implements identificationService{
 	
 	/**
