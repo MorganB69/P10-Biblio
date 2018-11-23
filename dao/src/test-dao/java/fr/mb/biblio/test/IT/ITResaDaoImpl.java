@@ -1,4 +1,4 @@
-package fr.mb.biblio.dao.testDao;
+package fr.mb.biblio.test.IT;
 
 import fr.mb.biblio.dao.contract.LivreDao;
 import fr.mb.biblio.dao.contract.ResaDao;
