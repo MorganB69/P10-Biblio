@@ -129,7 +129,7 @@
 								</goals>
 								<configuration>
 									<sources>
-										<source>src/test-dao/java</source>
+										<source>src/test-soap/java</source>
 									</sources>
 								</configuration>
 							</execution>
