@@ -18,18 +18,29 @@ import java.util.List;
 public interface ResaService {
 
     @WebMethod
-    public Reservation newReservation(@WebParam(name = "livreId") Integer livreId,@WebParam(name = "demandeurId") Integer demandeurId) throws FunctionalException, NotFoundException;
+    Reservation newReservation(@WebParam(name = "livreId") Integer livreId, @WebParam(name = "demandeurId") Integer demandeurId) throws FunctionalException, NotFoundException;
 
     @WebMethod
-    public void deleteReservation(@WebParam(name = "resaId") Integer resaId)throws FunctionalException, NotFoundException;
+    void deleteReservation(@WebParam(name = "resaId") Integer resaId)throws FunctionalException, NotFoundException;
 
     @WebMethod
-    public List<Reservation> getResaByUserId(@WebParam(name = "demandeurId")Integer demandeurId)throws FunctionalException;
+    List<Reservation> getResaByUserId(@WebParam(name = "demandeurId") Integer demandeurId)throws FunctionalException;
 
     @WebMethod
-    public  List<Reservation> getResaByLivreId(@WebParam(name = "livreId")Integer livreId)throws FunctionalException;
+    List<Reservation> getResaByLivreId(@WebParam(name = "livreId") Integer livreId)throws FunctionalException;
 
-    public void checkNbExemplaire(Livre livre) throws FunctionalException;
+    void checkNbExemplaire(Livre livre) throws FunctionalException;
 
-    public void checkUserResa(Utilisateur demandeur, Livre livre) throws FunctionalException;
+    void checkUserResa(Utilisateur demandeur, Livre livre) throws FunctionalException;
+
+    @WebMethod
+    Reservation startResa (@WebParam(name="resaId")Integer resaId) throws FunctionalException, NotFoundException;
+
+    @WebMethod
+    void mailResa(@WebParam(name="resaId")Integer resaId) throws FunctionalException, NotFoundException;
+
+    @WebMethod
+    void verifEndResa() throws  FunctionalException;
+
+
 }

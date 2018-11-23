@@ -72,6 +72,12 @@
 	            <artifactId>javax.servlet-api</artifactId>
 	        </dependency>
 
+	  <dependency>
+		  <groupId>org.mockito</groupId>
+		  <artifactId>mockito-junit-jupiter</artifactId>
+		  <scope>test</scope>
+	  </dependency>
+
 
 
 
@@ -100,6 +106,44 @@
 			<url>http://smartbearsoftware.com/repository/maven2/</url>
 		</pluginRepository>
 	</pluginRepositories>
+
+	<profiles>
+		<!-- Profile utilisé pour lancer les tests d'intégration de la couche soap -->
+		<profile>
+			<id>test-soap</id>
+			<build>
+				<plugins>
+					<!-- Ajout du répertoire src/test-soap/java en tant que source de test du module -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>build-helper-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>add-test-source</id>
+								<phase>generate-test-sources</phase>
+								<goals>
+									<goal>add-test-source</goal>
+								</goals>
+								<configuration>
+									<sources>
+										<source>src/test-dao/java</source>
+									</sources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+				<testResources>
+					<testResource>
+						<directory>src/test/resources</directory>
+					</testResource>
+					<testResource>
+						<directory>src/test-soap/resources</directory>
+					</testResource>
+				</testResources>
+			</build>
+		</profile>
+	</profiles>
   <build>
     <finalName>SOAP</finalName>
         <plugins>

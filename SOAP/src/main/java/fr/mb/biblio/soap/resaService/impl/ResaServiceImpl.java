@@ -9,10 +9,12 @@ import fr.mb.biblio.models.beans.Utilisateur;
 import fr.mb.biblio.models.exception.FunctionalException;
 import fr.mb.biblio.models.exception.NotFoundException;
 import fr.mb.biblio.soap.resaService.contract.ResaService;
+import net.sf.ehcache.search.expression.Not;
 import org.apache.commons.collections4.FunctorException;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -28,15 +30,15 @@ public class ResaServiceImpl implements ResaService {
     @Inject
     UtilisateurDao utilisateurDao;
 
-    List<Reservation>resaListReturn = new ArrayList<Reservation>();
-    Reservation resaReturn = new Reservation();
+    private List<Reservation>resaListReturn = new ArrayList<Reservation>();
+    private Reservation resaReturn = new Reservation();
 
 
     @Override
     @Transactional
     public Reservation newReservation(Integer livreId, Integer demandeurId) throws FunctionalException, NotFoundException {
 
-        if(livreId<=0||livreId==null||demandeurId<=0||demandeurId==null) throw new FunctionalException("Données incorrectes");
+        if(livreId <= 0 || demandeurId <= 0) throw new FunctionalException("Données incorrectes");
         else {
             //Récupération du livre
             Livre livre = livreDao.findById(livreId);
@@ -62,7 +64,7 @@ public class ResaServiceImpl implements ResaService {
 
     @Override
     public void deleteReservation(Integer resaId) throws FunctionalException, NotFoundException {
-        if(resaId<=0||resaId==null) throw new FunctionalException("les données sont incorrectes");
+        if(resaId <= 0) throw new FunctionalException("les données sont incorrectes");
         else{
             resaReturn=resaDao.findById(resaId);
             if (resaReturn==null) throw new NotFoundException("La reservation n'a pas été trouvée");
@@ -76,7 +78,7 @@ public class ResaServiceImpl implements ResaService {
 
     @Override
     public List<Reservation> getResaByUserId(Integer demandeurId) throws FunctionalException {
-        if (demandeurId<=0||demandeurId==null) throw new FunctionalException("Les données sont incorrectes");
+        if (demandeurId <= 0) throw new FunctionalException("Les données sont incorrectes");
         else {
             resaListReturn=resaDao.getResaByUserId(demandeurId);
             return resaListReturn;
@@ -86,7 +88,7 @@ public class ResaServiceImpl implements ResaService {
 
     @Override
     public List<Reservation> getResaByLivreId(Integer livreId) throws FunctionalException {
-        if (livreId<=0||livreId==null) throw new FunctionalException("Les données sont incorrectes");
+        if (livreId <= 0) throw new FunctionalException("Les données sont incorrectes");
         else {
             resaListReturn=resaDao.getResaByLivreId(livreId);
             return resaListReturn;
@@ -104,11 +106,39 @@ public class ResaServiceImpl implements ResaService {
     @Override
     public void checkUserResa(Utilisateur demandeur, Livre livre) throws FunctionalException {
         List<Reservation>listResa = resaDao.getResaByUserId(demandeur.getIdUtilisateur());
-        for (Iterator<Reservation> iterator = listResa.iterator(); iterator.hasNext(); ) {
-            Reservation next =  iterator.next();
-            if(next.getLivre().getIdLivre()==livre.getIdLivre())throw new FunctionalException("L'utilisateur a déjà une réservation pour ce livre");
+        for (Reservation next : listResa) {
+            if (next.getLivre().getIdLivre() == livre.getIdLivre())
+                throw new FunctionalException("L'utilisateur a déjà une réservation pour ce livre");
 
         }
+
+    }
+
+    @Override
+    @Transactional
+    public Reservation startResa(Integer resaId) throws FunctionalException, NotFoundException {
+        if(resaId<=0) throw new FunctionalException("Les données sont incorrectes");
+        else{
+            resaReturn=resaDao.findById(resaId);
+            if (resaReturn==null) throw new NotFoundException("La réservation n'a pas été trouvée");
+            else{
+                LocalDate dateDebut = LocalDate.now();
+                LocalDate datefin = dateDebut.plusDays(2);
+                resaReturn.setDebutResa(dateDebut);
+                resaReturn.setFinResa(datefin);
+                return resaReturn;
+            }
+
+        }
+    }
+
+    @Override
+    public void mailResa(Integer resaId) throws FunctionalException, NotFoundException {
+
+    }
+
+    @Override
+    public void verifEndResa() throws FunctionalException {
 
     }
 }

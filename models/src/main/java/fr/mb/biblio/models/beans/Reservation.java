@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "reservation", catalog = "projet")
-public class Reservation implements Serializable {
+public class Reservation implements Serializable, Comparable<Reservation> {
 
     private int id;
     private LocalDate debutResa;
@@ -79,5 +79,10 @@ public class Reservation implements Serializable {
 
     public void setDemandeur(Utilisateur demandeur) {
         this.demandeur = demandeur;
+    }
+
+    @Override
+    public int compareTo(Reservation o) {
+        return this.getId()-o.getId();
     }
 }
