@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Value;
 
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
@@ -413,7 +412,7 @@ public class PretServiceImpl implements PretService {
 	 * @throws IOException
 	 * @throws TemplateException
 	 */
-	private void sendSimpleMessage(Mail mail,String template) throws MessagingException, IOException, TemplateException {
+	private void sendSimpleMessage(Mail mail, String template) throws MessagingException, IOException, TemplateException {
         MimeMessage message = emailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message,
                 MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,

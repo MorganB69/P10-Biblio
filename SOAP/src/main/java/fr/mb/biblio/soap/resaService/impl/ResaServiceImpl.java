@@ -3,22 +3,37 @@ package fr.mb.biblio.soap.resaService.impl;
 import fr.mb.biblio.dao.contract.LivreDao;
 import fr.mb.biblio.dao.contract.ResaDao;
 import fr.mb.biblio.dao.contract.UtilisateurDao;
+import fr.mb.biblio.models.Mail;
 import fr.mb.biblio.models.beans.Livre;
 import fr.mb.biblio.models.beans.Reservation;
 import fr.mb.biblio.models.beans.Utilisateur;
 import fr.mb.biblio.models.exception.FunctionalException;
 import fr.mb.biblio.models.exception.NotFoundException;
+import fr.mb.biblio.soap.pretService.contract.PretService;
+import fr.mb.biblio.soap.pretService.impl.PretServiceImpl;
 import fr.mb.biblio.soap.resaService.contract.ResaService;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 import net.sf.ehcache.search.expression.Not;
 import org.apache.commons.collections4.FunctorException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
 import javax.inject.Inject;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
+
+import static org.bouncycastle.asn1.iana.IANAObjectIdentifiers.mail;
+
 @Service
 public class ResaServiceImpl implements ResaService {
 
@@ -30,6 +45,13 @@ public class ResaServiceImpl implements ResaService {
 
     @Inject
     UtilisateurDao utilisateurDao;
+
+    @Inject
+    public JavaMailSender emailSender;
+
+    @Inject
+    private Configuration freemarkerConfig;
+
 
     private List<Reservation>resaListReturn = new ArrayList<Reservation>();
     private Reservation resaReturn = new Reservation();
@@ -147,12 +169,61 @@ public class ResaServiceImpl implements ResaService {
     }
 
     @Override
-    public void mailResa(Integer resaId) throws FunctionalException, NotFoundException {
+    @Transactional
+    public void mailResa(Integer resaId) throws Exception {
+      if(resaId<=0) throw new FunctionalException("Les données sont incorrectes");
+       Reservation resa = getResaById(resaId);
+       Utilisateur user = resa.getDemandeur();
+       Livre livre = resa.getLivre();
+       if (user==null||livre==null) throw new NotFoundException("Données non trouvées");
+       else {
+           Mail mail = new Mail("mb.testocrbiblio@gmail.com", user.getMail(), "Réservation");
+           Map<String, Object> model = new HashMap<String, Object>();
+           model.put("prenom", user.getPrenom());
+           model.put("nom", user.getNom());
+           model.put("resa", resa);
+           model.put("livre",livre);
+           mail.setModel(model);
+
+           sendMailResa(mail,"emailResa-template.ftl");
+
+       }
 
     }
+
+    /**
+     * Méthode de configuration d'envoi d'un mail
+     * @param mail
+     * @throws MessagingException
+     * @throws IOException
+     * @throws TemplateException
+     */
+    @SuppressWarnings("Duplicates")
+    private void sendMailResa(Mail mail, String template) throws MessagingException, IOException, TemplateException {
+        MimeMessage message = emailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message,
+                MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
+                StandardCharsets.UTF_8.name());
+
+
+        freemarkerConfig.setDefaultEncoding("utf-8");
+        Template t = freemarkerConfig.getTemplate(template);
+        String html = FreeMarkerTemplateUtils.processTemplateIntoString(t, mail.getModel());
+
+        helper.setTo(mail.getTo());
+        helper.setText(html, true);
+        helper.setSubject(mail.getSubject());
+        helper.setFrom(mail.getFrom());
+
+        emailSender.send(message);
+    }
+
+
 
     @Override
     public void verifEndResa() throws FunctionalException {
 
     }
+
+
 }
