@@ -5,6 +5,7 @@ import fr.mb.biblio.models.beans.Reservation;
 import fr.mb.biblio.models.beans.Utilisateur;
 import fr.mb.biblio.models.exception.FunctionalException;
 import fr.mb.biblio.models.exception.NotFoundException;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -16,6 +17,9 @@ import java.util.List;
  */
 @WebService(name = "resaService")
 public interface ResaService {
+
+    @WebMethod
+    Reservation getResaById(@WebParam(name="resaId") Integer reasaId) throws FunctionalException, NotFoundException;
 
     @WebMethod
     Reservation newReservation(@WebParam(name = "livreId") Integer livreId, @WebParam(name = "demandeurId") Integer demandeurId) throws FunctionalException, NotFoundException;

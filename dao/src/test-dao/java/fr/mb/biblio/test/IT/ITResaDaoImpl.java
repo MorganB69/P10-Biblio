@@ -10,6 +10,7 @@ import fr.mb.biblio.models.beans.Utilisateur;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -37,6 +38,7 @@ import static org.junit.jupiter.api.Assertions.*;
         UtilisateurDao utilisateurDao;
 
         @Test
+        @Rollback
         public  void persistResaIT(){
             Reservation resa = new Reservation();
             //Récupération du livre
@@ -54,6 +56,7 @@ import static org.junit.jupiter.api.Assertions.*;
         }
 
         @Test
+        @Rollback
         public void updateResaIT(){
             Reservation resa = resaDao.findById(1);
             LocalDate date=LocalDate.of(2018,11,19);

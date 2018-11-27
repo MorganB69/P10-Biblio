@@ -34,6 +34,19 @@ public class ResaServiceImpl implements ResaService {
     private List<Reservation>resaListReturn = new ArrayList<Reservation>();
     private Reservation resaReturn = new Reservation();
 
+   @Override
+    @Transactional
+    public Reservation getResaById(Integer resaId) throws FunctionalException, NotFoundException{
+        if (resaId<=0) throw new FunctionalException("les données sont incorrectes");
+        else{
+            resaReturn = resaDao.findById(resaId);
+            if (resaReturn==null) throw new NotFoundException("réservation non trouvée");
+            else{
+                return resaReturn;
+            }
+        }
+    }
+
 
     @Override
     @Transactional
