@@ -7,6 +7,7 @@ import fr.mb.biblio.soap.resaService.contract.ResaService;
 import fr.mb.biblio.soap.resaService.impl.ResaServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -15,7 +16,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ContextConfiguration(locations = "/ApplicationContext.xml")
 public class ITResaServiceImpl {
 
-    ResaService resaService = new ResaServiceImpl();
+    @Autowired
+    ResaService resaService;
 
     @Test
     public void newReservationTest() throws NotFoundException, FunctionalException {
