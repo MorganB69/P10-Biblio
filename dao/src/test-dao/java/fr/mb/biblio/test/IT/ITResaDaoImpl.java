@@ -86,6 +86,18 @@ import static org.junit.jupiter.api.Assertions.*;
 
         }
 
+        @Test
+        public void  getResaEnd(){
+            List<Reservation>resa=resaDao.getResaEnd();
+            LocalDate dateJour = LocalDate.now();
+            if (!resa.isEmpty()) {
+                for (Reservation next : resa) {
+                    assertTrue(next.getFinResa().compareTo(dateJour) == -1, "verification que la date de fin est dépassée");
+
+                }
+            }
+        }
+
 
     }
 

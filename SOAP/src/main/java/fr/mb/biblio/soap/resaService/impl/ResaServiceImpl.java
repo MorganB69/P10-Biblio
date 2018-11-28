@@ -34,29 +34,61 @@ import java.util.*;
 
 import static org.bouncycastle.asn1.iana.IANAObjectIdentifiers.mail;
 
+/**
+ * Implementation du service de reservation
+ */
 @Service
 public class ResaServiceImpl implements ResaService {
 
+    /**
+     * Dao reservation
+     */
     @Inject
     ResaDao resaDao;
 
+    /**
+     * Dao Livre
+     */
     @Inject
     LivreDao livreDao;
 
+    /**
+     * Dao Utilisateur
+     */
     @Inject
     UtilisateurDao utilisateurDao;
 
+    /**
+     * Config d'envoie de mail
+     */
     @Inject
     public JavaMailSender emailSender;
 
+    /**
+     * Config freemarker
+     */
     @Inject
     private Configuration freemarkerConfig;
 
 
+    /**
+     * Liste de reservation à retourner
+     */
     private List<Reservation>resaListReturn = new ArrayList<Reservation>();
+    /**
+     * Reservation à retourner
+     */
     private Reservation resaReturn = new Reservation();
 
-   @Override
+
+    /**
+     * Obtention des resas par ID
+     * @param resaId
+     * @return
+     * @throws FunctionalException
+     * @throws NotFoundException
+     */
+    @Override
     @Transactional
     public Reservation getResaById(Integer resaId) throws FunctionalException, NotFoundException{
         if (resaId<=0) throw new FunctionalException("les données sont incorrectes");
@@ -70,6 +102,14 @@ public class ResaServiceImpl implements ResaService {
     }
 
 
+    /**
+     * Nouvelle reservation
+     * @param livreId
+     * @param demandeurId
+     * @return
+     * @throws FunctionalException
+     * @throws NotFoundException
+     */
     @Override
     @Transactional
     public Reservation newReservation(Integer livreId, Integer demandeurId) throws FunctionalException, NotFoundException {
@@ -98,7 +138,14 @@ public class ResaServiceImpl implements ResaService {
         }
     }
 
+    /**
+     * Suppression d'une reservation
+     * @param resaId
+     * @throws FunctionalException
+     * @throws NotFoundException
+     */
     @Override
+    @Transactional
     public void deleteReservation(Integer resaId) throws FunctionalException, NotFoundException {
         if(resaId <= 0) throw new FunctionalException("les données sont incorrectes");
         else{
@@ -112,7 +159,14 @@ public class ResaServiceImpl implements ResaService {
 
     }
 
+    /**
+     * Obtention des resas par demandeur
+     * @param demandeurId
+     * @return
+     * @throws FunctionalException
+     */
     @Override
+    @Transactional
     public List<Reservation> getResaByUserId(Integer demandeurId) throws FunctionalException {
         if (demandeurId <= 0) throw new FunctionalException("Les données sont incorrectes");
         else {
@@ -122,7 +176,14 @@ public class ResaServiceImpl implements ResaService {
 
     }
 
+    /**
+     * Obtention des resas par livre
+     * @param livreId
+     * @return
+     * @throws FunctionalException
+     */
     @Override
+    @Transactional
     public List<Reservation> getResaByLivreId(Integer livreId) throws FunctionalException {
         if (livreId <= 0) throw new FunctionalException("Les données sont incorrectes");
         else {
@@ -131,6 +192,11 @@ public class ResaServiceImpl implements ResaService {
         }
     }
 
+    /**
+     * Verification que la liste des resas ne dépasse pas 2* le nombre d'exemplaires
+     * @param livre
+     * @throws FunctionalException
+     */
     @Override
     public void checkNbExemplaire(Livre livre) throws FunctionalException {
         int exemplaire = livre.getExemplaire();
@@ -139,6 +205,12 @@ public class ResaServiceImpl implements ResaService {
 
     }
 
+    /**
+     * Verification qu'un utiilisateur n'a pas le livre de la resa en cours d'emprunt
+     * @param demandeur
+     * @param livre
+     * @throws FunctionalException
+     */
     @Override
     public void checkUserResa(Utilisateur demandeur, Livre livre) throws FunctionalException {
         List<Reservation>listResa = resaDao.getResaByUserId(demandeur.getIdUtilisateur());
@@ -150,6 +222,13 @@ public class ResaServiceImpl implements ResaService {
 
     }
 
+    /**
+     * rajoute la date de début et de fin d'une resa (+2j)
+     * @param resaId
+     * @return
+     * @throws FunctionalException
+     * @throws NotFoundException
+     */
     @Override
     @Transactional
     public Reservation startResa(Integer resaId) throws FunctionalException, NotFoundException {
@@ -168,6 +247,11 @@ public class ResaServiceImpl implements ResaService {
         }
     }
 
+    /**
+     * Configuration du modele de mail d'une resa
+     * @param resaId
+     * @throws Exception
+     */
     @Override
     @Transactional
     public void mailResa(Integer resaId) throws Exception {
@@ -219,10 +303,19 @@ public class ResaServiceImpl implements ResaService {
     }
 
 
-
+    /**
+     * Suppression des reservations terminées
+     * @throws FunctionalException
+     */
     @Override
-    public void verifEndResa() throws FunctionalException {
-
+    @Transactional
+    public void verifEndResa() {
+        resaListReturn=resaDao.getResaEnd();
+        if(!resaListReturn.isEmpty()){
+            for (Reservation resa : resaListReturn) {
+                resaDao.delete(resa);
+            }
+        }
     }
 
 

@@ -53,4 +53,11 @@ public interface ResaDao {
      * @return
      */
     public List<Reservation> getResaByLivreId(Integer livreId);
+
+
+    /**
+     * Obtention des reservations terminées
+     * @return
+     */
+    List<Reservation>getResaEnd();
 }

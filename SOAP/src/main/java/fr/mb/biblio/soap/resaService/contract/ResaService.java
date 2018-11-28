@@ -105,7 +105,7 @@ public interface ResaService {
      * @throws FunctionalException
      */
     @WebMethod
-    void verifEndResa() throws  FunctionalException;
+    void verifEndResa();
 
 
 }
