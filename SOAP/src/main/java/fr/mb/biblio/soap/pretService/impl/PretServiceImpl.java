@@ -12,6 +12,8 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.xml.ws.WebServiceContext;
 
+import fr.mb.biblio.models.beans.Reservation;
+import fr.mb.biblio.soap.resaService.contract.ResaService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
@@ -62,6 +64,9 @@ public class PretServiceImpl implements PretService {
 	
 	 @Inject
 	private Configuration freemarkerConfig;
+
+	 @Inject
+	 ResaService resaService;
 
 
 	/**
@@ -127,7 +132,18 @@ public class PretServiceImpl implements PretService {
 					LocalDate dateDebut=LocalDate.now();
 					//Date de fin théorique
 					LocalDate dateFin=dateDebut.plusDays(DUREEPRET);
-					
+
+					Set<Reservation>listResa=livre.getListeResa();
+					if(!listResa.isEmpty()){
+						Reservation resa=listResa.iterator().next();
+						if(resa.getDemandeur().getIdUtilisateur()!=emprunteur.getIdUtilisateur()){
+							throw new FunctionalException("Le pret est reservé par un autre utilisateur");
+						}
+						else{
+							resaService.deleteReservation(resa.getId());
+						}
+					}
+
 					//Enregistrement des parametres
 					pret.setDateDebut(dateDebut);
 					pret.setDateFin(dateFin);
@@ -137,7 +153,8 @@ public class PretServiceImpl implements PretService {
 					setDisponibilite(livre.getIdLivre());
 					
 					pretDao.persist(pret);}}}
-		else throw new FunctionalException("Seul un administrateur peut enregistrer un nouveau prêt");
+
+						else throw new FunctionalException("Seul un administrateur peut enregistrer un nouveau prêt");
 			
 			return pret;}
 		}
