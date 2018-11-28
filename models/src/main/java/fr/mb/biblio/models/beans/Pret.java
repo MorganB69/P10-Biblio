@@ -60,7 +60,6 @@ public class Pret implements java.io.Serializable {
 	}
 
 	public void setLivre(Livre livre) {
-		livre.getPrets().add(this);
 		this.livre = livre;
 	}
 	

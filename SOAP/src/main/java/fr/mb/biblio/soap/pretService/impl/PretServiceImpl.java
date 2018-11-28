@@ -148,6 +148,7 @@ public class PretServiceImpl implements PretService {
 					pret.setDateDebut(dateDebut);
 					pret.setDateFin(dateFin);
 					pret.setUtilisateur(emprunteur);
+					livre.getPrets().add(pret);
 					pret.setLivre(livre);
 					
 					pretDao.persist(pret);
@@ -219,10 +220,20 @@ public class PretServiceImpl implements PretService {
 		//Insertion de la date de retour effective du pret
 		LocalDate dateEffective = LocalDate.now();
 		pret.setDateEffective(dateEffective);
+		pretDao.update(pret);
 		//Changement du statut du livre en disponible
         setDisponibilite(pret.getLivre().getIdLivre());
-		pretDao.update(pret);
+
 		Set<Reservation> listResa = pret.getLivre().getListeResa();
+		if(!listResa.isEmpty()){
+			Reservation resa=listResa.iterator().next();
+			resaService.startResa(resa.getId());
+			try {
+				resaService.mailResa(resa.getId());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 
 		String reponse="Le prêt est terminé";
 		return reponse;
