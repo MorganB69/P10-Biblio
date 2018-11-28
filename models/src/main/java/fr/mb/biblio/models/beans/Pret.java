@@ -3,17 +3,7 @@ package fr.mb.biblio.models.beans;
 
 import java.time.LocalDate;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlTransient;
@@ -63,13 +53,14 @@ public class Pret implements java.io.Serializable {
 	}
 	
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_livre", nullable = false)
 	public Livre getLivre() {
 		return this.livre;
 	}
 
 	public void setLivre(Livre livre) {
+		livre.getPrets().add(this);
 		this.livre = livre;
 	}
 	
