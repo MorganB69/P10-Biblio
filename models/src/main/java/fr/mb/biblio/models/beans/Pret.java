@@ -53,7 +53,7 @@ public class Pret implements java.io.Serializable {
 	}
 	
 	
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.PERSIST,CascadeType.REFRESH})
 	@JoinColumn(name = "id_livre", nullable = false)
 	public Livre getLivre() {
 		return this.livre;
