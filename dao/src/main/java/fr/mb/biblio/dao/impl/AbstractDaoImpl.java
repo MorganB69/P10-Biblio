@@ -7,16 +7,22 @@ import java.util.List;
 import javax.inject.Inject;
 
 
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import org.hibernate.query.Query;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.mb.biblio.dao.contract.GenericDAO;
+
+import static org.springframework.beans.factory.config.BeanDefinition.*;
 
 
 /**
@@ -26,19 +32,20 @@ import fr.mb.biblio.dao.contract.GenericDAO;
  */
 @Transactional
 public abstract class AbstractDaoImpl<T extends Serializable>  {
-	
+
+
 	protected Class<T> entityClass;
 	
 	/**
 	 * Template hibernate utilisé pour les requêtes basiques
 	 */
-	@Inject
+	@Autowired
 	HibernateTemplate template;
 	
 	/**
 	 * Permet de créer des sessions personnalisées pour des requêtes plus complexes
 	 */	
-	@Inject
+	@Autowired
 	SessionFactory sessionFactory;
 	
 	private static Logger logger = LogManager.getLogger(AbstractDaoImpl.class);

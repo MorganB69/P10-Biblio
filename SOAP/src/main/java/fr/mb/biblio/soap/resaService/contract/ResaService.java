@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Service permettant la gestion de reservation des livres
  */
-@WebService(name = "resaService")
+@WebService(name = "resaManager")
 public interface ResaService {
 
     /**
@@ -66,20 +66,7 @@ public interface ResaService {
     @WebMethod
     List<Reservation> getResaByLivreId(@WebParam(name = "livreId") Integer livreId)throws FunctionalException;
 
-    /**
-     * Verification qu'un livre n'a pas atteint un nombre maximal de reservation en cours
-     * @param livre
-     * @throws FunctionalException
-     */
-    void checkNbExemplaire(Livre livre) throws FunctionalException;
 
-    /**
-     * Verif qu'un user n'a pas de pret en cours sur livre de la resa
-     * @param demandeur
-     * @param livre
-     * @throws FunctionalException
-     */
-    void checkUserResa(Utilisateur demandeur, Livre livre) throws FunctionalException;
 
     /**
      * Commencement de la resa avec une date de resa du jour et une date de fin dans 2 jours

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>Biblio</artifactId>
+        <groupId>fr.mb.biblio</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>businessSOAP</artifactId>
+
+    <dependencies>
+
+        <!-- Modules -->
+        <dependency>
+            <groupId>fr.mb.biblio</groupId>
+            <artifactId>models</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>fr.mb.biblio</groupId>
+            <artifactId>dao</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>fr.mb.biblio</groupId>
+            <artifactId>tech</artifactId>
+        </dependency>
+
+        <!--Dependencies-->
+
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+        </dependency>
+
+
+
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+        </dependency>
+
+
+    </dependencies>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>SmartBearPluginRepository</id>
+            <url>http://smartbearsoftware.com/repository/maven2/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <profiles>
+        <!-- Profile utilisé pour lancer les tests d'intégration de la couche businesssoap -->
+        <profile>
+            <id>test-businesssoap</id>
+            <build>
+                <plugins>
+                    <!-- Ajout du répertoire src/test-businesssoap/java en tant que source de test du module -->
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>add-test-source</id>
+                                <phase>generate-test-sources</phase>
+                                <goals>
+                                    <goal>add-test-source</goal>
+                                </goals>
+                                <configuration>
+                                    <sources>
+                                        <source>src/test-businesssoap/java</source>
+                                    </sources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+                <testResources>
+                    <testResource>
+                        <directory>src/test/resources</directory>
+                    </testResource>
+                    <testResource>
+                        <directory>src/test-businesssoap/resources</directory>
+                    </testResource>
+                </testResources>
+            </build>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

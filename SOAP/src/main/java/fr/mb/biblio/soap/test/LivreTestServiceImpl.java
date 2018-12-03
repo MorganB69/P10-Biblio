@@ -4,6 +4,7 @@ package fr.mb.biblio.soap.test;
 
 import javax.inject.Inject;
 
+import fr.mb.biblio.soapbusiness.test.LivreTestManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,23 +17,21 @@ import fr.mb.biblio.models.beans.Utilisateur;
 
 @Service
 public class LivreTestServiceImpl implements LivreTestService {
-	
-	@Inject
-	private UtilisateurDao utilisateurDao;
+
+
+	@Autowired
+	LivreTestManager livreTestManager;
 	
 	
 	
 	public Livre getLivre(Integer id) {
-		Livre livre=new Livre();
-		livre.setIdLivre(id);
+		Livre livre;
+		livre= livreTestManager.getLivre(id);
 		return livre;
 	}
 	
 	public void insert(Utilisateur user) {
-
-		
-		this.utilisateurDao.persist(user);
-		
+	livreTestManager.insert(user);
 	}
 
 }

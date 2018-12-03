@@ -13,11 +13,11 @@ import fr.mb.biblio.models.exception.NotFoundException;
  * @author Morgan
  *
  */
-@WebService(name="userService")
+@WebService(name="userManager")
 public interface UserService {
 	
 	/**
-	 * Méthode d'identification de l'utilisateur
+	 * Méthode d'identificationManager de l'utilisateur
 	 * @param identifiant
 	 * @param mdp
 	 * @return

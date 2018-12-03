@@ -14,8 +14,10 @@ import javax.xml.ws.WebServiceContext;
 
 import fr.mb.biblio.models.beans.Reservation;
 import fr.mb.biblio.soap.resaService.contract.ResaService;
+import fr.mb.biblio.soapbusiness.pretManager.contract.PretManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import org.springframework.mail.javamail.JavaMailSender;
@@ -49,30 +51,18 @@ public class PretServiceImpl implements PretService {
 
 	private static final Logger logger = LogManager.getLogger(PretServiceImpl.class);
 
-	/**
-	 * Dao pour les prets
-	 */
-	@Inject
-	PretDao pretDao;
-	@Inject
-	UtilisateurDao utilisateurDao;
-	@Inject
-	LivreDao livreDao;
-	
-	@Inject
-    public JavaMailSender emailSender;
-	
-	 @Inject
-	private Configuration freemarkerConfig;
 
-	 @Inject
-	 ResaService resaService;
+
+	 @Autowired
+	PretManager pretManager;
 
 
 	/**
 	 * Liste de pret a retourner
 	 */
 	private List<Pret> listeReturn;
+
+	private Pret pretReturn;
 
 	/**
 	 * Durée de pret definit dans un fichier properties car configurable
@@ -92,329 +82,125 @@ public class PretServiceImpl implements PretService {
 
 		// get detail from request headers
 		String usernameFromHeader = (String) ctx.getMessageContext().get("USERNAME");
-		logger.info(usernameFromHeader);
-		Utilisateur user = utilisateurDao.getUser(usernameFromHeader);
-		if (user == null)
-			throw new NotFoundException("Utilisateur non trouvé");
-
-		return user.getAdmin();
+		Boolean isAdmin = pretManager.isAdmin(usernameFromHeader);
+		return isAdmin;
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * fr.mb.biblio.soap.pretService.contract.PretService#nouveauPret(java.lang.
+	 * fr.mb.biblio.soap.pretManager.contract.PretManager#nouveauPret(java.lang.
 	 * Integer, java.lang.Integer)
 	 */
 	@Override
 	@Transactional
 	public Pret nouveauPret(Integer livreId, Integer emprunteurId) throws FunctionalException, NotFoundException {
-		
-		if(livreId <= 0 || emprunteurId <= 0) throw new FunctionalException("Données incorrectes");
-		
-		else {
-		Pret pret=new Pret();
-		
-		if (isAdmin()) {
-			//Récupération de l'utilisateur
-			Utilisateur emprunteur=utilisateurDao.findById(emprunteurId);
-			//Récupération du livre à emprunter
-			Livre livre=livreDao.findById(livreId);
-			
-			if(emprunteur==null||livre==null) throw new NotFoundException("Non trouvé en base de données");
-			else {
-				//Vérification disponibilité du livre
-				if (!livre.getDisponible()) throw new FunctionalException ("Le livre n'est pas disponible");
-				
-				else {
-					//Date de début du pret
-					LocalDate dateDebut=LocalDate.now();
-					//Date de fin théorique
-					LocalDate dateFin=dateDebut.plusDays(DUREEPRET);
 
-					Set<Reservation>listResa=livre.getListeResa();
-					if(!listResa.isEmpty()){
-						Reservation resa=listResa.iterator().next();
-						if(resa.getDemandeur().getIdUtilisateur()!=emprunteur.getIdUtilisateur()){
-							throw new FunctionalException("Le pret est reservé par un autre utilisateur");
-						}
-						else{
-							resaService.deleteReservation(resa.getId());
-						}
-					}
-
-					//Enregistrement des parametres
-					pret.setDateDebut(dateDebut);
-					pret.setDateFin(dateFin);
-					pret.setUtilisateur(emprunteur);
-					livre.getPrets().add(pret);
-					pret.setLivre(livre);
-					
-					pretDao.persist(pret);
-					setDisponibilite(livre.getIdLivre());
-				}}}
-
-						else throw new FunctionalException("Seul un administrateur peut enregistrer un nouveau prêt");
-			
-			return pret;}
+		if(isAdmin()){
+			pretReturn= pretManager.nouveauPret(livreId,emprunteurId);
+		}
+		else throw new FunctionalException("Seul un administrateur peut enregistrer un nouveau prêt");
+		return pretReturn;
 		}
 
 	/* (non-Javadoc)
-	 * @see fr.mb.biblio.soap.pretService.contract.PretService#prolongerPret(java.lang.Integer, java.lang.Integer)
+	 * @see fr.mb.biblio.soap.pretManager.contract.PretManager#prolongerPret(java.lang.Integer, java.lang.Integer)
 	 */
 	@Override
 	@Transactional
 	public Pret prolongerPret(Integer pretId, Integer emprunteurId) throws FunctionalException, NotFoundException {
-		
-		if(pretId <= 0 || emprunteurId <= 0) throw new FunctionalException("Données incorrectes");
-		
-		// Récupération du prêt
-		Pret pret = pretDao.findById(pretId);
-		if(pret==null)throw new NotFoundException("le prêt renseigné n'est pas trouvable");
-		else {
-			//Verification que la date de pret n'est pas depassee
-			//Date du jour
-			LocalDate dateJour = LocalDate.now();
-			if (dateJour.isBefore(pret.getDateFin())) {
-				// Vérification que le l'utilisateur correspond à celui du prêt et vérification
-				// que le prêt n'est pas prolongé
-				if (emprunteurId == pret.getUtilisateur().getIdUtilisateur() && !pret.isProlonge()) {
 
-					// Récupération de la date de fin
-					LocalDate dateFin = pret.getDateFin();
-
-
-					dateFin = dateFin.plusDays(DUREEPRET);
-					// Modification des paramètres
-					pret.setDateFin(dateFin);
-					pret.setProlonge(true);
-
-					pretDao.update(pret);
-
-
-				} else
-					throw new FunctionalException("Le prêt a déjà été prolongé ou l'utilisateur n'est pas bon");
-
-				return pret;
-			}else
-				throw new FunctionalException("La date de fin du prêt est dépassée, vous ne pouvez plus le prolonger");
-		}
+		pretReturn=pretManager.prolongerPret(pretId,emprunteurId);
+		return pretReturn;
 	}
 
 	/* (non-Javadoc)
-	 * @see fr.mb.biblio.soap.pretService.contract.PretService#retourPret(java.lang.Integer)
+	 * @see fr.mb.biblio.soap.pretManager.contract.PretManager#retourPret(java.lang.Integer)
 	 */
 	@Override
 	@Transactional
 	public String retourPret(Integer pretId) throws FunctionalException, NotFoundException {
-		
-		if(pretId <= 0) throw new FunctionalException("Données incorrectes");
-		
-		// Récupération du prêt
-		Pret pret = pretDao.findById(pretId);
-		
-		if(pret==null)throw new NotFoundException("Le prêt n'existe pas");
-		if(pret.getDateEffective()!=null)throw new FunctionalException("Le prêt est déjà terminé");
-		
-		//Insertion de la date de retour effective du pret
-		LocalDate dateEffective = LocalDate.now();
-		pret.setDateEffective(dateEffective);
-		pretDao.update(pret);
-		//Changement du statut du livre en disponible
-        setDisponibilite(pret.getLivre().getIdLivre());
-
-		Set<Reservation> listResa = pret.getLivre().getListeResa();
-		if(!listResa.isEmpty()){
-			Reservation resa=listResa.iterator().next();
-			resaService.startResa(resa.getId());
-			try {
-				resaService.mailResa(resa.getId());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		String reponse="Le prêt est terminé";
+		String reponse=pretManager.retourPret(pretId);
 		return reponse;
 	}
 
 	/* (non-Javadoc)
-	 * @see fr.mb.biblio.soap.pretService.contract.PretService#getPretById(java.lang.Integer)
+	 * @see fr.mb.biblio.soap.pretManager.contract.PretManager#getPretById(java.lang.Integer)
 	 */
 	@Override
 	@Transactional
 	public Pret getPretById(Integer pretId) throws FunctionalException, NotFoundException {
-		if(pretId <= 0) throw new FunctionalException("Données incorrectes");
-		
-		// Récupération du prêt
-		Pret pret = pretDao.findById(pretId);
-		if(pret==null)throw new NotFoundException("Le prêt n'existe pas");
-		return pret;
+		pretReturn=pretManager.getPretById(pretId);
+		return pretReturn;
 	}
 
 	/* (non-Javadoc)
-	 * @see fr.mb.biblio.soap.pretService.contract.PretService#getPretsEnCours()
+	 * @see fr.mb.biblio.soap.pretManager.contract.PretManager#getPretsEnCours()
 	 */
 	@Override
 	@Transactional
 	public List<Pret> getPretsEnCours() throws FunctionalException {
-		listeReturn=pretDao.findPretEnCours(0, 12);
-		if (listeReturn==null) throw new FunctionalException("Pas de prêt en cours trouvé");
+		listeReturn=pretManager.getPretsEnCours();
 		return listeReturn;
 	}
 
 	/* (non-Javadoc)
-	 * @see fr.mb.biblio.soap.pretService.contract.PretService#getPretsProlonges()
+	 * @see fr.mb.biblio.soap.pretManager.contract.PretManager#getPretsProlonges()
 	 */
 	@Override
 	@Transactional
 	public List<Pret> getPretsProlonges() throws FunctionalException {
-		listeReturn=pretDao.findPretEnCoursProlonge(0, 12);
-		if (listeReturn==null) throw new FunctionalException("Pas de prêt en cours prolongé trouvé");
+		listeReturn=pretManager.getPretsProlonges();
 		return listeReturn;
 	}
 
 	/* (non-Javadoc)
-	 * @see fr.mb.biblio.soap.pretService.contract.PretService#getPretsRetards()
+	 * @see fr.mb.biblio.soap.pretManager.contract.PretManager#getPretsRetards()
 	 */
 	@Override
 	@Transactional
 	public List<Pret> getPretsRetards() throws FunctionalException {
-		LocalDate dateJour=LocalDate.now();
-		listeReturn=pretDao.findPretRetard(0, 100, dateJour);
-		if (listeReturn==null) throw new FunctionalException("Pas de prêt en cours en retard trouvé");
+		listeReturn=pretManager.getPretsRetards();
 		return listeReturn;
 	}
 
 	/* (non-Javadoc)
-	 * @see fr.mb.biblio.soap.pretService.contract.PretService#creationPretDate(java.lang.Integer, java.lang.Integer, java.time.LocalDate)
+	 * @see fr.mb.biblio.soap.pretManager.contract.PretManager#creationPretDate(java.lang.Integer, java.lang.Integer, java.time.LocalDate)
 	 */
 	@Override
 	@Transactional
 	public Pret creationPretDate(Integer livreId, Integer emprunteurId, LocalDate dateDebut)
 			throws FunctionalException, NotFoundException {
-
-		
-		if(livreId <= 0 || emprunteurId <= 0) throw new FunctionalException("Données incorrectes");
-		
-		else {
-		Pret pret=new Pret();
-		
-		if (isAdmin()) {
-			//Récupération de l'utilisateur
-			Utilisateur emprunteur=utilisateurDao.findById(emprunteurId);
-			//Récupération du livre à emprunter
-			Livre livre=livreDao.findById(livreId);
-			
-			if(emprunteur==null||livre==null) throw new NotFoundException("Non trouvé en base de donénes");
-			else {
-				//Vérification disponibilité du livre
-				if (!livre.getDisponible()) throw new FunctionalException ("Le livre n'est pas disponible");
-				
-				else {
-
-					
-					//Date de fin théorique
-					
-					LocalDate dateFin=dateDebut.plusDays(DUREEPRET);
-					
-					//Enregistrement des parametres
-					pret.setDateDebut(dateDebut);
-					pret.setDateFin(dateFin);
-					pret.setUtilisateur(emprunteur);
-					pret.setLivre(livre);
-					setDisponibilite(pret.getIdPret());
-					pret.setProlonge(false);
-					
-					pretDao.persist(pret);}}}
+		if (isAdmin()){
+			pretReturn=pretManager.creationPretDate(livreId,emprunteurId,dateDebut);
+		}
 		else throw new FunctionalException("Seul un administrateur peut enregistrer un nouveau prêt");
-			
-			return pret;}
+
+		return pretReturn;
 	}
+
 	
 	
 
 	/* (non-Javadoc)
-	 * @see fr.mb.biblio.soap.pretService.contract.PretService#relanceMailRetards()
+	 * @see fr.mb.biblio.soap.pretManager.contract.PretManager#relanceMailRetards()
 	 */
 	@Override
 	@Transactional
 	//@Scheduled(cron = "${instructionSchedularTime}")
 	public void relanceMailRetards() throws Exception {
-		
-		//Récupération des prets en retard
-		List<Pret>listeRetard=getPretsRetards();
-		Set<Utilisateur>userRetard=new HashSet<>();
-		List<Pret>listeRetardByUser;
-
-		for (Pret pret :listeRetard) {
-			userRetard.add(pret.getUtilisateur());
+		pretManager.relanceMailRetards();
 		}
-		for(Utilisateur user : userRetard){
-			listeRetardByUser=listeRetard.stream().filter(pret -> pret.getUtilisateur().getIdUtilisateur()==(user.getIdUtilisateur())).collect(Collectors.toList());
-			Mail mail = new Mail("mb.testocrbiblio@gmail.com", user.getMail(), "Relance Prêt Biblio");
 
-
-			Map<String, Object> model = new HashMap<String, Object>();
-			model.put("prenom", user.getPrenom());
-			model.put("nom", user.getNom());
-			model.put("listeRetards", listeRetardByUser);
-			mail.setModel(model);
-
-
-			sendSimpleMessage(mail,"email-template.ftl");
-			listeRetardByUser.clear();
-
-
-		}
-		/*
-		//Pour chaque pret en retard, envoi d'un mail de relance a l'empreunteur
-		for (Pret pret : listeRetard) {
-			Mail mail = new Mail("mb.testocrbiblio@gmail.com", pret.getUtilisateur().getMail(), "Relance Prêt Biblio");
-
-
-			Map<String, Object> model = new HashMap<String, Object>();
-			model.put("prenom", pret.getUtilisateur().getPrenom());
-			model.put("nom", pret.getUtilisateur().getNom());
-			model.put("titre", pret.getLivre().getTitre());
-			model.put("date", pret.getDateFin());
-			mail.setModel(model);
-
-
-			sendSimpleMessage(mail,"email-template.ftl");
-		}
-		*/
 		
         
-    }
+
 
 	@Override
 	@Transactional
 	public void setDisponibilite(Integer livreId) throws FunctionalException, NotFoundException {
-		if (livreId==0)throw new FunctionalException("les données sont incorrectes");
-		else {
-			Livre livre = livreDao.findById(livreId);
-			if(livre==null) throw new NotFoundException("Livre non trouvé en base de données");
-			else {
-				int exemplaire = livre.getExemplaire();
-				int nbPretsEnCours = 0;
-				Set<Pret> listePret = livre.getPrets();
-
-
-				for (Pret next : listePret) {
-					if (next.getDateEffective() == null) nbPretsEnCours++;
-
-				}
-				if (exemplaire <= nbPretsEnCours) livre.setDisponible(false);
-				else livre.setDisponible(true);
-
-				livreDao.update(livre);
-			}
-
-
-
-		}
+		pretManager.setDisponibilite(livreId);
 	}
 
 
@@ -425,47 +211,17 @@ public class PretServiceImpl implements PretService {
 	 */
 	@Override
 	public void deletePret(Integer pretId) throws NotFoundException, FunctionalException  {
-		if(pretId <= 0) throw new FunctionalException("Données incorrectes");
-
-		// Récupération du prêt
-		Pret pret = pretDao.findById(pretId);
-		if(pret==null)throw new NotFoundException("Le prêt n'existe pas");
-		else
-			pretDao.delete(pret);
+		pretManager.deletePret(pretId);
 	}
 
 
-	/**
-	 * Méthode de configuration d'envoi d'un mail
-	 * @param mail
-	 * @throws MessagingException
-	 * @throws IOException
-	 * @throws TemplateException
-	 */
-	private void sendSimpleMessage(Mail mail, String template) throws MessagingException, IOException, TemplateException {
-        MimeMessage message = emailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message,
-                MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
-                StandardCharsets.UTF_8.name());
 
-        
-		freemarkerConfig.setDefaultEncoding("utf-8");
-        Template t = freemarkerConfig.getTemplate(template);
-        String html = FreeMarkerTemplateUtils.processTemplateIntoString(t, mail.getModel());
-
-        helper.setTo(mail.getTo());
-        helper.setText(html, true);
-        helper.setSubject(mail.getSubject());
-        helper.setFrom(mail.getFrom());
-
-        emailSender.send(message);
-    }
 
 	@Override
 	@Transactional
 	public List<Pret> getPretsEnCoursByUser(Integer utilisateurId) throws FunctionalException {
-		listeReturn=pretDao.findPretEnCoursByUser(utilisateurId);
-		if (listeReturn==null) throw new FunctionalException("Pas de prêt en cours trouvé");
+
+		listeReturn=pretManager.getPretsEnCoursByUser(utilisateurId);
 		return listeReturn;
 	}
 
