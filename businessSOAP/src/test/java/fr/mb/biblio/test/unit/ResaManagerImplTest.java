@@ -1,4 +1,4 @@
-package unit;
+package fr.mb.biblio.test.unit;
 
 import fr.mb.biblio.dao.contract.ResaDao;
 import fr.mb.biblio.models.beans.Livre;
