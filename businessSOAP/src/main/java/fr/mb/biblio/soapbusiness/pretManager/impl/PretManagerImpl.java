@@ -142,7 +142,7 @@ public class PretManagerImpl implements PretManager {
 							resaManager.deleteReservation(resa.getId());
 						}
 					}
-
+					pretReturn=new Pret();
 					//Enregistrement des parametres
 					pretReturn.setDateDebut(dateDebut);
                     pretReturn.setDateFin(dateFin);
@@ -184,6 +184,7 @@ public class PretManagerImpl implements PretManager {
 
 
 					dateFin = dateFin.plusDays(DUREEPRET);
+					pretReturn=new Pret();
 					// Modification des paramètres
 					pret.setDateFin(dateFin);
 					pret.setProlonge(true);
@@ -316,7 +317,7 @@ public class PretManagerImpl implements PretManager {
 					//Date de fin théorique
 					
 					LocalDate dateFin=dateDebut.plusDays(DUREEPRET);
-					
+					pretReturn=new Pret();
 					//Enregistrement des parametres
 					pretReturn.setDateDebut(dateDebut);
                     pretReturn.setDateFin(dateFin);
