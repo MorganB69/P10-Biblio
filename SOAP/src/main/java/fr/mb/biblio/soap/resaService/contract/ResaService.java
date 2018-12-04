@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Service permettant la gestion de reservation des livres
  */
-@WebService(name = "resaManager")
+@WebService(name = "resaService")
 public interface ResaService {
 
     /**

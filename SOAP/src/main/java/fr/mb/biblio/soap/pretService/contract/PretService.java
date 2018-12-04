@@ -24,7 +24,7 @@ import fr.mb.biblio.models.exception.NotFoundException;
  * @author Morgan
  *
  */
-@WebService(name="pretManager")
+@WebService(name="pretService")
 @HandlerChain(file="../../handlers.xml")
 public interface PretService {
 	

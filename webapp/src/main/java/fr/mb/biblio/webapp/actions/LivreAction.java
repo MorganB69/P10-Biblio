@@ -125,7 +125,7 @@ public class LivreAction extends ActionSupport implements SessionAware {
 		String result = ActionSupport.INPUT;
 		try {
 			
-			if(titre==null||titre=="") {
+			if(titre==null||titre.equals("")) {
 				try {
 					listrecent=livreClient.getAllLivres(start, 3);
 				} catch (FunctionalException_Exception e) {

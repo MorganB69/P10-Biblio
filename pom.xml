@@ -310,6 +310,8 @@
     <module>tech</module>
 	<module>testSOAP</module>
 	<module>businessSOAP</module>
+      <module>webappBusiness</module>
+	  <module>webappConsumer</module>
   </modules>
 
 	<build>
