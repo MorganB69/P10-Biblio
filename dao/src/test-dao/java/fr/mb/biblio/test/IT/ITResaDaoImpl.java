@@ -18,14 +18,13 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import javax.transaction.Transactional;
 
 import java.time.LocalDate;
-import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
 @ExtendWith(SpringExtension.class)
-    @ContextConfiguration(locations= {"/ApplicationContext.xml"})
+    @ContextConfiguration(locations= {"/ApplicationContextTestDao.xml"})
     @ActiveProfiles(profiles = "test")
     @Transactional
     public class ITResaDaoImpl {

@@ -3,6 +3,8 @@ package fr.mb.biblio.soap.userService.impl;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import fr.mb.biblio.soapbusiness.userManager.contract.UserManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.mb.biblio.dao.contract.UtilisateurDao;
@@ -20,87 +22,64 @@ import fr.mb.biblio.models.exception.FunctionalException;
 @Service
  public class UserServiceImpl implements UserService {
 
-	/**
-	 * DAO à injecter
-	 */
-	@Inject
-	UtilisateurDao utilisateurDao;
 
 	/**
 	 * Utilisé pour la récupération d'un utilisateur en bd
 	 */
 	Utilisateur user;
 
+	@Autowired
+	UserManager userManager;
+
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
-	 * fr.mb.biblio.soap.userService.contract.userService#identification(java.lang.
+	 * fr.mb.biblio.soap.userManager.contract.userManager#identificationManager(java.lang.
 	 * String, java.lang.String)
 	 */
 	@Override
 	@Transactional
-	public Utilisateur identification(String identifiant,String mdp) throws NotFoundException {
-		
-		user=utilisateurDao.identification(identifiant, mdp);
-		if (user==null) throw new NotFoundException("L'utilisateur n'existe pas");
-		else return user;
-		
+	public Utilisateur identification(String identifiant, String mdp) throws NotFoundException {
 
+		user = userManager.identification(identifiant, mdp);
 
-		
+		return user;
+
 
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
-	 * fr.mb.biblio.soap.userService.contract.userService#insert(fr.mb.biblio.models
+	 * fr.mb.biblio.soap.userManager.contract.userManager#insert(fr.mb.biblio.models
 	 * .beans.Utilisateur)
 	 */
 	@Override
 	@Transactional
 	public void insert(Utilisateur utilisateur) throws FunctionalException {
 
-		if (utilisateur == null)
-			throw new FunctionalException("Utilisateur null");
-		else
-			utilisateurDao.persist(utilisateur);
-		}
-	
+		userManager.insert(utilisateur);
+	}
+
 
 	/* (non-Javadoc)
-	 * @see fr.mb.biblio.soap.userService.contract.userService#getUtilisateurById(java.lang.Integer)
+	 * @see fr.mb.biblio.soap.userManager.contract.userManager#getUtilisateurById(java.lang.Integer)
 	 */
 	@Override
 	@Transactional
 	public Utilisateur getUtilisateurById(Integer id) throws NotFoundException, FunctionalException {
- {		if(id<=0||id==null) throw new FunctionalException("L'id doit être renseigné");
- 		
- 		else user = utilisateurDao.findById(id);
-		
-		if (user == null) {
-			throw new NotFoundException("Utilisateur non trouvé");
-		}
-
+		user = userManager.getUtilisateurById(id);
 		return user;
-	}
 	}
 
 	@Override
 	@Transactional
 	public Integer getUserIdByName(String nom, String prenom) throws NotFoundException, FunctionalException {
-		{
-			Integer user = utilisateurDao.getUserIdByName(nom, prenom);
+		Integer id = userManager.getUserIdByName(nom, prenom);
+		return id;
 
-			
-			if (user == null) {
-				throw new NotFoundException("Utilisateur non trouvé");
-			}
 
-			return user;
-		}
 	}
-
 }

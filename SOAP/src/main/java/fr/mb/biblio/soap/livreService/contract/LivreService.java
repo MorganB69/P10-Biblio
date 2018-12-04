@@ -20,7 +20,7 @@ import fr.mb.biblio.soap.test.ListeLivre;
  * @author Morgan
  *
  */
-@WebService(name="livreService")
+@WebService(name="livreManager")
 public interface LivreService {
 	
 	/**

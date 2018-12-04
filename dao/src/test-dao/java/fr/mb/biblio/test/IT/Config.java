@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @Configuration
-@ComponentScan("fr.mb.biblio.test")// scan for services
+@ComponentScan("fr.mb.biblio")// scan for services
 @EnableScheduling
 public class Config {
 

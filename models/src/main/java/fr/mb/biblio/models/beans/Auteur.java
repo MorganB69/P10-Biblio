@@ -1,6 +1,8 @@
 package fr.mb.biblio.models.beans;
 // Generated 17 mai 2018 21:05:11 by Hibernate Tools 5.2.10.Final
 
+import org.springframework.context.annotation.Bean;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "auteur", catalog = "projet")
-@XmlRootElement 
+@XmlRootElement
 public class Auteur implements java.io.Serializable {
 
 	private int idAuteur;

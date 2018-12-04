@@ -7,11 +7,11 @@ import javax.jws.WebService;
 import fr.mb.biblio.models.beans.Utilisateur;
 import fr.mb.biblio.models.exception.NotFoundException;
 
-@WebService(name="identificationService")
+@WebService(name="identificationManager")
 public interface identificationService {
 	
 	/**
-	 * Méthode d'identification de l'utilisateur
+	 * Méthode d'identificationManager de l'utilisateur
 	 * @param identifiant
 	 * @param mdp
 	 * @return
