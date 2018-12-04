@@ -60,9 +60,7 @@
 
 
         <!-- == Logger pour l'application == -->
-        <Logger name="fr.mb.biblio" level="info" additivity="false">
-            <AppenderRef ref="STDOUT"/>
-        </Logger>
+
 
 
         

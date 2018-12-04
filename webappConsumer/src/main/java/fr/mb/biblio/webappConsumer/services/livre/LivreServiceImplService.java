@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "LivreServiceImplService", targetNamespace = "http://impl.livreService.soap.biblio.mb.fr/", wsdlLocation = "http://192.168.99.100:8081/SOAP/livreService?wsdl")
+@WebServiceClient(name = "LivreServiceImplService", targetNamespace = "http://impl.livreService.soap.biblio.mb.fr/", wsdlLocation = "http://localhost:8080/livreService?wsdl")
 public class LivreServiceImplService
     extends Service
 {
@@ -30,7 +30,7 @@ public class LivreServiceImplService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://192.168.99.100:8081/SOAP/livreService?wsdl");
+            url = new URL("http://localhost:8080/livreService?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
@@ -65,11 +65,11 @@ public class LivreServiceImplService
     /**
      * 
      * @return
-     *     returns LivreManager
+     *     returns LivreService
      */
     @WebEndpoint(name = "LivreServiceImplPort")
-    public LivreManager getLivreServiceImplPort() {
-        return super.getPort(new QName("http://impl.livreService.soap.biblio.mb.fr/", "LivreServiceImplPort"), LivreManager.class);
+    public LivreService getLivreServiceImplPort() {
+        return super.getPort(new QName("http://impl.livreService.soap.biblio.mb.fr/", "LivreServiceImplPort"), LivreService.class);
     }
 
     /**
@@ -77,11 +77,11 @@ public class LivreServiceImplService
      * @param features
      *     A list of {@link javax.xml.ws.WebServiceFeature} to configure on the proxy.  Supported features not in the <code>features</code> parameter will have their default values.
      * @return
-     *     returns LivreManager
+     *     returns LivreService
      */
     @WebEndpoint(name = "LivreServiceImplPort")
-    public LivreManager getLivreServiceImplPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://impl.livreService.soap.biblio.mb.fr/", "LivreServiceImplPort"), LivreManager.class, features);
+    public LivreService getLivreServiceImplPort(WebServiceFeature... features) {
+        return super.getPort(new QName("http://impl.livreService.soap.biblio.mb.fr/", "LivreServiceImplPort"), LivreService.class, features);
     }
 
     private static URL __getWsdlLocation() {

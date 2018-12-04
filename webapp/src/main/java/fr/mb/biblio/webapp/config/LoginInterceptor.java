@@ -1,9 +1,9 @@
-package fr.mb.biblio.webappConsumer.config;
+package fr.mb.biblio.webapp.config;
 
 
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
-import fr.mb.biblio.webapp.services.identification.Utilisateur;
+import fr.mb.biblio.webappConsumer.services.identification.Utilisateur;
 import org.apache.struts2.interceptor.SessionAware;
 
 import java.util.Map;

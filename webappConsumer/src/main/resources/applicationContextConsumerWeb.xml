@@ -8,6 +8,10 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<import resource="classpath:META-INF/cxf/cxf.xml"/>
+
+    <!-- SCAN DES DIFFERENTS BEANS ANNOTES -->
+    <context:annotation-config/>
+    <context:component-scan base-package="fr.mb.biblio.webappConsumer"/>
 	
 	<!-- DECLARATIONS DES SERVICES CLIENTS -->
 	<jaxws:client id="userClient"
@@ -37,9 +41,7 @@
     
     </jaxws:client>
 	
-	<!-- SCAN DES DIFFERENTS BEANS ANNOTES -->
-  	<context:annotation-config/>
-    <context:component-scan base-package="fr.mb.biblio.webappConsumer"/>
+
     
     
       	<!-- FICHIERS PROPERTIES A RECUPERER -->	

@@ -87,17 +87,25 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.11.0</version>
+        </dependency>
         
         <!-- Module -->
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>fr.mb.biblio</groupId>
             <artifactId>tech</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
 
         <dependency>
             <groupId>fr.mb.biblio</groupId>
             <artifactId>webappBusiness</artifactId>
-
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
 

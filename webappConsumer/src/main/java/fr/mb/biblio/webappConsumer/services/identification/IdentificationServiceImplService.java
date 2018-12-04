@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "identificationServiceImplService", targetNamespace = "http://identification.soap.biblio.mb.fr/", wsdlLocation = "http://192.168.99.100:8081/SOAP/identificationService?wsdl")
+@WebServiceClient(name = "identificationServiceImplService", targetNamespace = "http://identification.soap.biblio.mb.fr/", wsdlLocation = "http://localhost:8080/identificationService?wsdl")
 public class IdentificationServiceImplService
     extends Service
 {
@@ -30,7 +30,7 @@ public class IdentificationServiceImplService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://192.168.99.100:8081/SOAP/identificationService?wsdl");
+            url = new URL("http://localhost:8080/identificationService?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
@@ -65,11 +65,11 @@ public class IdentificationServiceImplService
     /**
      * 
      * @return
-     *     returns IdentificationManager
+     *     returns IdentificationService
      */
     @WebEndpoint(name = "identificationServiceImplPort")
-    public IdentificationManager getIdentificationServiceImplPort() {
-        return super.getPort(new QName("http://identification.soap.biblio.mb.fr/", "identificationServiceImplPort"), IdentificationManager.class);
+    public IdentificationService getIdentificationServiceImplPort() {
+        return super.getPort(new QName("http://identification.soap.biblio.mb.fr/", "identificationServiceImplPort"), IdentificationService.class);
     }
 
     /**
@@ -77,11 +77,11 @@ public class IdentificationServiceImplService
      * @param features
      *     A list of {@link javax.xml.ws.WebServiceFeature} to configure on the proxy.  Supported features not in the <code>features</code> parameter will have their default values.
      * @return
-     *     returns IdentificationManager
+     *     returns IdentificationService
      */
     @WebEndpoint(name = "identificationServiceImplPort")
-    public IdentificationManager getIdentificationServiceImplPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://identification.soap.biblio.mb.fr/", "identificationServiceImplPort"), IdentificationManager.class, features);
+    public IdentificationService getIdentificationServiceImplPort(WebServiceFeature... features) {
+        return super.getPort(new QName("http://identification.soap.biblio.mb.fr/", "identificationServiceImplPort"), IdentificationService.class, features);
     }
 
     private static URL __getWsdlLocation() {

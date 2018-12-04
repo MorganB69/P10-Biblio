@@ -11,7 +11,7 @@
     <package name="default" namespace="/" extends="struts-default">
     	<interceptors>
 			<interceptor name="loginInterceptor"
-				class="fr.mb.biblio.webapp.config.LoginInterceptor"></interceptor>
+						 class="fr.mb.biblio.webapp.config.LoginInterceptor"/>
 
 		</interceptors>
 
@@ -55,15 +55,15 @@
         </action>
         
         <action name="getPrets" method="getPrets" class="fr.mb.biblio.webapp.actions.PretAction">
-			<interceptor-ref name="loginInterceptor"></interceptor-ref>	
-			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="loginInterceptor"/>
+			<interceptor-ref name="defaultStack"/>
  			<result name="success">/WEB-INF/jsp/espace.jsp</result>
 
         </action>
         
         <action name="prolongerPret" method="prolongerPret" class="fr.mb.biblio.webapp.actions.PretAction">
-			<interceptor-ref name="loginInterceptor"></interceptor-ref>	
-			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="loginInterceptor"/>
+			<interceptor-ref name="defaultStack"/>
 			<result name="success" type="redirectAction">
 				<param name="actionName"> getPrets </param>
 			</result>

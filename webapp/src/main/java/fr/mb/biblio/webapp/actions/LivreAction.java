@@ -8,23 +8,19 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.inject.Inject;
-import javax.xml.datatype.XMLGregorianCalendar;
 
+
+import fr.mb.biblio.webappBusiness.contract.LivreWebManager;
+import fr.mb.biblio.webappConsumer.services.livre.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.opensymphony.xwork2.Action;
+
 import com.opensymphony.xwork2.ActionSupport;
 
-import fr.mb.biblio.webapp.services.livre.Auteur;
-import fr.mb.biblio.webapp.services.livre.FunctionalException_Exception;
-import fr.mb.biblio.webapp.services.livre.Genre;
-import fr.mb.biblio.webapp.services.livre.Livre;
-import fr.mb.biblio.webapp.services.livre.LivreService;
-import fr.mb.biblio.webapp.services.livre.NotFoundException_Exception;
-import fr.mb.biblio.webapp.services.livre.RechercheLivre;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 /**
@@ -35,8 +31,9 @@ import fr.mb.biblio.webapp.services.livre.RechercheLivre;
 public class LivreAction extends ActionSupport implements SessionAware {
 	
 	//---------ATTRIBUTS--------------
-	@Inject
-	private LivreService livreClient;
+
+	@Autowired
+	private LivreWebManager livreWebManager;
 	
 	/**
 	 * Permet de stocker les objets en session
@@ -127,7 +124,7 @@ public class LivreAction extends ActionSupport implements SessionAware {
 			
 			if(titre==null||titre.equals("")) {
 				try {
-					listrecent=livreClient.getAllLivres(start, 3);
+					listrecent=livreWebManager.getAllLivres(start, 3);
 				} catch (FunctionalException_Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -147,11 +144,11 @@ public class LivreAction extends ActionSupport implements SessionAware {
 					}
 			
 			
-					listLivre=livreClient.rechercheLivres(recherche, start,pageSize);
+					listLivre=livreWebManager.rechercheLivres(recherche, start,pageSize);
 					
 					if(listLivre==null||listLivre.isEmpty())addActionError("Aucun résultat trouvé");
 					else {
-						nbResult=livreClient.countLivres(recherche);
+						nbResult=livreWebManager.countLivres(recherche);
 						double page = (double) pageSize;
 
 						double lastPageNumber = (Math.ceil(nbResult / pageSize));
@@ -201,9 +198,9 @@ public class LivreAction extends ActionSupport implements SessionAware {
 		} else {
 			try {
 				String date="";
-				livre = (Livre) livreClient.getLivreById(idLivre);
+				livre = (Livre) livreWebManager.getLivreById(idLivre);
 				try {
-					date=livreClient.dateRetourLivre(idLivre);
+					date=livreWebManager.dateRetourLivre(idLivre);
 					logger.info(livre.getParution().getClass());
 					logger.info(livre.getParution());
 					logger.info(date.getClass());
@@ -236,13 +233,7 @@ public class LivreAction extends ActionSupport implements SessionAware {
 	//---------------------GETTERS//SETTERS-------------------------
 	
 	
-	public LivreService getLivreClient() {
-		return livreClient;
-	}
 
-	public void setLivreClient(LivreService livreClient) {
-		this.livreClient = livreClient;
-	}
 
 	public Map<String, Object> getSession() {
 		return session;

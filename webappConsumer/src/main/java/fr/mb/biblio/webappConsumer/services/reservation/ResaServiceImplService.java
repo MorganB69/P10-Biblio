@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "ResaServiceImplService", targetNamespace = "http://impl.resaService.soap.biblio.mb.fr/", wsdlLocation = "http://192.168.99.100:8081/SOAP/resaService?wsdl")
+@WebServiceClient(name = "ResaServiceImplService", targetNamespace = "http://impl.resaService.soap.biblio.mb.fr/", wsdlLocation = "http://localhost:8080/resaService?wsdl")
 public class ResaServiceImplService
     extends Service
 {
@@ -30,7 +30,7 @@ public class ResaServiceImplService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://192.168.99.100:8081/SOAP/resaService?wsdl");
+            url = new URL("http://localhost:8080/resaService?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
@@ -65,11 +65,11 @@ public class ResaServiceImplService
     /**
      * 
      * @return
-     *     returns ResaManager
+     *     returns ResaService
      */
     @WebEndpoint(name = "ResaServiceImplPort")
-    public ResaManager getResaServiceImplPort() {
-        return super.getPort(new QName("http://impl.resaService.soap.biblio.mb.fr/", "ResaServiceImplPort"), ResaManager.class);
+    public ResaService getResaServiceImplPort() {
+        return super.getPort(new QName("http://impl.resaService.soap.biblio.mb.fr/", "ResaServiceImplPort"), ResaService.class);
     }
 
     /**
@@ -77,11 +77,11 @@ public class ResaServiceImplService
      * @param features
      *     A list of {@link javax.xml.ws.WebServiceFeature} to configure on the proxy.  Supported features not in the <code>features</code> parameter will have their default values.
      * @return
-     *     returns ResaManager
+     *     returns ResaService
      */
     @WebEndpoint(name = "ResaServiceImplPort")
-    public ResaManager getResaServiceImplPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://impl.resaService.soap.biblio.mb.fr/", "ResaServiceImplPort"), ResaManager.class, features);
+    public ResaService getResaServiceImplPort(WebServiceFeature... features) {
+        return super.getPort(new QName("http://impl.resaService.soap.biblio.mb.fr/", "ResaServiceImplPort"), ResaService.class, features);
     }
 
     private static URL __getWsdlLocation() {

@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "PretServiceImplService", targetNamespace = "http://impl.pretService.soap.biblio.mb.fr/", wsdlLocation = "http://192.168.99.100:8081/SOAP/pretService?wsdl")
+@WebServiceClient(name = "PretServiceImplService", targetNamespace = "http://impl.pretService.soap.biblio.mb.fr/", wsdlLocation = "http://localhost:8080/pretService?wsdl")
 public class PretServiceImplService
     extends Service
 {
@@ -30,7 +30,7 @@ public class PretServiceImplService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://192.168.99.100:8081/SOAP/pretService?wsdl");
+            url = new URL("http://localhost:8080/pretService?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
@@ -65,11 +65,11 @@ public class PretServiceImplService
     /**
      * 
      * @return
-     *     returns PretManager
+     *     returns PretService
      */
     @WebEndpoint(name = "PretServiceImplPort")
-    public PretManager getPretServiceImplPort() {
-        return super.getPort(new QName("http://impl.pretService.soap.biblio.mb.fr/", "PretServiceImplPort"), PretManager.class);
+    public PretService getPretServiceImplPort() {
+        return super.getPort(new QName("http://impl.pretService.soap.biblio.mb.fr/", "PretServiceImplPort"), PretService.class);
     }
 
     /**
@@ -77,11 +77,11 @@ public class PretServiceImplService
      * @param features
      *     A list of {@link javax.xml.ws.WebServiceFeature} to configure on the proxy.  Supported features not in the <code>features</code> parameter will have their default values.
      * @return
-     *     returns PretManager
+     *     returns PretService
      */
     @WebEndpoint(name = "PretServiceImplPort")
-    public PretManager getPretServiceImplPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://impl.pretService.soap.biblio.mb.fr/", "PretServiceImplPort"), PretManager.class, features);
+    public PretService getPretServiceImplPort(WebServiceFeature... features) {
+        return super.getPort(new QName("http://impl.pretService.soap.biblio.mb.fr/", "PretServiceImplPort"), PretService.class, features);
     }
 
     private static URL __getWsdlLocation() {

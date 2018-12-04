@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "UserServiceImplService", targetNamespace = "http://impl.userService.soap.biblio.mb.fr/", wsdlLocation = "http://192.168.99.100:8081/SOAP/userService?wsdl")
+@WebServiceClient(name = "UserServiceImplService", targetNamespace = "http://impl.userService.soap.biblio.mb.fr/", wsdlLocation = "http://localhost:8080/userService?wsdl")
 public class UserServiceImplService
     extends Service
 {
@@ -30,7 +30,7 @@ public class UserServiceImplService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://192.168.99.100:8081/SOAP/userService?wsdl");
+            url = new URL("http://localhost:8080/userService?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
@@ -65,11 +65,11 @@ public class UserServiceImplService
     /**
      * 
      * @return
-     *     returns UserManager
+     *     returns UserService
      */
     @WebEndpoint(name = "UserServiceImplPort")
-    public UserManager getUserServiceImplPort() {
-        return super.getPort(new QName("http://impl.userService.soap.biblio.mb.fr/", "UserServiceImplPort"), UserManager.class);
+    public UserService getUserServiceImplPort() {
+        return super.getPort(new QName("http://impl.userService.soap.biblio.mb.fr/", "UserServiceImplPort"), UserService.class);
     }
 
     /**
@@ -77,11 +77,11 @@ public class UserServiceImplService
      * @param features
      *     A list of {@link javax.xml.ws.WebServiceFeature} to configure on the proxy.  Supported features not in the <code>features</code> parameter will have their default values.
      * @return
-     *     returns UserManager
+     *     returns UserService
      */
     @WebEndpoint(name = "UserServiceImplPort")
-    public UserManager getUserServiceImplPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://impl.userService.soap.biblio.mb.fr/", "UserServiceImplPort"), UserManager.class, features);
+    public UserService getUserServiceImplPort(WebServiceFeature... features) {
+        return super.getPort(new QName("http://impl.userService.soap.biblio.mb.fr/", "UserServiceImplPort"), UserService.class, features);
     }
 
     private static URL __getWsdlLocation() {
