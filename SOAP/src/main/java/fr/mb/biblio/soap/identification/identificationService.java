@@ -7,7 +7,7 @@ import javax.jws.WebService;
 import fr.mb.biblio.models.beans.Utilisateur;
 import fr.mb.biblio.models.exception.NotFoundException;
 
-@WebService(name="identificationManager")
+@WebService(name="identificationService")
 public interface identificationService {
 	
 	/**

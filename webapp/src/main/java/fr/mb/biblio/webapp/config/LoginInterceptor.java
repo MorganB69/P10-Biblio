@@ -1,18 +1,12 @@
 package fr.mb.biblio.webapp.config;
 
 
-import java.util.Iterator;
-import java.util.Map;
-
-import org.apache.struts2.dispatcher.HttpParameters;
-import org.apache.struts2.interceptor.SessionAware;
-
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
+import fr.mb.biblio.webappConsumer.services.identification.Utilisateur;
+import org.apache.struts2.interceptor.SessionAware;
 
-import fr.mb.biblio.webapp.services.identification.Utilisateur;
-
+import java.util.Map;
 
 
 /**

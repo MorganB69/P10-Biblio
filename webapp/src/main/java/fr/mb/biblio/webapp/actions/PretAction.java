@@ -2,29 +2,26 @@ package fr.mb.biblio.webapp.actions;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 
-import javax.inject.Inject;
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeConstants;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
 
+
+import fr.mb.biblio.webappBusiness.contract.PretWebManager;
+import fr.mb.biblio.webappConsumer.services.pret.FunctionalException_Exception;
+import fr.mb.biblio.webappConsumer.services.pret.NotFoundException_Exception;
+import fr.mb.biblio.webappConsumer.services.pret.Pret;
+import fr.mb.biblio.webappConsumer.services.identification.Utilisateur;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.opensymphony.xwork2.Action;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 
-import fr.mb.biblio.webapp.services.identification.Utilisateur;
-import fr.mb.biblio.webapp.services.pret.FunctionalException_Exception;
-import fr.mb.biblio.webapp.services.pret.NotFoundException_Exception;
-import fr.mb.biblio.webapp.services.pret.Pret;
-import fr.mb.biblio.webapp.services.pret.PretService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 /**
@@ -37,8 +34,8 @@ public class PretAction extends ActionSupport implements SessionAware {
 		/**
 		 * Client service de pret
 		 */
-		@Inject
-		private PretService pretClient;
+		@Autowired
+		private PretWebManager pretWebManager;
 		
 		/**
 		 * Permet de stocker les objets en session
@@ -81,24 +78,21 @@ public class PretAction extends ActionSupport implements SessionAware {
 		 */
 		public String getPrets() {
 			
-			try {
+
 			this.user=(Utilisateur) session.get("user");
-			
+
 			dateJour=LocalDate.now();
-			
-			
-			
+
+
+
 			try {
-				this.listPret=pretClient.getPretsEnCoursByUser(this.user.getIdUtilisateur());
+				listPret=pretWebManager.getPretsEnCoursByUser(this.user.getIdUtilisateur());
 			} catch (FunctionalException_Exception e) {
-				// TODO Auto-generated catch block
 				e.getMessage();
 			}
-			
-			}
-			catch(Exception e) {
-				addActionError("Le service est momentanément indisponible");
-			}
+
+
+
 			return (this.hasErrors()) ? ActionSupport.ERROR : ActionSupport.SUCCESS;
 		}
 		
@@ -106,7 +100,7 @@ public class PretAction extends ActionSupport implements SessionAware {
 			try {
 			this.user=(Utilisateur) session.get("user");
 			try {
-				pretClient.prolongerPret(idPret, user.getIdUtilisateur());
+				pretWebManager.prolongerPret(idPret, user.getIdUtilisateur());
 			} catch (FunctionalException_Exception e) {
 				addActionError("Le prêt ne plus être prolongé");
 			} catch (NotFoundException_Exception e) {
@@ -123,13 +117,7 @@ public class PretAction extends ActionSupport implements SessionAware {
 		
 		
 
-		public PretService getPretClient() {
-			return pretClient;
-		}
 
-		public void setPretClient(PretService pretClient) {
-			this.pretClient = pretClient;
-		}
 
 		public Map<String, Object> getSession() {
 			return session;

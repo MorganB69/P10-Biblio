@@ -11,8 +11,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 
-import fr.mb.biblio.webapp.services.livre.Livre;
-import fr.mb.biblio.webapp.services.livre.LivreService;
+
 
 
 

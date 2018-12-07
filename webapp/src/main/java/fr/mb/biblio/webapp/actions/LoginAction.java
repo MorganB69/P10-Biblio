@@ -2,8 +2,10 @@ package fr.mb.biblio.webapp.actions;
 
 import java.util.Map;
 
-import javax.inject.Inject;
 
+
+import fr.mb.biblio.webappBusiness.contract.LoginWebManager;
+import fr.mb.biblio.webappConsumer.services.identification.Utilisateur;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,12 +14,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 
-import fr.mb.biblio.webapp.services.identification.IdentificationService;
-import fr.mb.biblio.webapp.services.identification.NotFoundException_Exception;
-import fr.mb.biblio.webapp.services.identification.Utilisateur;
-
-
-
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 /**
@@ -32,8 +29,8 @@ public class LoginAction extends ActionSupport implements SessionAware{
 	 */
 	private Map<String, Object> session;
 		
-	@Inject
-	private IdentificationService identificationClient;
+	@Autowired
+	private LoginWebManager loginWebManager;
 	/**
 	 *Utilisateur voulant se logger 
 	 */
@@ -61,20 +58,14 @@ public class LoginAction extends ActionSupport implements SessionAware{
 		try {
 		
         if (!StringUtils.isAllEmpty(login, password)) {
-            try {
-                this.user=identificationClient.identification(login, password);  
+			this.user=loginWebManager.identification(login, password);
 
-                	this.session.put("user", user);
-                	this.session.put("mdpUser", password);
-                	this.addActionMessage("utilisateur connecté : "+ user.getIdentifiant());
-                result = ActionSupport.SUCCESS;
-                
-            } catch (NotFoundException_Exception pEx) {
-                this.addActionError("Identifiant ou mot de passe invalide !");
-                
-                
-            }
-        }
+			this.session.put("user", user);
+			this.session.put("mdpUser", password);
+			this.addActionMessage("utilisateur connecté : "+ user.getIdentifiant());
+			result = ActionSupport.SUCCESS;
+
+		}
 
 		}
 		catch(Exception e) {
