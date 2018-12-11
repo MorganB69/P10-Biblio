@@ -110,17 +110,33 @@
         
      	<ul>
 						<s:if test="livre.disponible==true">
+								<s:if test="nbResa==0">
 												<li><b>Disponibilité :</b> <i class="fa fa-check-circle m-1" id="iconStatut"></i> <span id="statut">Le livre est disponible</span></li>
-												</s:if>
+								</s:if>
+								<s:else>
+									<li>
+										<b>Disponibilité :</b> <i class="fa fa-times-circle m-1" id="iconStatutIndispo"></i> <span id="statutIndispo">Le livre est reservé</span>
+									</li>
+								</s:else>
+								</s:if>
 												<s:else>
 												<li>
 												<b>Disponibilité :</b> <i class="fa fa-times-circle m-1" id="iconStatutIndispo"></i> <span id="statutIndispo">Le livre est emprunté</span>
 												</li>
 												<li>
-												<b>Date de retour prévue :</b>  <span id="attribut"> <javatime:parseLocalDate value="${dateRetour}" pattern="yyyy-MM-dd" var="date" /><javatime:format value="${date}" pattern="dd-MM-yyyy" /></span>
+													<b>Date de retour prévue :</b>  <span id="attribut"> <javatime:parseLocalDate value="${dateRetour}" pattern="yyyy-MM-dd" var="date" /><javatime:format value="${date}" pattern="dd-MM-yyyy" /></span>
 												</li>
 												
 												</s:else>
+
+												<li>
+													<b>Reservation(s) : </b>  <span id="attribut">
+													<s:if test="nbResa==0"> Pas de réservation en cours
+													</s:if>
+													<s:else>
+														<s:property value="nbResa"/>
+													</s:else></span>
+												</li>
 												
 												
 												

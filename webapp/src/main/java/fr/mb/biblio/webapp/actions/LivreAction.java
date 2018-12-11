@@ -11,7 +11,9 @@ import java.util.Map;
 
 
 import fr.mb.biblio.webappBusiness.contract.LivreWebManager;
+import fr.mb.biblio.webappBusiness.contract.ResaWebManager;
 import fr.mb.biblio.webappConsumer.services.livre.*;
+import fr.mb.biblio.webappConsumer.services.reservation.Reservation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
@@ -32,8 +34,17 @@ public class LivreAction extends ActionSupport implements SessionAware {
 	
 	//---------ATTRIBUTS--------------
 
+	/**
+	 * Manager gestion des livres
+	 */
 	@Autowired
 	private LivreWebManager livreWebManager;
+
+	/**
+	 * Manager gestion des resa
+	 */
+	@Autowired
+	private ResaWebManager resaWebManager;
 	
 	/**
 	 * Permet de stocker les objets en session
@@ -55,8 +66,6 @@ public class LivreAction extends ActionSupport implements SessionAware {
 	 */
 	private List<Livre> listLivre = new ArrayList<Livre>();
 	
-	
-	
 	/**
 	 * Liste pour l'affichage de livre
 	 */
@@ -66,8 +75,7 @@ public class LivreAction extends ActionSupport implements SessionAware {
 	 * Liste de récupération des auteurs 
 	 */
 	private List<Auteur> listAuteur= new ArrayList<Auteur>();
-	
-	
+
 	/**
 	 * Liste de récupération des genres 
 	 */
@@ -92,9 +100,15 @@ public class LivreAction extends ActionSupport implements SessionAware {
 	 * id d'un genre pour affiner la recherche d'un livre
 	 */
 	private Integer genreIdOut=10000;
-	
+
+	/**
+	 * Numero de la derniere page
+	 */
 	private Integer lastPage=0;
-	
+
+	/**
+	 * Nombre de resultat total
+	 */
 	private Long nbResult=(long) 0;
 	
 	/**
@@ -106,9 +120,25 @@ public class LivreAction extends ActionSupport implements SessionAware {
 	 * Objet utilisé pour la recherche de livre
 	 */
 	private RechercheLivre recherche=new RechercheLivre();
-	
+
+	/**
+	 * date de retour
+	 */
 	private LocalDate dateRetour;
-	
+
+	/**
+	 * Liste de reservation par livre
+	 */
+	private List<Reservation> listResa = new ArrayList<Reservation>();;
+
+	/**
+	 * Nombre de resa par livre
+	 */
+	private Integer nbResa =0;
+
+	/**
+	 * logger
+	 */
 	private static final Logger logger = LogManager.getLogger(LivreAction.class);
 	
 	
@@ -125,6 +155,8 @@ public class LivreAction extends ActionSupport implements SessionAware {
 			if(titre==null||titre.equals("")) {
 				try {
 					listrecent=livreWebManager.getAllLivres(start, 3);
+
+
 				} catch (FunctionalException_Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -145,6 +177,7 @@ public class LivreAction extends ActionSupport implements SessionAware {
 			
 			
 					listLivre=livreWebManager.rechercheLivres(recherche, start,pageSize);
+
 					
 					if(listLivre==null||listLivre.isEmpty())addActionError("Aucun résultat trouvé");
 					else {
@@ -159,6 +192,7 @@ public class LivreAction extends ActionSupport implements SessionAware {
 						
 						for (Iterator iterator = listLivre.iterator(); iterator.hasNext();) {
 							Livre livre = (Livre) iterator.next();
+
 							for (Iterator iterator2 = livre.getAuteurs().iterator(); iterator2.hasNext();) {
 								Auteur auteur = (Auteur) iterator2.next();
 								listAuteur.add(auteur);						
@@ -199,15 +233,13 @@ public class LivreAction extends ActionSupport implements SessionAware {
 			try {
 				String date="";
 				livre = (Livre) livreWebManager.getLivreById(idLivre);
+				listResa = resaWebManager.getListResaByLivreId(idLivre);
+				if(!listResa.isEmpty()) nbResa= listResa.size();
 				try {
 					date=livreWebManager.dateRetourLivre(idLivre);
-					logger.info(livre.getParution().getClass());
-					logger.info(livre.getParution());
-					logger.info(date.getClass());
-					logger.info(date);
 					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 					dateRetour=LocalDate.parse(date, formatter);
-					logger.info(dateRetour);
+
 				} catch (FunctionalException_Exception e) {
 					// TODO Auto-generated catch block
 					e.getMessage();
@@ -409,10 +441,25 @@ public class LivreAction extends ActionSupport implements SessionAware {
 		return nbResult;
 	}
 
+	public Integer getNbResa() {
+		return nbResa;
+	}
+
+	public void setNbResa(Integer nbResa) {
+		this.nbResa = nbResa;
+	}
+
 
 
 	public void setNbResult(Long nbResult) {
 		this.nbResult = nbResult;
 	}
 
+	public List<Reservation> getListResa() {
+		return listResa;
+	}
+
+	public void setListResa(List<Reservation> listResa) {
+		this.listResa = listResa;
+	}
 }

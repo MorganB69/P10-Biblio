@@ -112,7 +112,7 @@
 												</s:if>
 												<s:else>
 												<li><b>Disponibilité :</b> <i class="fa fa-times-circle m-1" id="iconStatutIndispo"></i> <span id="statutIndispo">Le livre est emprunté</span></li>
-												
+
 												</s:else>
 												
 									 			<li><b>Auteur(s) :</b><s:iterator value="auteurs">
