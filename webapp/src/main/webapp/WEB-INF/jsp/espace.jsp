@@ -26,7 +26,7 @@
       <h1 class="text-center text-uppercase">Espace Personnel de <s:property value="#session.user.identifiant"/>
       		</h1>
       <div class="row">
-             <div class="col-xs-12 col-md-7 col-lg-8" id="left-column">
+             <div class="col-xs-12 col-md-8 col-lg-8" id="left-column">
              
 
         
@@ -43,7 +43,7 @@
         
      		     	<div class="row">
 				 
-				 		<div class="col-lg-4 m-2">
+				 		<div class="col-lg-4 ">
 				<div class="card ">
 							
 							<h4 class="card-header text-center">
@@ -68,7 +68,7 @@
 				
 			</div>
 			
-				<div class="col-lg-7 m-2">
+				<div class="col-lg-8 ">
 					
 					<div class="card-body m-2 border border-primary rounded">
 								<div class="row">
@@ -123,7 +123,7 @@
   	
         
       </div>
-      <div class="col-xs-12 col-md-5 col-lg-4" id="right-column">
+      <div class="col-xs-12 col-md-4 col-lg-4" id="right-column">
       
       <h5 class="mt-3" data-toggle="collapse" href="#associated-situ" aria-expanded="true" aria-controls="associated-situ">
       	   		<i class="fa fa-info-circle"></i> Informations <i class="fa fa-arrow-down pull-right" ></i>

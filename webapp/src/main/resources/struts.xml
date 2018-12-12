@@ -35,13 +35,13 @@
         
         <action name="login" method="doLogin" class="fr.mb.biblio.webapp.actions.LoginAction">
             <result name="input">/WEB-INF/jsp/login.jsp</result>
-            <result name="success" type="redirectAction">
-				<param name="actionName">${#session['lastAction']}</param>
-				</result>
+            <result name="success" type="redirect">${#session['url']}</result>
         </action>
         
         <action name="Logout" method="doLogout" class="fr.mb.biblio.webapp.actions.LoginAction">
- 			<result name="success">/WEB-INF/jsp/index.jsp</result>
+ 			<result name="success" type="redirectAction">
+			<param name="actionName"> index </param>
+		</result>
         </action>
         
         <action name="recherche" method="recherche" class="fr.mb.biblio.webapp.actions.LivreAction">
@@ -68,6 +68,15 @@
 				<param name="actionName"> getPrets </param>
 			</result>
         </action>
+
+	<action name="newResa" method="newResa" class="fr.mb.biblio.webapp.actions.ResaAction">
+		<interceptor-ref name="loginInterceptor"/>
+		<interceptor-ref name="defaultStack"/>
+		<result name="success" type="redirectAction">
+			<param name="actionName"> detail_livre </param>
+			<param name="idLivre">${idLivre}</param>
+		</result>
+	</action>
 
     </package>
 

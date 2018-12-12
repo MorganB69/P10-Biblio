@@ -109,15 +109,14 @@
       	
         
      	<ul>
+			<li>
+				<b>Exemplaire(s) : </b>  <span id="attribut"><s:property value="livre.exemplaire"/></span>
+			</li>
 						<s:if test="livre.disponible==true">
-								<s:if test="nbResa==0">
+
 												<li><b>Disponibilité :</b> <i class="fa fa-check-circle m-1" id="iconStatut"></i> <span id="statut">Le livre est disponible</span></li>
-								</s:if>
-								<s:else>
-									<li>
-										<b>Disponibilité :</b> <i class="fa fa-times-circle m-1" id="iconStatutIndispo"></i> <span id="statutIndispo">Le livre est reservé</span>
-									</li>
-								</s:else>
+
+
 								</s:if>
 												<s:else>
 												<li>
@@ -137,17 +136,36 @@
 														<s:property value="nbResa"/>
 													</s:else></span>
 												</li>
-												
-												
-												
-												
-												
-												
-									 			
-									 			
-									 			
-           				    
-		</ul>
+
+		</ul>									<s:if test="livre.disponible==false">
+													<s:if test="empruntByUser==true">
+														Vous avez un prêt en cours sur ce livre
+													</s:if>
+													<s:else>
+														<s:if test="resaByUser==true">
+															Vous avez une réservation en cours sur ce livre
+														</s:if>
+														<s:else>
+															<s:if test="resaComplete==true">
+																La liste de réservation est pleine
+															</s:if>
+															<s:else>
+
+																<s:a action="newResa" class="btn btn-primary btn-md m3">Demander une réservation
+																	<s:param name="idLivre" value="livre.idLivre"/>
+																</s:a>
+
+															</s:else>
+														</s:else>
+													</s:else>
+			</s:if>
+
+
+
+
+
+
+
 
 		
 		
@@ -163,8 +181,8 @@
 
 	</section>
 	</div>
-	
-	
+
+	<s:debug/>
       
       
 	

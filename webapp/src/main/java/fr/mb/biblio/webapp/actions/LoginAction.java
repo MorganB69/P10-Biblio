@@ -55,6 +55,7 @@ public class LoginAction extends ActionSupport implements SessionAware{
 	 */
 	public String doLogin() {
 		String result = ActionSupport.INPUT;
+
 		try {
 		
         if (!StringUtils.isAllEmpty(login, password)) {
@@ -83,6 +84,7 @@ public class LoginAction extends ActionSupport implements SessionAware{
 		this.session.remove("user");
 		this.session.remove("mdpUser");
 		this.session.remove("lastAction");
+		this.session.remove("url");
 		return ActionSupport.SUCCESS;
 	}
 	

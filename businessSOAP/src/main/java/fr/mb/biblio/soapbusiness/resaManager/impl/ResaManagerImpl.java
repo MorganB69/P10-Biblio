@@ -111,12 +111,14 @@ public class ResaManagerImpl implements ResaManager {
     @Transactional
     public Reservation newReservation(Integer livreId, Integer demandeurId) throws FunctionalException, NotFoundException {
 
-        if(livreId <= 0 || demandeurId <= 0) throw new FunctionalException("Données incorrectes");
+        if(livreId <= 0 || demandeurId <= 0 ||livreId==null ||demandeurId==null) throw new FunctionalException("Données incorrectes");
         else {
             //Récupération du livre
             Livre livre = livreDao.findById(livreId);
             //Récupération du demandeur
             Utilisateur demandeur = utilisateurDao.findById(demandeurId);
+
+            if(livre.getDisponible()==true) throw new FunctionalException("Le livre est disponible, il ne peut être reservé");
 
             //Persistence en db
             if(demandeur==null||livre==null) throw new NotFoundException("Non trouvé en base de données");

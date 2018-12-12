@@ -11,9 +11,13 @@ import java.util.Map;
 
 
 import fr.mb.biblio.webappBusiness.contract.LivreWebManager;
+import fr.mb.biblio.webappBusiness.contract.PretWebManager;
 import fr.mb.biblio.webappBusiness.contract.ResaWebManager;
 import fr.mb.biblio.webappConsumer.services.livre.*;
+import fr.mb.biblio.webappConsumer.services.pret.Pret;
 import fr.mb.biblio.webappConsumer.services.reservation.Reservation;
+import fr.mb.biblio.webappConsumer.services.user.UserManager;
+import fr.mb.biblio.webappConsumer.services.identification.Utilisateur;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
@@ -31,7 +35,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  */
 public class LivreAction extends ActionSupport implements SessionAware {
-	
+
 	//---------ATTRIBUTS--------------
 
 	/**
@@ -45,57 +49,62 @@ public class LivreAction extends ActionSupport implements SessionAware {
 	 */
 	@Autowired
 	private ResaWebManager resaWebManager;
-	
+
+	@Autowired
+	private PretWebManager pretWebManager;
+
+
+
 	/**
 	 * Permet de stocker les objets en session
 	 */
 	private Map<String, Object> session;
-	
+
 	/**
-	 *id pour récupérer le détail d'un livre 
+	 *id pour récupérer le détail d'un livre
 	 */
 	private Integer idLivre;
-	
+
 	/**
 	 * Nombre de sites à afficher par page
 	 */
 	private Integer pageSize = 10;
-	
+
 	/**
 	 * Liste pour l'affichage de livre
 	 */
 	private List<Livre> listLivre = new ArrayList<Livre>();
-	
+
 	/**
 	 * Liste pour l'affichage de livre
 	 */
 	private List<Livre> listrecent= new ArrayList<Livre>();
-	
+
 	/**
-	 * Liste de récupération des auteurs 
+	 * Liste de récupération des auteurs
 	 */
 	private List<Auteur> listAuteur= new ArrayList<Auteur>();
 
 	/**
-	 * Liste de récupération des genres 
+	 * Liste de récupération des genres
 	 */
 	private List<Genre> listGenre= new ArrayList<Genre>();
-	
+
 	/**
 	 * Page sélectionnée et permet de définir l'Offset pour le changement de page
 	 */
 	private Integer start = 0;
-	
+
 	/**
 	 * Titre pour la recherche d'un livre
 	 */
 	private String titre;
-	
+
 	/**
 	 * Id d'un auteur pour affiner la recherche d'un livre
 	 */
 	private Integer auteurIdOut=10000;
-	
+
 	/**
 	 * id d'un genre pour affiner la recherche d'un livre
 	 */
@@ -110,12 +119,12 @@ public class LivreAction extends ActionSupport implements SessionAware {
 	 * Nombre de resultat total
 	 */
 	private Long nbResult=(long) 0;
-	
+
 	/**
 	 * Objet livre pour obtenir le détail d'un livre
 	 */
 	private Livre livre;
-	
+
 	/**
 	 * Objet utilisé pour la recherche de livre
 	 */
@@ -137,13 +146,29 @@ public class LivreAction extends ActionSupport implements SessionAware {
 	private Integer nbResa =0;
 
 	/**
+	 * Permet de définir si l'utilisateur a déjà une resa sur le livre
+	 */
+	private Boolean resaByUser=false;
+
+	/**
+	 * Permet de definir si l'utilisateur a déjà un emprunt en cours sur le livre
+	 */
+	private Boolean empruntByUser=false;
+
+	/**
+	 * Permet de definir si une liste de resa est pleine
+	 */
+	private Boolean resaComplete=false;
+
+	private Utilisateur user;
+	/**
 	 * logger
 	 */
 	private static final Logger logger = LogManager.getLogger(LivreAction.class);
-	
-	
+
+
 	//---------------------ACTIONS---------------------------------
-	
+
 	/**
 	 * Recherche de livre en fonction du formulaire de recherche
 	 * @return
@@ -151,7 +176,7 @@ public class LivreAction extends ActionSupport implements SessionAware {
 	public String recherche() {
 		String result = ActionSupport.INPUT;
 		try {
-			
+
 			if(titre==null||titre.equals("")) {
 				try {
 					listrecent=livreWebManager.getAllLivres(start, 3);
@@ -162,96 +187,118 @@ public class LivreAction extends ActionSupport implements SessionAware {
 					e.printStackTrace();
 				}
 			}
-		
+
 			if(titre!=null&&titre!=""){
 				try {
-					
+
 					recherche.setTitre(titre);
-					
+
 					if(auteurIdOut!=null&&auteurIdOut!=10000) {
 						recherche.setAuteur(auteurIdOut);
 					}
 					if(genreIdOut!=null&&genreIdOut!=10000) {
 						recherche.setGenre(genreIdOut);
 					}
-			
-			
+
+
 					listLivre=livreWebManager.rechercheLivres(recherche, start,pageSize);
 
-					
+
 					if(listLivre==null||listLivre.isEmpty())addActionError("Aucun résultat trouvé");
 					else {
 						nbResult=livreWebManager.countLivres(recherche);
 						double page = (double) pageSize;
 
 						double lastPageNumber = (Math.ceil(nbResult / pageSize));
-						
+
 						lastPage=(int)lastPageNumber;
-						
-						
-						
+
+
+
 						for (Iterator iterator = listLivre.iterator(); iterator.hasNext();) {
 							Livre livre = (Livre) iterator.next();
 
 							for (Iterator iterator2 = livre.getAuteurs().iterator(); iterator2.hasNext();) {
 								Auteur auteur = (Auteur) iterator2.next();
-								listAuteur.add(auteur);						
+								listAuteur.add(auteur);
 							}
 							for (Iterator iterator2 = livre.getGenres().iterator(); iterator2.hasNext();) {
 								Genre genre = (Genre) iterator2.next();
-								listGenre.add(genre);						
+								listGenre.add(genre);
 							}
-						
+
 							result = ActionSupport.SUCCESS;
 						}
 					}
-					
+
 				} catch (FunctionalException_Exception e) {
 						addActionError(e.getMessage());
-						
+
 				}
-				
+
 				}}
-		
-		
+
+
 		catch(Exception e) {
 			addActionError("Le service est momentanément indisponible");
 			result=ActionSupport.ERROR;
 		}
-		
+
 		return result;}
-	
-	
-	
+
+
+
 	public String detail() {
-		
+
 		try {
-		
-		if (idLivre == null) {
-			this.addActionError(getText("error.project.missing.id"));
-		} else {
-			try {
-				String date="";
-				livre = (Livre) livreWebManager.getLivreById(idLivre);
-				listResa = resaWebManager.getListResaByLivreId(idLivre);
-				if(!listResa.isEmpty()) nbResa= listResa.size();
+
+			if (idLivre == null) {
+				this.addActionError(getText("error.project.missing.id"));
+			} else {
 				try {
-					date=livreWebManager.dateRetourLivre(idLivre);
-					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-					dateRetour=LocalDate.parse(date, formatter);
+					String date = "";
+					livre = (Livre) livreWebManager.getLivreById(idLivre);
+					listResa = resaWebManager.getListResaByLivreId(idLivre);
 
-				} catch (FunctionalException_Exception e) {
-					// TODO Auto-generated catch block
-					e.getMessage();
+					if (!listResa.isEmpty()) {
+						nbResa = listResa.size();
+					}
+					user = (Utilisateur) session.get("user");
+					if (user != null) {
+						for (Reservation next : listResa) {
+							if (next.getDemandeur().getIdUtilisateur() == user.getIdUtilisateur()) resaByUser = true;
+						}
+						List<Pret> listePret = new ArrayList<Pret>();
+						listePret = pretWebManager.getPretsEnCoursByUser(user.getIdUtilisateur());
+						for (Pret next : listePret) {
+							if (next.getLivre().getIdLivre() == livre.getIdLivre())
+								empruntByUser = true;
+						}
+					}
+					if (nbResa >= 2 * livre.getExemplaire()) resaComplete = true;
+
+
+					try {
+						date = livreWebManager.dateRetourLivre(idLivre);
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+						dateRetour = LocalDate.parse(date, formatter);
+
+					} catch (FunctionalException_Exception e) {
+						// TODO Auto-generated catch block
+						e.getMessage();
+					}
+
+
+				} catch (NotFoundException_Exception Notfound) {
+					this.addActionError(getText("error.project.notfound", Collections.singletonList(idLivre)));
+
+				} catch (fr.mb.biblio.webappConsumer.services.pret.FunctionalException_Exception e) {
+					e.printStackTrace();
+				} catch (fr.mb.biblio.webappConsumer.services.reservation.FunctionalException_Exception e) {
+					e.printStackTrace();
 				}
-
-				
-				
-			} catch (NotFoundException_Exception Notfound) {
-				this.addActionError(getText("error.project.notfound", Collections.singletonList(idLivre)));
-				
 			}
-		}
+
 		}
 		catch(Exception e){
 			addActionError("Le service est momentanément indisponible");
@@ -461,5 +508,37 @@ public class LivreAction extends ActionSupport implements SessionAware {
 
 	public void setListResa(List<Reservation> listResa) {
 		this.listResa = listResa;
+	}
+
+	public Boolean getResaByUser() {
+		return resaByUser;
+	}
+
+	public void setResaByUser(Boolean resaByUser) {
+		this.resaByUser = resaByUser;
+	}
+
+	public Boolean getEmpruntByUser() {
+		return empruntByUser;
+	}
+
+	public void setEmpruntByUser(Boolean empruntByUser) {
+		this.empruntByUser = empruntByUser;
+	}
+
+	public Boolean getResaComplete() {
+		return resaComplete;
+	}
+
+	public void setResaComplete(Boolean resaComplete) {
+		this.resaComplete = resaComplete;
+	}
+
+	public Utilisateur getUser() {
+		return user;
+	}
+
+	public void setUser(Utilisateur user) {
+		this.user = user;
 	}
 }
