@@ -5,6 +5,7 @@ import java.util.Map;
 
 
 import fr.mb.biblio.webappBusiness.contract.LoginWebManager;
+import fr.mb.biblio.webappConsumer.services.identification.NotFoundException_Exception;
 import fr.mb.biblio.webappConsumer.services.identification.Utilisateur;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -59,12 +60,17 @@ public class LoginAction extends ActionSupport implements SessionAware{
 		try {
 		
         if (!StringUtils.isAllEmpty(login, password)) {
-			this.user=loginWebManager.identification(login, password);
+        	try {
+				this.user = loginWebManager.identification(login, password);
 
-			this.session.put("user", user);
-			this.session.put("mdpUser", password);
-			this.addActionMessage("utilisateur connecté : "+ user.getIdentifiant());
-			result = ActionSupport.SUCCESS;
+				this.session.put("user", user);
+				this.session.put("mdpUser", password);
+				this.addActionMessage("utilisateur connecté : " + user.getIdentifiant());
+				result = ActionSupport.SUCCESS;
+			}
+			catch (NotFoundException_Exception e){
+        		addActionError(e.getMessage());
+			}
 
 		}
 

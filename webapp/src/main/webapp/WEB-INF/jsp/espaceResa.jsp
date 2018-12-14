@@ -75,7 +75,9 @@
                                                 <h4>Détail de la réservation :</h4>
                                             </div>
                                             <div class="row">
+
                                                 <ul class="m-1" id="listeLivre">
+
                                                     <s:if test="debutResa!=null">
                                                     <li><b>Réservation commencée le : </b> <span id="attribut"><javatime:parseLocalDate value="${debutResa}" pattern="yyyy-MM-dd" var="date" /><javatime:format value="${date}" pattern="dd-MM-yyyy" /></span></li>
                                                     </s:if>
@@ -142,7 +144,7 @@
 
 
             </div>
-
+        </div>
     </section>
 </div>
 

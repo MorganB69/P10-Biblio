@@ -82,6 +82,7 @@ public class ResaAction extends ActionSupport implements SessionAware {
             this.user = (Utilisateur) session.get("user");
             try {
                 listResa = resaWebManager.getListResaByUserId(this.user.getIdUtilisateur());
+
             } catch (FunctionalException_Exception e) {
                 addActionError(e.getMessage());
             }
