@@ -78,6 +78,20 @@
 		</result>
 	</action>
 
+		<action name="espaceResa" method="espaceResa" class="fr.mb.biblio.webapp.actions.ResaAction">
+			<interceptor-ref name="loginInterceptor"/>
+			<interceptor-ref name="defaultStack"/>
+			<result name="success">/WEB-INF/jsp/espaceResa.jsp</result>
+		</action>
+
+		<action name="deleteResa" method="deleteResa" class="fr.mb.biblio.webapp.actions.ResaAction">
+			<interceptor-ref name="loginInterceptor"/>
+			<interceptor-ref name="defaultStack"/>
+			<result name="success" type="redirectAction">
+				<param name="actionName"> espaceResa </param>
+			</result>
+		</action>
+
     </package>
 
     <!-- Add addition packages and configuration here. -->

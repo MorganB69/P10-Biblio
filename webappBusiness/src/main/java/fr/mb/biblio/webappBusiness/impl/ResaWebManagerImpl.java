@@ -30,4 +30,16 @@ public class ResaWebManagerImpl implements ResaWebManager {
         resaReturn= resaService.newReservation(livreId,demandeurId);
         return resaReturn;
     }
+
+    @Override
+    public List<Reservation> getListResaByUserId(Integer userId) throws FunctionalException_Exception {
+       listResaReturn = resaService.getResaByUserId(userId);
+       return  listResaReturn;
+    }
+
+    @Override
+    public void deleteReservation(Integer resaId) throws NotFoundException_Exception, FunctionalException_Exception {
+        resaService.deleteReservation(resaId);
+
+    }
 }

@@ -10,4 +10,9 @@ public interface ResaWebManager {
     List<Reservation> getListResaByLivreId(Integer livreId) throws FunctionalException_Exception;
 
     Reservation newReservation(Integer livreId, Integer demandeurId) throws NotFoundException_Exception, FunctionalException_Exception;
+
+    List<Reservation> getListResaByUserId(Integer userId) throws FunctionalException_Exception;
+
+    void deleteReservation(Integer resaId) throws NotFoundException_Exception, FunctionalException_Exception;
+
 }
