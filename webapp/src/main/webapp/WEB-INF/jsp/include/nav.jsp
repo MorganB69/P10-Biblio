@@ -47,7 +47,7 @@
 					<a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						ESPACE PERSONNEL
 					</a>
-					<div class="dropdown-menu">
+					<div class="dropdown-menu bg-info">
 						<s:a class="nav-link" action="getPrets">Prêts</s:a>
 						<s:a class="nav-link" action="espaceResa">Réservations</s:a>
 
