@@ -1,25 +1,10 @@
 package fr.mb.biblio.models.beans;
 // Generated 17 mai 2018 21:05:11 by Hibernate Tools 5.2.10.Final
 
-import java.text.DateFormat;
 import java.time.LocalDate;
 import java.util.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -208,6 +193,7 @@ public class Livre implements java.io.Serializable {
 
     @XmlTransient
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "livre")
+    @OrderBy
     public Set<Reservation> getListeResa() {
         return listeResa;
     }

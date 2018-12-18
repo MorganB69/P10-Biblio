@@ -9,6 +9,7 @@ import fr.mb.biblio.models.beans.Reservation;
 import fr.mb.biblio.models.beans.Utilisateur;
 import fr.mb.biblio.models.exception.FunctionalException;
 import fr.mb.biblio.models.exception.NotFoundException;
+import fr.mb.biblio.models.ws.ReservationWS;
 import fr.mb.biblio.soapbusiness.resaManager.contract.ResaManager;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -20,7 +21,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
-import javax.inject.Inject;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
@@ -76,6 +76,11 @@ public class ResaManagerImpl implements ResaManager {
      * Reservation à retourner
      */
     private Reservation resaReturn = new Reservation();
+
+    /**
+     * Liste de resaWS à retourner
+     */
+    private List<ReservationWS>resaWSListReturn = new ArrayList<>();
 
 
     /**
@@ -169,6 +174,7 @@ public class ResaManagerImpl implements ResaManager {
     public List<Reservation> getResaByUserId(Integer demandeurId) throws FunctionalException {
         if (demandeurId <= 0) throw new FunctionalException("Les données sont incorrectes");
         else {
+
             resaListReturn=resaDao.getResaByUserId(demandeurId);
             return resaListReturn;
         }

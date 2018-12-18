@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Comparator;
 
 @Entity
 @Table(name = "reservation", catalog = "projet")
@@ -83,6 +84,9 @@ public class Reservation implements Serializable, Comparable<Reservation> {
 
     @Override
     public int compareTo(Reservation o) {
-        return this.getId()-o.getId();
+        return Integer.compare(this.getId(), o.getId());
+
     }
+
+
 }

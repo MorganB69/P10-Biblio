@@ -136,7 +136,7 @@ public class PretManagerImpl implements PretManager {
 					if(!listResa.isEmpty()){
 						Reservation resa=listResa.iterator().next();
 						if(resa.getDemandeur().getIdUtilisateur()!=emprunteur.getIdUtilisateur()){
-							throw new FunctionalException("Le pret est reservé par un autre utilisateur");
+							throw new FunctionalException("Le livre est reservé par un autre utilisateur");
 						}
 						else{
 							resaManager.deleteReservation(resa.getId());

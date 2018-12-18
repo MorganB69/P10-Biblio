@@ -1,39 +1,19 @@
 package fr.mb.biblio.soap.resaService.impl;
 
-import fr.mb.biblio.dao.contract.LivreDao;
-import fr.mb.biblio.dao.contract.ResaDao;
-import fr.mb.biblio.dao.contract.UtilisateurDao;
-import fr.mb.biblio.models.Mail;
-import fr.mb.biblio.models.beans.Livre;
 import fr.mb.biblio.models.beans.Reservation;
-import fr.mb.biblio.models.beans.Utilisateur;
 import fr.mb.biblio.models.exception.FunctionalException;
 import fr.mb.biblio.models.exception.NotFoundException;
-import fr.mb.biblio.soap.pretService.contract.PretService;
-import fr.mb.biblio.soap.pretService.impl.PretServiceImpl;
+import fr.mb.biblio.models.ws.ReservationWS;
 import fr.mb.biblio.soap.resaService.contract.ResaService;
+import fr.mb.biblio.soapbusiness.livreManager.contract.LivreManager;
 import fr.mb.biblio.soapbusiness.resaManager.contract.ResaManager;
-import freemarker.template.Configuration;
-import freemarker.template.Template;
-import freemarker.template.TemplateException;
-import net.sf.ehcache.search.expression.Not;
-import org.apache.commons.collections4.FunctorException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
-import javax.inject.Inject;
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
-
-import static org.bouncycastle.asn1.iana.IANAObjectIdentifiers.mail;
 
 /**
  * Implementation du service de reservation
@@ -44,6 +24,9 @@ public class ResaServiceImpl implements ResaService {
     @Autowired
     ResaManager resaManager;
 
+    @Autowired
+    LivreManager livreManager;
+
 
     /**
      * Liste de reservation à retourner
@@ -53,6 +36,11 @@ public class ResaServiceImpl implements ResaService {
      * Reservation à retourner
      */
     private Reservation resaReturn = new Reservation();
+
+    /**
+     * Liste de reservationWS(avec info complementaires pour l espace de reservation)
+     */
+    private List<ReservationWS> resaWsListReturn = new ArrayList<>();
 
 
     /**
@@ -106,9 +94,32 @@ public class ResaServiceImpl implements ResaService {
      */
     @Override
     @Transactional
-    public List<Reservation> getResaByUserId(Integer demandeurId) throws FunctionalException {
+    public List<ReservationWS> getResaByUserId(Integer demandeurId) throws FunctionalException, NotFoundException {
         resaListReturn=resaManager.getResaByUserId(demandeurId);
-            return resaListReturn;
+        resaWsListReturn.clear();
+        for(Reservation next : resaListReturn){
+            ReservationWS resaWS = new ReservationWS();
+            String date = livreManager.dateRetourLivre(next.getLivre().getIdLivre());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            LocalDate dateRetour = LocalDate.parse(date,formatter);
+
+            resaWS.setReservation(next);
+            resaWS.setDateRetour(dateRetour);
+            Integer position = 1;
+            Set<Reservation> listeResaByLivre = next.getLivre().getListeResa();
+
+            Iterator<Reservation> iterator = listeResaByLivre.iterator();
+            while (iterator.hasNext()) {
+                Reservation reservation = iterator.next();
+                if (demandeurId == reservation.getDemandeur().getIdUtilisateur()) break;
+                else position++;
+            }
+            resaWS.setPositionUser(position);
+            resaWS.setNbResaTotal(next.getLivre().getListeResa().size());
+            resaWsListReturn.add(resaWS);
+
+        }
+            return resaWsListReturn;
     }
 
     /**

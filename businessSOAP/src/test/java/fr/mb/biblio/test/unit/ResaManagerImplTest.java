@@ -12,10 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -35,7 +32,7 @@ public class ResaManagerImplTest {
     @Test
     public void checkNbExemplaireTest() throws FunctionalException {
         Livre livreTest = new Livre();
-        Set<Reservation> listeResa = new TreeSet<Reservation>();
+        SortedSet<Reservation> listeResa = new TreeSet<>();
         //Nombre d'exemplaire
         livreTest.setExemplaire(3);
         //Creation d'une liste non pleine
