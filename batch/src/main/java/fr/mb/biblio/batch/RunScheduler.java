@@ -34,7 +34,7 @@ public class RunScheduler {
 
     @Scheduled(cron = "${verifResaScheduler}" )
     public void verifResa(){
-
+        resaClient.verifEndResa();
     }
 
 }

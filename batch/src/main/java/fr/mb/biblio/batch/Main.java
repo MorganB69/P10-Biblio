@@ -39,6 +39,7 @@ public class Main {
 			case "2":
 				System.out.println("Arrêt du batch");
 				lancementBatch=false;
+				System.exit(0);
 				break;
 
 			default:
