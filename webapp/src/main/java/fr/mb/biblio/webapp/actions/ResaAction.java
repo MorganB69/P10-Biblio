@@ -7,6 +7,7 @@ import fr.mb.biblio.webappConsumer.services.reservation.FunctionalException_Exce
 import fr.mb.biblio.webappConsumer.services.reservation.NotFoundException_Exception;
 import fr.mb.biblio.webappConsumer.services.reservation.Reservation;
 import fr.mb.biblio.webappConsumer.services.identification.Utilisateur;
+import fr.mb.biblio.webappConsumer.services.reservation.ReservationWS;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -38,7 +39,7 @@ public class ResaAction extends ActionSupport implements SessionAware {
     /**
      * Liste de reservation
      */
-    private List<Reservation> listResa = new ArrayList<Reservation>();
+    private List<ReservationWS> listResa = new ArrayList<ReservationWS>();
 
     /**
      * Livre
@@ -82,6 +83,7 @@ public class ResaAction extends ActionSupport implements SessionAware {
             this.user = (Utilisateur) session.get("user");
             try {
                 listResa = resaWebManager.getListResaByUserId(this.user.getIdUtilisateur());
+
 
             } catch (FunctionalException_Exception e) {
                 addActionError(e.getMessage());
@@ -178,11 +180,11 @@ public class ResaAction extends ActionSupport implements SessionAware {
         this.idResa = idResa;
     }
 
-    public List<Reservation> getListResa() {
+    public List<ReservationWS> getListResa() {
         return listResa;
     }
 
-    public void setListResa(List<Reservation> listResa) {
+    public void setListResa(List<ReservationWS> listResa) {
         this.listResa = listResa;
     }
 }

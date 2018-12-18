@@ -48,8 +48,8 @@
 
                                             <h4 class="card-header text-center">
                                                 <s:a action="detail_livre">
-                                                    <s:param name="idLivre" value="livre.idLivre"></s:param>
-                                                    <s:property value="livre.titre" /></s:a>
+                                                    <s:param name="idLivre" value="reservation.livre.idLivre"></s:param>
+                                                    <s:property value="reservation.livre.titre" /></s:a>
                                             </h4>
 
 
@@ -58,7 +58,7 @@
 
 
 
-                                                    <img class="img-fluid" id="img-card" src="images/livre/<s:property value="livre.image"/>" alt="">
+                                                    <img class="img-fluid" id="img-card" src="images/livre/<s:property value="reservation.livre.image"/>" alt="">
                                                 </div>
 
 
@@ -77,14 +77,16 @@
                                             <div class="row">
 
                                                 <ul class="m-1" id="listeLivre">
-
-                                                    <s:if test="debutResa!=null">
-                                                    <li><b>Réservation commencée le : </b> <span id="attribut"><javatime:parseLocalDate value="${debutResa}" pattern="yyyy-MM-dd" var="date" /><javatime:format value="${date}" pattern="dd-MM-yyyy" /></span></li>
+                                                    <s:if test="dateRetour!=null">
+                                                        <li><b>Retour prévu le : </b> <span id="attribut"><javatime:parseLocalDate value="${dateRetour}" pattern="yyyy-MM-dd" var="date" /><javatime:format value="${date}" pattern="dd-MM-yyyy" /></span></li>
                                                     </s:if>
-                                                    <s:if test="finResa!=null">
-                                                    <li><b>Réservation terminée le : </b><span id="attribut"><javatime:parseLocalDate value="${finResa}" pattern="yyyy-MM-dd" var="date" /><javatime:format value="${date}" pattern="dd-MM-yyyy" /></span></li>
+                                                    <s:if test="reservation.debutResa!=null">
+                                                    <li><b>Commencée le : </b> <span id="attribut"><javatime:parseLocalDate value="${reservation.debutResa}" pattern="yyyy-MM-dd" var="date" /><javatime:format value="${date}" pattern="dd-MM-yyyy" /></span></li>
                                                     </s:if>
-                                                    <li><b>Position file d'attente :</b></li>
+                                                    <s:if test="reservation.finResa!=null">
+                                                    <li><b>Sera terminée le : </b><span id="attribut"><javatime:parseLocalDate value="${reservation.finResa}" pattern="yyyy-MM-dd" var="date" /><javatime:format value="${date}" pattern="dd-MM-yyyy" /></span></li>
+                                                    </s:if>
+                                                    <li><b>Position file d'attente :</b><span id="attribut"><s:property value="positionUser"/>/<s:property value="nbResaTotal"/> </span></li>
                                                 </ul>
                                             </div>
 

@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="return" type="{http://contract.resaService.soap.biblio.mb.fr/}reservation" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="return" type="{http://contract.resaService.soap.biblio.mb.fr/}reservationWS" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlType;
 public class GetResaByUserIdResponse {
 
     @XmlElement(name = "return")
-    protected List<Reservation> _return;
+    protected List<ReservationWS> _return;
 
     /**
      * Gets the value of the return property.
@@ -55,13 +55,13 @@ public class GetResaByUserIdResponse {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Reservation }
+     * {@link ReservationWS }
      * 
      * 
      */
-    public List<Reservation> getReturn() {
+    public List<ReservationWS> getReturn() {
         if (_return == null) {
-            _return = new ArrayList<Reservation>();
+            _return = new ArrayList<ReservationWS>();
         }
         return this._return;
     }

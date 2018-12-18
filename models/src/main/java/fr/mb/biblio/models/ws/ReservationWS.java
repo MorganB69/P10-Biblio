@@ -1,9 +1,12 @@
 package fr.mb.biblio.models.ws;
 
+import fr.mb.biblio.models.LocalDateXmlAdapter;
 import fr.mb.biblio.models.beans.Livre;
 import fr.mb.biblio.models.beans.Pret;
 import fr.mb.biblio.models.beans.Reservation;
 
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 
 public class ReservationWS {
@@ -15,10 +18,6 @@ public class ReservationWS {
     public ReservationWS() {
     }
 
-    public ReservationWS(Reservation reservation, LocalDate dateRetour) {
-        this.reservation = reservation;
-        this.dateRetour = dateRetour;
-    }
 
     public Reservation getReservation() {
         return reservation;
@@ -28,6 +27,8 @@ public class ReservationWS {
         this.reservation = reservation;
     }
 
+    @XmlJavaTypeAdapter(LocalDateXmlAdapter.class)
+    @XmlSchemaType(name = "date")
     public LocalDate getDateRetour() {
         return dateRetour;
     }

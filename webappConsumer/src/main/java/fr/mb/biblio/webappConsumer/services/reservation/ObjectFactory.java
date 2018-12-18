@@ -264,6 +264,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ReservationWS }
+     * 
+     */
+    public ReservationWS createReservationWS() {
+        return new ReservationWS();
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link VerifEndResa }{@code >}}
      * 
      */

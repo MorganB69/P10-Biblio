@@ -1,10 +1,7 @@
 package fr.mb.biblio.webappBusiness.impl;
 
 import fr.mb.biblio.webappBusiness.contract.ResaWebManager;
-import fr.mb.biblio.webappConsumer.services.reservation.FunctionalException_Exception;
-import fr.mb.biblio.webappConsumer.services.reservation.NotFoundException_Exception;
-import fr.mb.biblio.webappConsumer.services.reservation.ResaService;
-import fr.mb.biblio.webappConsumer.services.reservation.Reservation;
+import fr.mb.biblio.webappConsumer.services.reservation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +15,7 @@ public class ResaWebManagerImpl implements ResaWebManager {
 
     List<Reservation> listResaReturn;
     Reservation resaReturn;
+    List<ReservationWS>listResaWsReturn;
 
     @Override
     public List<Reservation> getListResaByLivreId(Integer livreId) throws FunctionalException_Exception {
@@ -32,9 +30,9 @@ public class ResaWebManagerImpl implements ResaWebManager {
     }
 
     @Override
-    public List<Reservation> getListResaByUserId(Integer userId) throws FunctionalException_Exception {
-       listResaReturn = resaService.getResaByUserId(userId);
-       return  listResaReturn;
+    public List<ReservationWS> getListResaByUserId(Integer userId) throws FunctionalException_Exception, NotFoundException_Exception {
+       listResaWsReturn = resaService.getResaByUserId(userId);
+       return  listResaWsReturn;
     }
 
     @Override

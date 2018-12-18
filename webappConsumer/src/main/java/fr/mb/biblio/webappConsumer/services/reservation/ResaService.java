@@ -35,8 +35,8 @@ public interface ResaService {
     /**
      * 
      * @param resaId
-     * @throws Exception_Exception
      * @throws FunctionalException_Exception
+     * @throws Exception_Exception
      * @throws NotFoundException_Exception
      */
     @WebMethod
@@ -106,17 +106,18 @@ public interface ResaService {
      * 
      * @param demandeurId
      * @return
-     *     returns java.util.List<fr.mb.biblio.webappConsumer.services.reservation.Reservation>
+     *     returns java.util.List<fr.mb.biblio.webappConsumer.services.reservation.ReservationWS>
      * @throws FunctionalException_Exception
+     * @throws NotFoundException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "getResaByUserId", targetNamespace = "http://contract.resaService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webappConsumer.services.reservation.GetResaByUserId")
     @ResponseWrapper(localName = "getResaByUserIdResponse", targetNamespace = "http://contract.resaService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webappConsumer.services.reservation.GetResaByUserIdResponse")
-    public List<Reservation> getResaByUserId(
+    public List<ReservationWS> getResaByUserId(
         @WebParam(name = "demandeurId", targetNamespace = "")
         Integer demandeurId)
-        throws FunctionalException_Exception
+        throws FunctionalException_Exception, NotFoundException_Exception
     ;
 
     /**
