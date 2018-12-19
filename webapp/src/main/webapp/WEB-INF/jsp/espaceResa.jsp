@@ -109,7 +109,7 @@
 
 
                                             <s:a class="btn btn-danger m-3" action="deleteResa">Annuler la réservation
-                                                <s:param name="idResa" value="id"></s:param>
+                                                <s:param name="idResa" value="reservation.id"></s:param>
                                             </s:a>
 
 
