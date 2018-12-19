@@ -31,6 +31,7 @@ public class Utilisateur implements java.io.Serializable {
 	private String mail;
 	private Boolean admin;
 	private Set<Pret> prets = new HashSet<Pret>(0);
+	private Set<Reservation> listeResaUser = new HashSet<>();
 
 	public Utilisateur() {
 	}
@@ -46,7 +47,7 @@ public class Utilisateur implements java.io.Serializable {
 	}
 
 	public Utilisateur(int idUtilisateur, String identifiant, String prenom, String nom, String mdp, String mail, Boolean admin,
-			Set<Pret> prets) {
+			Set<Pret> prets,Set<Reservation> listeResaUser) {
 		this.idUtilisateur = idUtilisateur;
 		this.identifiant = identifiant;
 		this.prenom = prenom;
@@ -55,6 +56,7 @@ public class Utilisateur implements java.io.Serializable {
 		this.mail = mail;
 		this.admin=admin;
 		this.prets = prets;
+		this.listeResaUser=listeResaUser;
 	}
 
 	@Id
@@ -133,4 +135,13 @@ public class Utilisateur implements java.io.Serializable {
 		this.admin = admin;
 	}
 
+	@XmlTransient
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "demandeur")
+	public Set<Reservation> getListeResaUser() {
+		return listeResaUser;
+	}
+
+	public void setListeResaUser(Set<Reservation> listeResaUser) {
+		this.listeResaUser = listeResaUser;
+	}
 }

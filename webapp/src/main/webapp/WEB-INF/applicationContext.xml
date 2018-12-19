@@ -2,62 +2,23 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:jaxws="http://cxf.apache.org/jaxws"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<import resource="classpath:META-INF/cxf/cxf.xml"/>
-	
-	<!-- DECLARATIONS DES SERVICES CLIENTS -->
-	<jaxws:client id="userClient"
-                  serviceClass="fr.mb.biblio.webapp.services.user.UserService"
-                  address="${service.user}" />
-                  
-	<jaxws:client id="identificationClient"
-                  serviceClass="fr.mb.biblio.webapp.services.identification.IdentificationService"
-                  address="${service.identification}" />
-                  
-    <jaxws:client id="livreClient"
-                  serviceClass="fr.mb.biblio.webapp.services.livre.LivreService"
-                  address="${service.livre}" />
-                  
-    <jaxws:client id="pretClient"
-                  serviceClass="fr.mb.biblio.webapp.services.pret.PretService"
-                  address="${service.pret}"> 
-                  
-                  <jaxws:outInterceptors>
-                  <ref bean="wss4jOut"/>
 
-                  </jaxws:outInterceptors>
-    
-    </jaxws:client>
-	
+	<import resource="classpath:applicationContextBusinessWeb.xml"/>
+	<import resource="classpath:applicationContextConsumerWeb.xml"/>
+
 	<!-- SCAN DES DIFFERENTS BEANS ANNOTES -->
   	<context:annotation-config/>
-    <context:component-scan base-package="fr.mb.biblio.webapp"/>
+
+	<context:component-scan base-package="fr.mb.biblio.webapp"/>
+    <context:component-scan base-package="fr.mb.biblio.webappBusiness"/>
+	<context:component-scan base-package="fr.mb.biblio.webappConsumer"/>
     
     
-      	<!-- FICHIERS PROPERTIES A RECUPERER -->	
-	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-    <property name="locations">
-        <list>
-	 <value>classpath:service.properties</value>
-        </list>
-    </property>
-	</bean>
-	
-	<bean id="wss4jOut" class="org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor">
-    <constructor-arg>
-        <map>
-            <entry key="action" value="UsernameToken" />
-            <entry key="user" value="ws-client" />
-            <entry key="passwordType" value="PasswordText" />
-            <entry key="passwordCallbackClass"
-                value="fr.mb.biblio.webapp.config.ClientPasswordCallback" />
-        </map>
-    </constructor-arg>
-</bean>
+
   
 	
 </beans>

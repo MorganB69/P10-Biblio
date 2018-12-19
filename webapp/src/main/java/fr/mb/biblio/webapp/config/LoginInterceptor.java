@@ -1,18 +1,16 @@
 package fr.mb.biblio.webapp.config;
 
 
-import java.util.Iterator;
-import java.util.Map;
-
-import org.apache.struts2.dispatcher.HttpParameters;
-import org.apache.struts2.interceptor.SessionAware;
-
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
+import fr.mb.biblio.webappConsumer.services.identification.Utilisateur;
+import org.apache.struts2.StrutsStatics;
+import org.apache.struts2.dispatcher.HttpParameters;
+import org.apache.struts2.interceptor.SessionAware;
 
-import fr.mb.biblio.webapp.services.identification.Utilisateur;
-
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 
 /**
@@ -45,17 +43,26 @@ public class LoginInterceptor implements Interceptor, SessionAware {
 	@Override
 	public String intercept(ActionInvocation actionInvocation)
 			throws Exception {
-		
-		Map<String, Object> session = actionInvocation.getInvocationContext()
-				    .getSession();
+
+		final ActionContext context = actionInvocation.getInvocationContext();
+		Map<String, Object> session = context.getSession();
 		
 		
 		String actionName = actionInvocation.getInvocationContext().getName();
+
+		HttpServletRequest request = (HttpServletRequest)context.get(StrutsStatics.HTTP_REQUEST);
+
+		String url = String.valueOf(request.getRequestURL());
+		String queryString = request.getQueryString();
+		String fullUrl = url + (queryString==null ? "" : ("?" + queryString));
+
+
 		
 		
 		
 		if (!"login".equalsIgnoreCase(actionName)) {
 		    session.put("lastAction", actionName);
+		    session.put("url", fullUrl);
 
 		}
 		

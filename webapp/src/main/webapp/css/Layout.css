@@ -32,7 +32,11 @@ font-size:150%;
 }
 
 .navbar{
- background: url(../images/fondnav.png) repeat;
+ 	background: url(../images/fondnav.png) repeat;
+}
+
+.dropdown-menu.show{
+	background: url(../images/fondnav.png) repeat;
 }
 
 .navbar-collapse.collapse.show {
