@@ -22,50 +22,25 @@
 			    <groupId>org.apache.cxf</groupId>
 			    <artifactId>cxf-rt-transports-http</artifactId>
 			</dependency>
-			
-			<!-- SPRING -->
+
+	  		<dependency>
+				<groupId>org.apache.wss4j</groupId>
+				<artifactId>wss4j-ws-security-common</artifactId>
+			</dependency>
+
+	  		<dependency>
+		  		<groupId>org.apache.cxf</groupId>
+		  		<artifactId>cxf-rt-ws-security</artifactId>
+	  		</dependency>
+
+
+			<!-- SPRING WEB -->
 
 	        <dependency>
 	            <groupId>org.springframework</groupId>
 	            <artifactId>spring-web</artifactId>
 	        </dependency>
-	        
-	        <dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-context</artifactId>
-			</dependency>
-			
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-context-support</artifactId>
-			</dependency>
-			
-			<dependency>
-			    <groupId>org.freemarker</groupId>
-			    <artifactId>freemarker</artifactId>
-			    <version>2.3.28</version>
-			</dependency>
 
-
-
-
-<!-- https://mvnrepository.com/artifact/org.apache.wss4j/wss4j-ws-security-common -->
-<dependency>
-    <groupId>org.apache.wss4j</groupId>
-    <artifactId>wss4j-ws-security-common</artifactId>
-    <version>2.2.1</version>
-</dependency>
-			
-			<!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-ws-security -->
-			<dependency>
-			    <groupId>org.apache.cxf</groupId>
-			    <artifactId>cxf-rt-ws-security</artifactId>
-			    <version>3.2.4</version>
-			</dependency>
-			
-
-        	
-        	
         	<!-- SERVLET -->
 	        <dependency>
 	            <groupId>javax.servlet</groupId>
@@ -73,26 +48,25 @@
 	        </dependency>
 
 
+	  		<!-- Modules -->
+	  		<dependency>
+				<groupId>fr.mb.biblio</groupId>
+				<artifactId>models</artifactId>
+			</dependency>
 
+	  		<dependency>
+		  		<groupId>fr.mb.biblio</groupId>
+		  		<artifactId>businessSOAP</artifactId>
+			</dependency>
 
-	  <!-- Modules -->
-		  	<dependency>
-			  	<groupId>fr.mb.biblio</groupId>
-			  	<artifactId>models</artifactId>
- 			</dependency>
- 			
- 			<dependency>
-			  	<groupId>fr.mb.biblio</groupId>
-			  	<artifactId>dao</artifactId>
- 			</dependency>
- 			
  			 <dependency>
 			  	<groupId>fr.mb.biblio</groupId>
 			  	<artifactId>tech</artifactId>
  			</dependency>
 
 
-  
+
+
   </dependencies>
 	<pluginRepositories>
 		<pluginRepository>
@@ -100,6 +74,44 @@
 			<url>http://smartbearsoftware.com/repository/maven2/</url>
 		</pluginRepository>
 	</pluginRepositories>
+
+	<profiles>
+		<!-- Profile utilisé pour lancer les tests d'intégration de la couche soap -->
+		<profile>
+			<id>test-soap</id>
+			<build>
+				<plugins>
+					<!-- Ajout du répertoire src/test-soap/java en tant que source de test du module -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>build-helper-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>add-test-source</id>
+								<phase>generate-test-sources</phase>
+								<goals>
+									<goal>add-test-source</goal>
+								</goals>
+								<configuration>
+									<sources>
+										<source>src/test-soap/java</source>
+									</sources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+				<testResources>
+					<testResource>
+						<directory>src/test/resources</directory>
+					</testResource>
+					<testResource>
+						<directory>src/test-soap/resources</directory>
+					</testResource>
+				</testResources>
+			</build>
+		</profile>
+	</profiles>
   <build>
     <finalName>SOAP</finalName>
         <plugins>
@@ -123,25 +135,6 @@
 			        </configuration>
 		      </plugin>
 
-			<!--
-                          <plugin>
-              <groupId>com.spotify</groupId>
-              <artifactId>docker-maven-plugin</artifactId>
-              <version>0.4.10</version>
-              <configuration>
-                <imageName>soapImg</imageName>
-                <baseImage>tomcat:9-jre8</baseImage>
-                <entryPoint>["catalina.sh", "run"]</entryPoint>
-                <resources>
-                  <resource>
-                    <targetPath>/usr/local/tomcat/webapps/</targetPath>
-                    <directory>${project.build.directory}</directory>
-                    <include>${project.build.finalName}.war</include>
-                  </resource>
-                </resources>
-              </configuration>
-            </plugin>
-			-->
                         <plugin>
                             <groupId>com.spotify</groupId>
                             <artifactId>dockerfile-maven-plugin</artifactId>
@@ -161,34 +154,12 @@
                                 </buildArgs>
                             </configuration>
                         </plugin>
-                        <plugin>
-                            <dependencies>
-                                <dependency>
-                                    <groupId>com.jgoodies</groupId>
-                                    <artifactId>forms</artifactId>
-                                    <version>1.0.7</version>
-                                </dependency>
-                            </dependencies>
-                        <groupId>com.smartbear.soapui</groupId>
-                        <artifactId>soapui-maven-plugin</artifactId>
-                        <version>5.4.0</version>
-                        <configuration>
-                            <projectFile>soapUI.xml</projectFile>
-							<junitReport>true</junitReport>
-							<exportAll>true</exportAll>
-							<outputFolder>target/surefire-reports</outputFolder>
-						</configuration>
-                        <executions>
-                            <execution>
-                                <id>soapui-test</id>
-								<phase>test</phase>
-								<goals>
-									<goal>test</goal>
-								</goals>
 
-                            </execution>
-                        </executions>
-                        </plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+			</plugin>
 
                 </plugins>
               </build>

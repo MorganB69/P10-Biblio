@@ -3,6 +3,7 @@ package fr.mb.biblio.dao.impl;
 
 import javax.inject.Named;
 
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.mb.biblio.dao.contract.GenericDAO;

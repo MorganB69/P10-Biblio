@@ -1,0 +1,15 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <ns2:identificationResponse xmlns:ns2="http://contract.userService.soap.biblio.mb.fr/">
+         <return>
+            <admin>true</admin>
+            <idUtilisateur>1</idUtilisateur>
+            <identifiant>Morgan</identifiant>
+            <mail>brighi.morgan@mail.fr</mail>
+            <mdp>azerty</mdp>
+            <nom>Brighi</nom>
+            <prenom>Morgan</prenom>
+         </return>
+      </ns2:identificationResponse>
+   </soap:Body>
+</soap:Envelope>

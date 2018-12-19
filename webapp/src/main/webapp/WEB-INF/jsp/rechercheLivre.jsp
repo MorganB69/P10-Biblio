@@ -107,13 +107,7 @@
 											<img class="img-fluid col-6" id="img-card" src="images/livre/<s:property value="image"/>" alt="">
 											
 											<ul class="col m-1" id="listeLivre">
-												<s:if test="disponible==true">
-												<li><b>Disponibilité :</b> <i class="fa fa-check-circle m-1" id="iconStatut"></i> <span id="statut">Le livre est disponible</span></li>
-												</s:if>
-												<s:else>
-												<li><b>Disponibilité :</b> <i class="fa fa-times-circle m-1" id="iconStatutIndispo"></i> <span id="statutIndispo">Le livre est emprunté</span></li>
-												
-												</s:else>
+
 												
 									 			<li><b>Auteur(s) :</b><s:iterator value="auteurs">
 									 				 <span id="attribut"><s:property value="prenom"/>  <s:property value="nom"/></span>
@@ -164,13 +158,7 @@
 											<img class="img-fluid col-6" id="img-card" src="images/livre/<s:property value="image"/>" alt="">
 											
 											<ul class="col m-1" id="listeLivre">
-												<s:if test="disponible==true">
-												<li><b>Disponibilité :</b> <i class="fa fa-check-circle m-1" id="iconStatut"></i> <span id="statut">Le livre est disponible</span></li>
-												</s:if>
-												<s:else>
-												<li><b>Disponibilité :</b> <i class="fa fa-times-circle m-1" id="iconStatutIndispo"></i> <span id="statutIndispo">Le livre est emprunté</span></li>
-												
-												</s:else>
+
 												
 									 			<li><b>Auteur(s) :</b><s:iterator value="auteurs">
 									 				 <span id="attribut"><s:property value="prenom"/>  <s:property value="nom"/></span>

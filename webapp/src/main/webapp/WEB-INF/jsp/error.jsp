@@ -4,15 +4,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-   
+
 </head>
 
 <body>
 <div class="row">
+
 <header>
+    <s:debug/>
 
-
-<div class="layer">
+    <div class="layer">
 </div>
 
 <s:include value="include/nav.jsp"></s:include> 
