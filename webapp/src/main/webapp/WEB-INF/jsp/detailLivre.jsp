@@ -159,17 +159,7 @@
 														</s:else>
 													</s:else>
 			</s:if>
-
-
-
-
-
-
-
-
-		
-		
-		
+	
     
   </div>
   <s:actionmessage/>
