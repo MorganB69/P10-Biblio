@@ -84,7 +84,7 @@ public class PretDaoImpl extends AbstractDaoImpl<Pret> implements PretDao {
 	}
 
 	@Override
-	public List<Pret> findPretRetard(Integer offset, Integer nbPages, LocalDate dateJour) {
+	public List<Pret> findPretRetard( LocalDate dateJour) {
 Session session = sessionFactory.getCurrentSession();
 		
 		String SQL=" SELECT DISTINCT pret FROM Pret as pret ";
@@ -100,15 +100,39 @@ Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery(SQL);
 		query.setParameter("dateJour", dateJour);
 		
-		logger.info(query.getQueryString());
+
 		
 
-		query.setFirstResult(offset);
-		query.setMaxResults(nbPages);
+
 		
 		List<Pret> list = query.list();
 		return list;
 	
+	}
+
+	@Override
+	public List<Pret> findPretEnCoursFuturRetard(LocalDate date) {
+		Session session = sessionFactory.getCurrentSession();
+
+		String SQL=" SELECT DISTINCT pret FROM Pret as pret ";
+
+		SQL += " JOIN pret.utilisateur as utilisateur ";
+
+		//-------------CRITERES OBLIGATOIRES---------------
+
+		SQL+=" WHERE (pret.dateEffective = null AND (:date)>pret.dateFin)  ";
+
+		SQL+=" AND (utilisateur.relance = true) ";
+
+		//TRI
+		SQL+=" ORDER BY pret.idPret ASC ";
+
+		//CREATION DE LA QUERY
+		Query query = session.createQuery(SQL);
+		query.setParameter("date", date);
+
+		List<Pret> list = query.list();
+		return list;
 	}
 
 	@Override

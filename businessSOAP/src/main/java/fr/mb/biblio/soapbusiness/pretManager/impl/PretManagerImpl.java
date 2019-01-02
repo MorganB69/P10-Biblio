@@ -281,7 +281,7 @@ public class PretManagerImpl implements PretManager {
 	@Transactional
 	public List<Pret> getPretsRetards() throws FunctionalException {
 		LocalDate dateJour=LocalDate.now();
-		listeReturn=pretDao.findPretRetard(0, 100, dateJour);
+		listeReturn=pretDao.findPretRetard(dateJour);
 		if (listeReturn==null) throw new FunctionalException("Pas de prêt en cours en retard trouvé");
 		return listeReturn;
 	}
