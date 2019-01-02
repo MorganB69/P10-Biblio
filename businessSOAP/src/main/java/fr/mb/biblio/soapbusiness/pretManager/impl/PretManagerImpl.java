@@ -377,26 +377,38 @@ public class PretManagerImpl implements PretManager {
 
 
 		}
-		/*
-		//Pour chaque pret en retard, envoi d'un mail de relance a l'empreunteur
-		for (Pret pret : listeRetard) {
-			Mail mail = new Mail("mb.testocrbiblio@gmail.com", pret.getUtilisateur().getMail(), "Relance Prêt Biblio");
+    }
+
+	@Override
+	@Transactional
+	public void relanceMailFuturRetard() throws Exception {
+
+		//Récupération des prets en retard
+		List<Pret>listeRetard=getPretsFuturRetard();
+		Set<Utilisateur>userRetard=new HashSet<>();
+		List<Pret>listeRetardByUser;
+
+		for (Pret pret :listeRetard) {
+			userRetard.add(pret.getUtilisateur());
+		}
+		for(Utilisateur user : userRetard){
+			listeRetardByUser=listeRetard.stream().filter(pret -> pret.getUtilisateur().getIdUtilisateur()==(user.getIdUtilisateur())).collect(Collectors.toList());
+			Mail mail = new Mail("mb.testocrbiblio@gmail.com", user.getMail(), "Biblio : Fin de prêts");
 
 
 			Map<String, Object> model = new HashMap<String, Object>();
-			model.put("prenom", pret.getUtilisateur().getPrenom());
-			model.put("nom", pret.getUtilisateur().getNom());
-			model.put("titre", pret.getLivre().getTitre());
-			model.put("date", pret.getDateFin());
+			model.put("prenom", user.getPrenom());
+			model.put("nom", user.getNom());
+			model.put("listeRetards", listeRetardByUser);
 			mail.setModel(model);
 
 
-			sendSimpleMessage(mail,"email-template.ftl");
+			sendSimpleMessage(mail,"email-template-finpret.ftl");
+			listeRetardByUser.clear();
+
+
 		}
-		*/
-		
-        
-    }
+	}
 
 	@Override
 	@Transactional

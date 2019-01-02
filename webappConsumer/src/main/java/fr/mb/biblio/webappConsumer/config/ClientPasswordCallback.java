@@ -38,7 +38,7 @@ public class ClientPasswordCallback implements CallbackHandler{
     	WSPasswordCallback pc = (WSPasswordCallback) callbacks[0];
     	user=System.getenv("LOGINSERVICE");
     	mdp=System.getenv("MDPSERVICE");
-	
+
 
         pc.setIdentifier(user);
         pc.setPassword(mdp);

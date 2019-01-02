@@ -116,7 +116,9 @@ public interface PretManager {
 	 */
 	void relanceMailRetards() throws  FunctionalException, Exception;
 
-    /**
+	void relanceMailFuturRetard() throws Exception;
+
+	/**
      * Methode fixant si le livre est disponible ou non
      * @param livreId
      * @throws FunctionalException

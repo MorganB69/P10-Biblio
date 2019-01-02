@@ -199,6 +199,13 @@ public class PretServiceImpl implements PretService {
 		pretManager.relanceMailRetards();
 		}
 
+	@Override
+	@Transactional
+	//@Scheduled(cron = "${instructionSchedularTime}")
+	public void relanceMailFuturRetard() throws Exception {
+		pretManager.relanceMailFuturRetard();
+	}
+
 		
         
 
