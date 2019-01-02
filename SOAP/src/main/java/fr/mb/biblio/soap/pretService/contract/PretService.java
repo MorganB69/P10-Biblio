@@ -112,6 +112,14 @@ public interface PretService {
 	 */
 	@WebMethod
 	public List<Pret> getPretsRetards() throws  FunctionalException;
+
+	/**
+	 * Obtenir les futurs prets en retard
+	 * @return
+	 * @throws FunctionalException
+	 */
+	@WebMethod
+	public List<Pret> getPretsFuturRetards() throws  FunctionalException;
 	
 	
 	
@@ -141,5 +149,5 @@ public interface PretService {
 	@WebMethod
     public void deletePret(@WebParam(name="pretId")Integer pretId) throws NotFoundException, FunctionalException;
 	
-	
+
 }

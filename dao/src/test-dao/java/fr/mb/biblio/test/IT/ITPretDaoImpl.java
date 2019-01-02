@@ -30,9 +30,10 @@ public class ITPretDaoImpl {
     @Test
     @Rollback
     public void getPretFuturRetardIT(){
-        LocalDate date = LocalDate.of(2019,01,02);
-        List<Pret> listeRetard = pretDao.findPretEnCoursFuturRetard(date);
-        assertEquals(3, listeRetard.size());
+        LocalDate dateRetard = LocalDate.of(2019,01,17);
+        LocalDate dateJour = LocalDate.of(2019,01,12);
+        List<Pret> listeRetard = pretDao.findPretEnCoursFuturRetard(dateRetard,dateJour);
+        assertEquals(1, listeRetard.size());
 
 
     }

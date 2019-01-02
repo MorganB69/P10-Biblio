@@ -286,6 +286,16 @@ public class PretManagerImpl implements PretManager {
 		return listeReturn;
 	}
 
+	@Override
+	@Transactional
+	public List<Pret> getPretsFuturRetard() throws FunctionalException {
+		LocalDate dateJour = LocalDate.now();
+		LocalDate dateRetard = LocalDate.now().plusDays(5);
+		listeReturn=pretDao.findPretEnCoursFuturRetard(dateRetard,dateJour);
+		if (listeReturn==null) throw new FunctionalException("Pas de futurs prêts en retard trouvé");
+		return listeReturn;
+	}
+
 	/* (non-Javadoc)
 	 * @see fr.mb.biblio.soap.pretManager.contract.PretManager#creationPretDate(java.lang.Integer, java.lang.Integer, java.time.LocalDate)
 	 */

@@ -81,10 +81,11 @@ public interface PretDao {
 
 	/**
 	 * Récupère une liste des prêts qui seront en retard dans 5 jours et dont l'utilisateur souhaite être relancé
-	 * @param date
+	 * @param dateRetard
+	 * @param  dateJour
 	 * @return
 	 */
-	List<Pret> findPretEnCoursFuturRetard(LocalDate date);
+	List<Pret> findPretEnCoursFuturRetard(LocalDate dateRetard, LocalDate dateJour);
 	
 	
 	

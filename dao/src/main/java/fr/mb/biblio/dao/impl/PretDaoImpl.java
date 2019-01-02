@@ -4,6 +4,7 @@ package fr.mb.biblio.dao.impl;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.ejb.Local;
 import javax.inject.Named;
 
 import org.apache.logging.log4j.LogManager;
@@ -111,8 +112,9 @@ Session session = sessionFactory.getCurrentSession();
 	}
 
 	@Override
-	public List<Pret> findPretEnCoursFuturRetard(LocalDate date) {
+	public List<Pret> findPretEnCoursFuturRetard(LocalDate dateRetard, LocalDate dateJour) {
 		Session session = sessionFactory.getCurrentSession();
+
 
 		String SQL=" SELECT DISTINCT pret FROM Pret as pret ";
 
@@ -120,7 +122,7 @@ Session session = sessionFactory.getCurrentSession();
 
 		//-------------CRITERES OBLIGATOIRES---------------
 
-		SQL+=" WHERE (pret.dateEffective = null AND (:date)>pret.dateFin)  ";
+		SQL+=" WHERE (pret.dateEffective = null AND (:dateRetard)>pret.dateFin) AND (:dateJour)<pret.dateFin  ";
 
 		SQL+=" AND (utilisateur.relance = true) ";
 
@@ -129,7 +131,8 @@ Session session = sessionFactory.getCurrentSession();
 
 		//CREATION DE LA QUERY
 		Query query = session.createQuery(SQL);
-		query.setParameter("date", date);
+		query.setParameter("dateRetard", dateRetard);
+		query.setParameter("dateJour",dateJour);
 
 		List<Pret> list = query.list();
 		return list;

@@ -99,6 +99,13 @@ public interface PretManager {
 	 */
 	List<Pret> getPretsRetards() throws  FunctionalException;
 
+	/**
+	 * Obtention des prets en retard dans 5 jours des utilisateurs concernés
+	 * @return
+	 * @throws FunctionalException
+	 */
+	List<Pret> getPretsFuturRetard() throws FunctionalException;
+
 
 
 	/**
