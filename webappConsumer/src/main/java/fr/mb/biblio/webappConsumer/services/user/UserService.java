@@ -29,8 +29,8 @@ public interface UserService {
      * @param prenom
      * @return
      *     returns java.lang.Integer
-     * @throws NotFoundException_Exception
      * @throws FunctionalException_Exception
+     * @throws NotFoundException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -49,8 +49,8 @@ public interface UserService {
      * @param id
      * @return
      *     returns fr.mb.biblio.webappConsumer.services.user.Utilisateur
-     * @throws NotFoundException_Exception
      * @throws FunctionalException_Exception
+     * @throws NotFoundException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")

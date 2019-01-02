@@ -77,7 +77,7 @@
                                             <div class="row">
 
                                                 <ul class="m-1" id="listeLivre">
-                                                    <s:if test="dateRetour!=null">
+                                                    <s:if test="dateRetour!=null && reservation.debutResa==null">
                                                         <li><b>Retour prévu le : </b> <span
                                                                 id="attribut"><javatime:parseLocalDate
                                                                 value="${dateRetour}" pattern="yyyy-MM-dd"
