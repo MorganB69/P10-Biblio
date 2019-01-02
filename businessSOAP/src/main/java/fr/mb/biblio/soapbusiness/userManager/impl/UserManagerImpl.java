@@ -103,4 +103,19 @@ import javax.transaction.Transactional;
 		}
 	}
 
+	@Override
+	public void setOptionRelance(Integer id, Boolean relance) throws FunctionalException, NotFoundException {
+		if(id<=0||id==null) throw new FunctionalException("L'id doit être renseigné");
+		else user = utilisateurDao.findById(id);
+
+		if (user == null) {
+			throw new NotFoundException("Utilisateur non trouvé");
+		}
+		else {
+			user.setRelance(relance);
+			utilisateurDao.update(user);
+		}
+
+	}
+
 }
