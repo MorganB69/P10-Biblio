@@ -112,14 +112,40 @@ public class PretAction extends ActionSupport implements SessionAware {
 			}
 			return (this.hasErrors()) ? ActionSupport.ERROR : ActionSupport.SUCCESS;
 		}
-		
-		
-		
-		
+
+		public String startRelance() {
+			this.user = (Utilisateur) session.get("user");
+			try {
+				pretWebManager.setOptionRelance(user.getIdUtilisateur(), true);
+				this.user.setRelance(true);
+				this.session.put("user",this.user);
 
 
+			} catch (fr.mb.biblio.webappConsumer.services.user.NotFoundException_Exception e) {
+				addActionError(e.getMessage());
+			} catch (fr.mb.biblio.webappConsumer.services.user.FunctionalException_Exception e) {
+				addActionError("L'option  ne peut pas être mise à jour");
+			}
+			return (this.hasErrors()) ? ActionSupport.ERROR : ActionSupport.SUCCESS;
+		}
+	public String stopRelance() {
+		this.user = (Utilisateur) session.get("user");
+		try {
+			pretWebManager.setOptionRelance(user.getIdUtilisateur(), false);
+			this.user.setRelance(false);
+			this.session.put("user",this.user);
 
-		public Map<String, Object> getSession() {
+
+		} catch (fr.mb.biblio.webappConsumer.services.user.NotFoundException_Exception e) {
+			addActionError(e.getMessage());
+		} catch (fr.mb.biblio.webappConsumer.services.user.FunctionalException_Exception e) {
+			addActionError("L'option  ne peut pas être mise à jour");
+		}
+		return (this.hasErrors()) ? ActionSupport.ERROR : ActionSupport.SUCCESS;
+	}
+
+
+			public Map<String, Object> getSession() {
 			return session;
 		}
 

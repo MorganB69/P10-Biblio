@@ -12,4 +12,5 @@ public interface PretWebManager {
     void prolongerPret(Integer idPret, Integer idUser) throws NotFoundException_Exception, FunctionalException_Exception;
 
 
+    void setOptionRelance(Integer id, Boolean relance) throws fr.mb.biblio.webappConsumer.services.user.NotFoundException_Exception, fr.mb.biblio.webappConsumer.services.user.FunctionalException_Exception;
 }

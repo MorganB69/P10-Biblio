@@ -69,6 +69,22 @@
 			</result>
         </action>
 
+		<action name="startRelance" method="startRelance" class="fr.mb.biblio.webapp.actions.PretAction">
+			<interceptor-ref name="loginInterceptor"/>
+			<interceptor-ref name="defaultStack"/>
+			<result name="success" type="redirectAction">
+				<param name="actionName"> getPrets </param>
+			</result>
+		</action>
+
+		<action name="stopRelance" method="stopRelance" class="fr.mb.biblio.webapp.actions.PretAction">
+			<interceptor-ref name="loginInterceptor"/>
+			<interceptor-ref name="defaultStack"/>
+			<result name="success" type="redirectAction">
+				<param name="actionName"> getPrets </param>
+			</result>
+		</action>
+
 	<action name="newResa" method="newResa" class="fr.mb.biblio.webapp.actions.ResaAction">
 		<interceptor-ref name="loginInterceptor"/>
 		<interceptor-ref name="defaultStack"/>

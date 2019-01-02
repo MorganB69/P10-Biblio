@@ -27,10 +27,12 @@ public class ObjectFactory {
     private final static QName _InsertResponse_QNAME = new QName("http://contract.userService.soap.biblio.mb.fr/", "insertResponse");
     private final static QName _GetUserIdByName_QNAME = new QName("http://contract.userService.soap.biblio.mb.fr/", "getUserIdByName");
     private final static QName _IdentificationResponse_QNAME = new QName("http://contract.userService.soap.biblio.mb.fr/", "identificationResponse");
+    private final static QName _SetOptionRelanceResponse_QNAME = new QName("http://contract.userService.soap.biblio.mb.fr/", "setOptionRelanceResponse");
     private final static QName _FunctionalException_QNAME = new QName("http://contract.userService.soap.biblio.mb.fr/", "FunctionalException");
     private final static QName _Insert_QNAME = new QName("http://contract.userService.soap.biblio.mb.fr/", "insert");
     private final static QName _NotFoundException_QNAME = new QName("http://contract.userService.soap.biblio.mb.fr/", "NotFoundException");
     private final static QName _GetUserIdByNameResponse_QNAME = new QName("http://contract.userService.soap.biblio.mb.fr/", "getUserIdByNameResponse");
+    private final static QName _SetOptionRelance_QNAME = new QName("http://contract.userService.soap.biblio.mb.fr/", "setOptionRelance");
     private final static QName _GetUtilisateurById_QNAME = new QName("http://contract.userService.soap.biblio.mb.fr/", "getUtilisateurById");
     private final static QName _Identification_QNAME = new QName("http://contract.userService.soap.biblio.mb.fr/", "identification");
     private final static QName _GetUtilisateurByIdResponse_QNAME = new QName("http://contract.userService.soap.biblio.mb.fr/", "getUtilisateurByIdResponse");
@@ -64,6 +66,14 @@ public class ObjectFactory {
      */
     public Identification createIdentification() {
         return new Identification();
+    }
+
+    /**
+     * Create an instance of {@link SetOptionRelance }
+     * 
+     */
+    public SetOptionRelance createSetOptionRelance() {
+        return new SetOptionRelance();
     }
 
     /**
@@ -104,6 +114,14 @@ public class ObjectFactory {
      */
     public IdentificationResponse createIdentificationResponse() {
         return new IdentificationResponse();
+    }
+
+    /**
+     * Create an instance of {@link SetOptionRelanceResponse }
+     * 
+     */
+    public SetOptionRelanceResponse createSetOptionRelanceResponse() {
+        return new SetOptionRelanceResponse();
     }
 
     /**
@@ -158,6 +176,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SetOptionRelanceResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://contract.userService.soap.biblio.mb.fr/", name = "setOptionRelanceResponse")
+    public JAXBElement<SetOptionRelanceResponse> createSetOptionRelanceResponse(SetOptionRelanceResponse value) {
+        return new JAXBElement<SetOptionRelanceResponse>(_SetOptionRelanceResponse_QNAME, SetOptionRelanceResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link FunctionalException }{@code >}}
      * 
      */
@@ -191,6 +218,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://contract.userService.soap.biblio.mb.fr/", name = "getUserIdByNameResponse")
     public JAXBElement<GetUserIdByNameResponse> createGetUserIdByNameResponse(GetUserIdByNameResponse value) {
         return new JAXBElement<GetUserIdByNameResponse>(_GetUserIdByNameResponse_QNAME, GetUserIdByNameResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SetOptionRelance }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://contract.userService.soap.biblio.mb.fr/", name = "setOptionRelance")
+    public JAXBElement<SetOptionRelance> createSetOptionRelance(SetOptionRelance value) {
+        return new JAXBElement<SetOptionRelance>(_SetOptionRelance_QNAME, SetOptionRelance.class, null, value);
     }
 
     /**

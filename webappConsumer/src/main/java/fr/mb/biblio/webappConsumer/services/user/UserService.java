@@ -25,6 +25,24 @@ public interface UserService {
 
     /**
      * 
+     * @param relance
+     * @param id
+     * @throws FunctionalException_Exception
+     * @throws NotFoundException_Exception
+     */
+    @WebMethod
+    @RequestWrapper(localName = "setOptionRelance", targetNamespace = "http://contract.userService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webappConsumer.services.user.SetOptionRelance")
+    @ResponseWrapper(localName = "setOptionRelanceResponse", targetNamespace = "http://contract.userService.soap.biblio.mb.fr/", className = "fr.mb.biblio.webappConsumer.services.user.SetOptionRelanceResponse")
+    public void setOptionRelance(
+        @WebParam(name = "id", targetNamespace = "")
+        Integer id,
+        @WebParam(name = "relance", targetNamespace = "")
+        Boolean relance)
+        throws FunctionalException_Exception, NotFoundException_Exception
+    ;
+
+    /**
+     * 
      * @param nom
      * @param prenom
      * @return
