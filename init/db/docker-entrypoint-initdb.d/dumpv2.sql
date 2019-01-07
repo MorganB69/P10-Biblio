@@ -5,7 +5,7 @@
 -- Dumped from database version 11.1
 -- Dumped by pg_dump version 11.1
 
--- Started on 2018-12-20 10:03:36
+-- Started on 2019-01-07 14:53:47
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -500,19 +500,19 @@ COPY public.genre (id_genre, genre) FROM stdin;
 
 COPY public.livre (id_livre, titre, parution, image, resume, id_ouvrage, disponible, exemplaire) FROM stdin;
 14	L'inconnu français	1995-04-03	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	3	t	1
-13	L'espion mystérieux	1984-04-07	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	1	f	1
 3	Sang famille	2018-05-16	Sang famille.jpg	 Tel un soleil brutal, la lumière du phare des Enchaînés inonde la pièce. Une seconde à peine. Puis l'obscurité reprend le dessus, simplement percée du halo des lampes torches.Je vais mourir ici.C'est une certitude.Une seule question me hante, la dernière : jusqu'où sont-ils prêts à aller pour me faire avouer ? A fouiller ma mémoire, comme s'ils pouvaient en arracher les souvenirs qu'ils convoitent ?Tout est allé si vite, à peine quatre jours.Je n'étais alors qu'un adolescent parmi d'autres.Un orphelin.C'est du moins ce qu'on avait toujours voulu me faire croire... 	1	t	2
-6	Le chien italien	2012-03-15	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	3	t	1
 5	L'aventurier italien	2000-09-10	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	2	t	3
 12	L'espion désespéré	2008-05-27	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	2	t	2
-8	L'inconnu riche	2007-07-26	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	1	t	1
-2	Une fille comme elle	2018-05-18	Une fille comme elle.jpg	Marc Levy est un multi-instrumentiste de l’imaginaire… La plus jolie des comédies romantiques. Tout est sourire dans ce roman. Entrez au 12 de la Cinquième Avenue. Vous verrez, c’est du plaisir à tous les étages. » Pierre Vavasseur, Le Parisien « Une trépidante comédie newyorkaise. » RTL, Bernard Lehut« Des personnages hauts en couleur. Une pétillante comédie de mœurs. » Valérie Trierweiler, Paris Match« Une formidable comédie… où tout peut arriver.	1	f	1
-1	La jeune Fille et la nuit	2018-04-24	La jeune Fille et la nuit.jpg	Côte d’Azur - Hiver 1992 Une nuit glaciale, alors que le campus de son lycée est paralysé par une tempête de neige, Vinca Rockwell, 19 ans, l’une des plus brillantes élèves de classes prépas, s’enfuit avec son professeur de philo avec qui elle entretenait une relation secrète. Pour la jeune fille, « l’amour est tout ou il n’est rien ».Personne ne la reverra jamais.	1	t	1
-4	Buck Danny - Tome 8 : Black cobra	2018-05-16	Buck Danny Tome 8 Black cobra.jpg	 L'histoire d'un pilote d'avion	2	f	1
+6	Le chien italien	2012-03-15	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	3	f	1
+1	La jeune Fille et la nuit	2018-04-24	La jeune Fille et la nuit.jpg	Côte d’Azur - Hiver 1992 Une nuit glaciale, alors que le campus de son lycée est paralysé par une tempête de neige, Vinca Rockwell, 19 ans, l’une des plus brillantes élèves de classes prépas, s’enfuit avec son professeur de philo avec qui elle entretenait une relation secrète. Pour la jeune fille, « l’amour est tout ou il n’est rien ».Personne ne la reverra jamais.	1	f	1
+4	Buck Danny - Tome 8 : Black cobra	2018-05-16	Buck Danny Tome 8 Black cobra.jpg	 L'histoire d'un pilote d'avion	2	t	1
 10	La femme désesperée	1999-05-15	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	2	t	2
 9	L'aventurier anglais	1983-03-31	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	2	t	3
-11	La déesse anglaise	1975-10-09	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	1	t	1
+13	L'espion mystérieux	1984-04-07	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	1	t	1
 7	La dame pauvre	1970-12-08	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	2	f	1
+8	L'inconnu riche	2007-07-26	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	1	f	1
+2	Une fille comme elle	2018-05-18	Une fille comme elle.jpg	Marc Levy est un multi-instrumentiste de l’imaginaire… La plus jolie des comédies romantiques. Tout est sourire dans ce roman. Entrez au 12 de la Cinquième Avenue. Vous verrez, c’est du plaisir à tous les étages. » Pierre Vavasseur, Le Parisien « Une trépidante comédie newyorkaise. » RTL, Bernard Lehut« Des personnages hauts en couleur. Une pétillante comédie de mœurs. » Valérie Trierweiler, Paris Match« Une formidable comédie… où tout peut arriver.	1	f	2
+11	La déesse anglaise	1975-10-09	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	1	f	1
 \.
 
 
@@ -611,14 +611,24 @@ COPY public.ouvrage (id_ouvrage, typeouvrage) FROM stdin;
 
 COPY public.pret (id_pret, date_debut, date_fin, date_effective, prolonge, id_utilisateur, id_livre) FROM stdin;
 7	2018-10-04	2018-11-16	2018-11-16	t	3	8
-6	2018-10-04	2018-11-02	\N	f	3	7
-8	2018-10-06	2018-12-01	\N	t	2	5
-4	2018-10-30	2018-11-14	\N	f	3	4
-2	2018-10-29	2018-11-14	\N	f	2	12
 3	2018-10-29	2018-11-26	2018-11-28	f	3	2
-1	2018-10-29	2018-12-24	\N	f	2	13
-20	2018-12-18	2019-01-15	\N	f	3	2
-21	2018-12-19	2019-01-16	\N	f	2	10
+6	2018-10-04	2018-11-02	2019-01-05	f	3	7
+8	2018-10-06	2018-12-01	2019-01-05	t	2	5
+4	2018-10-30	2018-11-14	2019-01-05	f	3	4
+2	2018-10-29	2018-11-14	2019-01-05	f	2	12
+1	2018-10-29	2018-12-24	2019-01-05	f	2	13
+20	2018-12-18	2019-01-15	2019-01-05	f	3	2
+21	2018-12-19	2019-01-16	2019-01-05	f	2	10
+22	2018-12-14	2019-01-15	2019-01-05	f	2	1
+24	2018-12-07	2019-01-04	\N	f	1	3
+25	2018-12-06	2019-01-03	\N	f	2	6
+26	2018-12-21	2019-01-18	\N	f	2	2
+27	2018-12-21	2019-01-18	\N	f	2	1
+28	2018-12-23	2019-01-20	\N	f	1	5
+29	2018-12-23	2019-01-20	\N	f	1	8
+30	2018-12-20	2019-01-17	\N	f	2	7
+35	2019-01-05	2019-02-02	\N	f	3	11
+36	2018-12-22	2019-01-19	\N	f	1	2
 \.
 
 
@@ -629,8 +639,9 @@ COPY public.pret (id_pret, date_debut, date_fin, date_effective, prolonge, id_ut
 --
 
 COPY public.reservation (id_resa, date_debut, date_fin, id_livre, id_utilisateur) FROM stdin;
-41	\N	\N	2	2
-40	2018-12-18	2018-12-20	2	1
+42	\N	\N	2	3
+43	\N	\N	2	4
+44	\N	\N	1	3
 \.
 
 
@@ -641,10 +652,10 @@ COPY public.reservation (id_resa, date_debut, date_fin, id_livre, id_utilisateur
 --
 
 COPY public.utilisateur (id_utilisateur, identifiant, prenom, nom, mdp, mail, admin, relance) FROM stdin;
+4	Paul	Paul	Dupond	1234	mb.testocrbiblio@gmail.com	f	t
+3	Jean	Jean	Dupont	1234	mb.testocrbiblio@gmail.com	f	f
 2	Pauline	Pauline	L	azerty	mb.testocrbiblio@gmail.com	f	t
 1	Morgan	Morgan	Brighi	azerty	mb.testocrbiblio@gmail.com	t	t
-3	Jean	Jean	Dupont	1234	mb.testocrbiblio@gmail.com	f	t
-4	Paul	Paul	Dupond	1234	mb.testocrbiblio@gmail.com	f	t
 \.
 
 
@@ -699,7 +710,7 @@ SELECT pg_catalog.setval('public.ouvrage_id_ouvrage_seq_1', 5, true);
 -- Name: pret_id_pret_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.pret_id_pret_seq', 21, true);
+SELECT pg_catalog.setval('public.pret_id_pret_seq', 36, true);
 
 
 --
@@ -708,7 +719,7 @@ SELECT pg_catalog.setval('public.pret_id_pret_seq', 21, true);
 -- Name: reservation_id_resa_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.reservation_id_resa_seq', 41, true);
+SELECT pg_catalog.setval('public.reservation_id_resa_seq', 45, true);
 
 
 --
@@ -934,7 +945,7 @@ ALTER TABLE ONLY public.reservation
     ADD CONSTRAINT utilisateur_resa FOREIGN KEY (id_utilisateur) REFERENCES public.utilisateur(id_utilisateur);
 
 
--- Completed on 2018-12-20 10:03:37
+-- Completed on 2019-01-07 14:53:47
 
 --
 -- PostgreSQL database dump complete

@@ -178,6 +178,8 @@ public class PretServiceImpl implements PretService {
 	@Transactional
 	public Pret creationPretDate(Integer livreId, Integer emprunteurId, LocalDate dateDebut)
 			throws FunctionalException, NotFoundException {
+
+
 		if (isAdmin()){
 			pretReturn=pretManager.creationPretDate(livreId,emprunteurId,dateDebut);
 		}

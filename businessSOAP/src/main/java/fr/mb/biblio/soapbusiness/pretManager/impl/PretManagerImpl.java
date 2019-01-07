@@ -304,12 +304,13 @@ public class PretManagerImpl implements PretManager {
 	public Pret creationPretDate(Integer livreId, Integer emprunteurId, LocalDate dateDebut)
 			throws FunctionalException, NotFoundException {
 
-		
+
+
 		if(livreId <= 0 || emprunteurId <= 0) throw new FunctionalException("Données incorrectes");
 		
 		else {
 
-		
+
 
 			//Récupération de l'utilisateur
 			Utilisateur emprunteur=utilisateurDao.findById(emprunteurId);
@@ -333,10 +334,13 @@ public class PretManagerImpl implements PretManager {
                     pretReturn.setDateFin(dateFin);
                     pretReturn.setUtilisateur(emprunteur);
                     pretReturn.setLivre(livre);
-					setDisponibilite(pretReturn.getIdPret());
+					livre.getPrets().add(pretReturn);
+
+
                     pretReturn.setProlonge(false);
 					
-					pretDao.persist(pretReturn);}}}
+					pretDao.persist(pretReturn);
+					setDisponibilite(livre.getIdLivre());}}}
 
 			
 			return pretReturn;}
