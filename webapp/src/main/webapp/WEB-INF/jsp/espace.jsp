@@ -152,6 +152,44 @@
 
                 </div>
 
+                <h5 class="mt-3" data-toggle="collapse" href="#associated-option" aria-expanded="true"
+                    aria-controls="associated-option">
+                    <i class="fa fa-info-circle"></i> Options du profil <i class="fa fa-arrow-down pull-right"></i>
+                </h5>
+
+                <div class="collapse collapse show mt-3 mb-3" id="associated-option" aria-expanded="true">
+
+                    <div class="card card-body bg-light text-dark rounded">
+
+
+                        <s:if test="#session.user.relance==true">
+                         <ul id="listeLivre">
+                            <li><b>Relance des prêts : </b>Oui</li>
+                        </ul>
+                        <div align="center">
+                        <s:a class="btn btn-danger btn-sm mb-3" action="stopRelance">Désactiver</s:a>
+                        </div>
+                        </s:if>
+                            <s:else>
+                                <ul id="listeLivre">
+                                <li><b>Relance des prêts : </b>Non</li>
+                                </ul>
+                            <div align="center">
+                                <s:a class="btn btn-success  btn-sm mb-3" action="startRelance">Activer</s:a>
+                            </div>
+                            </s:else>
+                            <div align="justify">
+                        Activer cette option si vous souhaitez être averti par mail de la fin d'un de vos prêts dans les 5 jours qui suivent
+                            </div>
+
+
+
+
+
+                    </div>
+
+                </div>
+
 
             </div>
 

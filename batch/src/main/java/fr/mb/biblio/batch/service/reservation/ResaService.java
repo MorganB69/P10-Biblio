@@ -35,9 +35,9 @@ public interface ResaService {
     /**
      * 
      * @param resaId
-     * @throws FunctionalException_Exception
-     * @throws Exception_Exception
      * @throws NotFoundException_Exception
+     * @throws Exception_Exception
+     * @throws FunctionalException_Exception
      */
     @WebMethod
     @RequestWrapper(localName = "mailResa", targetNamespace = "http://contract.resaService.soap.biblio.mb.fr/", className = "fr.mb.biblio.batch.service.reservation.MailResa")
@@ -51,8 +51,8 @@ public interface ResaService {
     /**
      * 
      * @param resaId
-     * @throws FunctionalException_Exception
      * @throws NotFoundException_Exception
+     * @throws FunctionalException_Exception
      */
     @WebMethod
     @RequestWrapper(localName = "deleteReservation", targetNamespace = "http://contract.resaService.soap.biblio.mb.fr/", className = "fr.mb.biblio.batch.service.reservation.DeleteReservation")
@@ -69,8 +69,8 @@ public interface ResaService {
      * @param demandeurId
      * @return
      *     returns fr.mb.biblio.batch.service.reservation.Reservation
-     * @throws FunctionalException_Exception
      * @throws NotFoundException_Exception
+     * @throws FunctionalException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -89,8 +89,8 @@ public interface ResaService {
      * @param resaId
      * @return
      *     returns fr.mb.biblio.batch.service.reservation.Reservation
-     * @throws FunctionalException_Exception
      * @throws NotFoundException_Exception
+     * @throws FunctionalException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -107,8 +107,8 @@ public interface ResaService {
      * @param demandeurId
      * @return
      *     returns java.util.List<fr.mb.biblio.batch.service.reservation.ReservationWS>
-     * @throws FunctionalException_Exception
      * @throws NotFoundException_Exception
+     * @throws FunctionalException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -142,8 +142,8 @@ public interface ResaService {
      * @param resaId
      * @return
      *     returns fr.mb.biblio.batch.service.reservation.Reservation
-     * @throws FunctionalException_Exception
      * @throws NotFoundException_Exception
+     * @throws FunctionalException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")

@@ -82,4 +82,9 @@ import fr.mb.biblio.models.exception.FunctionalException;
 
 
 	}
+
+	@Override
+	public void setOptionRelance(Integer id, Boolean relance) throws NotFoundException, FunctionalException {
+		userManager.setOptionRelance(id,relance);
+	}
 }

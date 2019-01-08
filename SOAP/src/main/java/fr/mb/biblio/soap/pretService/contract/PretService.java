@@ -18,6 +18,7 @@ import fr.mb.biblio.models.beans.Pret;
 import fr.mb.biblio.models.beans.Utilisateur;
 import fr.mb.biblio.models.exception.FunctionalException;
 import fr.mb.biblio.models.exception.NotFoundException;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * WebService pour la gestion des prets
@@ -112,6 +113,14 @@ public interface PretService {
 	 */
 	@WebMethod
 	public List<Pret> getPretsRetards() throws  FunctionalException;
+
+	/**
+	 * Obtenir les futurs prets en retard
+	 * @return
+	 * @throws FunctionalException
+	 */
+	@WebMethod
+	public List<Pret> getPretsFuturRetards() throws  FunctionalException;
 	
 	
 	
@@ -124,7 +133,15 @@ public interface PretService {
 	@WebMethod
 	public void relanceMailRetards() throws  FunctionalException, Exception;
 
-    /**
+
+	/**
+	 * Méthode de relance des prets arrivant à expiration dans 5 jours
+	 * @throws Exception
+	 */
+	@WebMethod
+	void relanceMailFuturRetard() throws Exception;
+
+	/**
      * Methode fixant si le livre est disponible ou non
      * @param livreId
      * @throws FunctionalException
@@ -141,5 +158,5 @@ public interface PretService {
 	@WebMethod
     public void deletePret(@WebParam(name="pretId")Integer pretId) throws NotFoundException, FunctionalException;
 	
-	
+
 }

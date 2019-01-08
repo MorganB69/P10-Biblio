@@ -5,7 +5,7 @@
 -- Dumped from database version 11.1
 -- Dumped by pg_dump version 11.1
 
--- Started on 2018-12-19 16:15:44
+-- Started on 2019-01-07 14:53:47
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -22,7 +22,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- TOC entry 196 (class 1259 OID 16552)
+-- TOC entry 196 (class 1259 OID 24902)
 -- Name: auteur; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -36,7 +36,7 @@ CREATE TABLE public.auteur (
 ALTER TABLE public.auteur OWNER TO postgres;
 
 --
--- TOC entry 197 (class 1259 OID 16558)
+-- TOC entry 197 (class 1259 OID 24908)
 -- Name: auteur_id_auteur_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -51,7 +51,7 @@ CREATE SEQUENCE public.auteur_id_auteur_seq
 ALTER TABLE public.auteur_id_auteur_seq OWNER TO postgres;
 
 --
--- TOC entry 2936 (class 0 OID 0)
+-- TOC entry 2937 (class 0 OID 0)
 -- Dependencies: 197
 -- Name: auteur_id_auteur_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -60,7 +60,7 @@ ALTER SEQUENCE public.auteur_id_auteur_seq OWNED BY public.auteur.id_auteur;
 
 
 --
--- TOC entry 198 (class 1259 OID 16560)
+-- TOC entry 198 (class 1259 OID 24910)
 -- Name: editeur; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -73,7 +73,7 @@ CREATE TABLE public.editeur (
 ALTER TABLE public.editeur OWNER TO postgres;
 
 --
--- TOC entry 199 (class 1259 OID 16566)
+-- TOC entry 199 (class 1259 OID 24916)
 -- Name: editeur_id_editeur_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -88,7 +88,7 @@ CREATE SEQUENCE public.editeur_id_editeur_seq
 ALTER TABLE public.editeur_id_editeur_seq OWNER TO postgres;
 
 --
--- TOC entry 2937 (class 0 OID 0)
+-- TOC entry 2938 (class 0 OID 0)
 -- Dependencies: 199
 -- Name: editeur_id_editeur_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -97,7 +97,7 @@ ALTER SEQUENCE public.editeur_id_editeur_seq OWNED BY public.editeur.id_editeur;
 
 
 --
--- TOC entry 200 (class 1259 OID 16568)
+-- TOC entry 200 (class 1259 OID 24918)
 -- Name: genre; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -110,7 +110,7 @@ CREATE TABLE public.genre (
 ALTER TABLE public.genre OWNER TO postgres;
 
 --
--- TOC entry 201 (class 1259 OID 16574)
+-- TOC entry 201 (class 1259 OID 24924)
 -- Name: genre_id_genre_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -125,7 +125,7 @@ CREATE SEQUENCE public.genre_id_genre_seq
 ALTER TABLE public.genre_id_genre_seq OWNER TO postgres;
 
 --
--- TOC entry 2938 (class 0 OID 0)
+-- TOC entry 2939 (class 0 OID 0)
 -- Dependencies: 201
 -- Name: genre_id_genre_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -134,7 +134,7 @@ ALTER SEQUENCE public.genre_id_genre_seq OWNED BY public.genre.id_genre;
 
 
 --
--- TOC entry 202 (class 1259 OID 16576)
+-- TOC entry 202 (class 1259 OID 24926)
 -- Name: livre; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -153,7 +153,7 @@ CREATE TABLE public.livre (
 ALTER TABLE public.livre OWNER TO postgres;
 
 --
--- TOC entry 203 (class 1259 OID 16584)
+-- TOC entry 203 (class 1259 OID 24934)
 -- Name: livre_auteur; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -166,7 +166,7 @@ CREATE TABLE public.livre_auteur (
 ALTER TABLE public.livre_auteur OWNER TO postgres;
 
 --
--- TOC entry 204 (class 1259 OID 16587)
+-- TOC entry 204 (class 1259 OID 24937)
 -- Name: livre_editeur; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -179,7 +179,7 @@ CREATE TABLE public.livre_editeur (
 ALTER TABLE public.livre_editeur OWNER TO postgres;
 
 --
--- TOC entry 205 (class 1259 OID 16590)
+-- TOC entry 205 (class 1259 OID 24940)
 -- Name: livre_genre; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -192,7 +192,7 @@ CREATE TABLE public.livre_genre (
 ALTER TABLE public.livre_genre OWNER TO postgres;
 
 --
--- TOC entry 206 (class 1259 OID 16593)
+-- TOC entry 206 (class 1259 OID 24943)
 -- Name: livre_livre_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -207,7 +207,7 @@ CREATE SEQUENCE public.livre_livre_id_seq
 ALTER TABLE public.livre_livre_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2939 (class 0 OID 0)
+-- TOC entry 2940 (class 0 OID 0)
 -- Dependencies: 206
 -- Name: livre_livre_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -216,7 +216,7 @@ ALTER SEQUENCE public.livre_livre_id_seq OWNED BY public.livre.id_livre;
 
 
 --
--- TOC entry 207 (class 1259 OID 16595)
+-- TOC entry 207 (class 1259 OID 24945)
 -- Name: ouvrage; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -229,7 +229,7 @@ CREATE TABLE public.ouvrage (
 ALTER TABLE public.ouvrage OWNER TO postgres;
 
 --
--- TOC entry 208 (class 1259 OID 16601)
+-- TOC entry 208 (class 1259 OID 24951)
 -- Name: ouvrage_id_ouvrage_seq_1; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -244,7 +244,7 @@ CREATE SEQUENCE public.ouvrage_id_ouvrage_seq_1
 ALTER TABLE public.ouvrage_id_ouvrage_seq_1 OWNER TO postgres;
 
 --
--- TOC entry 2940 (class 0 OID 0)
+-- TOC entry 2941 (class 0 OID 0)
 -- Dependencies: 208
 -- Name: ouvrage_id_ouvrage_seq_1; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -253,7 +253,7 @@ ALTER SEQUENCE public.ouvrage_id_ouvrage_seq_1 OWNED BY public.ouvrage.id_ouvrag
 
 
 --
--- TOC entry 209 (class 1259 OID 16603)
+-- TOC entry 209 (class 1259 OID 24953)
 -- Name: pret; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -271,7 +271,7 @@ CREATE TABLE public.pret (
 ALTER TABLE public.pret OWNER TO postgres;
 
 --
--- TOC entry 210 (class 1259 OID 16606)
+-- TOC entry 210 (class 1259 OID 24956)
 -- Name: pret_id_pret_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -286,7 +286,7 @@ CREATE SEQUENCE public.pret_id_pret_seq
 ALTER TABLE public.pret_id_pret_seq OWNER TO postgres;
 
 --
--- TOC entry 2941 (class 0 OID 0)
+-- TOC entry 2942 (class 0 OID 0)
 -- Dependencies: 210
 -- Name: pret_id_pret_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -295,7 +295,7 @@ ALTER SEQUENCE public.pret_id_pret_seq OWNED BY public.pret.id_pret;
 
 
 --
--- TOC entry 211 (class 1259 OID 16608)
+-- TOC entry 211 (class 1259 OID 24958)
 -- Name: reservation_id_resa_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -310,7 +310,7 @@ CREATE SEQUENCE public.reservation_id_resa_seq
 ALTER TABLE public.reservation_id_resa_seq OWNER TO postgres;
 
 --
--- TOC entry 212 (class 1259 OID 16610)
+-- TOC entry 212 (class 1259 OID 24960)
 -- Name: reservation; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -326,7 +326,7 @@ CREATE TABLE public.reservation (
 ALTER TABLE public.reservation OWNER TO postgres;
 
 --
--- TOC entry 213 (class 1259 OID 16614)
+-- TOC entry 213 (class 1259 OID 24964)
 -- Name: utilisateur; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -337,14 +337,15 @@ CREATE TABLE public.utilisateur (
     nom character varying NOT NULL,
     mdp character varying NOT NULL,
     mail character varying NOT NULL,
-    admin boolean DEFAULT false NOT NULL
+    admin boolean DEFAULT false NOT NULL,
+    relance boolean DEFAULT true NOT NULL
 );
 
 
 ALTER TABLE public.utilisateur OWNER TO postgres;
 
 --
--- TOC entry 214 (class 1259 OID 16621)
+-- TOC entry 214 (class 1259 OID 24971)
 -- Name: utilisateur_id_utilisateur_seq_1; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -359,7 +360,7 @@ CREATE SEQUENCE public.utilisateur_id_utilisateur_seq_1
 ALTER TABLE public.utilisateur_id_utilisateur_seq_1 OWNER TO postgres;
 
 --
--- TOC entry 2942 (class 0 OID 0)
+-- TOC entry 2943 (class 0 OID 0)
 -- Dependencies: 214
 -- Name: utilisateur_id_utilisateur_seq_1; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -368,7 +369,7 @@ ALTER SEQUENCE public.utilisateur_id_utilisateur_seq_1 OWNED BY public.utilisate
 
 
 --
--- TOC entry 2745 (class 2604 OID 16623)
+-- TOC entry 2745 (class 2604 OID 24973)
 -- Name: auteur id_auteur; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -376,7 +377,7 @@ ALTER TABLE ONLY public.auteur ALTER COLUMN id_auteur SET DEFAULT nextval('publi
 
 
 --
--- TOC entry 2746 (class 2604 OID 16624)
+-- TOC entry 2746 (class 2604 OID 24974)
 -- Name: editeur id_editeur; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -384,7 +385,7 @@ ALTER TABLE ONLY public.editeur ALTER COLUMN id_editeur SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 2747 (class 2604 OID 16625)
+-- TOC entry 2747 (class 2604 OID 24975)
 -- Name: genre id_genre; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -392,7 +393,7 @@ ALTER TABLE ONLY public.genre ALTER COLUMN id_genre SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 2750 (class 2604 OID 16626)
+-- TOC entry 2750 (class 2604 OID 24976)
 -- Name: livre id_livre; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -400,7 +401,7 @@ ALTER TABLE ONLY public.livre ALTER COLUMN id_livre SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 2751 (class 2604 OID 16627)
+-- TOC entry 2751 (class 2604 OID 24977)
 -- Name: ouvrage id_ouvrage; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -408,7 +409,7 @@ ALTER TABLE ONLY public.ouvrage ALTER COLUMN id_ouvrage SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 2752 (class 2604 OID 16628)
+-- TOC entry 2752 (class 2604 OID 24978)
 -- Name: pret id_pret; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -416,7 +417,7 @@ ALTER TABLE ONLY public.pret ALTER COLUMN id_pret SET DEFAULT nextval('public.pr
 
 
 --
--- TOC entry 2755 (class 2604 OID 16629)
+-- TOC entry 2755 (class 2604 OID 24979)
 -- Name: utilisateur id_utilisateur; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -424,7 +425,7 @@ ALTER TABLE ONLY public.utilisateur ALTER COLUMN id_utilisateur SET DEFAULT next
 
 
 --
--- TOC entry 2912 (class 0 OID 16552)
+-- TOC entry 2913 (class 0 OID 24902)
 -- Dependencies: 196
 -- Data for Name: auteur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -448,7 +449,7 @@ COPY public.auteur (id_auteur, prenom, nom) FROM stdin;
 
 
 --
--- TOC entry 2914 (class 0 OID 16560)
+-- TOC entry 2915 (class 0 OID 24910)
 -- Dependencies: 198
 -- Data for Name: editeur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -472,7 +473,7 @@ COPY public.editeur (id_editeur, nom) FROM stdin;
 
 
 --
--- TOC entry 2916 (class 0 OID 16568)
+-- TOC entry 2917 (class 0 OID 24918)
 -- Dependencies: 200
 -- Data for Name: genre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -492,31 +493,31 @@ COPY public.genre (id_genre, genre) FROM stdin;
 
 
 --
--- TOC entry 2918 (class 0 OID 16576)
+-- TOC entry 2919 (class 0 OID 24926)
 -- Dependencies: 202
 -- Data for Name: livre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.livre (id_livre, titre, parution, image, resume, id_ouvrage, disponible, exemplaire) FROM stdin;
 14	L'inconnu français	1995-04-03	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	3	t	1
-13	L'espion mystérieux	1984-04-07	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	1	f	1
 3	Sang famille	2018-05-16	Sang famille.jpg	 Tel un soleil brutal, la lumière du phare des Enchaînés inonde la pièce. Une seconde à peine. Puis l'obscurité reprend le dessus, simplement percée du halo des lampes torches.Je vais mourir ici.C'est une certitude.Une seule question me hante, la dernière : jusqu'où sont-ils prêts à aller pour me faire avouer ? A fouiller ma mémoire, comme s'ils pouvaient en arracher les souvenirs qu'ils convoitent ?Tout est allé si vite, à peine quatre jours.Je n'étais alors qu'un adolescent parmi d'autres.Un orphelin.C'est du moins ce qu'on avait toujours voulu me faire croire... 	1	t	2
-6	Le chien italien	2012-03-15	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	3	t	1
 5	L'aventurier italien	2000-09-10	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	2	t	3
 12	L'espion désespéré	2008-05-27	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	2	t	2
-8	L'inconnu riche	2007-07-26	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	1	t	1
-2	Une fille comme elle	2018-05-18	Une fille comme elle.jpg	Marc Levy est un multi-instrumentiste de l’imaginaire… La plus jolie des comédies romantiques. Tout est sourire dans ce roman. Entrez au 12 de la Cinquième Avenue. Vous verrez, c’est du plaisir à tous les étages. » Pierre Vavasseur, Le Parisien « Une trépidante comédie newyorkaise. » RTL, Bernard Lehut« Des personnages hauts en couleur. Une pétillante comédie de mœurs. » Valérie Trierweiler, Paris Match« Une formidable comédie… où tout peut arriver.	1	f	1
-1	La jeune Fille et la nuit	2018-04-24	La jeune Fille et la nuit.jpg	Côte d’Azur - Hiver 1992 Une nuit glaciale, alors que le campus de son lycée est paralysé par une tempête de neige, Vinca Rockwell, 19 ans, l’une des plus brillantes élèves de classes prépas, s’enfuit avec son professeur de philo avec qui elle entretenait une relation secrète. Pour la jeune fille, « l’amour est tout ou il n’est rien ».Personne ne la reverra jamais.	1	t	1
-4	Buck Danny - Tome 8 : Black cobra	2018-05-16	Buck Danny Tome 8 Black cobra.jpg	 L'histoire d'un pilote d'avion	2	f	1
+6	Le chien italien	2012-03-15	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	3	f	1
+1	La jeune Fille et la nuit	2018-04-24	La jeune Fille et la nuit.jpg	Côte d’Azur - Hiver 1992 Une nuit glaciale, alors que le campus de son lycée est paralysé par une tempête de neige, Vinca Rockwell, 19 ans, l’une des plus brillantes élèves de classes prépas, s’enfuit avec son professeur de philo avec qui elle entretenait une relation secrète. Pour la jeune fille, « l’amour est tout ou il n’est rien ».Personne ne la reverra jamais.	1	f	1
+4	Buck Danny - Tome 8 : Black cobra	2018-05-16	Buck Danny Tome 8 Black cobra.jpg	 L'histoire d'un pilote d'avion	2	t	1
 10	La femme désesperée	1999-05-15	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	2	t	2
 9	L'aventurier anglais	1983-03-31	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	2	t	3
-11	La déesse anglaise	1975-10-09	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	1	t	1
+13	L'espion mystérieux	1984-04-07	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	1	t	1
 7	La dame pauvre	1970-12-08	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	2	f	1
+8	L'inconnu riche	2007-07-26	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	1	f	1
+2	Une fille comme elle	2018-05-18	Une fille comme elle.jpg	Marc Levy est un multi-instrumentiste de l’imaginaire… La plus jolie des comédies romantiques. Tout est sourire dans ce roman. Entrez au 12 de la Cinquième Avenue. Vous verrez, c’est du plaisir à tous les étages. » Pierre Vavasseur, Le Parisien « Une trépidante comédie newyorkaise. » RTL, Bernard Lehut« Des personnages hauts en couleur. Une pétillante comédie de mœurs. » Valérie Trierweiler, Paris Match« Une formidable comédie… où tout peut arriver.	1	f	2
+11	La déesse anglaise	1975-10-09	defautLivre.jpg	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec arcu lobortis nulla ullamcorper aliquam id in diam. Nam dapibus, mauris ut feugiat tristique, nulla tortor lacinia libero, vel lacinia justo eros ut ipsum. Suspendisse maximus augue vitae velit pulvinar, a consequat ligula molestie. Aliquam commodo risus ut erat iaculis gravida. Nulla pulvinar ipsum quis enim auctor venenatis. Aenean felis ligula, elementum eget fringilla at, porttitor vel enim. In pulvinar malesuada iaculis. Pellentesque vel purus semper, suscipit elit sed, ultrices nibh. Donec felis neque, tincidunt non ante vel, maximus consectetur dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.	1	f	1
 \.
 
 
 --
--- TOC entry 2919 (class 0 OID 16584)
+-- TOC entry 2920 (class 0 OID 24934)
 -- Dependencies: 203
 -- Data for Name: livre_auteur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -540,7 +541,7 @@ COPY public.livre_auteur (id_livre, id_auteur) FROM stdin;
 
 
 --
--- TOC entry 2920 (class 0 OID 16587)
+-- TOC entry 2921 (class 0 OID 24937)
 -- Dependencies: 204
 -- Data for Name: livre_editeur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -564,7 +565,7 @@ COPY public.livre_editeur (id_livre, id_editeur) FROM stdin;
 
 
 --
--- TOC entry 2921 (class 0 OID 16590)
+-- TOC entry 2922 (class 0 OID 24940)
 -- Dependencies: 205
 -- Data for Name: livre_genre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -588,7 +589,7 @@ COPY public.livre_genre (id_livre, id_genre) FROM stdin;
 
 
 --
--- TOC entry 2923 (class 0 OID 16595)
+-- TOC entry 2924 (class 0 OID 24945)
 -- Dependencies: 207
 -- Data for Name: ouvrage; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -603,52 +604,63 @@ COPY public.ouvrage (id_ouvrage, typeouvrage) FROM stdin;
 
 
 --
--- TOC entry 2925 (class 0 OID 16603)
+-- TOC entry 2926 (class 0 OID 24953)
 -- Dependencies: 209
 -- Data for Name: pret; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.pret (id_pret, date_debut, date_fin, date_effective, prolonge, id_utilisateur, id_livre) FROM stdin;
 7	2018-10-04	2018-11-16	2018-11-16	t	3	8
-6	2018-10-04	2018-11-02	\N	f	3	7
-8	2018-10-06	2018-12-01	\N	t	2	5
-4	2018-10-30	2018-11-14	\N	f	3	4
-2	2018-10-29	2018-11-14	\N	f	2	12
 3	2018-10-29	2018-11-26	2018-11-28	f	3	2
-1	2018-10-29	2018-12-24	\N	f	2	13
-20	2018-12-18	2019-01-15	\N	f	3	2
-21	2018-12-19	2019-01-16	\N	f	2	10
+6	2018-10-04	2018-11-02	2019-01-05	f	3	7
+8	2018-10-06	2018-12-01	2019-01-05	t	2	5
+4	2018-10-30	2018-11-14	2019-01-05	f	3	4
+2	2018-10-29	2018-11-14	2019-01-05	f	2	12
+1	2018-10-29	2018-12-24	2019-01-05	f	2	13
+20	2018-12-18	2019-01-15	2019-01-05	f	3	2
+21	2018-12-19	2019-01-16	2019-01-05	f	2	10
+22	2018-12-14	2019-01-15	2019-01-05	f	2	1
+24	2018-12-07	2019-01-04	\N	f	1	3
+25	2018-12-06	2019-01-03	\N	f	2	6
+26	2018-12-21	2019-01-18	\N	f	2	2
+27	2018-12-21	2019-01-18	\N	f	2	1
+28	2018-12-23	2019-01-20	\N	f	1	5
+29	2018-12-23	2019-01-20	\N	f	1	8
+30	2018-12-20	2019-01-17	\N	f	2	7
+35	2019-01-05	2019-02-02	\N	f	3	11
+36	2018-12-22	2019-01-19	\N	f	1	2
 \.
 
 
 --
--- TOC entry 2928 (class 0 OID 16610)
+-- TOC entry 2929 (class 0 OID 24960)
 -- Dependencies: 212
 -- Data for Name: reservation; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.reservation (id_resa, date_debut, date_fin, id_livre, id_utilisateur) FROM stdin;
-41	\N	\N	2	2
-40	2018-12-18	2018-12-20	2	1
+42	\N	\N	2	3
+43	\N	\N	2	4
+44	\N	\N	1	3
 \.
 
 
 --
--- TOC entry 2929 (class 0 OID 16614)
+-- TOC entry 2930 (class 0 OID 24964)
 -- Dependencies: 213
 -- Data for Name: utilisateur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.utilisateur (id_utilisateur, identifiant, prenom, nom, mdp, mail, admin) FROM stdin;
-2	Pauline	Pauline	L	azerty	mb.testocrbiblio@gmail.com	f
-1	Morgan	Morgan	Brighi	azerty	mb.testocrbiblio@gmail.com	t
-3	Jean	Jean	Dupont	1234	mb.testocrbiblio@gmail.com	f
-4	Paul	Paul	Dupond	1234	mb.testocrbiblio@gmail.com	f
+COPY public.utilisateur (id_utilisateur, identifiant, prenom, nom, mdp, mail, admin, relance) FROM stdin;
+4	Paul	Paul	Dupond	1234	mb.testocrbiblio@gmail.com	f	t
+3	Jean	Jean	Dupont	1234	mb.testocrbiblio@gmail.com	f	f
+2	Pauline	Pauline	L	azerty	mb.testocrbiblio@gmail.com	f	t
+1	Morgan	Morgan	Brighi	azerty	mb.testocrbiblio@gmail.com	t	t
 \.
 
 
 --
--- TOC entry 2943 (class 0 OID 0)
+-- TOC entry 2944 (class 0 OID 0)
 -- Dependencies: 197
 -- Name: auteur_id_auteur_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -657,7 +669,7 @@ SELECT pg_catalog.setval('public.auteur_id_auteur_seq', 14, true);
 
 
 --
--- TOC entry 2944 (class 0 OID 0)
+-- TOC entry 2945 (class 0 OID 0)
 -- Dependencies: 199
 -- Name: editeur_id_editeur_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -666,7 +678,7 @@ SELECT pg_catalog.setval('public.editeur_id_editeur_seq', 14, true);
 
 
 --
--- TOC entry 2945 (class 0 OID 0)
+-- TOC entry 2946 (class 0 OID 0)
 -- Dependencies: 201
 -- Name: genre_id_genre_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -675,7 +687,7 @@ SELECT pg_catalog.setval('public.genre_id_genre_seq', 9, true);
 
 
 --
--- TOC entry 2946 (class 0 OID 0)
+-- TOC entry 2947 (class 0 OID 0)
 -- Dependencies: 206
 -- Name: livre_livre_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -684,7 +696,7 @@ SELECT pg_catalog.setval('public.livre_livre_id_seq', 14, true);
 
 
 --
--- TOC entry 2947 (class 0 OID 0)
+-- TOC entry 2948 (class 0 OID 0)
 -- Dependencies: 208
 -- Name: ouvrage_id_ouvrage_seq_1; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -693,25 +705,25 @@ SELECT pg_catalog.setval('public.ouvrage_id_ouvrage_seq_1', 5, true);
 
 
 --
--- TOC entry 2948 (class 0 OID 0)
+-- TOC entry 2949 (class 0 OID 0)
 -- Dependencies: 210
 -- Name: pret_id_pret_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.pret_id_pret_seq', 21, true);
-
-
---
--- TOC entry 2949 (class 0 OID 0)
--- Dependencies: 211
--- Name: reservation_id_resa_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.reservation_id_resa_seq', 41, true);
+SELECT pg_catalog.setval('public.pret_id_pret_seq', 36, true);
 
 
 --
 -- TOC entry 2950 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: reservation_id_resa_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.reservation_id_resa_seq', 45, true);
+
+
+--
+-- TOC entry 2951 (class 0 OID 0)
 -- Dependencies: 214
 -- Name: utilisateur_id_utilisateur_seq_1; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -720,7 +732,7 @@ SELECT pg_catalog.setval('public.utilisateur_id_utilisateur_seq_1', 3, true);
 
 
 --
--- TOC entry 2757 (class 2606 OID 16631)
+-- TOC entry 2758 (class 2606 OID 24981)
 -- Name: auteur auteur_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -729,7 +741,7 @@ ALTER TABLE ONLY public.auteur
 
 
 --
--- TOC entry 2759 (class 2606 OID 16633)
+-- TOC entry 2760 (class 2606 OID 24983)
 -- Name: editeur editeur_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -738,7 +750,7 @@ ALTER TABLE ONLY public.editeur
 
 
 --
--- TOC entry 2761 (class 2606 OID 16635)
+-- TOC entry 2762 (class 2606 OID 24985)
 -- Name: genre genre_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -747,7 +759,7 @@ ALTER TABLE ONLY public.genre
 
 
 --
--- TOC entry 2765 (class 2606 OID 16637)
+-- TOC entry 2766 (class 2606 OID 24987)
 -- Name: livre_auteur livre_auteur_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -756,7 +768,7 @@ ALTER TABLE ONLY public.livre_auteur
 
 
 --
--- TOC entry 2767 (class 2606 OID 16639)
+-- TOC entry 2768 (class 2606 OID 24989)
 -- Name: livre_editeur livre_editeur_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -765,7 +777,7 @@ ALTER TABLE ONLY public.livre_editeur
 
 
 --
--- TOC entry 2769 (class 2606 OID 16641)
+-- TOC entry 2770 (class 2606 OID 24991)
 -- Name: livre_genre livre_genre_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -774,7 +786,7 @@ ALTER TABLE ONLY public.livre_genre
 
 
 --
--- TOC entry 2763 (class 2606 OID 16643)
+-- TOC entry 2764 (class 2606 OID 24993)
 -- Name: livre livre_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -783,7 +795,7 @@ ALTER TABLE ONLY public.livre
 
 
 --
--- TOC entry 2771 (class 2606 OID 16645)
+-- TOC entry 2772 (class 2606 OID 24995)
 -- Name: ouvrage ouvrage_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -792,7 +804,7 @@ ALTER TABLE ONLY public.ouvrage
 
 
 --
--- TOC entry 2773 (class 2606 OID 16647)
+-- TOC entry 2774 (class 2606 OID 24997)
 -- Name: pret pret_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -801,7 +813,7 @@ ALTER TABLE ONLY public.pret
 
 
 --
--- TOC entry 2777 (class 2606 OID 16649)
+-- TOC entry 2778 (class 2606 OID 24999)
 -- Name: reservation reservation_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -810,7 +822,7 @@ ALTER TABLE ONLY public.reservation
 
 
 --
--- TOC entry 2779 (class 2606 OID 16651)
+-- TOC entry 2780 (class 2606 OID 25001)
 -- Name: utilisateur utilisateur_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -819,7 +831,7 @@ ALTER TABLE ONLY public.utilisateur
 
 
 --
--- TOC entry 2774 (class 1259 OID 16652)
+-- TOC entry 2775 (class 1259 OID 25002)
 -- Name: fki_livre_resa; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -827,7 +839,7 @@ CREATE INDEX fki_livre_resa ON public.reservation USING btree (id_livre);
 
 
 --
--- TOC entry 2775 (class 1259 OID 16653)
+-- TOC entry 2776 (class 1259 OID 25003)
 -- Name: fki_utilisateur_resa; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -835,7 +847,7 @@ CREATE INDEX fki_utilisateur_resa ON public.reservation USING btree (id_utilisat
 
 
 --
--- TOC entry 2781 (class 2606 OID 16654)
+-- TOC entry 2782 (class 2606 OID 25004)
 -- Name: livre_auteur auteur_livre_auteur_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -844,7 +856,7 @@ ALTER TABLE ONLY public.livre_auteur
 
 
 --
--- TOC entry 2783 (class 2606 OID 16659)
+-- TOC entry 2784 (class 2606 OID 25009)
 -- Name: livre_editeur editeur_livre_editeur_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -853,7 +865,7 @@ ALTER TABLE ONLY public.livre_editeur
 
 
 --
--- TOC entry 2785 (class 2606 OID 16664)
+-- TOC entry 2786 (class 2606 OID 25014)
 -- Name: livre_genre genre_livre_genre_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -862,7 +874,7 @@ ALTER TABLE ONLY public.livre_genre
 
 
 --
--- TOC entry 2782 (class 2606 OID 16669)
+-- TOC entry 2783 (class 2606 OID 25019)
 -- Name: livre_auteur livre_livre_auteur_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -871,7 +883,7 @@ ALTER TABLE ONLY public.livre_auteur
 
 
 --
--- TOC entry 2784 (class 2606 OID 16674)
+-- TOC entry 2785 (class 2606 OID 25024)
 -- Name: livre_editeur livre_livre_editeur_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -880,7 +892,7 @@ ALTER TABLE ONLY public.livre_editeur
 
 
 --
--- TOC entry 2786 (class 2606 OID 16679)
+-- TOC entry 2787 (class 2606 OID 25029)
 -- Name: livre_genre livre_livre_genre_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -889,7 +901,7 @@ ALTER TABLE ONLY public.livre_genre
 
 
 --
--- TOC entry 2787 (class 2606 OID 16684)
+-- TOC entry 2788 (class 2606 OID 25034)
 -- Name: pret livre_pret_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -898,7 +910,7 @@ ALTER TABLE ONLY public.pret
 
 
 --
--- TOC entry 2789 (class 2606 OID 16689)
+-- TOC entry 2790 (class 2606 OID 25039)
 -- Name: reservation livre_resa; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -907,7 +919,7 @@ ALTER TABLE ONLY public.reservation
 
 
 --
--- TOC entry 2780 (class 2606 OID 16694)
+-- TOC entry 2781 (class 2606 OID 25044)
 -- Name: livre ouvrage_livre_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -916,7 +928,7 @@ ALTER TABLE ONLY public.livre
 
 
 --
--- TOC entry 2788 (class 2606 OID 16699)
+-- TOC entry 2789 (class 2606 OID 25049)
 -- Name: pret utilisateur_pret_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -925,7 +937,7 @@ ALTER TABLE ONLY public.pret
 
 
 --
--- TOC entry 2790 (class 2606 OID 16704)
+-- TOC entry 2791 (class 2606 OID 25054)
 -- Name: reservation utilisateur_resa; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -933,7 +945,7 @@ ALTER TABLE ONLY public.reservation
     ADD CONSTRAINT utilisateur_resa FOREIGN KEY (id_utilisateur) REFERENCES public.utilisateur(id_utilisateur);
 
 
--- Completed on 2018-12-19 16:15:45
+-- Completed on 2019-01-07 14:53:47
 
 --
 -- PostgreSQL database dump complete
