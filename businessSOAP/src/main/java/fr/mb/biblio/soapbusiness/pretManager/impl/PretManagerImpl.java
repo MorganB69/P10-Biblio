@@ -281,8 +281,18 @@ public class PretManagerImpl implements PretManager {
 	@Transactional
 	public List<Pret> getPretsRetards() throws FunctionalException {
 		LocalDate dateJour=LocalDate.now();
-		listeReturn=pretDao.findPretRetard(0, 100, dateJour);
+		listeReturn=pretDao.findPretRetard(dateJour);
 		if (listeReturn==null) throw new FunctionalException("Pas de prêt en cours en retard trouvé");
+		return listeReturn;
+	}
+
+	@Override
+	@Transactional
+	public List<Pret> getPretsFuturRetard() throws FunctionalException {
+		LocalDate dateJour = LocalDate.now();
+		LocalDate dateRetard = LocalDate.now().plusDays(5);
+		listeReturn=pretDao.findPretEnCoursFuturRetard(dateRetard,dateJour);
+		if (listeReturn==null) throw new FunctionalException("Pas de futurs prêts en retard trouvé");
 		return listeReturn;
 	}
 
@@ -294,12 +304,13 @@ public class PretManagerImpl implements PretManager {
 	public Pret creationPretDate(Integer livreId, Integer emprunteurId, LocalDate dateDebut)
 			throws FunctionalException, NotFoundException {
 
-		
+
+
 		if(livreId <= 0 || emprunteurId <= 0) throw new FunctionalException("Données incorrectes");
 		
 		else {
 
-		
+
 
 			//Récupération de l'utilisateur
 			Utilisateur emprunteur=utilisateurDao.findById(emprunteurId);
@@ -323,10 +334,13 @@ public class PretManagerImpl implements PretManager {
                     pretReturn.setDateFin(dateFin);
                     pretReturn.setUtilisateur(emprunteur);
                     pretReturn.setLivre(livre);
-					setDisponibilite(pretReturn.getIdPret());
+					livre.getPrets().add(pretReturn);
+
+
                     pretReturn.setProlonge(false);
 					
-					pretDao.persist(pretReturn);}}}
+					pretDao.persist(pretReturn);
+					setDisponibilite(livre.getIdLivre());}}}
 
 			
 			return pretReturn;}
@@ -367,26 +381,38 @@ public class PretManagerImpl implements PretManager {
 
 
 		}
-		/*
-		//Pour chaque pret en retard, envoi d'un mail de relance a l'empreunteur
-		for (Pret pret : listeRetard) {
-			Mail mail = new Mail("mb.testocrbiblio@gmail.com", pret.getUtilisateur().getMail(), "Relance Prêt Biblio");
+    }
+
+	@Override
+	@Transactional
+	public void relanceMailFuturRetard() throws Exception {
+
+		//Récupération des prets en retard
+		List<Pret>listeRetard=getPretsFuturRetard();
+		Set<Utilisateur>userRetard=new HashSet<>();
+		List<Pret>listeRetardByUser;
+
+		for (Pret pret :listeRetard) {
+			userRetard.add(pret.getUtilisateur());
+		}
+		for(Utilisateur user : userRetard){
+			listeRetardByUser=listeRetard.stream().filter(pret -> pret.getUtilisateur().getIdUtilisateur()==(user.getIdUtilisateur())).collect(Collectors.toList());
+			Mail mail = new Mail("mb.testocrbiblio@gmail.com", user.getMail(), "Biblio : Fin de prêts");
 
 
 			Map<String, Object> model = new HashMap<String, Object>();
-			model.put("prenom", pret.getUtilisateur().getPrenom());
-			model.put("nom", pret.getUtilisateur().getNom());
-			model.put("titre", pret.getLivre().getTitre());
-			model.put("date", pret.getDateFin());
+			model.put("prenom", user.getPrenom());
+			model.put("nom", user.getNom());
+			model.put("listeRetards", listeRetardByUser);
 			mail.setModel(model);
 
 
-			sendSimpleMessage(mail,"email-template.ftl");
+			sendSimpleMessage(mail,"email-template-finpret.ftl");
+			listeRetardByUser.clear();
+
+
 		}
-		*/
-		
-        
-    }
+	}
 
 	@Override
 	@Transactional

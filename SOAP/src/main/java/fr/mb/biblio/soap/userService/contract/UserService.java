@@ -54,5 +54,8 @@ public interface UserService {
 			@WebParam(name="nom")String nom ,@WebParam(name="prenom")String prenom)
 				throws NotFoundException,FunctionalException;
 
+	@WebMethod
+	public  void setOptionRelance(@WebParam(name = "id")Integer id , @WebParam(name = "relance") Boolean relance) throws NotFoundException,FunctionalException;;
+
 }
 

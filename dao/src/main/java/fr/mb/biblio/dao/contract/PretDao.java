@@ -74,11 +74,18 @@ public interface PretDao {
 	
 	/**
 	 * Récupère une liste de tous les prets en cours en retard
-	 * @param offset
-	 * @param nbPages
 	 * @return
 	 */
-	public List<Pret> findPretRetard(Integer offset, Integer nbPages, LocalDate dateJour);
+	public List<Pret> findPretRetard(LocalDate dateJour);
+
+
+	/**
+	 * Récupère une liste des prêts qui seront en retard dans 5 jours et dont l'utilisateur souhaite être relancé
+	 * @param dateRetard
+	 * @param  dateJour
+	 * @return
+	 */
+	List<Pret> findPretEnCoursFuturRetard(LocalDate dateRetard, LocalDate dateJour);
 	
 	
 	

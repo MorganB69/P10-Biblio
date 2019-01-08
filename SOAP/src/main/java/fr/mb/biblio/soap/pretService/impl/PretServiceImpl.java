@@ -165,6 +165,12 @@ public class PretServiceImpl implements PretService {
 		return listeReturn;
 	}
 
+	@Override
+	public List<Pret> getPretsFuturRetards() throws FunctionalException {
+		listeReturn=pretManager.getPretsFuturRetard();
+		return listeReturn;
+	}
+
 	/* (non-Javadoc)
 	 * @see fr.mb.biblio.soap.pretManager.contract.PretManager#creationPretDate(java.lang.Integer, java.lang.Integer, java.time.LocalDate)
 	 */
@@ -172,6 +178,8 @@ public class PretServiceImpl implements PretService {
 	@Transactional
 	public Pret creationPretDate(Integer livreId, Integer emprunteurId, LocalDate dateDebut)
 			throws FunctionalException, NotFoundException {
+
+
 		if (isAdmin()){
 			pretReturn=pretManager.creationPretDate(livreId,emprunteurId,dateDebut);
 		}
@@ -192,6 +200,13 @@ public class PretServiceImpl implements PretService {
 	public void relanceMailRetards() throws Exception {
 		pretManager.relanceMailRetards();
 		}
+
+	@Override
+	@Transactional
+	//@Scheduled(cron = "${instructionSchedularTime}")
+	public void relanceMailFuturRetard() throws Exception {
+		pretManager.relanceMailFuturRetard();
+	}
 
 		
         

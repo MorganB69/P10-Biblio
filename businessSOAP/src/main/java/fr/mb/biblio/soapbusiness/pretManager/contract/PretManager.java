@@ -99,6 +99,13 @@ public interface PretManager {
 	 */
 	List<Pret> getPretsRetards() throws  FunctionalException;
 
+	/**
+	 * Obtention des prets en retard dans 5 jours des utilisateurs concernés
+	 * @return
+	 * @throws FunctionalException
+	 */
+	List<Pret> getPretsFuturRetard() throws FunctionalException;
+
 
 
 	/**
@@ -109,7 +116,9 @@ public interface PretManager {
 	 */
 	void relanceMailRetards() throws  FunctionalException, Exception;
 
-    /**
+	void relanceMailFuturRetard() throws Exception;
+
+	/**
      * Methode fixant si le livre est disponible ou non
      * @param livreId
      * @throws FunctionalException

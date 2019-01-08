@@ -30,13 +30,14 @@ public class Utilisateur implements java.io.Serializable {
 	private String mdp;
 	private String mail;
 	private Boolean admin;
+	private Boolean relance;
 	private Set<Pret> prets = new HashSet<Pret>(0);
 	private Set<Reservation> listeResaUser = new HashSet<>();
 
 	public Utilisateur() {
 	}
 
-	public Utilisateur(int idUtilisateur, String identifiant, String prenom, String nom, String mdp, String mail, Boolean admin) {
+	public Utilisateur(int idUtilisateur, String identifiant, String prenom, String nom, String mdp, String mail, Boolean admin, Boolean relance) {
 		this.idUtilisateur = idUtilisateur;
 		this.identifiant = identifiant;
 		this.prenom = prenom;
@@ -44,9 +45,10 @@ public class Utilisateur implements java.io.Serializable {
 		this.mdp = mdp;
 		this.mail = mail;
 		this.admin=admin;
+		this.relance=relance;
 	}
 
-	public Utilisateur(int idUtilisateur, String identifiant, String prenom, String nom, String mdp, String mail, Boolean admin,
+	public Utilisateur(int idUtilisateur, String identifiant, String prenom, String nom, String mdp, String mail, Boolean admin, Boolean relance,
 			Set<Pret> prets,Set<Reservation> listeResaUser) {
 		this.idUtilisateur = idUtilisateur;
 		this.identifiant = identifiant;
@@ -55,6 +57,7 @@ public class Utilisateur implements java.io.Serializable {
 		this.mdp = mdp;
 		this.mail = mail;
 		this.admin=admin;
+		this.relance=relance;
 		this.prets = prets;
 		this.listeResaUser=listeResaUser;
 	}
@@ -133,6 +136,15 @@ public class Utilisateur implements java.io.Serializable {
 
 	public void setAdmin(Boolean admin) {
 		this.admin = admin;
+	}
+
+	@Column(name="relance")
+	public Boolean getRelance() {
+		return relance;
+	}
+
+	public void setRelance(Boolean relance) {
+		this.relance = relance;
 	}
 
 	@XmlTransient

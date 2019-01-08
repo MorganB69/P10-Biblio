@@ -32,6 +32,15 @@ public class RunScheduler {
         }
     }
 
+    @Scheduled(cron = "${relancePretFuturScheduler}")
+    public void relanceFuturRetard(){
+        try {
+            pretClient.relanceMailFuturRetard();
+        } catch (Exception_Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Scheduled(cron = "${verifResaScheduler}" )
     public void verifResa(){
         resaClient.verifEndResa();

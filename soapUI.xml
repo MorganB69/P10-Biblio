@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="90645dcc-6dfc-4701-9b6c-f766f32346bb" activeEnvironment="Default" name="P10 Biblio docker 1.012" resourceRoot="" soapui-version="5.4.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.TestRunnerAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+<con:soapui-project id="90645dcc-6dfc-4701-9b6c-f766f32346bb" activeEnvironment="Default" name="P10 Biblio docker 1.013" resourceRoot="" soapui-version="5.4.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.TestRunnerAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
   <con:entry key="Report Format(s)" value=""/>
   <con:entry key="Host:Port" value=""/>
   <con:entry key="Export JUnit Results" value="false"/>
@@ -54,6 +54,7 @@
           <xs:element minOccurs="0" name="mail" type="xs:string"/>
           <xs:element minOccurs="0" name="nom" type="xs:string"/>
           <xs:element minOccurs="0" name="prenom" type="xs:string"/>
+          <xs:element minOccurs="0" name="relance" type="xs:boolean"/>
         </xs:sequence>
       </xs:complexType>
       <xs:element name="NotFoundException" type="tns:NotFoundException"/>
@@ -600,6 +601,18 @@
   <wsdl:import location="http://192.168.99.100:8081/SOAP/pretService?wsdl=pretService.wsdl" namespace="http://contract.pretService.soap.biblio.mb.fr/"></wsdl:import>
   <wsdl:binding name="PretServiceImplServiceSoapBinding" type="ns1:pretService">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getPretsFuturRetards">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getPretsFuturRetards">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPretsFuturRetardsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FunctionalException">
+        <soap:fault name="FunctionalException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="deletePret">
       <soap:operation soapAction="" style="document"/>
       <wsdl:input name="deletePret">
@@ -693,19 +706,19 @@
         <soap:fault name="FunctionalException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="relanceMailRetards">
+    <wsdl:operation name="creationPretDate">
       <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="relanceMailRetards">
+      <wsdl:input name="creationPretDate">
         <soap:body use="literal"/>
       </wsdl:input>
-      <wsdl:output name="relanceMailRetardsResponse">
+      <wsdl:output name="creationPretDateResponse">
         <soap:body use="literal"/>
       </wsdl:output>
+      <wsdl:fault name="NotFoundException">
+        <soap:fault name="NotFoundException" use="literal"/>
+      </wsdl:fault>
       <wsdl:fault name="FunctionalException">
         <soap:fault name="FunctionalException" use="literal"/>
-      </wsdl:fault>
-      <wsdl:fault name="Exception">
-        <soap:fault name="Exception" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="prolongerPret">
@@ -723,19 +736,19 @@
         <soap:fault name="FunctionalException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="creationPretDate">
+    <wsdl:operation name="relanceMailRetards">
       <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="creationPretDate">
+      <wsdl:input name="relanceMailRetards">
         <soap:body use="literal"/>
       </wsdl:input>
-      <wsdl:output name="creationPretDateResponse">
+      <wsdl:output name="relanceMailRetardsResponse">
         <soap:body use="literal"/>
       </wsdl:output>
-      <wsdl:fault name="NotFoundException">
-        <soap:fault name="NotFoundException" use="literal"/>
-      </wsdl:fault>
       <wsdl:fault name="FunctionalException">
         <soap:fault name="FunctionalException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="nouveauPret">
@@ -751,6 +764,18 @@
       </wsdl:fault>
       <wsdl:fault name="FunctionalException">
         <soap:fault name="FunctionalException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="relanceMailFuturRetard">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="relanceMailFuturRetard">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="relanceMailFuturRetardResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="setDisponibilite">
@@ -790,6 +815,8 @@
       <xs:element name="getPretsEnCoursByUser" type="tns:getPretsEnCoursByUser"/>
       <xs:element name="getPretsEnCoursByUserResponse" type="tns:getPretsEnCoursByUserResponse"/>
       <xs:element name="getPretsEnCoursResponse" type="tns:getPretsEnCoursResponse"/>
+      <xs:element name="getPretsFuturRetards" type="tns:getPretsFuturRetards"/>
+      <xs:element name="getPretsFuturRetardsResponse" type="tns:getPretsFuturRetardsResponse"/>
       <xs:element name="getPretsProlonges" type="tns:getPretsProlonges"/>
       <xs:element name="getPretsProlongesResponse" type="tns:getPretsProlongesResponse"/>
       <xs:element name="getPretsRetards" type="tns:getPretsRetards"/>
@@ -800,6 +827,8 @@
       <xs:element name="pret" type="tns:pret"/>
       <xs:element name="prolongerPret" type="tns:prolongerPret"/>
       <xs:element name="prolongerPretResponse" type="tns:prolongerPretResponse"/>
+      <xs:element name="relanceMailFuturRetard" type="tns:relanceMailFuturRetard"/>
+      <xs:element name="relanceMailFuturRetardResponse" type="tns:relanceMailFuturRetardResponse"/>
       <xs:element name="relanceMailRetards" type="tns:relanceMailRetards"/>
       <xs:element name="relanceMailRetardsResponse" type="tns:relanceMailRetardsResponse"/>
       <xs:element name="retourPret" type="tns:retourPret"/>
@@ -814,20 +843,10 @@
       <xs:complexType name="deletePretResponse">
         <xs:sequence/>
       </xs:complexType>
-      <xs:complexType name="retourPret">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="pretId" type="xs:int"/>
-        </xs:sequence>
-      </xs:complexType>
-      <xs:complexType name="retourPretResponse">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="return" type="xs:string"/>
-        </xs:sequence>
-      </xs:complexType>
-      <xs:complexType name="getPretsEnCours">
+      <xs:complexType name="getPretsFuturRetards">
         <xs:sequence/>
       </xs:complexType>
-      <xs:complexType name="getPretsEnCoursResponse">
+      <xs:complexType name="getPretsFuturRetardsResponse">
         <xs:sequence>
           <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:pret"/>
         </xs:sequence>
@@ -891,6 +910,25 @@
           <xs:element minOccurs="0" name="mail" type="xs:string"/>
           <xs:element minOccurs="0" name="nom" type="xs:string"/>
           <xs:element minOccurs="0" name="prenom" type="xs:string"/>
+          <xs:element minOccurs="0" name="relance" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="retourPret">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="pretId" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="retourPretResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getPretsEnCours">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="getPretsEnCoursResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:pret"/>
         </xs:sequence>
       </xs:complexType>
       <xs:complexType name="getPretById">
@@ -929,23 +967,6 @@
           <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:pret"/>
         </xs:sequence>
       </xs:complexType>
-      <xs:complexType name="relanceMailRetards">
-        <xs:sequence/>
-      </xs:complexType>
-      <xs:complexType name="relanceMailRetardsResponse">
-        <xs:sequence/>
-      </xs:complexType>
-      <xs:complexType name="prolongerPret">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="pretId" type="xs:int"/>
-          <xs:element minOccurs="0" name="emprunteurId" type="xs:int"/>
-        </xs:sequence>
-      </xs:complexType>
-      <xs:complexType name="prolongerPretResponse">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="return" type="tns:pret"/>
-        </xs:sequence>
-      </xs:complexType>
       <xs:complexType name="creationPretDate">
         <xs:sequence>
           <xs:element minOccurs="0" name="livreId" type="xs:int"/>
@@ -958,6 +979,23 @@
           <xs:element minOccurs="0" name="return" type="tns:pret"/>
         </xs:sequence>
       </xs:complexType>
+      <xs:complexType name="prolongerPret">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="pretId" type="xs:int"/>
+          <xs:element minOccurs="0" name="emprunteurId" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="prolongerPretResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:pret"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="relanceMailRetards">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="relanceMailRetardsResponse">
+        <xs:sequence/>
+      </xs:complexType>
       <xs:complexType name="nouveauPret">
         <xs:sequence>
           <xs:element minOccurs="0" name="livreId" type="xs:int"/>
@@ -968,6 +1006,12 @@
         <xs:sequence>
           <xs:element minOccurs="0" name="return" type="tns:pret"/>
         </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="relanceMailFuturRetard">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="relanceMailFuturRetardResponse">
+        <xs:sequence/>
       </xs:complexType>
       <xs:complexType name="setDisponibilite">
         <xs:sequence>
@@ -997,11 +1041,17 @@
       </xs:complexType>
     </xs:schema>
   </wsdl:types>
+  <wsdl:message name="getPretsFuturRetardsResponse">
+    <wsdl:part element="ns1:getPretsFuturRetardsResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
   <wsdl:message name="getPretsEnCoursByUserResponse">
     <wsdl:part element="ns1:getPretsEnCoursByUserResponse" name="parameters"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="deletePret">
     <wsdl:part element="ns1:deletePret" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPretsFuturRetards">
+    <wsdl:part element="ns1:getPretsFuturRetards" name="parameters"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="setDisponibiliteResponse">
     <wsdl:part element="ns1:setDisponibiliteResponse" name="parameters"></wsdl:part>
@@ -1042,6 +1092,9 @@
   <wsdl:message name="relanceMailRetardsResponse">
     <wsdl:part element="ns1:relanceMailRetardsResponse" name="parameters"></wsdl:part>
   </wsdl:message>
+  <wsdl:message name="relanceMailFuturRetard">
+    <wsdl:part element="ns1:relanceMailFuturRetard" name="parameters"></wsdl:part>
+  </wsdl:message>
   <wsdl:message name="setDisponibilite">
     <wsdl:part element="ns1:setDisponibilite" name="parameters"></wsdl:part>
   </wsdl:message>
@@ -1057,17 +1110,20 @@
   <wsdl:message name="creationPretDateResponse">
     <wsdl:part element="ns1:creationPretDateResponse" name="parameters"></wsdl:part>
   </wsdl:message>
+  <wsdl:message name="relanceMailFuturRetardResponse">
+    <wsdl:part element="ns1:relanceMailFuturRetardResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
   <wsdl:message name="getPretsRetardsResponse">
     <wsdl:part element="ns1:getPretsRetardsResponse" name="parameters"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="Exception">
     <wsdl:part element="ns1:Exception" name="Exception"></wsdl:part>
   </wsdl:message>
-  <wsdl:message name="relanceMailRetards">
-    <wsdl:part element="ns1:relanceMailRetards" name="parameters"></wsdl:part>
-  </wsdl:message>
   <wsdl:message name="creationPretDate">
     <wsdl:part element="ns1:creationPretDate" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="relanceMailRetards">
+    <wsdl:part element="ns1:relanceMailRetards" name="parameters"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="deletePretResponse">
     <wsdl:part element="ns1:deletePretResponse" name="parameters"></wsdl:part>
@@ -1083,6 +1139,11 @@
       <wsdl:input message="ns1:deletePret" name="deletePret"></wsdl:input>
       <wsdl:output message="ns1:deletePretResponse" name="deletePretResponse"></wsdl:output>
       <wsdl:fault message="ns1:NotFoundException" name="NotFoundException"></wsdl:fault>
+      <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPretsFuturRetards">
+      <wsdl:input message="ns1:getPretsFuturRetards" name="getPretsFuturRetards"></wsdl:input>
+      <wsdl:output message="ns1:getPretsFuturRetardsResponse" name="getPretsFuturRetardsResponse"></wsdl:output>
       <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="retourPret">
@@ -1117,11 +1178,11 @@
       <wsdl:output message="ns1:getPretsProlongesResponse" name="getPretsProlongesResponse"></wsdl:output>
       <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="relanceMailRetards">
-      <wsdl:input message="ns1:relanceMailRetards" name="relanceMailRetards"></wsdl:input>
-      <wsdl:output message="ns1:relanceMailRetardsResponse" name="relanceMailRetardsResponse"></wsdl:output>
+    <wsdl:operation name="creationPretDate">
+      <wsdl:input message="ns1:creationPretDate" name="creationPretDate"></wsdl:input>
+      <wsdl:output message="ns1:creationPretDateResponse" name="creationPretDateResponse"></wsdl:output>
+      <wsdl:fault message="ns1:NotFoundException" name="NotFoundException"></wsdl:fault>
       <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
-      <wsdl:fault message="ns1:Exception" name="Exception"></wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="prolongerPret">
       <wsdl:input message="ns1:prolongerPret" name="prolongerPret"></wsdl:input>
@@ -1129,17 +1190,22 @@
       <wsdl:fault message="ns1:NotFoundException" name="NotFoundException"></wsdl:fault>
       <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="creationPretDate">
-      <wsdl:input message="ns1:creationPretDate" name="creationPretDate"></wsdl:input>
-      <wsdl:output message="ns1:creationPretDateResponse" name="creationPretDateResponse"></wsdl:output>
-      <wsdl:fault message="ns1:NotFoundException" name="NotFoundException"></wsdl:fault>
+    <wsdl:operation name="relanceMailRetards">
+      <wsdl:input message="ns1:relanceMailRetards" name="relanceMailRetards"></wsdl:input>
+      <wsdl:output message="ns1:relanceMailRetardsResponse" name="relanceMailRetardsResponse"></wsdl:output>
       <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
+      <wsdl:fault message="ns1:Exception" name="Exception"></wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="nouveauPret">
       <wsdl:input message="ns1:nouveauPret" name="nouveauPret"></wsdl:input>
       <wsdl:output message="ns1:nouveauPretResponse" name="nouveauPretResponse"></wsdl:output>
       <wsdl:fault message="ns1:NotFoundException" name="NotFoundException"></wsdl:fault>
       <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="relanceMailFuturRetard">
+      <wsdl:input message="ns1:relanceMailFuturRetard" name="relanceMailFuturRetard"></wsdl:input>
+      <wsdl:output message="ns1:relanceMailFuturRetardResponse" name="relanceMailFuturRetardResponse"></wsdl:output>
+      <wsdl:fault message="ns1:Exception" name="Exception"></wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="setDisponibilite">
       <wsdl:input message="ns1:setDisponibilite" name="setDisponibilite"></wsdl:input>
@@ -1275,10 +1341,35 @@
          <livreId>15</livreId>\r
       </con:setDisponibilite>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.pretService.soap.biblio.mb.fr/pretService/setDisponibilite"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="4121deb1-4288-4f6f-96f4-517fa66bea80" wsaVersion="NONE" name="UserServiceImplServiceSoapBinding" type="wsdl" bindingName="{http://impl.userService.soap.biblio.mb.fr/}UserServiceImplServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://192.168.99.100:8081/SOAP/userService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://192.168.99.100:8081/SOAP/userService?wsdl"><con:part><con:url>http://192.168.99.100:8081/SOAP/userService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="UserServiceImplService" targetNamespace="http://impl.userService.soap.biblio.mb.fr/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://impl.userService.soap.biblio.mb.fr/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://contract.userService.soap.biblio.mb.fr/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.pretService.soap.biblio.mb.fr/pretService/setDisponibilite"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="5684d90c-f997-425a-bdfa-cf31fbc59be5" isOneWay="false" action="" name="getPretsFuturRetards" bindingOperationName="getPretsFuturRetards" type="Request-Response" outputName="getPretsFuturRetardsResponse" inputName="getPretsFuturRetards" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a174a2d3-b000-4b99-9d27-04c149dfff2b" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/pretService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.pretService.soap.biblio.mb.fr/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:getPretsFuturRetards/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.pretService.soap.biblio.mb.fr/pretService/getPretsFuturRetards"/></con:call></con:operation><con:operation id="6d9dd349-f0e9-43f4-819b-b5285de2f7db" isOneWay="false" action="" name="relanceMailFuturRetard" bindingOperationName="relanceMailFuturRetard" type="Request-Response" outputName="relanceMailFuturRetardResponse" inputName="relanceMailFuturRetard" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="3844d413-1eeb-490f-957f-d7798898c561" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/pretService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.pretService.soap.biblio.mb.fr/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:relanceMailFuturRetard/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.pretService.soap.biblio.mb.fr/pretService/relanceMailFuturRetard"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="4121deb1-4288-4f6f-96f4-517fa66bea80" wsaVersion="NONE" name="UserServiceImplServiceSoapBinding" type="wsdl" bindingName="{http://impl.userService.soap.biblio.mb.fr/}UserServiceImplServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://192.168.99.100:8081/SOAP/userService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://192.168.99.100:8081/SOAP/userService?wsdl"><con:part><con:url>http://192.168.99.100:8081/SOAP/userService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="UserServiceImplService" targetNamespace="http://impl.userService.soap.biblio.mb.fr/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://impl.userService.soap.biblio.mb.fr/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://contract.userService.soap.biblio.mb.fr/">
   <wsdl:import location="http://192.168.99.100:8081/SOAP/userService?wsdl=userService.wsdl" namespace="http://contract.userService.soap.biblio.mb.fr/"></wsdl:import>
   <wsdl:binding name="UserServiceImplServiceSoapBinding" type="ns1:userService">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="setOptionRelance">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="setOptionRelance">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setOptionRelanceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="NotFoundException">
+        <soap:fault name="NotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="FunctionalException">
+        <soap:fault name="FunctionalException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="getUserIdByName">
       <soap:operation soapAction="" style="document"/>
       <wsdl:input name="getUserIdByName">
@@ -1350,6 +1441,17 @@
       <xs:element name="identificationResponse" type="tns:identificationResponse"/>
       <xs:element name="insert" type="tns:insert"/>
       <xs:element name="insertResponse" type="tns:insertResponse"/>
+      <xs:element name="setOptionRelance" type="tns:setOptionRelance"/>
+      <xs:element name="setOptionRelanceResponse" type="tns:setOptionRelanceResponse"/>
+      <xs:complexType name="setOptionRelance">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="relance" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="setOptionRelanceResponse">
+        <xs:sequence/>
+      </xs:complexType>
       <xs:complexType name="getUserIdByName">
         <xs:sequence>
           <xs:element minOccurs="0" name="nom" type="xs:string"/>
@@ -1379,6 +1481,7 @@
           <xs:element minOccurs="0" name="mail" type="xs:string"/>
           <xs:element minOccurs="0" name="nom" type="xs:string"/>
           <xs:element minOccurs="0" name="prenom" type="xs:string"/>
+          <xs:element minOccurs="0" name="relance" type="xs:boolean"/>
         </xs:sequence>
       </xs:complexType>
       <xs:complexType name="identification">
@@ -1417,11 +1520,14 @@
   <wsdl:message name="insertResponse">
     <wsdl:part element="ns1:insertResponse" name="parameters"></wsdl:part>
   </wsdl:message>
-  <wsdl:message name="getUserIdByName">
-    <wsdl:part element="ns1:getUserIdByName" name="parameters"></wsdl:part>
+  <wsdl:message name="setOptionRelanceResponse">
+    <wsdl:part element="ns1:setOptionRelanceResponse" name="parameters"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="FunctionalException">
     <wsdl:part element="ns1:FunctionalException" name="FunctionalException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserIdByName">
+    <wsdl:part element="ns1:getUserIdByName" name="parameters"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="identificationResponse">
     <wsdl:part element="ns1:identificationResponse" name="parameters"></wsdl:part>
@@ -1435,6 +1541,9 @@
   <wsdl:message name="getUserIdByNameResponse">
     <wsdl:part element="ns1:getUserIdByNameResponse" name="parameters"></wsdl:part>
   </wsdl:message>
+  <wsdl:message name="setOptionRelance">
+    <wsdl:part element="ns1:setOptionRelance" name="parameters"></wsdl:part>
+  </wsdl:message>
   <wsdl:message name="getUtilisateurById">
     <wsdl:part element="ns1:getUtilisateurById" name="parameters"></wsdl:part>
   </wsdl:message>
@@ -1445,6 +1554,12 @@
     <wsdl:part element="ns1:getUtilisateurByIdResponse" name="parameters"></wsdl:part>
   </wsdl:message>
   <wsdl:portType name="userService">
+    <wsdl:operation name="setOptionRelance">
+      <wsdl:input message="ns1:setOptionRelance" name="setOptionRelance"></wsdl:input>
+      <wsdl:output message="ns1:setOptionRelanceResponse" name="setOptionRelanceResponse"></wsdl:output>
+      <wsdl:fault message="ns1:NotFoundException" name="NotFoundException"></wsdl:fault>
+      <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="getUserIdByName">
       <wsdl:input message="ns1:getUserIdByName" name="getUserIdByName"></wsdl:input>
       <wsdl:output message="ns1:getUserIdByNameResponse" name="getUserIdByNameResponse"></wsdl:output>
@@ -1533,35 +1648,50 @@
             <nom>Martin</nom>
             <!--Optional:-->
             <prenom>Paul</prenom>
+            <!--Optional:-->
+            <relance>?</relance>
          </utilisateur>
       </con:insert>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.userService.soap.biblio.mb.fr/userService/insert"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="04e55b23-8bbf-44a2-8c32-35f9a3d40cf1" wsaVersion="NONE" name="ResaServiceImplServiceSoapBinding" type="wsdl" bindingName="{http://impl.resaService.soap.biblio.mb.fr/}ResaServiceImplServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://192.168.99.100:8081/SOAP/resaService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://192.168.99.100:8081/SOAP/resaService?wsdl"><con:part><con:url>http://192.168.99.100:8081/SOAP/resaService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="ResaServiceImplService" targetNamespace="http://impl.resaService.soap.biblio.mb.fr/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://impl.resaService.soap.biblio.mb.fr/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://contract.resaService.soap.biblio.mb.fr/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.userService.soap.biblio.mb.fr/userService/insert"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="3b8de2e4-ca9f-402a-9811-185a98095bec" isOneWay="false" action="" name="setOptionRelance" bindingOperationName="setOptionRelance" type="Request-Response" outputName="setOptionRelanceResponse" inputName="setOptionRelance" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="fa42a05c-e49f-4052-86e5-cabbade0e5ac" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/userService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.userService.soap.biblio.mb.fr/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:setOptionRelance>\r
+         <!--Optional:-->\r
+         <id>?</id>\r
+         <!--Optional:-->\r
+         <relance>?</relance>\r
+      </con:setOptionRelance>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.userService.soap.biblio.mb.fr/userService/setOptionRelance"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="04e55b23-8bbf-44a2-8c32-35f9a3d40cf1" wsaVersion="NONE" name="ResaServiceImplServiceSoapBinding" type="wsdl" bindingName="{http://impl.resaService.soap.biblio.mb.fr/}ResaServiceImplServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://192.168.99.100:8081/SOAP/resaService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://192.168.99.100:8081/SOAP/resaService?wsdl"><con:part><con:url>http://192.168.99.100:8081/SOAP/resaService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="ResaServiceImplService" targetNamespace="http://impl.resaService.soap.biblio.mb.fr/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://impl.resaService.soap.biblio.mb.fr/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://contract.resaService.soap.biblio.mb.fr/">
   <wsdl:import location="http://192.168.99.100:8081/SOAP/resaService?wsdl=resaService.wsdl" namespace="http://contract.resaService.soap.biblio.mb.fr/"></wsdl:import>
   <wsdl:binding name="ResaServiceImplServiceSoapBinding" type="ns1:resaService">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="checkNbExemplaire">
+    <wsdl:operation name="verifEndResa">
       <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="checkNbExemplaire">
+      <wsdl:input name="verifEndResa">
         <soap:body use="literal"/>
       </wsdl:input>
-      <wsdl:output name="checkNbExemplaireResponse">
+      <wsdl:output name="verifEndResaResponse">
         <soap:body use="literal"/>
       </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="mailResa">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="mailResa">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="mailResaResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="NotFoundException">
+        <soap:fault name="NotFoundException" use="literal"/>
+      </wsdl:fault>
       <wsdl:fault name="FunctionalException">
         <soap:fault name="FunctionalException" use="literal"/>
       </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="checkUserResa">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="checkUserResa">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="checkUserResaResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="FunctionalException">
-        <soap:fault name="FunctionalException" use="literal"/>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="deleteReservation">
@@ -1594,6 +1724,21 @@
         <soap:fault name="FunctionalException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="getResaById">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getResaById">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getResaByIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="NotFoundException">
+        <soap:fault name="NotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="FunctionalException">
+        <soap:fault name="FunctionalException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="getResaByUserId">
       <soap:operation soapAction="" style="document"/>
       <wsdl:input name="getResaByUserId">
@@ -1602,6 +1747,9 @@
       <wsdl:output name="getResaByUserIdResponse">
         <soap:body use="literal"/>
       </wsdl:output>
+      <wsdl:fault name="NotFoundException">
+        <soap:fault name="NotFoundException" use="literal"/>
+      </wsdl:fault>
       <wsdl:fault name="FunctionalException">
         <soap:fault name="FunctionalException" use="literal"/>
       </wsdl:fault>
@@ -1618,6 +1766,21 @@
         <soap:fault name="FunctionalException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="startResa">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="startResa">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="startResaResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="NotFoundException">
+        <soap:fault name="NotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="FunctionalException">
+        <soap:fault name="FunctionalException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="ResaServiceImplService">
     <wsdl:port binding="tns:ResaServiceImplServiceSoapBinding" name="ResaServiceImplPort">
@@ -1628,24 +1791,76 @@
   <wsdl:types>
     <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://contract.resaService.soap.biblio.mb.fr/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://contract.resaService.soap.biblio.mb.fr/">
       <xs:element name="auteur" type="tns:auteur"/>
-      <xs:element name="checkNbExemplaire" type="tns:checkNbExemplaire"/>
-      <xs:element name="checkNbExemplaireResponse" type="tns:checkNbExemplaireResponse"/>
-      <xs:element name="checkUserResa" type="tns:checkUserResa"/>
-      <xs:element name="checkUserResaResponse" type="tns:checkUserResaResponse"/>
       <xs:element name="deleteReservation" type="tns:deleteReservation"/>
       <xs:element name="deleteReservationResponse" type="tns:deleteReservationResponse"/>
       <xs:element name="editeur" type="tns:editeur"/>
       <xs:element name="genre" type="tns:genre"/>
+      <xs:element name="getResaById" type="tns:getResaById"/>
+      <xs:element name="getResaByIdResponse" type="tns:getResaByIdResponse"/>
       <xs:element name="getResaByLivreId" type="tns:getResaByLivreId"/>
       <xs:element name="getResaByLivreIdResponse" type="tns:getResaByLivreIdResponse"/>
       <xs:element name="getResaByUserId" type="tns:getResaByUserId"/>
       <xs:element name="getResaByUserIdResponse" type="tns:getResaByUserIdResponse"/>
+      <xs:element name="mailResa" type="tns:mailResa"/>
+      <xs:element name="mailResaResponse" type="tns:mailResaResponse"/>
       <xs:element name="newReservation" type="tns:newReservation"/>
       <xs:element name="newReservationResponse" type="tns:newReservationResponse"/>
       <xs:element name="ouvrage" type="tns:ouvrage"/>
-      <xs:complexType name="checkNbExemplaire">
+      <xs:element name="startResa" type="tns:startResa"/>
+      <xs:element name="startResaResponse" type="tns:startResaResponse"/>
+      <xs:element name="verifEndResa" type="tns:verifEndResa"/>
+      <xs:element name="verifEndResaResponse" type="tns:verifEndResaResponse"/>
+      <xs:complexType name="verifEndResa">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="verifEndResaResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="mailResa">
         <xs:sequence>
-          <xs:element minOccurs="0" name="arg0" type="tns:livre"/>
+          <xs:element minOccurs="0" name="resaId" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="mailResaResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="deleteReservation">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="resaId" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteReservationResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="newReservation">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="livreId" type="xs:int"/>
+          <xs:element minOccurs="0" name="demandeurId" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="newReservationResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:reservation"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="reservation">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="debutResa" type="xs:date"/>
+          <xs:element minOccurs="0" name="demandeur" type="tns:utilisateur"/>
+          <xs:element minOccurs="0" name="finResa" type="xs:date"/>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="livre" type="tns:livre"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="utilisateur">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="admin" type="xs:boolean"/>
+          <xs:element name="idUtilisateur" type="xs:int"/>
+          <xs:element minOccurs="0" name="identifiant" type="xs:string"/>
+          <xs:element minOccurs="0" name="mail" type="xs:string"/>
+          <xs:element minOccurs="0" name="nom" type="xs:string"/>
+          <xs:element minOccurs="0" name="prenom" type="xs:string"/>
+          <xs:element minOccurs="0" name="relance" type="xs:boolean"/>
         </xs:sequence>
       </xs:complexType>
       <xs:complexType name="livre">
@@ -1688,54 +1903,14 @@
           <xs:element minOccurs="0" name="typeouvrage" type="xs:string"/>
         </xs:sequence>
       </xs:complexType>
-      <xs:complexType name="checkNbExemplaireResponse">
-        <xs:sequence/>
-      </xs:complexType>
-      <xs:complexType name="deleteReservation">
+      <xs:complexType name="getResaById">
         <xs:sequence>
           <xs:element minOccurs="0" name="resaId" type="xs:int"/>
         </xs:sequence>
       </xs:complexType>
-      <xs:complexType name="deleteReservationResponse">
-        <xs:sequence/>
-      </xs:complexType>
-      <xs:complexType name="checkUserResa">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="arg0" type="tns:utilisateur"/>
-          <xs:element minOccurs="0" name="arg1" type="tns:livre"/>
-        </xs:sequence>
-      </xs:complexType>
-      <xs:complexType name="utilisateur">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="admin" type="xs:boolean"/>
-          <xs:element name="idUtilisateur" type="xs:int"/>
-          <xs:element minOccurs="0" name="identifiant" type="xs:string"/>
-          <xs:element minOccurs="0" name="mail" type="xs:string"/>
-          <xs:element minOccurs="0" name="nom" type="xs:string"/>
-          <xs:element minOccurs="0" name="prenom" type="xs:string"/>
-        </xs:sequence>
-      </xs:complexType>
-      <xs:complexType name="checkUserResaResponse">
-        <xs:sequence/>
-      </xs:complexType>
-      <xs:complexType name="newReservation">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="livreId" type="xs:int"/>
-          <xs:element minOccurs="0" name="demandeurId" type="xs:int"/>
-        </xs:sequence>
-      </xs:complexType>
-      <xs:complexType name="newReservationResponse">
+      <xs:complexType name="getResaByIdResponse">
         <xs:sequence>
           <xs:element minOccurs="0" name="return" type="tns:reservation"/>
-        </xs:sequence>
-      </xs:complexType>
-      <xs:complexType name="reservation">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="debutResa" type="xs:date"/>
-          <xs:element minOccurs="0" name="demandeur" type="tns:utilisateur"/>
-          <xs:element minOccurs="0" name="finResa" type="xs:date"/>
-          <xs:element name="id" type="xs:int"/>
-          <xs:element minOccurs="0" name="livre" type="tns:livre"/>
         </xs:sequence>
       </xs:complexType>
       <xs:complexType name="getResaByUserId">
@@ -1745,7 +1920,15 @@
       </xs:complexType>
       <xs:complexType name="getResaByUserIdResponse">
         <xs:sequence>
-          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:reservation"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:reservationWS"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="reservationWS">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dateRetour" type="xs:date"/>
+          <xs:element minOccurs="0" name="nbResaTotal" type="xs:int"/>
+          <xs:element minOccurs="0" name="positionUser" type="xs:int"/>
+          <xs:element minOccurs="0" name="reservation" type="tns:reservation"/>
         </xs:sequence>
       </xs:complexType>
       <xs:complexType name="getResaByLivreId">
@@ -1758,10 +1941,14 @@
           <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:reservation"/>
         </xs:sequence>
       </xs:complexType>
-      <xs:element name="FunctionalException" type="tns:FunctionalException"/>
-      <xs:complexType name="FunctionalException">
+      <xs:complexType name="startResa">
         <xs:sequence>
-          <xs:element minOccurs="0" name="message" type="xs:string"/>
+          <xs:element minOccurs="0" name="resaId" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="startResaResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:reservation"/>
         </xs:sequence>
       </xs:complexType>
       <xs:element name="NotFoundException" type="tns:NotFoundException"/>
@@ -1770,16 +1957,28 @@
           <xs:element minOccurs="0" name="message" type="xs:string"/>
         </xs:sequence>
       </xs:complexType>
+      <xs:element name="FunctionalException" type="tns:FunctionalException"/>
+      <xs:complexType name="FunctionalException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Exception" type="tns:Exception"/>
+      <xs:complexType name="Exception">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
     </xs:schema>
   </wsdl:types>
-  <wsdl:message name="checkNbExemplaire">
-    <wsdl:part element="ns1:checkNbExemplaire" name="parameters"></wsdl:part>
+  <wsdl:message name="verifEndResa">
+    <wsdl:part element="ns1:verifEndResa" name="parameters"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="FunctionalException">
     <wsdl:part element="ns1:FunctionalException" name="FunctionalException"></wsdl:part>
   </wsdl:message>
-  <wsdl:message name="checkUserResa">
-    <wsdl:part element="ns1:checkUserResa" name="parameters"></wsdl:part>
+  <wsdl:message name="mailResa">
+    <wsdl:part element="ns1:mailResa" name="parameters"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="newReservation">
     <wsdl:part element="ns1:newReservation" name="parameters"></wsdl:part>
@@ -1790,45 +1989,61 @@
   <wsdl:message name="getResaByUserId">
     <wsdl:part element="ns1:getResaByUserId" name="parameters"></wsdl:part>
   </wsdl:message>
-  <wsdl:message name="checkUserResaResponse">
-    <wsdl:part element="ns1:checkUserResaResponse" name="parameters"></wsdl:part>
-  </wsdl:message>
   <wsdl:message name="getResaByLivreId">
     <wsdl:part element="ns1:getResaByLivreId" name="parameters"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="newReservationResponse">
     <wsdl:part element="ns1:newReservationResponse" name="parameters"></wsdl:part>
   </wsdl:message>
+  <wsdl:message name="startResa">
+    <wsdl:part element="ns1:startResa" name="parameters"></wsdl:part>
+  </wsdl:message>
   <wsdl:message name="NotFoundException">
     <wsdl:part element="ns1:NotFoundException" name="NotFoundException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="startResaResponse">
+    <wsdl:part element="ns1:startResaResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verifEndResaResponse">
+    <wsdl:part element="ns1:verifEndResaResponse" name="parameters"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="deleteReservation">
     <wsdl:part element="ns1:deleteReservation" name="parameters"></wsdl:part>
   </wsdl:message>
+  <wsdl:message name="Exception">
+    <wsdl:part element="ns1:Exception" name="Exception"></wsdl:part>
+  </wsdl:message>
   <wsdl:message name="deleteReservationResponse">
     <wsdl:part element="ns1:deleteReservationResponse" name="parameters"></wsdl:part>
   </wsdl:message>
-  <wsdl:message name="checkNbExemplaireResponse">
-    <wsdl:part element="ns1:checkNbExemplaireResponse" name="parameters"></wsdl:part>
+  <wsdl:message name="getResaById">
+    <wsdl:part element="ns1:getResaById" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResaByIdResponse">
+    <wsdl:part element="ns1:getResaByIdResponse" name="parameters"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="getResaByUserIdResponse">
     <wsdl:part element="ns1:getResaByUserIdResponse" name="parameters"></wsdl:part>
   </wsdl:message>
+  <wsdl:message name="mailResaResponse">
+    <wsdl:part element="ns1:mailResaResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
   <wsdl:portType name="resaService">
-    <wsdl:operation name="checkNbExemplaire">
-      <wsdl:input message="ns1:checkNbExemplaire" name="checkNbExemplaire"></wsdl:input>
-      <wsdl:output message="ns1:checkNbExemplaireResponse" name="checkNbExemplaireResponse"></wsdl:output>
+    <wsdl:operation name="verifEndResa">
+      <wsdl:input message="ns1:verifEndResa" name="verifEndResa"></wsdl:input>
+      <wsdl:output message="ns1:verifEndResaResponse" name="verifEndResaResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="mailResa">
+      <wsdl:input message="ns1:mailResa" name="mailResa"></wsdl:input>
+      <wsdl:output message="ns1:mailResaResponse" name="mailResaResponse"></wsdl:output>
+      <wsdl:fault message="ns1:NotFoundException" name="NotFoundException"></wsdl:fault>
       <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
+      <wsdl:fault message="ns1:Exception" name="Exception"></wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="deleteReservation">
       <wsdl:input message="ns1:deleteReservation" name="deleteReservation"></wsdl:input>
       <wsdl:output message="ns1:deleteReservationResponse" name="deleteReservationResponse"></wsdl:output>
       <wsdl:fault message="ns1:NotFoundException" name="NotFoundException"></wsdl:fault>
-      <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="checkUserResa">
-      <wsdl:input message="ns1:checkUserResa" name="checkUserResa"></wsdl:input>
-      <wsdl:output message="ns1:checkUserResaResponse" name="checkUserResaResponse"></wsdl:output>
       <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="newReservation">
@@ -1837,9 +2052,16 @@
       <wsdl:fault message="ns1:NotFoundException" name="NotFoundException"></wsdl:fault>
       <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="getResaById">
+      <wsdl:input message="ns1:getResaById" name="getResaById"></wsdl:input>
+      <wsdl:output message="ns1:getResaByIdResponse" name="getResaByIdResponse"></wsdl:output>
+      <wsdl:fault message="ns1:NotFoundException" name="NotFoundException"></wsdl:fault>
+      <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="getResaByUserId">
       <wsdl:input message="ns1:getResaByUserId" name="getResaByUserId"></wsdl:input>
       <wsdl:output message="ns1:getResaByUserIdResponse" name="getResaByUserIdResponse"></wsdl:output>
+      <wsdl:fault message="ns1:NotFoundException" name="NotFoundException"></wsdl:fault>
       <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="getResaByLivreId">
@@ -1847,116 +2069,14 @@
       <wsdl:output message="ns1:getResaByLivreIdResponse" name="getResaByLivreIdResponse"></wsdl:output>
       <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="startResa">
+      <wsdl:input message="ns1:startResa" name="startResa"></wsdl:input>
+      <wsdl:output message="ns1:startResaResponse" name="startResaResponse"></wsdl:output>
+      <wsdl:fault message="ns1:NotFoundException" name="NotFoundException"></wsdl:fault>
+      <wsdl:fault message="ns1:FunctionalException" name="FunctionalException"></wsdl:fault>
+    </wsdl:operation>
   </wsdl:portType>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://192.168.99.100:8081/SOAP/resaService</con:endpoint></con:endpoints><con:operation id="af362813-fc49-41cb-880e-df4df323be8a" isOneWay="false" action="" name="checkNbExemplaire" bindingOperationName="checkNbExemplaire" type="Request-Response" outputName="checkNbExemplaireResponse" inputName="checkNbExemplaire" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b2ee77fe-a597-48ac-ad00-c5e6adedd8c6" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/resaService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.resaService.soap.biblio.mb.fr/">\r
-   <soapenv:Header/>\r
-   <soapenv:Body>\r
-      <con:checkNbExemplaire>\r
-         <!--Optional:-->\r
-         <arg0>\r
-            <!--Zero or more repetitions:-->\r
-            <auteurs>\r
-               <idAuteur>?</idAuteur>\r
-               <!--Optional:-->\r
-               <nom>?</nom>\r
-               <!--Optional:-->\r
-               <prenom>?</prenom>\r
-            </auteurs>\r
-            <!--Optional:-->\r
-            <disponible>?</disponible>\r
-            <!--Zero or more repetitions:-->\r
-            <editeurs>\r
-               <idEditeur>?</idEditeur>\r
-               <!--Optional:-->\r
-               <nom>?</nom>\r
-            </editeurs>\r
-            <exemplaire>?</exemplaire>\r
-            <!--Zero or more repetitions:-->\r
-            <genres>\r
-               <!--Optional:-->\r
-               <genre>?</genre>\r
-               <idGenre>?</idGenre>\r
-            </genres>\r
-            <idLivre>?</idLivre>\r
-            <!--Optional:-->\r
-            <image>?</image>\r
-            <!--Optional:-->\r
-            <ouvrage>\r
-               <idOuvrage>?</idOuvrage>\r
-               <!--Optional:-->\r
-               <typeouvrage>?</typeouvrage>\r
-            </ouvrage>\r
-            <!--Optional:-->\r
-            <parution>?</parution>\r
-            <!--Optional:-->\r
-            <resume>?</resume>\r
-            <!--Optional:-->\r
-            <titre>?</titre>\r
-         </arg0>\r
-      </con:checkNbExemplaire>\r
-   </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.resaService.soap.biblio.mb.fr/resaService/checkNbExemplaire"/></con:call></con:operation><con:operation id="71f16b74-b5e3-4a9e-89bc-8e127e1f6a1a" isOneWay="false" action="" name="checkUserResa" bindingOperationName="checkUserResa" type="Request-Response" outputName="checkUserResaResponse" inputName="checkUserResa" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="5709fc13-77ed-4873-b49b-9b6b34e76b44" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/resaService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.resaService.soap.biblio.mb.fr/">\r
-   <soapenv:Header/>\r
-   <soapenv:Body>\r
-      <con:checkUserResa>\r
-         <!--Optional:-->\r
-         <arg0>\r
-            <!--Optional:-->\r
-            <admin>?</admin>\r
-            <idUtilisateur>?</idUtilisateur>\r
-            <!--Optional:-->\r
-            <identifiant>?</identifiant>\r
-            <!--Optional:-->\r
-            <mail>?</mail>\r
-            <!--Optional:-->\r
-            <nom>?</nom>\r
-            <!--Optional:-->\r
-            <prenom>?</prenom>\r
-         </arg0>\r
-         <!--Optional:-->\r
-         <arg1>\r
-            <!--Zero or more repetitions:-->\r
-            <auteurs>\r
-               <idAuteur>?</idAuteur>\r
-               <!--Optional:-->\r
-               <nom>?</nom>\r
-               <!--Optional:-->\r
-               <prenom>?</prenom>\r
-            </auteurs>\r
-            <!--Optional:-->\r
-            <disponible>?</disponible>\r
-            <!--Zero or more repetitions:-->\r
-            <editeurs>\r
-               <idEditeur>?</idEditeur>\r
-               <!--Optional:-->\r
-               <nom>?</nom>\r
-            </editeurs>\r
-            <exemplaire>?</exemplaire>\r
-            <!--Zero or more repetitions:-->\r
-            <genres>\r
-               <!--Optional:-->\r
-               <genre>?</genre>\r
-               <idGenre>?</idGenre>\r
-            </genres>\r
-            <idLivre>?</idLivre>\r
-            <!--Optional:-->\r
-            <image>?</image>\r
-            <!--Optional:-->\r
-            <ouvrage>\r
-               <idOuvrage>?</idOuvrage>\r
-               <!--Optional:-->\r
-               <typeouvrage>?</typeouvrage>\r
-            </ouvrage>\r
-            <!--Optional:-->\r
-            <parution>?</parution>\r
-            <!--Optional:-->\r
-            <resume>?</resume>\r
-            <!--Optional:-->\r
-            <titre>?</titre>\r
-         </arg1>\r
-      </con:checkUserResa>\r
-   </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.resaService.soap.biblio.mb.fr/resaService/checkUserResa"/></con:call></con:operation><con:operation id="844f7617-3eb4-4d8a-b988-e40882b8ad51" isOneWay="false" action="" name="deleteReservation" bindingOperationName="deleteReservation" type="Request-Response" outputName="deleteReservationResponse" inputName="deleteReservation" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="35fea72b-d346-48d6-be32-14c61b879912" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/resaService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.resaService.soap.biblio.mb.fr/">\r
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://192.168.99.100:8081/SOAP/resaService</con:endpoint></con:endpoints><con:operation id="844f7617-3eb4-4d8a-b988-e40882b8ad51" isOneWay="false" action="" name="deleteReservation" bindingOperationName="deleteReservation" type="Request-Response" outputName="deleteReservationResponse" inputName="deleteReservation" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="35fea72b-d346-48d6-be32-14c61b879912" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/resaService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.resaService.soap.biblio.mb.fr/">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <con:deleteReservation>\r
@@ -1980,17 +2100,46 @@
          <demandeurId>?</demandeurId>\r
       </con:getResaByUserId>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.resaService.soap.biblio.mb.fr/resaService/getResaByUserId"/></con:call></con:operation><con:operation id="9122e078-c30f-42e2-a140-d0407f320818" isOneWay="false" action="" name="newReservation" bindingOperationName="newReservation" type="Request-Response" outputName="newReservationResponse" inputName="newReservation" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d9b4b950-50fa-4e29-bd9d-02c7ec048f9c" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/resaService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.resaService.soap.biblio.mb.fr/">\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.resaService.soap.biblio.mb.fr/resaService/getResaByUserId"/></con:call></con:operation><con:operation id="9122e078-c30f-42e2-a140-d0407f320818" isOneWay="false" action="" name="newReservation" bindingOperationName="newReservation" type="Request-Response" outputName="newReservationResponse" inputName="newReservation" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d9b4b950-50fa-4e29-bd9d-02c7ec048f9c" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/resaService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.resaService.soap.biblio.mb.fr/">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <con:newReservation>\r
          <!--Optional:-->\r
-         <livreId>?</livreId>\r
+         <livreId>6</livreId>\r
          <!--Optional:-->\r
-         <demandeurId>?</demandeurId>\r
+         <demandeurId>1</demandeurId>\r
       </con:newReservation>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.resaService.soap.biblio.mb.fr/resaService/newReservation"/></con:call></con:operation></con:interface><con:testSuite id="2af90b04-1d7a-4bc8-8201-67a81fb91a8c" name="TestSuite 1"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="f4eeef44-6ef6-4fbf-9dfb-76764e17f5c3" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="CreationPretTest" searchProperties="true"><con:settings/><con:testStep type="properties" name="Properties" id="bb75410a-cb34-4304-a619-8605ecf1c438"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>identifiant</con:name><con:value>Morgan</con:value></con:property><con:property><con:name>password</con:name><con:value>azerty</con:value></con:property><con:property><con:name>idUser</con:name><con:value/></con:property><con:property><con:name>idLivre</con:name><con:value/></con:property><con:property><con:name>pretId</con:name><con:value/></con:property></con:properties></con:config></con:testStep><con:testStep type="request" id="80a63864-b1ee-47dd-9452-b353455866e8" name="getUserIdByName - Request 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>UserServiceImplServiceSoapBinding</con:interface><con:operation>getUserIdByName</con:operation><con:request name="getUserIdByName - Request 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="80e13976-68bd-4909-86c1-de9546e24607"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/userService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.userService.soap.biblio.mb.fr/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.resaService.soap.biblio.mb.fr/resaService/newReservation"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="d9592504-e44a-4d74-8383-c64659e5d5b9" isOneWay="false" action="" name="verifEndResa" bindingOperationName="verifEndResa" type="Request-Response" outputName="verifEndResaResponse" inputName="verifEndResa" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="44667ab3-9c62-409e-8ccb-fc2569996ef4" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/resaService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.resaService.soap.biblio.mb.fr/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:verifEndResa/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.resaService.soap.biblio.mb.fr/resaService/verifEndResa"/></con:call></con:operation><con:operation id="0b79ff0c-db7f-4330-9f69-98e66f203eec" isOneWay="false" action="" name="mailResa" bindingOperationName="mailResa" type="Request-Response" outputName="mailResaResponse" inputName="mailResa" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="189caa65-eaea-415d-aa37-ee224d720818" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/resaService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.resaService.soap.biblio.mb.fr/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:mailResa>\r
+         <!--Optional:-->\r
+         <resaId>?</resaId>\r
+      </con:mailResa>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.resaService.soap.biblio.mb.fr/resaService/mailResa"/></con:call></con:operation><con:operation id="bed6ad81-dafb-44c3-a2b3-8bdd42fcd879" isOneWay="false" action="" name="getResaById" bindingOperationName="getResaById" type="Request-Response" outputName="getResaByIdResponse" inputName="getResaById" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d880ab64-ea2f-44e8-8270-d261fffaf3fc" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/resaService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.resaService.soap.biblio.mb.fr/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:getResaById>\r
+         <!--Optional:-->\r
+         <resaId>?</resaId>\r
+      </con:getResaById>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.resaService.soap.biblio.mb.fr/resaService/getResaById"/></con:call></con:operation><con:operation id="28b66903-001f-42f6-9b90-cc2f14aee861" isOneWay="false" action="" name="startResa" bindingOperationName="startResa" type="Request-Response" outputName="startResaResponse" inputName="startResa" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="961533ce-dd45-416c-b540-979516722a40" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/resaService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.resaService.soap.biblio.mb.fr/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:startResa>\r
+         <!--Optional:-->\r
+         <resaId>?</resaId>\r
+      </con:startResa>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.resaService.soap.biblio.mb.fr/resaService/startResa"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="2af90b04-1d7a-4bc8-8201-67a81fb91a8c" name="TestSuite 1"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="f4eeef44-6ef6-4fbf-9dfb-76764e17f5c3" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="CreationPretTest" searchProperties="true"><con:settings/><con:testStep type="properties" name="Properties" id="bb75410a-cb34-4304-a619-8605ecf1c438"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>identifiant</con:name><con:value>Morgan</con:value></con:property><con:property><con:name>password</con:name><con:value>azerty</con:value></con:property><con:property><con:name>idUser</con:name><con:value>2</con:value></con:property><con:property><con:name>idLivre</con:name><con:value>12</con:value></con:property><con:property><con:name>pretId</con:name><con:value>39</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="request" id="80a63864-b1ee-47dd-9452-b353455866e8" name="getUserIdByName - Request 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>UserServiceImplServiceSoapBinding</con:interface><con:operation>getUserIdByName</con:operation><con:request name="getUserIdByName - Request 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="80e13976-68bd-4909-86c1-de9546e24607"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/userService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.userService.soap.biblio.mb.fr/">
    <soapenv:Header>
       <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
          <wsse:UsernameToken wsu:Id="UsernameToken-F9FCCA11A8DE5FEFCC152759700875511">
@@ -2007,7 +2156,7 @@
          <prenom>Pauline</prenom>
       </con:getUserIdByName>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="7d07b978-a3b4-4a5e-9fd3-a6b56393ee8c" name="SOAP Response"/><con:assertion type="SOAP Fault Assertion" id="90010f3a-52d8-4a7d-9a57-f7fa2f8b44db" name="Not SOAP Fault"/><con:credentials><con:username>Morgan</con:username><con:password>azerty</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.userService.soap.biblio.mb.fr/userService/getUserIdByName"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer" id="d0e9aa7b-665c-4091-967b-72743a417052"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>id user</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>getUserIdByName - Request 1</con:sourceStep><con:sourcePath>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="7d07b978-a3b4-4a5e-9fd3-a6b56393ee8c" name="SOAP Response"/><con:assertion type="SOAP Fault Assertion" id="90010f3a-52d8-4a7d-9a57-f7fa2f8b44db" name="Not SOAP Fault"/><con:credentials><con:username>Morgan</con:username><con:password>azerty</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.userService.soap.biblio.mb.fr/userService/getUserIdByName"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer1" id="12710690-738e-49f2-8403-b86b488cf2d5"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>id user</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>getUserIdByName - Request 1</con:sourceStep><con:sourcePath>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
 declare namespace ns2='http://contract.userService.soap.biblio.mb.fr/';
 /soap:Envelope/soap:Body/ns2:getUserIdByNameResponse/return/text()
 </con:sourcePath><con:targetType>idUser</con:targetType><con:targetStep>Properties</con:targetStep><con:targetPath/><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="request" id="d8a8dac1-8af7-4ea1-9100-ea8bcc520412" name="rechercheLivres"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LivreServiceImplServiceSoapBinding</con:interface><con:operation>rechercheLivres</con:operation><con:request name="rechercheLivres" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="afd320d4-8f77-4b10-8c2c-8aa5dcb2d651"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/livreService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.livreService.soap.biblio.mb.fr/">
@@ -2024,7 +2173,7 @@ declare namespace ns2='http://contract.userService.soap.biblio.mb.fr/';
             <!--Optional:-->
             <genre/>
             <!--Optional:-->
-            <titre>anglais</titre>
+            <titre>espion</titre>
          </recherche>
          <!--Optional:-->
          <offset>0</offset>
@@ -2094,7 +2243,7 @@ declare namespace ns2='http://contract.pretService.soap.biblio.mb.fr/';
          <livreId>${Properties#idLivre}</livreId>
       </con:setDisponibilite>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="c9c87083-bf66-418c-af3a-565aea1b3f3d"/><con:assertion type="Schema Compliance" id="e751a667-bffb-4593-832d-9ec86f3fb906"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="9d104451-5973-4d90-8661-22a3c0107534"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="be59fb48-a5bf-4857-ac3b-09804f4c58ac" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="ProlongerPret" searchProperties="true"><con:settings/><con:testStep type="properties" name="Properties" id="14c58586-fdca-4f81-9573-73383c67f0dc"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>identifiant</con:name><con:value>Morgan</con:value></con:property><con:property><con:name>password</con:name><con:value>azerty</con:value></con:property><con:property><con:name>pretId</con:name><con:value>8</con:value></con:property><con:property><con:name>emprunteurId</con:name><con:value>2</con:value></con:property><con:property><con:name>idLivre</con:name><con:value>11</con:value></con:property><con:property><con:name>pretId2</con:name><con:value/></con:property></con:properties></con:config></con:testStep><con:testStep type="request" name="ProlongerPretDepassé" id="153883f9-1eb5-4a46-a731-b04913b50241"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PretServiceImplServiceSoapBinding</con:interface><con:operation>prolongerPret</con:operation><con:request name="ProlongerPretDepassé" id="c994d0e8-72e3-414e-9dce-5a29038d097c"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/pretService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.pretService.soap.biblio.mb.fr/">
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="c9c87083-bf66-418c-af3a-565aea1b3f3d"/><con:assertion type="Schema Compliance" id="e751a667-bffb-4593-832d-9ec86f3fb906"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="9d104451-5973-4d90-8661-22a3c0107534"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="be59fb48-a5bf-4857-ac3b-09804f4c58ac" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="ProlongerPret" searchProperties="true"><con:settings/><con:testStep type="properties" name="Properties" id="14c58586-fdca-4f81-9573-73383c67f0dc"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>identifiant</con:name><con:value>Morgan</con:value></con:property><con:property><con:name>password</con:name><con:value>azerty</con:value></con:property><con:property><con:name>pretId</con:name><con:value>25</con:value></con:property><con:property><con:name>emprunteurId</con:name><con:value>2</con:value></con:property><con:property><con:name>idLivre</con:name><con:value>9</con:value></con:property><con:property><con:name>pretId2</con:name><con:value/></con:property></con:properties></con:config></con:testStep><con:testStep type="request" name="ProlongerPretDepassé" id="153883f9-1eb5-4a46-a731-b04913b50241"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PretServiceImplServiceSoapBinding</con:interface><con:operation>prolongerPret</con:operation><con:request name="ProlongerPretDepassé" id="c994d0e8-72e3-414e-9dce-5a29038d097c"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/pretService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.pretService.soap.biblio.mb.fr/">
    <soapenv:Header>
       <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
          <wsse:UsernameToken wsu:Id="UsernameToken-F9FCCA11A8DE5FEFCC152759700875511">
@@ -2174,4 +2323,35 @@ declare namespace ns2='http://contract.pretService.soap.biblio.mb.fr/';
          <livreId>${Properties#idLivre}</livreId>
       </con:setDisponibilite>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="c9c87083-bf66-418c-af3a-565aea1b3f3d"/><con:assertion type="Schema Compliance" id="e751a667-bffb-4593-832d-9ec86f3fb906"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="9d104451-5973-4d90-8661-22a3c0107534"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="c9c87083-bf66-418c-af3a-565aea1b3f3d"/><con:assertion type="Schema Compliance" id="e751a667-bffb-4593-832d-9ec86f3fb906"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="9d104451-5973-4d90-8661-22a3c0107534"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="1f9e0a35-57bd-4e8c-8257-451409fbad98" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="CreationResa" searchProperties="true"><con:settings/><con:testStep type="properties" name="Properties" id="39a21333-22c2-4aa7-9095-fef8b5b6d22e"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>livreId</con:name><con:value>6</con:value></con:property><con:property><con:name>demandeurId</con:name><con:value>1</con:value></con:property><con:property><con:name>resaId</con:name><con:value/></con:property></con:properties></con:config></con:testStep><con:testStep type="request" name="newResa" id="28fef77a-45c9-4ab3-a1ca-143806047e5c"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ResaServiceImplServiceSoapBinding</con:interface><con:operation>newReservation</con:operation><con:request name="newResa" id="ff39e116-9720-4074-b442-62f616d9374c"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/resaService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.resaService.soap.biblio.mb.fr/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:newReservation>\r
+          <!--Optional:-->
+         <livreId>${Properties#livreId}</livreId>
+         <!--Optional:-->
+         <demandeurId>${Properties#demandeurId}</demandeurId>
+         </con:newReservation>
+
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="93c6231b-19f3-4cdf-88c4-af5bcdff0ea9"/><con:assertion type="SOAP Fault Assertion" id="4b3b15cd-d503-47df-8162-92f6e4f7b6af" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer" id="0d9db760-dd8e-44ee-8c67-c7fe6246f3b3"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>idResa</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>newResa</con:sourceStep><con:sourcePath>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='http://contract.resaService.soap.biblio.mb.fr/';
+/soap:Envelope/soap:Body/ns2:newReservationResponse/return[1]/id/text()
+</con:sourcePath><con:targetType>resaId</con:targetType><con:targetStep>Properties</con:targetStep><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="request" name="startResa" id="1b9f8b90-dc1e-46c1-bb36-783c5adbd5cc"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ResaServiceImplServiceSoapBinding</con:interface><con:operation>startResa</con:operation><con:request name="startResa" id="4a860dc2-13a5-4a8a-addd-0600bac9ad7f"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/resaService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.resaService.soap.biblio.mb.fr/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+           <con:startResa>
+         <!--Optional:-->
+         <resaId>${Properties#resaId}</resaId>
+      </con:startResa>
+
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="4cdaeb27-42ae-4b5b-9443-99dbba463aed"/><con:assertion type="SOAP Fault Assertion" id="a13b0a1d-55e0-43ce-9e53-505db512df2b"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="deleteResa" id="77020159-181c-4416-bd5a-0a9d31537038"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ResaServiceImplServiceSoapBinding</con:interface><con:operation>deleteReservation</con:operation><con:request name="deleteResa" id="4ecd2446-f4b9-4933-8322-fff6ee259c9c"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.99.100:8081/SOAP/resaService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://contract.resaService.soap.biblio.mb.fr/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:deleteReservation>\r
+         <!--Optional:-->\r
+         <resaId>${Properties#resaId}</resaId>\r
+      </con:deleteReservation>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="e0f843d2-7565-49ee-812e-acef171ddd6a"/><con:assertion type="SOAP Fault Assertion" id="bfeca629-7208-4810-a89a-8211d0c7128d"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

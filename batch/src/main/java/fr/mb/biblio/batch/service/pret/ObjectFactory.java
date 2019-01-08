@@ -25,7 +25,9 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _GetPretsEnCoursByUserResponse_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "getPretsEnCoursByUserResponse");
+    private final static QName _GetPretsFuturRetardsResponse_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "getPretsFuturRetardsResponse");
     private final static QName _DeletePret_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "deletePret");
+    private final static QName _GetPretsFuturRetards_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "getPretsFuturRetards");
     private final static QName _SetDisponibiliteResponse_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "setDisponibiliteResponse");
     private final static QName _NouveauPretResponse_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "nouveauPretResponse");
     private final static QName _GetPretsProlongesResponse_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "getPretsProlongesResponse");
@@ -42,12 +44,14 @@ public class ObjectFactory {
     private final static QName _ProlongerPretResponse_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "prolongerPretResponse");
     private final static QName _NotFoundException_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "NotFoundException");
     private final static QName _RelanceMailRetardsResponse_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "relanceMailRetardsResponse");
+    private final static QName _RelanceMailFuturRetard_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "relanceMailFuturRetard");
     private final static QName _SetDisponibilite_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "setDisponibilite");
     private final static QName _Ouvrage_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "ouvrage");
     private final static QName _RetourPret_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "retourPret");
     private final static QName _FunctionalException_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "FunctionalException");
     private final static QName _CreationPretDateResponse_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "creationPretDateResponse");
     private final static QName _GetPretsEnCoursResponse_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "getPretsEnCoursResponse");
+    private final static QName _RelanceMailFuturRetardResponse_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "relanceMailFuturRetardResponse");
     private final static QName _GetPretsRetardsResponse_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "getPretsRetardsResponse");
     private final static QName _Exception_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "Exception");
     private final static QName _Auteur_QNAME = new QName("http://contract.pretService.soap.biblio.mb.fr/", "auteur");
@@ -94,6 +98,14 @@ public class ObjectFactory {
      */
     public RelanceMailRetardsResponse createRelanceMailRetardsResponse() {
         return new RelanceMailRetardsResponse();
+    }
+
+    /**
+     * Create an instance of {@link RelanceMailFuturRetard }
+     * 
+     */
+    public RelanceMailFuturRetard createRelanceMailFuturRetard() {
+        return new RelanceMailFuturRetard();
     }
 
     /**
@@ -153,11 +165,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetPretsFuturRetardsResponse }
+     * 
+     */
+    public GetPretsFuturRetardsResponse createGetPretsFuturRetardsResponse() {
+        return new GetPretsFuturRetardsResponse();
+    }
+
+    /**
      * Create an instance of {@link DeletePret }
      * 
      */
     public DeletePret createDeletePret() {
         return new DeletePret();
+    }
+
+    /**
+     * Create an instance of {@link GetPretsFuturRetards }
+     * 
+     */
+    public GetPretsFuturRetards createGetPretsFuturRetards() {
+        return new GetPretsFuturRetards();
     }
 
     /**
@@ -214,6 +242,14 @@ public class ObjectFactory {
      */
     public GetPretsProlongesResponse createGetPretsProlongesResponse() {
         return new GetPretsProlongesResponse();
+    }
+
+    /**
+     * Create an instance of {@link RelanceMailFuturRetardResponse }
+     * 
+     */
+    public RelanceMailFuturRetardResponse createRelanceMailFuturRetardResponse() {
+        return new RelanceMailFuturRetardResponse();
     }
 
     /**
@@ -346,12 +382,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetPretsFuturRetardsResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://contract.pretService.soap.biblio.mb.fr/", name = "getPretsFuturRetardsResponse")
+    public JAXBElement<GetPretsFuturRetardsResponse> createGetPretsFuturRetardsResponse(GetPretsFuturRetardsResponse value) {
+        return new JAXBElement<GetPretsFuturRetardsResponse>(_GetPretsFuturRetardsResponse_QNAME, GetPretsFuturRetardsResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link DeletePret }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://contract.pretService.soap.biblio.mb.fr/", name = "deletePret")
     public JAXBElement<DeletePret> createDeletePret(DeletePret value) {
         return new JAXBElement<DeletePret>(_DeletePret_QNAME, DeletePret.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetPretsFuturRetards }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://contract.pretService.soap.biblio.mb.fr/", name = "getPretsFuturRetards")
+    public JAXBElement<GetPretsFuturRetards> createGetPretsFuturRetards(GetPretsFuturRetards value) {
+        return new JAXBElement<GetPretsFuturRetards>(_GetPretsFuturRetards_QNAME, GetPretsFuturRetards.class, null, value);
     }
 
     /**
@@ -499,6 +553,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RelanceMailFuturRetard }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://contract.pretService.soap.biblio.mb.fr/", name = "relanceMailFuturRetard")
+    public JAXBElement<RelanceMailFuturRetard> createRelanceMailFuturRetard(RelanceMailFuturRetard value) {
+        return new JAXBElement<RelanceMailFuturRetard>(_RelanceMailFuturRetard_QNAME, RelanceMailFuturRetard.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link SetDisponibilite }{@code >}}
      * 
      */
@@ -550,6 +613,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://contract.pretService.soap.biblio.mb.fr/", name = "getPretsEnCoursResponse")
     public JAXBElement<GetPretsEnCoursResponse> createGetPretsEnCoursResponse(GetPretsEnCoursResponse value) {
         return new JAXBElement<GetPretsEnCoursResponse>(_GetPretsEnCoursResponse_QNAME, GetPretsEnCoursResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RelanceMailFuturRetardResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://contract.pretService.soap.biblio.mb.fr/", name = "relanceMailFuturRetardResponse")
+    public JAXBElement<RelanceMailFuturRetardResponse> createRelanceMailFuturRetardResponse(RelanceMailFuturRetardResponse value) {
+        return new JAXBElement<RelanceMailFuturRetardResponse>(_RelanceMailFuturRetardResponse_QNAME, RelanceMailFuturRetardResponse.class, null, value);
     }
 
     /**

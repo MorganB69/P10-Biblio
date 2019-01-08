@@ -16,7 +16,12 @@
 	<!-- DECLARATIONS DES SERVICES CLIENTS -->
 	<jaxws:client id="userClient"
                   serviceClass="fr.mb.biblio.webappConsumer.services.user.UserService"
-                  address="${service.user}" />
+                  address="${service.user}">
+    <jaxws:outInterceptors>
+        <ref bean="wss4jOut"/>
+
+    </jaxws:outInterceptors>
+    </jaxws:client>
                   
 	<jaxws:client id="identificationClient"
                   serviceClass="fr.mb.biblio.webappConsumer.services.identification.IdentificationService"

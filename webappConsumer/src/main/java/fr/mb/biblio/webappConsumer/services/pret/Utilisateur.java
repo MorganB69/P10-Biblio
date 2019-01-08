@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="mail" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="nom" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="prenom" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="relance" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,7 +38,8 @@ import javax.xml.bind.annotation.XmlType;
     "identifiant",
     "mail",
     "nom",
-    "prenom"
+    "prenom",
+    "relance"
 })
 public class Utilisateur {
 
@@ -47,6 +49,7 @@ public class Utilisateur {
     protected String mail;
     protected String nom;
     protected String prenom;
+    protected Boolean relance;
 
     /**
      * Obtient la valeur de la propriété admin.
@@ -182,6 +185,30 @@ public class Utilisateur {
      */
     public void setPrenom(String value) {
         this.prenom = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété relance.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isRelance() {
+        return relance;
+    }
+
+    /**
+     * Définit la valeur de la propriété relance.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setRelance(Boolean value) {
+        this.relance = value;
     }
 
 }

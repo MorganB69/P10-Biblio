@@ -47,5 +47,8 @@ public interface UserManager {
 	public Integer getUserIdByName(String nom, String prenom)
 				throws NotFoundException,FunctionalException;
 
+	public  void setOptionRelance(Integer id , Boolean relance) throws FunctionalException, NotFoundException;
+
+
 }
 
