@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
 
-@Component
+
 public class RunScheduler {
 
     @Autowired
@@ -21,6 +21,7 @@ public class RunScheduler {
     ResaService resaClient;
 
     public RunScheduler() {
+        System.out.println("creation classe");
     }
 
     @Scheduled(cron = "${relancePretScheduler}")

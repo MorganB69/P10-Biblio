@@ -9,6 +9,9 @@ ENV IDENTIFICATIONSERVICE=${IDENTIFICATIONSERVICE}
 ENV RESASERVICE=${RESASERVICE}
 ENV LOGINSERVICE=${LOGINSERVICE}
 ENV MDPSERVICE=${MDPSERVICE}
+ENV TZ=Europe/Paris
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 CMD ["java","-jar","batch-0.0.1-SNAPSHOT-spring-boot.jar"]
 

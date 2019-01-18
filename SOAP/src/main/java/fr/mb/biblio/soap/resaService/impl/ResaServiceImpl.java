@@ -97,11 +97,21 @@ public class ResaServiceImpl implements ResaService {
     public List<ReservationWS> getResaByUserId(Integer demandeurId) throws FunctionalException, NotFoundException {
         resaListReturn=resaManager.getResaByUserId(demandeurId);
         resaWsListReturn.clear();
+        Boolean exception = false;
+        String date=null;
         for(Reservation next : resaListReturn){
             ReservationWS resaWS = new ReservationWS();
-            String date = livreManager.dateRetourLivre(next.getLivre().getIdLivre());
+            try{
+                 date = livreManager.dateRetourLivre(next.getLivre().getIdLivre());
+            }
+            catch (FunctionalException e){
+                exception=true;
+            }
+            LocalDate dateRetour=null;
+            if(exception==false){
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            LocalDate dateRetour = LocalDate.parse(date,formatter);
+            dateRetour = LocalDate.parse(date,formatter);}
+
 
             resaWS.setReservation(next);
             resaWS.setDateRetour(dateRetour);
